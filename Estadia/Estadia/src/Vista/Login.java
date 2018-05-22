@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "DEBE CREAR EL ADMINISTRADOR DEL SISTEMA");
             Registro form = new Registro();
             form.setResizable(false);
-            form.toBack();
+            form.toFront();
             form.setVisible(true);
             form.setLocationRelativeTo(null);
         }
@@ -296,6 +296,8 @@ public class Login extends javax.swing.JFrame {
                 Principal.mUsuarios.setVisible(false);
                 Principal.mReportes.setEnabled(false);
                 Principal.mReportes.setVisible(false);
+                Principal.mConsumibles.setEnabled(false);
+                Principal.mConsumibles.setVisible(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO SE HA PODIDO INGRESAR");

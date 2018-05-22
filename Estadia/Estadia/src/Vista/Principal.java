@@ -52,11 +52,11 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        mConsumibles = new javax.swing.JMenu();
-        jMAltas = new javax.swing.JMenuItem();
-        jMConsultas = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        mBienes = new javax.swing.JMenu();
+        menuC = new javax.swing.JMenu();
+        mConsumibles = new javax.swing.JMenuItem();
+        mConsultas = new javax.swing.JMenuItem();
+        mSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,47 +162,47 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(mReportes);
 
-        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu3.setText("Bienes");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuBar1.add(jMenu3);
+        mBienes.setBackground(new java.awt.Color(255, 255, 255));
+        mBienes.setForeground(new java.awt.Color(255, 255, 255));
+        mBienes.setText("Bienes");
+        mBienes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuBar1.add(mBienes);
 
-        mConsumibles.setBackground(new java.awt.Color(255, 255, 255));
-        mConsumibles.setForeground(new java.awt.Color(255, 255, 255));
-        mConsumibles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/3209270-24.png"))); // NOI18N
-        mConsumibles.setText("Consumibles");
-        mConsumibles.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        menuC.setBackground(new java.awt.Color(255, 255, 255));
+        menuC.setForeground(new java.awt.Color(255, 255, 255));
+        menuC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/3209270-24.png"))); // NOI18N
+        menuC.setText("Consumibles");
+        menuC.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        jMAltas.setText("Altas");
-        jMAltas.addActionListener(new java.awt.event.ActionListener() {
+        mConsumibles.setText("Altas");
+        mConsumibles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMAltasActionPerformed(evt);
+                mConsumiblesActionPerformed(evt);
             }
         });
-        mConsumibles.add(jMAltas);
+        menuC.add(mConsumibles);
 
-        jMConsultas.setText("Consultas");
-        jMConsultas.addActionListener(new java.awt.event.ActionListener() {
+        mConsultas.setText("Consultas");
+        mConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMConsultasActionPerformed(evt);
+                mConsultasActionPerformed(evt);
             }
         });
-        mConsumibles.add(jMConsultas);
+        menuC.add(mConsultas);
 
-        jMenuBar1.add(mConsumibles);
+        jMenuBar1.add(menuC);
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/326635-24.png"))); // NOI18N
-        jMenu1.setText("Salir");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mSalir.setBackground(new java.awt.Color(255, 255, 255));
+        mSalir.setForeground(new java.awt.Color(255, 255, 255));
+        mSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/326635-24.png"))); // NOI18N
+        mSalir.setText("Salir");
+        mSalir.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        mSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                mSalirMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -236,7 +236,7 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sUsuariosActionPerformed
 
-    private void jMAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAltasActionPerformed
+    private void mConsumiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsumiblesActionPerformed
         Consumibles form = null;
         try {
             form = new Consumibles();
@@ -247,17 +247,20 @@ public class Principal extends javax.swing.JFrame {
         form.toFront();
         form.setVisible(true);
         
-    }//GEN-LAST:event_jMAltasActionPerformed
+    }//GEN-LAST:event_mConsumiblesActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void mSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mSalirMouseClicked
        
        int i = JOptionPane.showConfirmDialog(this,  "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
-            System.exit(0);
+            //System.exit(0);
+            this.dispose();
+            Login login = new Login();
+            login.setVisible(true);
         } 
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_mSalirMouseClicked
 
-    private void jMConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMConsultasActionPerformed
+    private void mConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsultasActionPerformed
         ConsultaConsumibles form = null;
         try {
             form = new ConsultaConsumibles();
@@ -267,7 +270,7 @@ public class Principal extends javax.swing.JFrame {
         }
         form.toFront();
         form.setVisible(true);
-    }//GEN-LAST:event_jMConsultasActionPerformed
+    }//GEN-LAST:event_mConsultasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,10 +313,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuItem jMAltas;
-    private javax.swing.JMenuItem jMConsultas;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -322,9 +321,13 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblIdUsuario;
     public static javax.swing.JLabel lblNombre;
     public static javax.swing.JMenu mAlmacen;
-    private javax.swing.JMenu mConsumibles;
+    private javax.swing.JMenu mBienes;
+    public static javax.swing.JMenuItem mConsultas;
+    public static javax.swing.JMenuItem mConsumibles;
     public static javax.swing.JMenu mReportes;
+    private javax.swing.JMenu mSalir;
     public static javax.swing.JMenu mUsuarios;
+    private javax.swing.JMenu menuC;
     private javax.swing.JMenuItem sUsuarios;
     // End of variables declaration//GEN-END:variables
 }
