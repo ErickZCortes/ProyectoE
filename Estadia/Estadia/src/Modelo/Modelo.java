@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Datos.DatosArea;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
 import java.sql.Connection;
@@ -311,6 +312,112 @@ public class Modelo {
             PreparedStatement pst = cn.prepareStatement(cons);
 
             pst.setString(1, datos.getIdConsumible());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }//cierre funcion
+    
+    //--------------------------------------------AREAS-----------------------------------------------------//
+    
+    public DefaultTableModel cargar_tabla_Areas(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"Id_area", "Nombre del CTT", "Clave Presupuestal", "Domicilio", "Telefono"};
+
+        String[] registros = new String[5];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_area ,nombre , clave_pres , domicilio , telefono from areas WHERE nombre LIKE '%" + valor + "%' order by id_area desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_area");
+                registros[1] = rs.getString("nombre");
+                registros[2] = rs.getString("clave_pres");
+                registros[3] = rs.getString("domicilio");
+                registros[4] = rs.getString("telefono");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+
+    public boolean insertar_area(DatosArea datos) {
+        cons = "INSERT into areas(nombre,clave_pres,domicilio,telefono) VALUES (?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.setString(1, datos.getNombre());
+            pst.setString(2, datos.getClave_pres());
+            pst.setString(3, datos.getDomicilio());
+            pst.setString(4, datos.getTelefono());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+
+    public boolean editar_areas(DatosArea datos, String IdArea) {
+
+        cons = "update areas set nombre = ? ,clave_pres = ?, domicilio = ? , telefono = ? where id_area ='" + IdArea + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getNombre());
+            pst.setString(2, datos.getClave_pres());
+            pst.setString(3, datos.getDomicilio());
+            pst.setString(4, datos.getTelefono());
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+
+    }
+
+    public boolean eliminar_area(DatosArea datos) {
+        cons = "delete from areas where id_area = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getIdArea());
             int N = pst.executeUpdate();
 
             if (N != 0) {

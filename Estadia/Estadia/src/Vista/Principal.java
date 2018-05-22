@@ -48,8 +48,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mUsuarios = new javax.swing.JMenu();
         sUsuarios = new javax.swing.JMenuItem();
-        mAlmacen = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mAreas = new javax.swing.JMenu();
+        mAltas = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
@@ -142,15 +142,20 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(mUsuarios);
 
-        mAlmacen.setBackground(new java.awt.Color(255, 255, 255));
-        mAlmacen.setForeground(new java.awt.Color(255, 255, 255));
-        mAlmacen.setText("Almacen");
-        mAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        mAreas.setBackground(new java.awt.Color(255, 255, 255));
+        mAreas.setForeground(new java.awt.Color(255, 255, 255));
+        mAreas.setText("Areas");
+        mAreas.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        jMenuItem2.setText("jMenuItem2");
-        mAlmacen.add(jMenuItem2);
+        mAltas.setText("Agregar");
+        mAltas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAltasActionPerformed(evt);
+            }
+        });
+        mAreas.add(mAltas);
 
-        jMenuBar1.add(mAlmacen);
+        jMenuBar1.add(mAreas);
 
         mReportes.setBackground(new java.awt.Color(255, 255, 255));
         mReportes.setForeground(new java.awt.Color(255, 255, 255));
@@ -272,6 +277,22 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_mConsultasActionPerformed
 
+    private void mAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAltasActionPerformed
+        Areas form = null;
+        try {
+            form = new Areas();
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_mAltasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -314,13 +335,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblAcceso;
     public static javax.swing.JLabel lblIdUsuario;
     public static javax.swing.JLabel lblNombre;
-    public static javax.swing.JMenu mAlmacen;
+    public static javax.swing.JMenuItem mAltas;
+    public static javax.swing.JMenu mAreas;
     private javax.swing.JMenu mBienes;
     public static javax.swing.JMenuItem mConsultas;
     public static javax.swing.JMenuItem mConsumibles;

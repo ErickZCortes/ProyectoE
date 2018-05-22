@@ -5,9 +5,15 @@
  */
 package Controlador;
 
+import Datos.DatosArea;
 import Datos.DatosConsumible;
 import Datos.DatosUsuario;
 import Modelo.Modelo;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,5 +74,25 @@ public class Controlador {
 
     public boolean eliminar_consumible(DatosConsumible datos) {
         return m.eliminar_consumible(datos);
+    }
+    
+    //-------------------------AREAS--------------------------------------------//
+    
+    public DefaultTableModel cargar_tabla_Areas(String valor) {
+        return m.cargar_tabla_Areas(valor);
+    }
+     
+    public boolean Guardar_area(String accion, DatosArea datos, String idArea) {
+        if (accion == "A") {
+        return m.insertar_area(datos);
+        }
+        if (accion == "M") {
+        return m.editar_areas(datos, idArea);
+        }
+        return false;
+    }
+
+    public boolean eliminar_area(DatosArea datos) {
+        return m.eliminar_area(datos);
     }
 }
