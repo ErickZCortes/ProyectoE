@@ -49,7 +49,9 @@ public class Principal extends javax.swing.JFrame {
         mUsuarios = new javax.swing.JMenu();
         sUsuarios = new javax.swing.JMenuItem();
         mAreas = new javax.swing.JMenu();
-        mAltas = new javax.swing.JMenuItem();
+        sAreas = new javax.swing.JMenuItem();
+        mPersonal = new javax.swing.JMenu();
+        sPersonal = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
@@ -147,15 +149,30 @@ public class Principal extends javax.swing.JFrame {
         mAreas.setText("Areas");
         mAreas.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        mAltas.setText("Agregar");
-        mAltas.addActionListener(new java.awt.event.ActionListener() {
+        sAreas.setText("Agregar");
+        sAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mAltasActionPerformed(evt);
+                sAreasActionPerformed(evt);
             }
         });
-        mAreas.add(mAltas);
+        mAreas.add(sAreas);
 
         jMenuBar1.add(mAreas);
+
+        mPersonal.setBackground(new java.awt.Color(255, 255, 255));
+        mPersonal.setForeground(new java.awt.Color(255, 255, 255));
+        mPersonal.setText("Personal");
+        mPersonal.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+
+        sPersonal.setText("Agregar");
+        sPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sPersonalActionPerformed(evt);
+            }
+        });
+        mPersonal.add(sPersonal);
+
+        jMenuBar1.add(mPersonal);
 
         mReportes.setBackground(new java.awt.Color(255, 255, 255));
         mReportes.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,17 +271,6 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mConsumiblesActionPerformed
 
-    private void mSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mSalirMouseClicked
-       
-       int i = JOptionPane.showConfirmDialog(this,  "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (i == 0) {
-            //System.exit(0);
-            this.dispose();
-            Login login = new Login();
-            login.setVisible(true);
-        } 
-    }//GEN-LAST:event_mSalirMouseClicked
-
     private void mConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsultasActionPerformed
         ConsultaConsumibles form = null;
         try {
@@ -277,7 +283,7 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_mConsultasActionPerformed
 
-    private void mAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAltasActionPerformed
+    private void sAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sAreasActionPerformed
         Areas form = null;
         try {
             form = new Areas();
@@ -291,7 +297,33 @@ public class Principal extends javax.swing.JFrame {
         }
         form.toFront();
         form.setVisible(true);
-    }//GEN-LAST:event_mAltasActionPerformed
+    }//GEN-LAST:event_sAreasActionPerformed
+
+    private void mSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mSalirMouseClicked
+       int i = JOptionPane.showConfirmDialog(this,  "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (i == 0) {
+            //System.exit(0);
+            this.dispose();
+            Login login = new Login();
+            login.setVisible(true);
+        } 
+    }//GEN-LAST:event_mSalirMouseClicked
+
+    private void sPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPersonalActionPerformed
+        Personal form = null;
+        try {
+            form = new Personal();
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sPersonalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,15 +372,17 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblAcceso;
     public static javax.swing.JLabel lblIdUsuario;
     public static javax.swing.JLabel lblNombre;
-    public static javax.swing.JMenuItem mAltas;
     public static javax.swing.JMenu mAreas;
     private javax.swing.JMenu mBienes;
     public static javax.swing.JMenuItem mConsultas;
     public static javax.swing.JMenuItem mConsumibles;
+    public static javax.swing.JMenu mPersonal;
     public static javax.swing.JMenu mReportes;
     private javax.swing.JMenu mSalir;
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
+    public static javax.swing.JMenuItem sAreas;
+    public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
     // End of variables declaration//GEN-END:variables
 }

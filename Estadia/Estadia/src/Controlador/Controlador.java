@@ -7,6 +7,7 @@ package Controlador;
 
 import Datos.DatosArea;
 import Datos.DatosConsumible;
+import Datos.DatosPersonal;
 import Datos.DatosUsuario;
 import Modelo.Modelo;
 import java.sql.PreparedStatement;
@@ -94,5 +95,23 @@ public class Controlador {
 
     public boolean eliminar_area(DatosArea datos) {
         return m.eliminar_area(datos);
+    }
+     //-------------------------PERSONAL---------------------------------------//
+    public DefaultTableModel cargar_tabla_Personal(String valor) {
+        return m.cargar_tabla_Personal(valor);
+    }
+     
+    public boolean Guardar_personal(String accion, DatosPersonal datos, String idPersonal) {
+        if (accion == "A") {
+        return m.insertar_personal(datos);
+        }
+        if (accion == "M") {
+        return m.editar_personal(datos, idPersonal);
+        }
+        return false;
+    }
+
+    public boolean eliminar_personal(DatosPersonal datos) {
+        return m.eliminar_personal(datos);
     }
 }
