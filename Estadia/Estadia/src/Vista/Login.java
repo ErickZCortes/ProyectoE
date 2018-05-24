@@ -298,8 +298,10 @@ public class Login extends javax.swing.JFrame {
                 Principal.mReportes.setVisible(false);
                 Principal.mConsumibles.setEnabled(false);
                 Principal.mConsumibles.setVisible(false);
-                Principal.mAltas.setEnabled(false);
-                Principal.mAltas.setVisible(false);
+                Principal.sAreas.setEnabled(false);
+                Principal.sAreas.setVisible(false);
+                Principal.sPersonal.setEnabled(false);
+                Principal.sPersonal.setVisible(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO SE HA PODIDO INGRESAR");

@@ -8,6 +8,7 @@ package Modelo;
 import Datos.DatosArea;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
+import Datos.DatosPersonal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -326,7 +327,7 @@ public class Modelo {
         }
     }//cierre funcion
     
-    //--------------------------------------------AREAS-----------------------------------------------------//
+    //----------------------------------AREA--------------------------//
     
     public DefaultTableModel cargar_tabla_Areas(String valor) {
 
@@ -431,4 +432,115 @@ public class Modelo {
             return false;
         }
     }//cierre funcion
+    
+    //----------------------------------PERSONAL--------------------------//
+    
+    public DefaultTableModel cargar_tabla_Personal(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"id_persona", "Clave", "Nombre", "CURP", "Area","CTT"};
+
+        String[] registros = new String[6];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_persona ,clave_institu , nombre_persona , curp_persona , area_persona , ctt_persona from personal WHERE nombre_persona LIKE '%" + valor + "%' order by id_persona desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_persona");
+                registros[1] = rs.getString("clave_institu");
+                registros[2] = rs.getString("nombre_persona");
+                registros[3] = rs.getString("curp_persona");
+                registros[4] = rs.getString("area_persona");
+                registros[5] = rs.getString("ctt_persona");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+
+    public boolean insertar_personal(DatosPersonal datos) {
+        cons = "INSERT into personal(clave_institu,nombre_persona,curp_persona,area_persona,ctt_persona) VALUES (?,?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.setString(1, datos.getClave());
+            pst.setString(2, datos.getNombre());
+            pst.setString(3, datos.getCURP());
+            pst.setString(4, datos.getArea());
+            pst.setString(5, datos.getCct());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+
+    public boolean editar_personal(DatosPersonal datos, String IdPersonal) {
+
+        cons = "update personal set clave_institu = ? ,nombre_persona = ?, curp_persona = ? , area_persona = ?, ctt_persona = ? where id_persona ='" + IdPersonal + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getClave());
+            pst.setString(2, datos.getNombre());
+            pst.setString(3, datos.getCURP());
+            pst.setString(4, datos.getArea());
+            pst.setString(5, datos.getCct());
+            
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+
+    }
+
+    public boolean eliminar_personal(DatosPersonal datos) {
+        cons = "delete from personal where id_persona = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getIdPersonal());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }//cierre funcion
+    
 }
