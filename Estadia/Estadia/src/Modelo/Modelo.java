@@ -6,6 +6,7 @@
 package Modelo;
 
 import Datos.DatosArea;
+import Datos.DatosBien;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
 import Datos.DatosPersonal;
@@ -543,4 +544,115 @@ public class Modelo {
         }
     }//cierre funcion
     
+    //--------------------------------------------BIENES-----------------------------------------------------//
+    
+    public DefaultTableModel cargar_tabla_Bienes(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"Id_bien", "Nombre", "Característica", "Marca", "Modelo", "Serie", "Valor"};
+
+        String[] registros = new String[7];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_bien ,nombre_bien , caract_bien , marca_bien , modelo_bien, serie_bien, valor_bien from bienes WHERE nombre_bien LIKE '%" + valor + "%' order by id_bien desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_bien");
+                registros[1] = rs.getString("nombre_bien");
+                registros[2] = rs.getString("caract_bien");
+                registros[3] = rs.getString("marca_bien");
+                registros[4] = rs.getString("modelo_bien");
+                registros[5] = rs.getString("serie_bien");
+                registros[6] = rs.getString("valor_bien");
+               
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+
+    public boolean insertar_bienes(DatosBien datos) {
+        cons = "INSERT into bienes(nombre_bien,caract_bien,marca_bien,modelo_bien, serie_bien, valor_bien) VALUES (?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.setString(1, datos.getNombre());
+            pst.setString(2, datos.getCaracteristica());
+            pst.setString(3, datos.getMarca());
+            pst.setString(4, datos.getModelo());
+            pst.setString(5, datos.getSerie());
+            pst.setString(6, datos.getValor());
+
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+
+    public boolean editar_bienes(DatosBien datos, String Idbien) {
+
+        cons = "update bienes set nombre_bien = ? ,caract_bien = ?, marca_bien = ? , modelo_bien = ?, serie_bien = ?, valor_bien = ? where id_bien ='" + Idbien + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getNombre());
+            pst.setString(2, datos.getCaracteristica());
+            pst.setString(3, datos.getMarca());
+            pst.setString(4, datos.getModelo());
+            pst.setString(5, datos.getSerie());
+            pst.setString(6, datos.getValor());
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+
+    }
+
+    public boolean eliminar_bienes(DatosBien datos) {
+        cons = "delete from bienes where id_bien = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getIdBien());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }//cierre funcion
 }

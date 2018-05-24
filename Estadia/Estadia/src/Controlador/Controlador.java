@@ -6,6 +6,7 @@
 package Controlador;
 
 import Datos.DatosArea;
+import Datos.DatosBien;
 import Datos.DatosConsumible;
 import Datos.DatosPersonal;
 import Datos.DatosUsuario;
@@ -113,5 +114,25 @@ public class Controlador {
 
     public boolean eliminar_personal(DatosPersonal datos) {
         return m.eliminar_personal(datos);
+    }
+    
+    //-------------------------BIENES--------------------------------------------//
+    
+    public DefaultTableModel cargar_tabla_bienes(String valor) {
+        return m.cargar_tabla_Bienes(valor);
+    }
+     
+    public boolean Guardar_bienes(String accion, DatosBien datos, String idBien) {
+        if (accion == "A") {
+        return m.insertar_bienes(datos);
+        }
+        if (accion == "M") {
+        return m.editar_bienes(datos, idBien);
+        }
+        return false;
+    }
+
+    public boolean eliminar_bienes(DatosBien datos) {
+        return m.eliminar_bienes(datos);
     }
 }

@@ -55,6 +55,7 @@ public class Principal extends javax.swing.JFrame {
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
+        sBienes = new javax.swing.JMenuItem();
         menuC = new javax.swing.JMenu();
         mConsumibles = new javax.swing.JMenuItem();
         mConsultas = new javax.swing.JMenuItem();
@@ -188,6 +189,15 @@ public class Principal extends javax.swing.JFrame {
         mBienes.setForeground(new java.awt.Color(255, 255, 255));
         mBienes.setText("Bienes");
         mBienes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+
+        sBienes.setText("Altas");
+        sBienes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBienesActionPerformed(evt);
+            }
+        });
+        mBienes.add(sBienes);
+
         jMenuBar1.add(mBienes);
 
         menuC.setBackground(new java.awt.Color(255, 255, 255));
@@ -325,6 +335,22 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sPersonalActionPerformed
 
+    private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBienesActionPerformed
+        Bienes form = null;
+        try {
+            form = new Bienes();
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sBienesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +408,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
     public static javax.swing.JMenuItem sAreas;
+    public static javax.swing.JMenuItem sBienes;
     public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
     // End of variables declaration//GEN-END:variables
