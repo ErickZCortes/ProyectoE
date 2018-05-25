@@ -52,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
         sAreas = new javax.swing.JMenuItem();
         mPersonal = new javax.swing.JMenu();
         sPersonal = new javax.swing.JMenuItem();
+        sConsultasPersonal = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
@@ -171,6 +172,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mPersonal.add(sPersonal);
+
+        sConsultasPersonal.setText("Consultas");
+        sConsultasPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sConsultasPersonalActionPerformed(evt);
+            }
+        });
+        mPersonal.add(sConsultasPersonal);
 
         jMenuBar1.add(mPersonal);
 
@@ -325,6 +334,22 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sPersonalActionPerformed
 
+    private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasPersonalActionPerformed
+        ConsultaPersonal form = null;
+        try {
+            form = new ConsultaPersonal();
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sConsultasPersonalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +407,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
     public static javax.swing.JMenuItem sAreas;
+    public static javax.swing.JMenuItem sConsultasPersonal;
     public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
     // End of variables declaration//GEN-END:variables
