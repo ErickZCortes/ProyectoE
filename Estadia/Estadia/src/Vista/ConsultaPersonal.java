@@ -32,12 +32,12 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         DefaultTableModel tb = c.cargar_tabla_Personal(valor);
         tbDatos.setModel(tb);
 
-        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
     }
     
     /**
