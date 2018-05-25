@@ -86,8 +86,8 @@ public class Bienes extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
     }
 
     void actualizarDatos() {
