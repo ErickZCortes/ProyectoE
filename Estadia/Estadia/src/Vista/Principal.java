@@ -353,11 +353,23 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sPersonalActionPerformed
 
-    private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasPersonalActionPerformed
-        ConsultaPersonal form = null;
+    private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+      ConsultaPersonal form = null;
         try {
             form = new ConsultaPersonal();
-   private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBienesActionPerformed
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);  
+                                                     
+    }
+    private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {                                        
         Bienes form = null;
         try {
             form = new Bienes();
@@ -371,8 +383,7 @@ public class Principal extends javax.swing.JFrame {
         }
         form.toFront();
         form.setVisible(true);
-    }//GEN-LAST:event_sConsultasPersonalActionPerformed
-    }//GEN-LAST:event_sBienesActionPerformed
+    }
 
     private void sConsultasBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasBienesActionPerformed
         
@@ -382,8 +393,7 @@ public class Principal extends javax.swing.JFrame {
             Escritorio.add(form);
 
             form.setClosable(true);
-            form.setIconifiable(true);
-           
+            form.setIconifiable(true);           
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
