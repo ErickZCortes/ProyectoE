@@ -550,13 +550,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"Id_bien", "Nombre", "Característica", "Marca", "Modelo", "Serie", "Valor"};
+        String[] titulos = {"Id_bien", "Nombre", "Característica", "Marca", "Modelo", "Serie", "Valor", "Cantidad", "Fecha-Ad", "Forma - Ad"};
 
-        String[] registros = new String[7];
+        String[] registros = new String[10];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_bien ,nombre_bien , caract_bien , marca_bien , modelo_bien, serie_bien, valor_bien from bienes WHERE nombre_bien LIKE '%" + valor + "%' order by id_bien desc";
+        cons = "select id_bien ,nombre_bien , caract_bien , marca_bien , modelo_bien, serie_bien, valor_bien, stock_bien, fechaAd, formaAd from bienes WHERE nombre_bien LIKE '%" + valor + "%' order by id_bien desc";
 
         try {
 
@@ -572,7 +572,10 @@ public class Modelo {
                 registros[4] = rs.getString("modelo_bien");
                 registros[5] = rs.getString("serie_bien");
                 registros[6] = rs.getString("valor_bien");
-               
+                registros[7] = rs.getString("stock_bien");
+                registros[8] = rs.getString("fechaAd");
+                registros[9] = rs.getString("formaAd");
+
                 totalRegistros = totalRegistros + 1;
                 modelo.addRow(registros);
             }
@@ -586,7 +589,7 @@ public class Modelo {
     }
 
     public boolean insertar_bienes(DatosBien datos) {
-        cons = "INSERT into bienes(nombre_bien,caract_bien,marca_bien,modelo_bien, serie_bien, valor_bien) VALUES (?,?,?,?,?,?)";
+        cons = "INSERT into bienes(nombre_bien,caract_bien,marca_bien,modelo_bien, serie_bien, valor_bien, stock_bien, fechaAd, formaAd) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
@@ -596,7 +599,9 @@ public class Modelo {
             pst.setString(4, datos.getModelo());
             pst.setString(5, datos.getSerie());
             pst.setString(6, datos.getValor());
-
+            pst.setString(7, datos.getStock());
+            pst.setDate(8, datos.getFechaAd());
+            pst.setString(9, datos.getFormaAd());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -611,7 +616,7 @@ public class Modelo {
 
     public boolean editar_bienes(DatosBien datos, String Idbien) {
 
-        cons = "update bienes set nombre_bien = ? ,caract_bien = ?, marca_bien = ? , modelo_bien = ?, serie_bien = ?, valor_bien = ? where id_bien ='" + Idbien + "' ";
+        cons = "update bienes set nombre_bien = ? ,caract_bien = ?, marca_bien = ? , modelo_bien = ?, serie_bien = ?, valor_bien = ?, stock_bien = ?, fechaAd = ?, formaAd = ? where id_bien ='" + Idbien + "' ";
 
         try {
 
@@ -623,6 +628,10 @@ public class Modelo {
             pst.setString(4, datos.getModelo());
             pst.setString(5, datos.getSerie());
             pst.setString(6, datos.getValor());
+            pst.setString(7, datos.getStock());
+            pst.setDate(8, datos.getFechaAd());
+            pst.setString(9, datos.getFormaAd());           
+            
             int N = pst.executeUpdate();
             if (N != 0) {
                 return true;

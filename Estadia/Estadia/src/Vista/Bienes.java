@@ -10,7 +10,10 @@ package Vista;
 import Controlador.Controlador;
 import Datos.DatosBien;
 import Modelo.Modelo;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -44,6 +47,9 @@ public class Bienes extends javax.swing.JInternalFrame {
         txtModeloB.setEnabled(false);
         txtSerieB.setEnabled(false);
         txtValorB.setEnabled(false);
+        txtStockB.setEnabled(false);
+        txtFormaadB.setEnabled(false);
+        dcFecha.setEnabled(false);
 
         btnAdd.setEnabled(true);
         btnMod.setEnabled(true);
@@ -60,7 +66,10 @@ public class Bienes extends javax.swing.JInternalFrame {
         txtModeloB.setEnabled(true);
         txtSerieB.setEnabled(true);
         txtValorB.setEnabled(true);
-
+        txtStockB.setEnabled(true);
+        txtFormaadB.setEnabled(true);
+        dcFecha.setEnabled(true);
+        
         btnAdd.setEnabled(false);
         btnMod.setEnabled(false);
         btnElim.setEnabled(false);
@@ -75,6 +84,8 @@ public class Bienes extends javax.swing.JInternalFrame {
         txtModeloB.setText("");
         txtSerieB.setText("");
         txtValorB.setText("");
+        txtStockB.setText("");
+        txtFormaadB.setText("");
     }
     
     void cargar_tabla_bienes(String valor) throws SQLException {
@@ -88,7 +99,9 @@ public class Bienes extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
-    }
+        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);    }
 
     void actualizarDatos() {
         int filasel = tbDatos.getSelectedRow();
@@ -104,7 +117,9 @@ public class Bienes extends javax.swing.JInternalFrame {
                 String modelo = (String) tbDatos.getValueAt(filasel, 4);
                 String serie = (String) tbDatos.getValueAt(filasel, 5);
                 String valor = (String) tbDatos.getValueAt(filasel, 6);
-
+                String stock = (String) tbDatos.getValueAt(filasel, 7);
+                String formaAd = (String) tbDatos.getValueAt(filasel, 9);
+                
                 txtId.setText(idbien);
                 txtNombreB.setText(nombre);
                 txtCaracteristicaB.setText(caracteristica);
@@ -112,6 +127,8 @@ public class Bienes extends javax.swing.JInternalFrame {
                 txtModeloB.setText(modelo);
                 txtSerieB.setText(serie);
                 txtValorB.setText(valor);
+                txtStockB.setText(stock);
+                txtFormaadB.setText(formaAd);
 
             }
         } catch (Exception e) {
@@ -146,6 +163,12 @@ public class Bienes extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtMarcaB = new javax.swing.JTextField();
         txtValorB = new javax.swing.JTextField();
+        txtStockB = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        lbFecha = new javax.swing.JLabel();
+        txtFormaadB = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        dcFecha = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -247,6 +270,21 @@ public class Bienes extends javax.swing.JInternalFrame {
 
         txtValorB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        txtStockB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel8.setText("Stock:");
+
+        lbFecha.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lbFecha.setText("fecha de Adqusición:");
+
+        txtFormaadB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel11.setText("Forma de Adquisición:");
+
+        dcFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -256,28 +294,44 @@ public class Bienes extends javax.swing.JInternalFrame {
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
+                        .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(txtValorB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFormaadB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCaracteristicaB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtMarcaB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCaracteristicaB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMarcaB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtStockB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))
@@ -286,24 +340,30 @@ public class Bienes extends javax.swing.JInternalFrame {
                             .addComponent(txtSerieB)
                             .addComponent(txtModeloB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(117, 117, 117))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(lbFecha))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValorB, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCaracteristicaB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -311,26 +371,27 @@ public class Bienes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtSerieB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtMarcaB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(txtValorB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(txtCaracteristicaB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lbFecha)
+                                .addComponent(txtStockB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8))
+                            .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtValorB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtMarcaB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFormaadB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,7 +413,7 @@ public class Bienes extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(436, 436, 436)
                 .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(508, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,10 +455,9 @@ public class Bienes extends javax.swing.JInternalFrame {
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
                 .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,51 +475,20 @@ public class Bienes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        desbloquear();
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+        actualizarDatos();
+        bloquear();
+    }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void btncancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelMouseClicked
+        bloquear();
         limpiar();
-        accion = "A";
-        txtNombreB.requestFocus();
-    }//GEN-LAST:event_btnAddMouseClicked
-
-    private void btnModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModMouseClicked
-        int filasel = tbDatos.getSelectedRow();
-        if (filasel == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccionar Registro");
-        } else {
-            desbloquear();
-            accion = "M";
-            txtNombreB.requestFocus();
+        try {
+            cargar_tabla_bienes("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Bienes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnModMouseClicked
-
-    private void btnElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimMouseClicked
-        int filasel = tbDatos.getSelectedRow();
-        if (filasel == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
-            return;
-        }
-        //        if (txtId.getText().length() == 0) {
-            //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
-            //            return;
-            //        }
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
-        if (i == 0) {
-            if (!txtId.getText().equals("")) {
-                datBienes.setIdBien(txtId.getText());
-                c.eliminar_bienes(datBienes);
-                try {
-                    cargar_tabla_bienes("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Bienes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                limpiar();
-                bloquear();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
-            }
-        }
-    }//GEN-LAST:event_btnElimMouseClicked
+    }//GEN-LAST:event_btncancelMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
         if (txtNombreB.getText().length() == 0) {
@@ -492,7 +521,27 @@ public class Bienes extends javax.swing.JInternalFrame {
             txtValorB.requestFocus();
             return;
         }
-
+        if (txtStockB.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar una Cantidad");
+            txtStockB.requestFocus();
+            return;
+        }
+        if (txtFormaadB.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar una Forma de Adquisición");
+            txtFormaadB.requestFocus();
+            return;
+        }
+        
+        Calendar cal;
+        int d, m, a;
+        cal = dcFecha.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        datBienes.setFechaAd(new Date(a, m, d));
+        Date fecha = datBienes.getFechaAd();
+        
+        
         String idBien = txtId.getText();
         datBienes.setNombre(txtNombreB.getText());
         datBienes.setCaracteristica(txtCaracteristicaB.getText());
@@ -500,7 +549,10 @@ public class Bienes extends javax.swing.JInternalFrame {
         datBienes.setModelo(txtModeloB.getText());
         datBienes.setSerie(txtSerieB.getText());
         datBienes.setValor(txtValorB.getText());
-
+        datBienes.setStock(txtStockB.getText());
+        datBienes.setFormaAd(txtFormaadB.getText());
+        
+        
         if (c.Guardar_bienes(accion, datBienes, idBien)) {
             if (accion == "A") {
                 JOptionPane.showMessageDialog(null, "Usuario Agregado.");
@@ -517,20 +569,59 @@ public class Bienes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnsaveMouseClicked
 
-    private void btncancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelMouseClicked
-        bloquear();
-        limpiar();
-        try {
-            cargar_tabla_bienes("");
-        } catch (SQLException ex) {
-            Logger.getLogger(Bienes.class.getName()).log(Level.SEVERE, null, ex);
+    private void btnElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimMouseClicked
+        int filasel = tbDatos.getSelectedRow();
+        if (filasel == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
+            return;
         }
-    }//GEN-LAST:event_btncancelMouseClicked
+        //        if (txtId.getText().length() == 0) {
+            //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
+            //            return;
+            //        }
+        int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+        if (i == 0) {
+            if (!txtId.getText().equals("")) {
+                datBienes.setIdBien(txtId.getText());
+                c.eliminar_bienes(datBienes);
+                try {
+                    cargar_tabla_bienes("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Bienes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                limpiar();
+                bloquear();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
+            }
+        }
+    }//GEN-LAST:event_btnElimMouseClicked
 
-    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-        actualizarDatos();
-        bloquear();
-    }//GEN-LAST:event_tbDatosMouseClicked
+    private void btnModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModMouseClicked
+        int filasel = tbDatos.getSelectedRow();
+        if (filasel == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccionar Registro");
+        } else {
+            desbloquear();
+            accion = "M";
+            txtNombreB.requestFocus();
+            dcFecha.setVisible(false);
+            dcFecha.setEnabled(false);
+            lbFecha.setVisible(false);
+        }
+    }//GEN-LAST:event_btnModMouseClicked
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        desbloquear();
+        limpiar();
+        accion = "A";
+        txtNombreB.requestFocus();
+        dcFecha.setVisible(true);
+            dcFecha.setEnabled(true);
+            lbFecha.setVisible(true);
+        Calendar c2 = new GregorianCalendar();
+        dcFecha.setCalendar(c2);
+    }//GEN-LAST:event_btnAddMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -539,24 +630,30 @@ public class Bienes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btncancel;
     private javax.swing.JButton btnsave;
+    private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbFecha;
     private javax.swing.JTable tbDatos;
     private javax.swing.JTextField txtCaracteristicaB;
+    private javax.swing.JTextField txtFormaadB;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMarcaB;
     private javax.swing.JTextField txtModeloB;
     private javax.swing.JTextField txtNombreB;
     private javax.swing.JTextField txtSerieB;
+    private javax.swing.JTextField txtStockB;
     private javax.swing.JTextField txtValorB;
     // End of variables declaration//GEN-END:variables
 }
