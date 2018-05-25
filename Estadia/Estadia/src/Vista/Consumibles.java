@@ -43,7 +43,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtCod.setEnabled(false);
         txtNombre.setEnabled(false);
         dcFecha.setEnabled(false);
-        txtFormAd.setEnabled(false);
+        txtStock.setEnabled(false);
         txtValor.setEnabled(false);
 
         btnAdd.setEnabled(true);
@@ -58,7 +58,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtCod.setEnabled(true);
         txtNombre.setEnabled(true);
         dcFecha.setEnabled(true);
-        txtFormAd.setEnabled(true);
+        txtStock.setEnabled(true);
         txtValor.setEnabled(true);
 
         btnAdd.setEnabled(false);
@@ -72,7 +72,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtCod.setText("");
         txtNombre.setText("");
 
-        txtFormAd.setText("");
+        txtStock.setText("");
         txtValor.setText("");
     }
 
@@ -99,13 +99,13 @@ public class Consumibles extends javax.swing.JInternalFrame {
                 String idCon = (String) tbDatos.getValueAt(filasel, 0);
                 String codigo = (String) tbDatos.getValueAt(filasel, 1);
                 String nombre = (String) tbDatos.getValueAt(filasel, 2);
-                String forma = (String) tbDatos.getValueAt(filasel, 4);
+                String stock = (String) tbDatos.getValueAt(filasel, 4);
                 String valor = (String) tbDatos.getValueAt(filasel, 5);
 
                 txtidConsum.setText(idCon);
                 txtCod.setText(codigo);
                 txtNombre.setText(nombre);
-                txtFormAd.setText(forma);
+                txtStock.setText(stock);
                 txtValor.setText(valor);
 
             }
@@ -126,12 +126,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLFecha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtCod = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtFormAd = new javax.swing.JTextField();
+        txtStock = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
         btneditar = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
@@ -157,20 +157,20 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Nombre: ");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel4.setText("Fecha de adquisición:");
+        jLFecha.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLFecha.setText("Fecha de adquisición:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel5.setText("Valor total: ");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel6.setText("Forma de adquisición: ");
+        jLabel6.setText("Stock:");
 
         txtCod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtFormAd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtStock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         txtValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -283,11 +283,11 @@ public class Consumibles extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLFecha))
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFormAd)
-                                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+                                    .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                    .addComponent(dcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -323,11 +323,11 @@ public class Consumibles extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtidConsum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(jLabel4)))
+                                .addComponent(jLFecha)))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtFormAd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -337,12 +337,11 @@ public class Consumibles extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(30, 30, 30)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(jLabel5)))
-                .addGap(18, 18, 18)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,7 +380,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,6 +399,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
         limpiar();
         accion = "A";
         txtCod.requestFocus();
+        dcFecha.setVisible(true);
+            dcFecha.setEnabled(true);
+            jLFecha.setVisible(true);
 
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
@@ -414,6 +416,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
             desbloquear();
             accion = "M";
             dcFecha.setVisible(false);
+            dcFecha.setEnabled(false);
+            jLFecha.setVisible(false);
             txtCod.requestFocus();
         }
     }//GEN-LAST:event_btneditarMouseClicked
@@ -461,9 +465,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (txtFormAd.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar forma");
-            txtFormAd.requestFocus();
+        if (txtStock.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar un Stock");
+            txtStock.requestFocus();
             return;
         }
 
@@ -484,7 +488,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         String idConsumible = txtidConsum.getText();
         datCons.setCodigo(txtCod.getText());
         datCons.setNombre(txtNombre.getText());
-        datCons.setFormaC(txtFormAd.getText());
+        datCons.setStock(txtStock.getText());
         datCons.setValorT(txtValor.getText());
 
         if (c.Guardar_consumible(accion, datCons, idConsumible)) {
@@ -526,10 +530,10 @@ public class Consumibles extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btneditar;
     private com.toedter.calendar.JDateChooser dcFecha;
+    private javax.swing.JLabel jLFecha;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
@@ -538,8 +542,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbDatos;
     private javax.swing.JTextField txtCod;
-    private javax.swing.JTextField txtFormAd;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtValor;
     private javax.swing.JTextField txtidConsum;
     // End of variables declaration//GEN-END:variables

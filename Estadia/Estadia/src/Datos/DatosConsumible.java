@@ -16,18 +16,18 @@ public class DatosConsumible {
    private String Codigo;
    private String Nombre;
    private Date FechaC;
-   private String FormaC;
+   private String Stock;
    private String ValorT;
    
    public DatosConsumible(){
    }
    
-   public DatosConsumible(String IdConsumible,String Codigo,String Nombre,Date FechaC, String FormaC, String ValorT){
+   public DatosConsumible(String IdConsumible,String Codigo,String Nombre,Date FechaC, String Stock, String ValorT){
    this.IdConsumible = IdConsumible;
    this.Codigo = Codigo;
    this.Nombre = Nombre;
    this.FechaC = FechaC;
-   this.FormaC = FormaC;
+   this.Stock = Stock;
    this.ValorT = ValorT;
    }
 
@@ -47,8 +47,8 @@ public class DatosConsumible {
         return FechaC;
     }
 
-    public String getFormaC() {
-        return FormaC;
+    public String getStock() {
+        return Stock;
     }
 
     public String getValorT() {
@@ -71,8 +71,8 @@ public class DatosConsumible {
         this.FechaC = FechaC;
     }
 
-    public void setFormaC(String FormaC) {
-        this.FormaC = FormaC;
+    public void setStock(String Stock) {
+        this.Stock = Stock;
     }
 
     public void setValorT(String ValorT) {
