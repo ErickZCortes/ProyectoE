@@ -52,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
         sAreas = new javax.swing.JMenuItem();
         mPersonal = new javax.swing.JMenu();
         sPersonal = new javax.swing.JMenuItem();
+        sConsultasPersonal = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
@@ -173,6 +174,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mPersonal.add(sPersonal);
+
+        sConsultasPersonal.setText("Consultas");
+        sConsultasPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sConsultasPersonalActionPerformed(evt);
+            }
+        });
+        mPersonal.add(sConsultasPersonal);
 
         jMenuBar1.add(mPersonal);
 
@@ -344,7 +353,11 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sPersonalActionPerformed
 
-    private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBienesActionPerformed
+    private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasPersonalActionPerformed
+        ConsultaPersonal form = null;
+        try {
+            form = new ConsultaPersonal();
+   private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBienesActionPerformed
         Bienes form = null;
         try {
             form = new Bienes();
@@ -358,6 +371,7 @@ public class Principal extends javax.swing.JFrame {
         }
         form.toFront();
         form.setVisible(true);
+    }//GEN-LAST:event_sConsultasPersonalActionPerformed
     }//GEN-LAST:event_sBienesActionPerformed
 
     private void sConsultasBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasBienesActionPerformed
@@ -434,6 +448,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
     public static javax.swing.JMenuItem sAreas;
+    public static javax.swing.JMenuItem sConsultasPersonal;
     public static javax.swing.JMenuItem sBienes;
     public static javax.swing.JMenuItem sConsultasBienes;
     public static javax.swing.JMenuItem sPersonal;
