@@ -226,13 +226,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"Id", " Codigo", "Nombre", "Fecha", "Stock", "ValorTotal"};
+        String[] titulos = {"Id", " Codigo", "Nombre", "Fecha", "Existencia", "Stock Mínimo", "ValorTotal"};
 
-        String[] registros = new String[6];
+        String[] registros = new String[7];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_consum ,codigo , nombre , fechaAd , stock , valorTot from consumibles WHERE nombre LIKE '%" + valor + "%' order by id_consum desc";
+        cons = "select id_consum ,codigo , nombre , fechaAd , existencia , stock_minimo, valorTot from consumibles WHERE nombre LIKE '%" + valor + "%' order by id_consum desc";
 
         try {
 
@@ -245,8 +245,9 @@ public class Modelo {
                 registros[1] = rs.getString("codigo");
                 registros[2] = rs.getString("nombre");
                 registros[3] = rs.getString("fechaAd");
-                registros[4] = rs.getString("stock");
-                registros[5] = rs.getString("valorTot");
+                registros[4] = rs.getString("existencia");
+                registros[5] = rs.getString("stock_minimo");
+                registros[6] = rs.getString("valorTot");
 
                 totalRegistros = totalRegistros + 1;
                 modelo.addRow(registros);
@@ -261,15 +262,16 @@ public class Modelo {
     }
 
     public boolean insertar_consumible(DatosConsumible datos) {
-        cons = "INSERT into consumibles(codigo,nombre,fechaAd,stock,valorTot) VALUES (?,?,?,?,?)";
+        cons = "INSERT into consumibles(codigo,nombre,fechaAd,existencia,stock_minimo,valorTot) VALUES (?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setString(1, datos.getCodigo());
             pst.setString(2, datos.getNombre());
             pst.setDate(3, datos.getFechaC());
-            pst.setString(4, datos.getStock());
-            pst.setString(5, datos.getValorT());
+            pst.setString(4, datos.getExistencia());
+            pst.setString(5, datos.getStockM());
+            pst.setString(6, datos.getValorT());
 
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -285,7 +287,7 @@ public class Modelo {
 
     public boolean editar_consumible(DatosConsumible datos, String IdConsumible) {
 
-        cons = "update consumibles set codigo = ? ,nombre = ?, stock = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
+        cons = "update consumibles set codigo = ? ,nombre = ?, existencia = ?, stock_minimo = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
 
         try {
 
@@ -293,8 +295,9 @@ public class Modelo {
 
             pst.setString(1, datos.getCodigo());
             pst.setString(2, datos.getNombre());
-            pst.setString(3, datos.getStock());
-            pst.setString(4, datos.getValorT());
+            pst.setString(3, datos.getExistencia());
+            pst.setString(4, datos.getStockM());
+            pst.setString(5, datos.getValorT());
             int N = pst.executeUpdate();
             if (N != 0) {
                 return true;
