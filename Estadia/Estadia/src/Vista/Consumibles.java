@@ -71,7 +71,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
     void limpiar() {
         txtCod.setText("");
         txtNombre.setText("");
-
         txtStock.setText("");
         txtValor.setText("");
     }
@@ -400,8 +399,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
         accion = "A";
         txtCod.requestFocus();
         dcFecha.setVisible(true);
-            dcFecha.setEnabled(true);
-            jLFecha.setVisible(true);
+        dcFecha.setEnabled(true);
+        jLFecha.setVisible(true);
 
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
@@ -423,12 +422,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btneditarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
-          int filasel = tbDatos.getSelectedRow();
+        int filasel = tbDatos.getSelectedRow();
         if (filasel == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-        
+
 //        if (txtidConsum.getText().length() == 0) {
 //            JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
 //            return;
@@ -464,9 +463,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
             txtNombre.requestFocus();
             return;
         }
-
-        if (txtStock.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar un Stock");
+          if (txtStock.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null,"Debes ingresar un Stock");
             txtStock.requestFocus();
             return;
         }
@@ -507,11 +505,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGuardarMouseClicked
 
-    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-        actualizarDatos();
-        bloquear();
-    }//GEN-LAST:event_tbDatosMouseClicked
-
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         bloquear();
         limpiar();
@@ -521,6 +514,10 @@ public class Consumibles extends javax.swing.JInternalFrame {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+
+    }//GEN-LAST:event_tbDatosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
