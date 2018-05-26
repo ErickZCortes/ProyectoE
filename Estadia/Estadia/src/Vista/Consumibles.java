@@ -43,7 +43,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtCod.setEnabled(false);
         txtNombre.setEnabled(false);
         dcFecha.setEnabled(false);
-        txtStock.setEnabled(false);
+        txtExistencia.setEnabled(true);
+        txtStockM.setEnabled(true);
         txtValor.setEnabled(false);
 
         btnAdd.setEnabled(true);
