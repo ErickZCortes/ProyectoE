@@ -372,15 +372,16 @@ public class Areas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnModMouseClicked
 
     private void btnElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimMouseClicked
+        
+        
         int filasel = tbDatos.getSelectedRow();
         if (filasel == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-        //        if (txtId.getText().length() == 0) {
-            //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
-            //            return;
-            //        }
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma == verificar){
         int i = JOptionPane.showConfirmDialog(this, "Si elimina el área lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
@@ -396,7 +397,15 @@ public class Areas extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No se elimino el área.");
             }
+        }    
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
+        //        if (txtId.getText().length() == 0) {
+            //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
+            //            return;
+            //        }
+        
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
