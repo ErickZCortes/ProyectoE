@@ -555,9 +555,9 @@ public class Bienes extends javax.swing.JInternalFrame {
         
         if (c.Guardar_bienes(accion, datBienes, idBien)) {
             if (accion == "A") {
-                JOptionPane.showMessageDialog(null, "Usuario Agregado.");
+                JOptionPane.showMessageDialog(null, "Bien Agregado.");
             } else if (accion == "M") {
-                JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
+                JOptionPane.showMessageDialog(null, "Bien Actualizado.");
             }
             limpiar();
             bloquear();
@@ -579,7 +579,7 @@ public class Bienes extends javax.swing.JInternalFrame {
             //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
             //            return;
             //        }
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+        int i = JOptionPane.showConfirmDialog(this, "Si elimina el bien lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
                 datBienes.setIdBien(txtId.getText());
@@ -592,7 +592,7 @@ public class Bienes extends javax.swing.JInternalFrame {
                 limpiar();
                 bloquear();
             } else {
-                JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
+                JOptionPane.showMessageDialog(null, "No se elimino el bien.");
             }
         }
     }//GEN-LAST:event_btnElimMouseClicked

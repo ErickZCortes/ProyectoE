@@ -12,30 +12,24 @@ package Datos;
 public class DatosPersonal {
 
     private String idPersonal;
-    private String Clave;
     private String Nombre;
     private String CURP;
     private String Area;
-    private String Cct;
 
     public DatosPersonal() {
     }
 
-    public DatosPersonal(String idPersonal, String Clave, String Nombre, String CURP, String Area, String Cct) {
+    public DatosPersonal(String idPersonal, String Nombre, String CURP, String Area) {
         this.idPersonal = idPersonal;
-        this.Clave = Clave;
         this.Nombre = Nombre;
         this.CURP = CURP;
         this.Area = Area;
-        this.Cct = Cct;
     }
+
+    
 
     public String getIdPersonal() {
         return idPersonal;
-    }
-
-    public String getClave() {
-        return Clave;
     }
 
     public String getNombre() {
@@ -50,18 +44,12 @@ public class DatosPersonal {
         return Area;
     }
 
-    public String getCct() {
-        return Cct;
-    }
-
+    
     public void setIdPersonal(String idPersonal) {
         this.idPersonal = idPersonal;
     }
 
-    public void setClave(String Clave) {
-        this.Clave = Clave;
-    }
-
+    
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
@@ -74,8 +62,4 @@ public class DatosPersonal {
         this.Area = Area;
     }
 
-    public void setCct(String Cct) {
-        this.Cct = Cct;
-    }
-    
 }

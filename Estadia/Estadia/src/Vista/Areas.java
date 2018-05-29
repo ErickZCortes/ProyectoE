@@ -37,9 +37,8 @@ public class Areas extends javax.swing.JInternalFrame {
     void bloquear() {
         txtId.setVisible(false);
         txtNombreC.setEnabled(false);
-        txtClaveP.setEnabled(false);
-        txtDomicilioC.setEnabled(false);
-        txtTelefonoC.setEnabled(false);
+        txtClaveCTT.setEnabled(false);
+        txtClaveI.setEnabled(false);
 
         btnAdd.setEnabled(true);
         btnMod.setEnabled(true);
@@ -51,9 +50,8 @@ public class Areas extends javax.swing.JInternalFrame {
 
     void desbloquear() {
         txtNombreC.setEnabled(true);
-        txtClaveP.setEnabled(true);
-        txtDomicilioC.setEnabled(true);
-        txtTelefonoC.setEnabled(true);
+        txtClaveCTT.setEnabled(true);
+        txtClaveI.setEnabled(true);
 
         btnAdd.setEnabled(false);
         btnMod.setEnabled(false);
@@ -63,10 +61,9 @@ public class Areas extends javax.swing.JInternalFrame {
     }
 
     void limpiar() {
-        txtClaveP.setText("");
+        txtClaveCTT.setText("");
         txtNombreC.setText("");
-        txtDomicilioC.setText("");
-        txtTelefonoC.setText("");
+        txtClaveI.setText("");
     }
     
     void cargar_tabla_areas(String valor) throws SQLException {
@@ -77,7 +74,6 @@ public class Areas extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
 
     }
 
@@ -90,15 +86,13 @@ public class Areas extends javax.swing.JInternalFrame {
             } else {
                 String idarea = (String) tbDatos.getValueAt(filasel, 0);
                 String nombre = (String) tbDatos.getValueAt(filasel, 1);
-                String claveP = (String) tbDatos.getValueAt(filasel, 2);
-                String domicilio = (String) tbDatos.getValueAt(filasel, 3);
-                String telefono = (String) tbDatos.getValueAt(filasel, 4);
+                String clavectt = (String) tbDatos.getValueAt(filasel, 2);
+                String claveinst = (String) tbDatos.getValueAt(filasel, 3);
 
                 txtId.setText(idarea);
                 txtNombreC.setText(nombre);
-                txtClaveP.setText(claveP);
-                txtDomicilioC.setText(domicilio);
-                txtTelefonoC.setText(telefono);
+                txtClaveCTT.setText(clavectt);
+                txtClaveI.setText(claveinst);
 
             }
         } catch (Exception e) {
@@ -120,9 +114,8 @@ public class Areas extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombreC = new javax.swing.JTextField();
-        txtTelefonoC = new javax.swing.JTextField();
-        txtDomicilioC = new javax.swing.JTextField();
-        txtClaveP = new javax.swing.JTextField();
+        txtClaveI = new javax.swing.JTextField();
+        txtClaveCTT = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
@@ -136,24 +129,21 @@ public class Areas extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel2.setText("Nombre del centro de Trabajo :");
+        jLabel2.setText("Nombre del Área :");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel3.setText("Teléfono(s) o Extenció(es): ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel5.setText("Domicilio: ");
+        jLabel5.setText("Clave Insitucional:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel6.setText("Clave presupuestal del CCT:");
+        jLabel6.setText("Clave del CCT:");
 
         txtNombreC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtTelefonoC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtClaveI.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtDomicilioC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtClaveP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtClaveCTT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnAdd.setBackground(new java.awt.Color(64, 74, 83));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -227,38 +217,34 @@ public class Areas extends javax.swing.JInternalFrame {
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(txtClaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTelefonoC)
-                            .addComponent(txtDomicilioC, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtClaveCTT, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtClaveI, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(117, 117, 117))
         );
         jPanel3Layout.setVerticalGroup(
@@ -266,26 +252,22 @@ public class Areas extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtDomicilioC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtClaveI, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefonoC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(txtClaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel3))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(5, 5, 5)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtClaveCTT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,7 +381,7 @@ public class Areas extends javax.swing.JInternalFrame {
             //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
             //            return;
             //        }
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+        int i = JOptionPane.showConfirmDialog(this, "Si elimina el área lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
                 datAreas.setIdArea(txtId.getText());
@@ -412,44 +394,39 @@ public class Areas extends javax.swing.JInternalFrame {
                 limpiar();
                 bloquear();
             } else {
-                JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
+                JOptionPane.showMessageDialog(null, "No se elimino el área.");
             }
         }
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
         if (txtNombreC.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar un Nombre Válido");
+            JOptionPane.showMessageDialog(null, "Debes ingresar un Nombre de área");
             txtNombreC.requestFocus();
             return;
         }
-        if (txtDomicilioC.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar un Domicilio");
-            txtDomicilioC.requestFocus();
+        if (txtClaveI.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar una clave institucional");
+            txtClaveI.requestFocus();
             return;
         }
-        if (txtClaveP.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar una Clave Presupuestal");
-            txtClaveP.requestFocus();
+        if (txtClaveCTT.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar una Clave de trabajo");
+            txtClaveCTT.requestFocus();
             return;
         }
-        if (txtTelefonoC.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar Telefono");
-            txtTelefonoC.requestFocus();
-            return;
-        }
+    
 
         String idArea = txtId.getText();
         datAreas.setNombre(txtNombreC.getText());
-        datAreas.setTelefono(txtTelefonoC.getText());
-        datAreas.setClave_pres(txtClaveP.getText());
-        datAreas.setDomicilio(txtDomicilioC.getText());
+        datAreas.setClave_ctt(txtClaveCTT.getText());
+        datAreas.setClave_inst(txtClaveI.getText());
 
         if (c.Guardar_area(accion, datAreas, idArea)) {
             if (accion == "A") {
-                JOptionPane.showMessageDialog(null, "Usuario Agregado.");
+                JOptionPane.showMessageDialog(null, "Área Agregada.");
             } else if (accion == "M") {
-                JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
+                JOptionPane.showMessageDialog(null, "Área Actualizada.");
             }
             limpiar();
             bloquear();
@@ -493,10 +470,9 @@ public class Areas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbDatos;
-    private javax.swing.JTextField txtClaveP;
-    private javax.swing.JTextField txtDomicilioC;
+    private javax.swing.JTextField txtClaveCTT;
+    private javax.swing.JTextField txtClaveI;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombreC;
-    private javax.swing.JTextField txtTelefonoC;
     // End of variables declaration//GEN-END:variables
 }

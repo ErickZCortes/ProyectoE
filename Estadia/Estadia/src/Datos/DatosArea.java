@@ -12,19 +12,17 @@ package Datos;
 public class DatosArea {
     private String idArea;
     private String Nombre;
-    private String Clave_pres;
-    private String domicilio;
-    private String Telefono;
+    private String Clave_inst;
+    private String Clave_ctt;
 
     public DatosArea() {
     }
 
-    public DatosArea(String idArea, String Nombre, String Clave_pres, String domicilio, String Telefono) {
+    public DatosArea(String idArea, String Nombre, String Clave_inst, String Clave_ctt) {
         this.idArea = idArea;
         this.Nombre = Nombre;
-        this.Clave_pres = Clave_pres;
-        this.domicilio = domicilio;
-        this.Telefono = Telefono;
+        this.Clave_inst = Clave_inst;
+        this.Clave_ctt = Clave_ctt;
     }
 
     public String getIdArea() {
@@ -35,16 +33,12 @@ public class DatosArea {
         return Nombre;
     }
 
-    public String getClave_pres() {
-        return Clave_pres;
+    public String getClave_inst() {
+        return Clave_inst;
     }
 
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public String getTelefono() {
-        return Telefono;
+    public String getClave_ctt() {
+        return Clave_ctt;
     }
 
     public void setIdArea(String idArea) {
@@ -55,17 +49,12 @@ public class DatosArea {
         this.Nombre = Nombre;
     }
 
-    public void setClave_pres(String Clave_pres) {
-        this.Clave_pres = Clave_pres;
+    public void setClave_inst(String Clave_inst) {
+        this.Clave_inst = Clave_inst;
     }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
+    public void setClave_ctt(String Clave_ctt) {
+        this.Clave_ctt = Clave_ctt;
     }
-
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
-    }
-    
     
 }

@@ -39,8 +39,6 @@ public class Personal extends javax.swing.JInternalFrame {
         txtNombre.setEnabled(false);
         txtCURP.setEnabled(false);
         txtArea.setEnabled(false);
-        txtClave.setEnabled(false);
-        txtCCT.setEnabled(false);
       
 
         btnAdd.setEnabled(true);
@@ -55,8 +53,6 @@ public class Personal extends javax.swing.JInternalFrame {
         txtNombre.setEnabled(true);
         txtCURP.setEnabled(true);
         txtArea.setEnabled(true);
-        txtClave.setEnabled(true);
-        txtCCT.setEnabled(true);
        
 
         btnAdd.setEnabled(false);
@@ -69,9 +65,7 @@ public class Personal extends javax.swing.JInternalFrame {
     void limpiar() {
         txtCURP.setText("");
         txtNombre.setText("");
-        txtClave.setText("");
         txtArea.setText("");
-        txtCCT.setText("");
     }
 
     void cargar_tabla_Personal(String valor) throws SQLException {
@@ -95,16 +89,12 @@ public class Personal extends javax.swing.JInternalFrame {
 
             } else {
                 String idpersona = (String) tbDatos.getValueAt(filasel, 0);
-                String clave = (String) tbDatos.getValueAt(filasel, 1);
-                String nombre = (String) tbDatos.getValueAt(filasel, 2);
-                String curp = (String) tbDatos.getValueAt(filasel, 3);
-                String area = (String) tbDatos.getValueAt(filasel, 4);
-                String cct = (String) tbDatos.getValueAt(filasel, 5);
+                String nombre = (String) tbDatos.getValueAt(filasel, 1);
+                String curp = (String) tbDatos.getValueAt(filasel, 2);
+                String area = (String) tbDatos.getValueAt(filasel, 3);
 
                 txtIdPersonal.setText(idpersona);
                 txtNombre.setText(nombre);
-                txtCCT.setText(cct);
-                txtClave.setText(clave);
                 txtArea.setText(area);
                 txtCURP.setText(curp);
 
@@ -129,14 +119,10 @@ public class Personal extends javax.swing.JInternalFrame {
         jLNombre = new javax.swing.JLabel();
         jLArea = new javax.swing.JLabel();
         jLCURP = new javax.swing.JLabel();
-        jLCCT = new javax.swing.JLabel();
-        jLClave = new javax.swing.JLabel();
         txtIdPersonal = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtArea = new javax.swing.JTextField();
         txtCURP = new javax.swing.JTextField();
-        txtCCT = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
         btnElim = new javax.swing.JButton();
@@ -184,12 +170,6 @@ public class Personal extends javax.swing.JInternalFrame {
         jLCURP.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLCURP.setText("CURP:");
 
-        jLCCT.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLCCT.setText("C.C.T. :");
-
-        jLClave.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLClave.setText("Clave:");
-
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         txtArea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -200,10 +180,6 @@ public class Personal extends javax.swing.JInternalFrame {
                 txtCURPKeyTyped(evt);
             }
         });
-
-        txtCCT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtClave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnAdd.setBackground(new java.awt.Color(64, 74, 83));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -282,19 +258,11 @@ public class Personal extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLClave)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLCCT)
-                    .addComponent(jLArea))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCCT)
-                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLArea)
+                .addGap(31, 31, 31)
+                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
                 .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
@@ -316,32 +284,26 @@ public class Personal extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLCURP)
-                            .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLClave)
-                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(19, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLArea)
                             .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(86, 86, 86))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCCT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLCCT))
-                        .addGap(43, 43, 43)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLCURP)
+                                    .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,22 +426,10 @@ public class Personal extends javax.swing.JInternalFrame {
             txtCURP.requestFocus();
             return;
         }
-        if (txtCCT.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar el C.C.T");
-            txtCCT.requestFocus();
-            return;
-        }
-
-        if (txtClave.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar una Clave Institucional");
-            txtClave.requestFocus();
-            return;
-        }
+        
 
         String idPersonal = txtIdPersonal.getText();
         datPersonal.setNombre(txtNombre.getText());
-        datPersonal.setCct(txtCCT.getText());
-        datPersonal.setClave(txtClave.getText());
         datPersonal.setCURP(txtCURP.getText());
         datPersonal.setArea(txtArea.getText());
         
@@ -535,9 +485,7 @@ public class Personal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLArea;
-    private javax.swing.JLabel jLCCT;
     private javax.swing.JLabel jLCURP;
-    private javax.swing.JLabel jLClave;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JPanel jPanel1;
@@ -546,9 +494,7 @@ public class Personal extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator;
     private javax.swing.JTable tbDatos;
     private javax.swing.JTextField txtArea;
-    private javax.swing.JTextField txtCCT;
     private javax.swing.JTextField txtCURP;
-    private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtIdPersonal;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
