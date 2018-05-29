@@ -97,7 +97,7 @@ public class Modelo {
     
     public String obtenerFirma() {
         String acceso = Principal.lblAcceso.getText();
-        cons = "SELECT firma_dig FROM usuarios WHERE acceso = " + acceso + "";
+        cons = "SELECT firma_dig FROM usuarios WHERE acceso = '" + acceso + "'";
         try {
             String firma = "";
             Statement st = cn.createStatement();
