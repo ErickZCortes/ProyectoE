@@ -5,6 +5,17 @@
  */
 package Datos;
 
+import Modelo.Conexion;
+import Modelo.Modelo;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mayra
@@ -56,5 +67,33 @@ public class DatosArea {
     public void setClave_ctt(String Clave_ctt) {
         this.Clave_ctt = Clave_ctt;
     }
+    public void mostrarComboAreas(JComboBox<DatosArea> comboArea ){
+        Conexion cc = new Conexion();
+    Connection cn = cc.GetConnection();
     
+        String cons= "select id_area, nombre, ctt_area, clave_institu from areas";
+        try {    
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            
+            while (rs.next()) {
+                comboArea.addItem(
+                new DatosArea(
+                rs.getString("id_area"),
+                rs.getString("nombre"),
+                rs.getString("ctt_area"),
+                rs.getString("clave_institu")
+                )
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+          
+        }
+    }
+    
+    @Override
+    public String  toString(){
+    return Nombre;
+            }
 }
