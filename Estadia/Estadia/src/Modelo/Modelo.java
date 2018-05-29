@@ -10,6 +10,7 @@ import Datos.DatosBien;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
 import Datos.DatosPersonal;
+import Vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,7 +94,24 @@ public class Modelo {
         }
 
     }
+    
+    public String obtenerFirma() {
+        String acceso = Principal.lblAcceso.getText();
+        cons = "SELECT firma_dig FROM usuarios WHERE acceso = " + acceso + "";
+        try {
+            String firma = "";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                firma = rs.getString("firma_dig");
+            }
+            return firma;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return "";
+        }
 
+    }
 //    public void validar_usuario(String usuario, String contrasena) {
 //        cons = "Select user,password VALUES (?,?)";
 //

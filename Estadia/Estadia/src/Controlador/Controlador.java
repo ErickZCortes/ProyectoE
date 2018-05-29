@@ -34,6 +34,10 @@ public class Controlador {
     public DefaultTableModel login(String user, String password) {
         return m.login(user, password);
     }
+    
+    public String obtenerFirma() {
+     return m.obtenerFirma();
+    }
 //    public void validar_usuario(String usuario, String contrasena) {
 //        m.validar_usuario(usuario, contrasena);
 //    }
