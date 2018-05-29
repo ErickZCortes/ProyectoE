@@ -337,13 +337,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"Id_area", "Nombre del CTT", "Clave Presupuestal", "Domicilio", "Telefono"};
+        String[] titulos = {"Id_area", "Nombre", "Clave del CTT ", "Clave Institucional"};
 
-        String[] registros = new String[5];
+        String[] registros = new String[4];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_area ,nombre , clave_pres , domicilio , telefono from areas WHERE nombre LIKE '%" + valor + "%' order by id_area desc";
+        cons = "select id_area ,nombre , ctt_area , clave_institu from areas WHERE nombre LIKE '%" + valor + "%' order by id_area desc";
 
         try {
 
@@ -354,9 +354,8 @@ public class Modelo {
 
                 registros[0] = rs.getString("id_area");
                 registros[1] = rs.getString("nombre");
-                registros[2] = rs.getString("clave_pres");
-                registros[3] = rs.getString("domicilio");
-                registros[4] = rs.getString("telefono");
+                registros[2] = rs.getString("ctt_area");
+                registros[3] = rs.getString("clave_institu");
 
                 totalRegistros = totalRegistros + 1;
                 modelo.addRow(registros);
@@ -371,14 +370,13 @@ public class Modelo {
     }
 
     public boolean insertar_area(DatosArea datos) {
-        cons = "INSERT into areas(nombre,clave_pres,domicilio,telefono) VALUES (?,?,?,?)";
+        cons = "INSERT into areas(nombre,ctt_area,clave_institu) VALUES (?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setString(1, datos.getNombre());
-            pst.setString(2, datos.getClave_pres());
-            pst.setString(3, datos.getDomicilio());
-            pst.setString(4, datos.getTelefono());
+            pst.setString(2, datos.getClave_ctt());
+            pst.setString(3, datos.getClave_inst());
 
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -394,16 +392,15 @@ public class Modelo {
 
     public boolean editar_areas(DatosArea datos, String IdArea) {
 
-        cons = "update areas set nombre = ? ,clave_pres = ?, domicilio = ? , telefono = ? where id_area ='" + IdArea + "' ";
+        cons = "update areas set nombre = ? ,ctt_area = ?, clave_institu = ? where id_area ='" + IdArea + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
             pst.setString(1, datos.getNombre());
-            pst.setString(2, datos.getClave_pres());
-            pst.setString(3, datos.getDomicilio());
-            pst.setString(4, datos.getTelefono());
+            pst.setString(2, datos.getClave_ctt());
+            pst.setString(3, datos.getClave_inst());
             int N = pst.executeUpdate();
             if (N != 0) {
                 return true;
@@ -443,13 +440,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"id_persona", "Clave", "Nombre", "CURP", "Area","CTT"};
+        String[] titulos = {"id_persona", "Nombre", "CURP", "Area"};
 
-        String[] registros = new String[6];
+        String[] registros = new String[4];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_persona ,clave_institu , nombre_persona , curp_persona , area_persona , ctt_persona from personal WHERE nombre_persona LIKE '%" + valor + "%' order by id_persona desc";
+        cons = "select id_persona  , nombre_persona , curp_persona , area_persona  from personal WHERE nombre_persona LIKE '%" + valor + "%' order by id_persona desc";
 
         try {
 
@@ -459,11 +456,9 @@ public class Modelo {
             while (rs.next()) {
 
                 registros[0] = rs.getString("id_persona");
-                registros[1] = rs.getString("clave_institu");
-                registros[2] = rs.getString("nombre_persona");
-                registros[3] = rs.getString("curp_persona");
-                registros[4] = rs.getString("area_persona");
-                registros[5] = rs.getString("ctt_persona");
+                registros[1] = rs.getString("nombre_persona");
+                registros[2] = rs.getString("curp_persona");
+                registros[3] = rs.getString("area_persona");
 
                 totalRegistros = totalRegistros + 1;
                 modelo.addRow(registros);
@@ -478,15 +473,13 @@ public class Modelo {
     }
 
     public boolean insertar_personal(DatosPersonal datos) {
-        cons = "INSERT into personal(clave_institu,nombre_persona,curp_persona,area_persona,ctt_persona) VALUES (?,?,?,?,?)";
+        cons = "INSERT into personal(nombre_persona,curp_persona,area_persona) VALUES (?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
-            pst.setString(1, datos.getClave());
             pst.setString(2, datos.getNombre());
             pst.setString(3, datos.getCURP());
             pst.setString(4, datos.getArea());
-            pst.setString(5, datos.getCct());
 
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -502,17 +495,15 @@ public class Modelo {
 
     public boolean editar_personal(DatosPersonal datos, String IdPersonal) {
 
-        cons = "update personal set clave_institu = ? ,nombre_persona = ?, curp_persona = ? , area_persona = ?, ctt_persona = ? where id_persona ='" + IdPersonal + "' ";
+        cons = "update personal set nombre_persona = ?, curp_persona = ? , area_persona = ? where id_persona ='" + IdPersonal + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getClave());
-            pst.setString(2, datos.getNombre());
-            pst.setString(3, datos.getCURP());
-            pst.setString(4, datos.getArea());
-            pst.setString(5, datos.getCct());
+            pst.setString(1, datos.getNombre());
+            pst.setString(2, datos.getCURP());
+            pst.setString(3, datos.getArea());
             
             int N = pst.executeUpdate();
             if (N != 0) {
