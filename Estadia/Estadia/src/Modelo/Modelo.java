@@ -15,6 +15,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -477,9 +480,9 @@ public class Modelo {
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
-            pst.setString(2, datos.getNombre());
-            pst.setString(3, datos.getCURP());
-            pst.setString(4, datos.getArea());
+            pst.setString(1, datos.getNombre());
+            pst.setString(2, datos.getCURP());
+            pst.setString(3, datos.getArea());
 
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -658,4 +661,6 @@ public class Modelo {
             return false;
         }
     }//cierre funcion
+    
+    
 }

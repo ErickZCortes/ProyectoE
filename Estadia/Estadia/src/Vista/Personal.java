@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import Datos.DatosArea;
 import Datos.DatosPersonal;
 import Modelo.Modelo;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class Personal extends javax.swing.JInternalFrame {
     Controlador c = new Controlador();
     Modelo m = new Modelo();
     String accion = "";
-
+    DatosArea datArea = new DatosArea();
     /**
      * Creates new form Usuarios
      */
@@ -32,13 +33,14 @@ public class Personal extends javax.swing.JInternalFrame {
         initComponents();
         bloquear();
         cargar_tabla_Personal("");
+        datArea.mostrarComboAreas(comboAreas);
     }
 
     void bloquear() {
         txtIdPersonal.setVisible(false);
         txtNombre.setEnabled(false);
         txtCURP.setEnabled(false);
-        txtArea.setEnabled(false);
+        //txtArea.setEnabled(false);
       
 
         btnAdd.setEnabled(true);
@@ -52,7 +54,7 @@ public class Personal extends javax.swing.JInternalFrame {
     void desbloquear() {
         txtNombre.setEnabled(true);
         txtCURP.setEnabled(true);
-        txtArea.setEnabled(true);
+        //txtArea.setEnabled(true);
        
 
         btnAdd.setEnabled(false);
@@ -65,7 +67,7 @@ public class Personal extends javax.swing.JInternalFrame {
     void limpiar() {
         txtCURP.setText("");
         txtNombre.setText("");
-        txtArea.setText("");
+        //txtArea.setText("");
     }
 
     void cargar_tabla_Personal(String valor) throws SQLException {
@@ -76,8 +78,6 @@ public class Personal extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(5).setPreferredWidth(150);
 
     }
 
@@ -95,7 +95,7 @@ public class Personal extends javax.swing.JInternalFrame {
 
                 txtIdPersonal.setText(idpersona);
                 txtNombre.setText(nombre);
-                txtArea.setText(area);
+               // txtArea.setText(area);
                 txtCURP.setText(curp);
 
             }
@@ -121,13 +121,13 @@ public class Personal extends javax.swing.JInternalFrame {
         jLCURP = new javax.swing.JLabel();
         txtIdPersonal = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtArea = new javax.swing.JTextField();
         txtCURP = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
         btnElim = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        comboAreas = new javax.swing.JComboBox<>();
         jSeparator = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
@@ -171,8 +171,6 @@ public class Personal extends javax.swing.JInternalFrame {
         jLCURP.setText("CURP:");
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtArea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         txtCURP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCURP.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -261,9 +259,9 @@ public class Personal extends javax.swing.JInternalFrame {
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(jLArea)
-                .addGap(31, 31, 31)
-                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(188, 188, 188)
                 .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -284,11 +282,11 @@ public class Personal extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(19, Short.MAX_VALUE)
+                        .addContainerGap(23, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLArea)
-                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(86, 86, 86))
+                            .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(88, 88, 88))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -416,11 +414,11 @@ public class Personal extends javax.swing.JInternalFrame {
             txtNombre.requestFocus();
             return;
         }
-        if (txtArea.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar el Area");
-            txtArea.requestFocus();
-            return;
-        }
+//        if (txtArea.getText().length() == 0) {
+//            JOptionPane.showMessageDialog(null, "Debes ingresar el Area");
+//            txtArea.requestFocus();
+//            return;
+//        }
         if (txtCURP.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el CURP");
             txtCURP.requestFocus();
@@ -431,7 +429,7 @@ public class Personal extends javax.swing.JInternalFrame {
         String idPersonal = txtIdPersonal.getText();
         datPersonal.setNombre(txtNombre.getText());
         datPersonal.setCURP(txtCURP.getText());
-        datPersonal.setArea(txtArea.getText());
+        datPersonal.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
         
 
         if (c.Guardar_personal(accion, datPersonal, idPersonal)) {
@@ -484,6 +482,7 @@ public class Personal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnElim;
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<DatosArea> comboAreas;
     private javax.swing.JLabel jLArea;
     private javax.swing.JLabel jLCURP;
     private javax.swing.JLabel jLNombre;
@@ -493,7 +492,6 @@ public class Personal extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator;
     private javax.swing.JTable tbDatos;
-    private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtCURP;
     private javax.swing.JTextField txtIdPersonal;
     private javax.swing.JTextField txtNombre;
