@@ -425,8 +425,10 @@ public class Areas extends javax.swing.JInternalFrame {
             return;
         }
     
-
-        String idArea = txtId.getText();
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma == verificar){
+            String idArea = txtId.getText();
         datAreas.setNombre(txtNombreC.getText());
         datAreas.setClave_ctt(txtClaveCTT.getText());
         datAreas.setClave_inst(txtClaveI.getText());
@@ -445,6 +447,10 @@ public class Areas extends javax.swing.JInternalFrame {
                 Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+        
     }//GEN-LAST:event_btnsaveMouseClicked
 
     private void btncancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelMouseClicked

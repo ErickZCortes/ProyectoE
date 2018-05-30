@@ -386,11 +386,11 @@ public class Personal extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-//        if (txtId.getText().length() == 0) {
-//            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
-//            return;
-//        }
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+        
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma == verificar){
+            int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtIdPersonal.getText().equals("")) {
                 datPersonal.setIdPersonal(txtIdPersonal.getText());
@@ -406,6 +406,10 @@ public class Personal extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "No se elimino el personal.");
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+        
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
@@ -425,8 +429,10 @@ public class Personal extends javax.swing.JInternalFrame {
             return;
         }
         
-
-        String idPersonal = txtIdPersonal.getText();
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma == verificar){
+            String idPersonal = txtIdPersonal.getText();
         datPersonal.setNombre(txtNombre.getText());
         datPersonal.setCURP(txtCURP.getText());
         datPersonal.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
@@ -446,6 +452,11 @@ public class Personal extends javax.swing.JInternalFrame {
                 Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+
+        
     }//GEN-LAST:event_btnSaveMouseClicked
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
