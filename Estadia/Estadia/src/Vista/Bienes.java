@@ -534,7 +534,7 @@ public class Bienes extends javax.swing.JInternalFrame {
         
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma == verificar){
+        if (firma.equals(c.obtenerFirma())){
             Calendar cal;
         int d, m, a;
         cal = dcFecha.getCalendar();
@@ -588,7 +588,7 @@ public class Bienes extends javax.swing.JInternalFrame {
             //        }
             String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma == verificar){
+        if (firma.equals(c.obtenerFirma())){
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el bien lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
