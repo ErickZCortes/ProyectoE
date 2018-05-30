@@ -389,7 +389,7 @@ public class Personal extends javax.swing.JInternalFrame {
         
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma == verificar){
+        if (firma.equals(c.obtenerFirma())){
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtIdPersonal.getText().equals("")) {
@@ -431,7 +431,7 @@ public class Personal extends javax.swing.JInternalFrame {
         
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma == verificar){
+        if (firma.equals(c.obtenerFirma())){
             String idPersonal = txtIdPersonal.getText();
         datPersonal.setNombre(txtNombre.getText());
         datPersonal.setCURP(txtCURP.getText());

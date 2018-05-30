@@ -436,11 +436,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-//        if (txtId.getText().length() == 0) {
-//            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
-//            return;
-//        }
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+        
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(c.obtenerFirma())){
+            int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
                 datUsuarios.setIdUsuario(txtId.getText());
@@ -456,6 +456,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+        
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
@@ -485,8 +489,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
             txtPassword.requestFocus();
             return;
         }
-
-        String idUsuario = txtId.getText();
+        
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(c.obtenerFirma())){
+            String idUsuario = txtId.getText();
         datUsuarios.setNombre(txtName.getText());
         datUsuarios.setUser(txtUser.getText());
         datUsuarios.setPassword(txtPassword.getText());
@@ -510,6 +517,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+        
     }//GEN-LAST:event_btnsaveMouseClicked
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
