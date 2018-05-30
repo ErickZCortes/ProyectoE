@@ -443,10 +443,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
             return;
         }
 
-//        if (txtidConsum.getText().length() == 0) {
-//            JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
-//            return;
-//        }
         int i = JOptionPane.showConfirmDialog(this, "Si elimina el Consumible lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtidConsum.getText().equals("")) {

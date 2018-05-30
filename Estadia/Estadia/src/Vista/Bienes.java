@@ -532,7 +532,10 @@ public class Bienes extends javax.swing.JInternalFrame {
             return;
         }
         
-        Calendar cal;
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma == verificar){
+            Calendar cal;
         int d, m, a;
         cal = dcFecha.getCalendar();
         d = cal.get(Calendar.DAY_OF_MONTH);
@@ -567,6 +570,10 @@ public class Bienes extends javax.swing.JInternalFrame {
                 Logger.getLogger(Bienes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+        
     }//GEN-LAST:event_btnsaveMouseClicked
 
     private void btnElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimMouseClicked
@@ -579,7 +586,10 @@ public class Bienes extends javax.swing.JInternalFrame {
             //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
             //            return;
             //        }
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el bien lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+            String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma == verificar){
+            int i = JOptionPane.showConfirmDialog(this, "Si elimina el bien lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
                 datBienes.setIdBien(txtId.getText());
@@ -595,6 +605,10 @@ public class Bienes extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "No se elimino el bien.");
             }
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+        
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModMouseClicked
