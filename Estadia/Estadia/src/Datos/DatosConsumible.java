@@ -18,22 +18,22 @@ public class DatosConsumible {
    private Date FechaC;
    private String Existencia;
    private String stockM;
-   private String ValorT;
+   private String Valor;
+   private String unidad;
 
     public DatosConsumible() {
     }
 
-    public DatosConsumible(String IdConsumible, String Codigo, String Nombre, Date FechaC, String Existencia, String stockM, String ValorT) {
+    public DatosConsumible(String IdConsumible, String Codigo, String Nombre, Date FechaC, String Existencia, String stockM, String Valor, String unidad) {
         this.IdConsumible = IdConsumible;
         this.Codigo = Codigo;
         this.Nombre = Nombre;
         this.FechaC = FechaC;
         this.Existencia = Existencia;
         this.stockM = stockM;
-        this.ValorT = ValorT;
+        this.Valor = Valor;
+        this.unidad = unidad;
     }
-   
-   
 
     public String getIdConsumible() {
         return IdConsumible;
@@ -59,8 +59,12 @@ public class DatosConsumible {
         return stockM;
     }
     
-    public String getValorT() {
-        return ValorT;
+    public String getValor() {
+        return Valor;
+    }
+
+    public String getUnidad() {
+        return unidad;
     }
 
     public void setIdConsumible(String IdConsumible) {
@@ -87,8 +91,12 @@ public class DatosConsumible {
         this.stockM = stockM;
     }
     
-    public void setValorT(String ValorT) {
-        this.ValorT = ValorT;
+    public void setValor(String Valor) {
+        this.Valor = Valor;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
     }
     
 }

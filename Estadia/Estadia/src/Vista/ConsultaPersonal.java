@@ -10,6 +10,7 @@ import Datos.DatosPersonal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,8 +37,6 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
     }
     
     /**
@@ -86,6 +85,11 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             }
         ));
         tbDatos.getTableHeader().setReorderingAllowed(false);
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbDatosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDatos);
 
         jPanel3.setBackground(new java.awt.Color(41, 55, 61));
@@ -172,8 +176,6 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int item;
-        String categoria;
         String filtro;
         
         filtro = txtBuscar.getText();
@@ -199,6 +201,24 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             Logger.getLogger(ConsultaPersonal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
+        if (evt.getClickCount() == 2) {
+            int fila = tbDatos.getSelectedRow();
+            String  nombre, curp, area, idpersona;
+            nombre = tbDatos.getValueAt(fila, 1).toString();
+            curp = tbDatos.getValueAt(fila, 2).toString();
+            area = tbDatos.getValueAt(fila, 3).toString();
+            idpersona= tbDatos.getValueAt(fila, 0).toString();
+            
+            ValesAlmacen.txtPerSol.setText(nombre);
+            ValesAlmacen.txtArea.setText(area);
+            ValesAlmacen.txtidPersona.setText(idpersona);
+            
+            String Clave = c.DevolverCtt();
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbDatosMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

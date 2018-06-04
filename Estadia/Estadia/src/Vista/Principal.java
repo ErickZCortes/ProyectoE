@@ -61,6 +61,7 @@ public class Principal extends javax.swing.JFrame {
         menuC = new javax.swing.JMenu();
         mConsumibles = new javax.swing.JMenuItem();
         mConsultas = new javax.swing.JMenuItem();
+        sVale = new javax.swing.JMenuItem();
         mSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -240,6 +241,14 @@ public class Principal extends javax.swing.JFrame {
         });
         menuC.add(mConsultas);
 
+        sVale.setText("Generar Vale");
+        sVale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sValeActionPerformed(evt);
+            }
+        });
+        menuC.add(sVale);
+
         jMenuBar1.add(menuC);
 
         mSalir.setBackground(new java.awt.Color(255, 255, 255));
@@ -401,6 +410,20 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sConsultasBienesActionPerformed
 
+    private void sValeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sValeActionPerformed
+        ValesAlmacen form = null;
+        try {
+            form = new ValesAlmacen();
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sValeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -458,10 +481,11 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
     public static javax.swing.JMenuItem sAreas;
-    public static javax.swing.JMenuItem sConsultasPersonal;
     public static javax.swing.JMenuItem sBienes;
     public static javax.swing.JMenuItem sConsultasBienes;
+    public static javax.swing.JMenuItem sConsultasPersonal;
     public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
+    private javax.swing.JMenuItem sVale;
     // End of variables declaration//GEN-END:variables
 }

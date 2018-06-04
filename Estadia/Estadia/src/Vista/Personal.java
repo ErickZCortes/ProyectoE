@@ -41,7 +41,7 @@ public class Personal extends javax.swing.JInternalFrame {
         txtNombre.setEnabled(false);
         txtCURP.setEnabled(false);
         //txtArea.setEnabled(false);
-      
+        comboAreas.setEnabled(false);
 
         btnAdd.setEnabled(true);
         btnMod.setEnabled(true);
@@ -54,7 +54,7 @@ public class Personal extends javax.swing.JInternalFrame {
     void desbloquear() {
         txtNombre.setEnabled(true);
         txtCURP.setEnabled(true);
-        //txtArea.setEnabled(true);
+        comboAreas.setEnabled(true);
        
 
         btnAdd.setEnabled(false);

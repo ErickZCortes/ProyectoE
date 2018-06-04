@@ -43,9 +43,10 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtCod.setEnabled(false);
         txtNombre.setEnabled(false);
         dcFecha.setEnabled(false);
-        txtExistencia.setEnabled(true);
-        txtStockM.setEnabled(true);
+        txtExistencia.setEnabled(false);
+        txtStockM.setEnabled(false);
         txtValor.setEnabled(false);
+        txtUnidad.setEnabled(false);
 
         btnAdd.setEnabled(true);
         btneditar.setEnabled(true);
@@ -62,6 +63,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtExistencia.setEnabled(true);
         txtStockM.setEnabled(true);
         txtValor.setEnabled(true);
+        txtUnidad.setEnabled(true);
 
         btnAdd.setEnabled(false);
         btneditar.setEnabled(false);
@@ -76,6 +78,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         txtExistencia.setText("");
         txtStockM.setText("");
         txtValor.setText("");
+        txtUnidad.setText("");
     }
 
     void cargar_tabla_consumibles(String valor) throws SQLException {
@@ -89,7 +92,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(150);
-
+        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);    
     }
 
     void actualizarDatos() {
@@ -103,13 +106,15 @@ public class Consumibles extends javax.swing.JInternalFrame {
                 String codigo = (String) tbDatos.getValueAt(filasel, 1);
                 String nombre = (String) tbDatos.getValueAt(filasel, 2);
                 String existencia = (String) tbDatos.getValueAt(filasel, 4);
-                String stockM = (String) tbDatos.getValueAt(filasel, 5);
-                String valor = (String) tbDatos.getValueAt(filasel, 6);
+                String unidad = (String) tbDatos.getValueAt(filasel, 5);
+                String stockM = (String) tbDatos.getValueAt(filasel, 6);
+                String valor = (String) tbDatos.getValueAt(filasel, 7);
 
                 txtidConsum.setText(idCon);
                 txtCod.setText(codigo);
                 txtNombre.setText(nombre);
                 txtExistencia.setText(existencia);
+                txtUnidad.setText(unidad);
                 txtStockM.setText(stockM);
                 txtValor.setText(valor);
 
@@ -150,6 +155,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         txtStockM = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txtUnidad = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -168,7 +175,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLFecha.setText("Fecha de adquisición:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel5.setText("Valor total: ");
+        jLabel5.setText("Valor: ");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel6.setText("Existencia:");
@@ -260,17 +267,17 @@ public class Consumibles extends javax.swing.JInternalFrame {
             }
         ));
         tbDatos.getTableHeader().setReorderingAllowed(false);
-        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbDatosMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tbDatos);
 
         txtStockM.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel7.setText("Stock Mínimo:");
+
+        txtUnidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel8.setText("Unidad:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -285,13 +292,15 @@ public class Consumibles extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8))
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txtValor)
-                                        .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtUnidad)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLFecha, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -342,8 +351,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
                             .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(txtStockM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(28, 28, 28))
+                            .addComponent(jLabel7)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,8 +362,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(24, 24, 24)))
+                            .addComponent(jLabel6))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,6 +494,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
             return;
         }
         
+        if (txtUnidad.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar una Unidad");
+            txtUnidad.requestFocus();
+            return;
+        }
+        
         if (txtStockM.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un Stock Mínimo");
             txtStockM.requestFocus();
@@ -506,8 +524,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
         datCons.setCodigo(txtCod.getText());
         datCons.setNombre(txtNombre.getText());
         datCons.setExistencia(txtExistencia.getText());
+        datCons.setUnidad(txtUnidad.getText());
         datCons.setStockM(txtStockM.getText());
-        datCons.setValorT(txtValor.getText());
+        datCons.setValor(txtValor.getText());
 
         if (c.Guardar_consumible(accion, datCons, idConsumible)) {
             if (accion == "A") {
@@ -535,10 +554,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnCancelarMouseClicked
 
-    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-
-    }//GEN-LAST:event_tbDatosMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -554,6 +569,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -563,6 +579,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtExistencia;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtStockM;
+    private javax.swing.JTextField txtUnidad;
     private javax.swing.JTextField txtValor;
     private javax.swing.JTextField txtidConsum;
     // End of variables declaration//GEN-END:variables

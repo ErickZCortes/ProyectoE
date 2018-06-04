@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import Datos.DatosPersonal;
 import Datos.DatosUsuario;
 import Modelo.Modelo;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 public class Registro extends javax.swing.JFrame {
 
     DatosUsuario datosU = new DatosUsuario();
+    DatosPersonal datosP = new DatosPersonal();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
     String accion = "";
@@ -382,8 +384,13 @@ public class Registro extends javax.swing.JFrame {
         datosU.setRFC(txtRFC.getText());
         int acceso = cbAcceso.getSelectedIndex();
         datosU.setAcceso((String) cbAcceso.getItemAt(acceso));
-
+        
+        datosP.setNombre(txtName.getText());
+        datosP.setCURP(txtCURP.getText());
+        
+        
         if (c.Guardar_usuario(accion, datosU, idUsuario)) {
+            c.Guardar_personal(accion, datosP,idUsuario);
             JOptionPane.showMessageDialog(rootPane,
                     "USUARIO ADMINISTRADOR DE SISTEMA INGRESADO CORRECTAMENTE.\n"
                     + "Usuario: " + txtUser.getText() + "\n" + "Contraseña: " + txtPassword.getText(),
