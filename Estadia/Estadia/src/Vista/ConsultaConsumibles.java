@@ -86,6 +86,11 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
             }
         ));
         tbDatos.getTableHeader().setReorderingAllowed(false);
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbDatosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDatos);
 
         jPanel3.setBackground(new java.awt.Color(41, 55, 61));
@@ -172,8 +177,6 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int item;
-        String categoria;
         String filtro;
         
         filtro = txtBuscar.getText();
@@ -199,6 +202,19 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
             Logger.getLogger(ConsultaConsumibles.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
+        if (evt.getClickCount() == 2) {
+            int fila = tbDatos.getSelectedRow();
+            String  nombre,idcon;
+            nombre = tbDatos.getValueAt(fila, 2).toString();
+            idcon = tbDatos.getValueAt(fila, 0).toString();
+            
+            ValesAlmacen.txtMaterial.setText(nombre);
+            ValesAlmacen.txtidConsumible.setText(idcon);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbDatosMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

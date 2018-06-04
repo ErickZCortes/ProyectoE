@@ -36,6 +36,8 @@ public class DatosArea {
         this.Clave_ctt = Clave_ctt;
     }
 
+    
+
     public String getIdArea() {
         return idArea;
     }
@@ -67,6 +69,8 @@ public class DatosArea {
     public void setClave_ctt(String Clave_ctt) {
         this.Clave_ctt = Clave_ctt;
     }
+
+    
     public void mostrarComboAreas(JComboBox<DatosArea> comboArea ){
         Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();

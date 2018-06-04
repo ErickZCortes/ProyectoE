@@ -8,8 +8,10 @@ package Controlador;
 import Datos.DatosArea;
 import Datos.DatosBien;
 import Datos.DatosConsumible;
+import Datos.DatosDetalleVale;
 import Datos.DatosPersonal;
 import Datos.DatosUsuario;
+import Datos.DatosVale;
 import Modelo.Modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,9 +36,9 @@ public class Controlador {
     public DefaultTableModel login(String user, String password) {
         return m.login(user, password);
     }
-    
+
     public String obtenerFirma() {
-     return m.obtenerFirma();
+        return m.obtenerFirma();
     }
 //    public void validar_usuario(String usuario, String contrasena) {
 //        m.validar_usuario(usuario, contrasena);
@@ -81,19 +83,18 @@ public class Controlador {
     public boolean eliminar_consumible(DatosConsumible datos) {
         return m.eliminar_consumible(datos);
     }
-    
+
     //-------------------------AREAS--------------------------------------------//
-    
     public DefaultTableModel cargar_tabla_Areas(String valor) {
         return m.cargar_tabla_Areas(valor);
     }
-     
+
     public boolean Guardar_area(String accion, DatosArea datos, String idArea) {
         if (accion == "A") {
-        return m.insertar_area(datos);
+            return m.insertar_area(datos);
         }
         if (accion == "M") {
-        return m.editar_areas(datos, idArea);
+            return m.editar_areas(datos, idArea);
         }
         return false;
     }
@@ -101,17 +102,18 @@ public class Controlador {
     public boolean eliminar_area(DatosArea datos) {
         return m.eliminar_area(datos);
     }
-     //-------------------------PERSONAL---------------------------------------//
+    //-------------------------PERSONAL---------------------------------------//
+
     public DefaultTableModel cargar_tabla_Personal(String valor) {
         return m.cargar_tabla_Personal(valor);
     }
-     
+
     public boolean Guardar_personal(String accion, DatosPersonal datos, String idPersonal) {
         if (accion == "A") {
-        return m.insertar_personal(datos);
+            return m.insertar_personal(datos);
         }
         if (accion == "M") {
-        return m.editar_personal(datos, idPersonal);
+            return m.editar_personal(datos, idPersonal);
         }
         return false;
     }
@@ -119,24 +121,49 @@ public class Controlador {
     public boolean eliminar_personal(DatosPersonal datos) {
         return m.eliminar_personal(datos);
     }
-    
+
     //-------------------------BIENES--------------------------------------------//
-    
     public DefaultTableModel cargar_tabla_bienes(String valor) {
         return m.cargar_tabla_Bienes(valor);
     }
-     
+
     public boolean Guardar_bienes(String accion, DatosBien datos, String idBien) {
         if (accion == "A") {
-        return m.insertar_bienes(datos);
+            return m.insertar_bienes(datos);
         }
         if (accion == "M") {
-        return m.editar_bienes(datos, idBien);
+            return m.editar_bienes(datos, idBien);
         }
         return false;
     }
 
     public boolean eliminar_bienes(DatosBien datos) {
         return m.eliminar_bienes(datos);
+    }
+
+    //-----------------------------------------VALE ALMACEN-------------------//
+    public String DevolverCtt() {
+        return m.DevolverCtt();
+    }
+
+    public DefaultTableModel cargar_tabla_detalleV(String valor) {
+        return m.cargar_tabla_detalleV(valor);
+    }
+    
+    public int selectIdVale() {
+        return m.selectIdVale();
+    }
+    public boolean agregar_vale(DatosVale datos) {
+        return m.agregar_vale(datos);
+    }
+    public boolean eliminarVale(DatosVale datos){
+        return m.eliminarVale(datos);
+    }
+    public boolean modificar_vale(DatosVale datos) {
+        return m.modificar_vale(datos);
+    }
+    
+    public boolean agregar_detalleV (DatosDetalleVale datos) {
+        return m.agregar_detalleV(datos);
     }
 }

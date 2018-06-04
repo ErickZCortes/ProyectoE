@@ -166,9 +166,9 @@ public class Bienes extends javax.swing.JInternalFrame {
         txtStockB = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         lbFecha = new javax.swing.JLabel();
-        txtFormaadB = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         dcFecha = new com.toedter.calendar.JDateChooser();
+        txtFormaadB = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -278,12 +278,17 @@ public class Bienes extends javax.swing.JInternalFrame {
         lbFecha.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lbFecha.setText("fecha de Adqusición:");
 
-        txtFormaadB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel11.setText("Forma de Adquisición:");
 
         dcFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        txtFormaadB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtFormaadB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFormaadBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -389,9 +394,9 @@ public class Bienes extends javax.swing.JInternalFrame {
                             .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFormaadB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtFormaadB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,6 +531,7 @@ public class Bienes extends javax.swing.JInternalFrame {
             txtStockB.requestFocus();
             return;
         }
+        
         if (txtFormaadB.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar una Forma de Adquisición");
             txtFormaadB.requestFocus();
@@ -553,7 +559,7 @@ public class Bienes extends javax.swing.JInternalFrame {
         datBienes.setSerie(txtSerieB.getText());
         datBienes.setValor(txtValorB.getText());
         datBienes.setStock(txtStockB.getText());
-        datBienes.setFormaAd(txtFormaadB.getText());
+       // datBienes.setFormaAd(txtFormaadB.getText());
         
         
         if (c.Guardar_bienes(accion, datBienes, idBien)) {
@@ -636,6 +642,10 @@ public class Bienes extends javax.swing.JInternalFrame {
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
     }//GEN-LAST:event_btnAddMouseClicked
+
+    private void txtFormaadBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormaadBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFormaadBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

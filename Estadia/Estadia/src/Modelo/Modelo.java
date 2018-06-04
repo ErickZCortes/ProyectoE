@@ -10,7 +10,10 @@ import Datos.DatosBien;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
 import Datos.DatosPersonal;
+import Datos.DatosDetalleVale;
+import Datos.DatosVale;
 import Vista.Principal;
+import Vista.ValesAlmacen;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -247,13 +250,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"Id", " Codigo", "Nombre", "Fecha", "Existencia", "Stock Mínimo", "ValorTotal"};
+        String[] titulos = {"Id", " Codigo", "Nombre", "Fecha", "Existencia","Unidad", "Stock Mínimo", "ValorTotal"};
 
-        String[] registros = new String[7];
+        String[] registros = new String[8];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_consum ,codigo , nombre , fechaAd , existencia , stock_minimo, valorTot from consumibles WHERE nombre LIKE '%" + valor + "%' order by id_consum desc";
+        cons = "select id_consum ,codigo , nombre , fechaAd , existencia , unidad, stock_minimo, valorTot from consumibles WHERE nombre LIKE '%" + valor + "%' order by id_consum desc";
 
         try {
 
@@ -267,8 +270,9 @@ public class Modelo {
                 registros[2] = rs.getString("nombre");
                 registros[3] = rs.getString("fechaAd");
                 registros[4] = rs.getString("existencia");
-                registros[5] = rs.getString("stock_minimo");
-                registros[6] = rs.getString("valorTot");
+                registros[5] = rs.getString("unidad");
+                registros[6] = rs.getString("stock_minimo");
+                registros[7] = rs.getString("valorTot");
 
                 totalRegistros = totalRegistros + 1;
                 modelo.addRow(registros);
@@ -283,7 +287,7 @@ public class Modelo {
     }
 
     public boolean insertar_consumible(DatosConsumible datos) {
-        cons = "INSERT into consumibles(codigo,nombre,fechaAd,existencia,stock_minimo,valorTot) VALUES (?,?,?,?,?,?)";
+        cons = "INSERT into consumibles(codigo,nombre,fechaAd,existencia,unidad,stock_minimo,valorTot) VALUES (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
@@ -291,8 +295,10 @@ public class Modelo {
             pst.setString(2, datos.getNombre());
             pst.setDate(3, datos.getFechaC());
             pst.setString(4, datos.getExistencia());
-            pst.setString(5, datos.getStockM());
-            pst.setString(6, datos.getValorT());
+            pst.setString(5, datos.getUnidad());
+            pst.setString(6, datos.getStockM());
+            pst.setString(7, datos.getValor());
+            
 
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -308,7 +314,7 @@ public class Modelo {
 
     public boolean editar_consumible(DatosConsumible datos, String IdConsumible) {
 
-        cons = "update consumibles set codigo = ? ,nombre = ?, existencia = ?, stock_minimo = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
+        cons = "update consumibles set codigo = ? ,nombre = ?, existencia = ?, unidad = ?, stock_minimo = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
 
         try {
 
@@ -317,8 +323,9 @@ public class Modelo {
             pst.setString(1, datos.getCodigo());
             pst.setString(2, datos.getNombre());
             pst.setString(3, datos.getExistencia());
-            pst.setString(4, datos.getStockM());
-            pst.setString(5, datos.getValorT());
+            pst.setString(4, datos.getUnidad());
+            pst.setString(5, datos.getStockM());
+            pst.setString(6, datos.getValor());
             int N = pst.executeUpdate();
             if (N != 0) {
                 return true;
@@ -360,7 +367,7 @@ public class Modelo {
 
         String[] titulos = {"Id_area", "Nombre", "Clave del CTT ", "Clave Institucional"};
 
-        String[] registros = new String[4];
+        String[] registros = new String[5];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
@@ -413,7 +420,7 @@ public class Modelo {
 
     public boolean editar_areas(DatosArea datos, String IdArea) {
 
-        cons = "update areas set nombre = ? ,ctt_area = ?, clave_institu = ? where id_area ='" + IdArea + "' ";
+        cons = "update areas set nombre = ? ,ctt_area = ?, clave_institu = ?  where id_area ='" + IdArea + "' ";
 
         try {
 
@@ -680,5 +687,168 @@ public class Modelo {
         }
     }//cierre funcion
     
+    //-----------------------------------------VALE ALMACEN-------------------//
+    
+    public String DevolverCtt(){
+        String area = ValesAlmacen.txtArea.getText();
+        cons = "SELECT ctt_area FROM areas WHERE nombre = '" + area + "'";
+        try {
+            String ctt_area = "";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                ctt_area = rs.getString("ctt_area");
+            }
+            return ctt_area;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return "";
+        }
+    }
+    
+    public DefaultTableModel cargar_tabla_detalleV(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"id_detalle","id_vale","id_personal","consumible","No." ,"Descripción del artículo", "Cantidad solicitada", "Unidad", "Cantidad Entregada"};
+
+        String[] registros = new String[9];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_detalle ,id_valeA , id_person , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada from detalle_vale WHERE id_detalle LIKE '%" + valor + "%' order by id_detalle desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_detalle");
+                registros[1] = rs.getString("id_valeA");
+                registros[2] = rs.getString("id_person");
+                registros[3] = rs.getString("id_consumibles");
+                registros[4] = rs.getString("nom_referencia");
+                registros[5] = rs.getString("nombre_consumible");
+                registros[6] = rs.getString("cantidad_solic");
+                registros[7] = rs.getString("unidad_consumible");
+                registros[8] = rs.getString("cantidad_entregada");
+                
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+    public boolean agregar_vale(DatosVale datos){
+        cons = "INSERT into vale_almacen(fecha , area_sol , responsable_area) VALUES (?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            
+            pst.setDate(1, datos.getFecha());
+            pst.setString(2, datos.getAreaSoli());
+            pst.setString(3, datos.getResponsableArea());
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    public boolean eliminarVale(DatosVale datos){
+        cons = "delete from vale_almacen where id_vale = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getIdVale());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    public int selectIdVale() {
+        cons = "SELECT id_vale FROM vale_almacen WHERE fecha order by id_vale DESC limit 1";
+        try {
+            int idvale = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                idvale = rs.getInt("id_vale");
+            }
+            return idvale;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+    }
+    
+    public boolean modificar_vale(DatosVale datos){
+        String idVale = ValesAlmacen.txtidVale.getText();
+        cons = "update bienes set area_sol = ? ,responsable_area = ? where id_vale ='" + idVale + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getAreaSoli());
+            pst.setString(2, datos.getResponsableArea());
+         
+            
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean agregar_detalleV (DatosDetalleVale datos) {
+        cons = "INSERT into detalle_vale(id_detalle ,id_valeA , id_person , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.setString(1, datos.getId_detalle());
+            pst.setString(2, datos.getId_vale());
+            pst.setString(3, datos.getId_persona());
+            pst.setString(4, datos.getId_consumible());
+            pst.setInt(5, datos.getNum_referencia());
+            pst.setString(6, datos.getNombre_consumible());
+            pst.setString(7, datos.getCantidad_solici());
+            pst.setString(8, datos.getUnidad_consumible());
+            pst.setString(9, datos.getCantidad_entregada());
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
     
 }
