@@ -6,10 +6,11 @@
 package Vista;
 
 import Controlador.Controlador;
-import Datos.DatosBien;
+import Datos.DatosAltaBien;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,27 +20,44 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultaBienes extends javax.swing.JInternalFrame {
     
     Controlador c = new Controlador();
-    DatosBien datBienes = new DatosBien();
+    DatosAltaBien datBienes = new DatosAltaBien();
     /**
      * Creates new form ConsultaBienes
      */
     public ConsultaBienes() throws SQLException {
         initComponents();
-        cargar_tabla("");
     }
     
-    void cargar_tabla(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_bienes(valor);
+    void cargar_tabla_Altas(String valor) throws SQLException {
+        DefaultTableModel tb = c.cargar_tabla_Altabienes(valor);
         tbDatos.setModel(tb);
 
-        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
         tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
         
+    }
+    
+    void cargar_tabla_Bajas(String valor) throws SQLException {
+        DefaultTableModel tb = c.cargar_tabla_Bajabienes(valor);
+        tbDatos.setModel(tb);
+
+        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +76,8 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cbTablas = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -121,6 +141,22 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Dato: ");
 
+        cbTablas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        cbTablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Tabla...", "Alta de Bienes", "Baja de Bienes" }));
+        cbTablas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTablasItemStateChanged(evt);
+            }
+        });
+        cbTablas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTablasActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel4.setText("Tabla");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -131,24 +167,33 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 181, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
@@ -157,7 +202,10 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,36 +219,74 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         String filtro;
-
         filtro = txtBuscar.getText();
-
-        try {
-            cargar_tabla( filtro);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaBienes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int item;
-        String categoria;
-        String filtro;
-
-        filtro = txtBuscar.getText();
-
-        try {
-            cargar_tabla( filtro);
-            txtBuscar.setText("");
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaConsumibles.class.getName()).log(Level.SEVERE, null, ex);
+        
+        String tabla = cbTablas.getSelectedItem().toString();
+        if ("Seleccione una Tabla...".equals(tabla)) {
+           JOptionPane.showMessageDialog(null,"Seleccione una tabla válida"); 
         }
+        if ("Alta de Bienes".equals(tabla)) {
+            try {
+                String filtro;
+                filtro = txtBuscar.getText();
+                cargar_tabla_Altas(filtro);
+                txtBuscar.setText("");
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultaBienes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        if ("Baja de Bienes".equals(tabla)) {
+            try {
+                String filtro;
+                filtro = txtBuscar.getText();
+                cargar_tabla_Bajas(filtro);
+                txtBuscar.setText("");
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultaBienes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+//        int seleccionar = cbTablas.getSelectedIndex();  
+//        String filtro;
+//        filtro = txtBuscar.getText();
+//        c.cargar_tabla_Bienes(seleccionar, filtro);
+//        txtBuscar.setText("");
+//        
+        
+//        int item;
+//        String categoria;
+//        String filtro;
+//
+//        filtro = txtBuscar.getText();
+//
+//        try {
+//            cargar_tabla( filtro);
+//            txtBuscar.setText("");
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ConsultaConsumibles.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void cbTablasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTablasActionPerformed
+        
+    }//GEN-LAST:event_cbTablasActionPerformed
+
+    private void cbTablasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTablasItemStateChanged
+        
+    }//GEN-LAST:event_cbTablasItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> cbTablas;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
