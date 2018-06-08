@@ -57,6 +57,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
         sBienes = new javax.swing.JMenuItem();
+        sBajasBienes = new javax.swing.JMenuItem();
         sConsultasBienes = new javax.swing.JMenuItem();
         menuC = new javax.swing.JMenu();
         mConsumibles = new javax.swing.JMenuItem();
@@ -198,16 +199,24 @@ public class Principal extends javax.swing.JFrame {
 
         mBienes.setBackground(new java.awt.Color(255, 255, 255));
         mBienes.setForeground(new java.awt.Color(255, 255, 255));
-        mBienes.setText("Bienes");
+        mBienes.setText("Activo Fijo");
         mBienes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        sBienes.setText("Altas");
+        sBienes.setText("Altas y Modificaciones");
         sBienes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sBienesActionPerformed(evt);
             }
         });
         mBienes.add(sBienes);
+
+        sBajasBienes.setText("Bajas");
+        sBajasBienes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBajasBienesActionPerformed(evt);
+            }
+        });
+        mBienes.add(sBajasBienes);
 
         sConsultasBienes.setText("Consultas");
         sConsultasBienes.addActionListener(new java.awt.event.ActionListener() {
@@ -379,9 +388,9 @@ public class Principal extends javax.swing.JFrame {
                                                      
     }
     private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        Bienes form = null;
+        AltaBienes form = null;
         try {
-            form = new Bienes();
+            form = new AltaBienes();
             Escritorio.add(form);
 
             form.setClosable(true);
@@ -423,6 +432,22 @@ public class Principal extends javax.swing.JFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_sValeActionPerformed
+
+    private void sBajasBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBajasBienesActionPerformed
+        BajaBienes form = null;
+        try {
+            form = new BajaBienes();
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sBajasBienesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,6 +506,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
     public static javax.swing.JMenuItem sAreas;
+    private javax.swing.JMenuItem sBajasBienes;
     public static javax.swing.JMenuItem sBienes;
     public static javax.swing.JMenuItem sConsultasBienes;
     public static javax.swing.JMenuItem sConsultasPersonal;

@@ -6,7 +6,8 @@
 package Modelo;
 
 import Datos.DatosArea;
-import Datos.DatosBien;
+import Datos.DatosAltaBien;
+import Datos.DatosBajaBien;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
 import Datos.DatosPersonal;
@@ -568,17 +569,16 @@ public class Modelo {
     
     //--------------------------------------------BIENES-----------------------------------------------------//
     
-    public DefaultTableModel cargar_tabla_Bienes(String valor) {
+    public DefaultTableModel cargar_tabla_AltaBienes(String valor) {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"Id_bien", "Nombre", "Característica", "Marca", "Modelo", "Serie", "Valor", "Cantidad", "Fecha-Ad", "Forma - Ad"};
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Forma de Ad.", "Nombre y Característica", "Cantidad", "Marca", "Modelo", "Serie", "Valor"};
 
-        String[] registros = new String[10];
-        totalRegistros = 0;
+        String[] registros = new String[11];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_bien ,nombre_bien , caract_bien , marca_bien , modelo_bien, serie_bien, valor_bien, stock_bien, fechaAd, formaAd from bienes WHERE nombre_bien LIKE '%" + valor + "%' order by id_bien desc";
+        cons = "select id_alta ,nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien  from AltaBienes WHERE area LIKE '%" + valor + "%' order by id_alta desc";
 
         try {
 
@@ -587,18 +587,17 @@ public class Modelo {
 
             while (rs.next()) {
 
-                registros[0] = rs.getString("id_bien");
-                registros[1] = rs.getString("nombre_bien");
-                registros[2] = rs.getString("caract_bien");
-                registros[3] = rs.getString("marca_bien");
-                registros[4] = rs.getString("modelo_bien");
-                registros[5] = rs.getString("serie_bien");
-                registros[6] = rs.getString("valor_bien");
-                registros[7] = rs.getString("stock_bien");
-                registros[8] = rs.getString("fechaAd");
-                registros[9] = rs.getString("formaAd");
-
-                totalRegistros = totalRegistros + 1;
+                registros[0] = rs.getString("id_alta");
+                registros[1] = rs.getString("nInventario");
+                registros[2] = rs.getString("area");
+                registros[3] = rs.getString("FechaAdquisicion");
+                registros[4] = rs.getString("formaAdquisicion");
+                registros[5] = rs.getString("descripcion");
+                registros[6] = rs.getString("cantidad_bien");
+                registros[7] = rs.getString("marca_bien");
+                registros[8] = rs.getString("modelo_bien");
+                registros[9] = rs.getString("serie_bien");
+                registros[10] = rs.getString("valor_bien");
                 modelo.addRow(registros);
             }
             return modelo;
@@ -610,20 +609,21 @@ public class Modelo {
 
     }
 
-    public boolean insertar_bienes(DatosBien datos) {
-        cons = "INSERT into bienes(nombre_bien,caract_bien,marca_bien,modelo_bien, serie_bien, valor_bien, stock_bien, fechaAd, formaAd) VALUES (?,?,?,?,?,?,?,?,?)";
+    public boolean insertar_AltaBienes(DatosAltaBien datos) {
+        cons = "INSERT into AltaBienes(nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
-            pst.setString(1, datos.getNombre());
-            pst.setString(2, datos.getCaracteristica());
-            pst.setString(3, datos.getMarca());
-            pst.setString(4, datos.getModelo());
-            pst.setString(5, datos.getSerie());
-            pst.setString(6, datos.getValor());
-            pst.setString(7, datos.getStock());
-            pst.setDate(8, datos.getFechaAd());
-            pst.setString(9, datos.getFormaAd());
+            pst.setString(1, datos.getnInventario());
+            pst.setString(2, datos.getArea());
+            pst.setDate(3, datos.getFechaAd());
+            pst.setString(4, datos.getFormaAd());
+            pst.setString(5, datos.getDescripcion());
+            pst.setString(6, datos.getCantidad());
+            pst.setString(7, datos.getMarca());
+            pst.setString(8, datos.getModelo());
+            pst.setString(9, datos.getSerie());
+            pst.setString(10, datos.getValor());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -636,23 +636,23 @@ public class Modelo {
         }
     }
 
-    public boolean editar_bienes(DatosBien datos, String Idbien) {
+    public boolean editar_AltaBienes(DatosAltaBien datos, String idAlta) {
 
-        cons = "update bienes set nombre_bien = ? ,caract_bien = ?, marca_bien = ? , modelo_bien = ?, serie_bien = ?, valor_bien = ?, stock_bien = ?, fechaAd = ?, formaAd = ? where id_bien ='" + Idbien + "' ";
+        cons = "update AltaBienes set nInventario = ? ,area = ?, formaAdquisicion = ?, descripcion = ?, cantidad_bien = ?, marca_bien = ?, modelo_bien = ?, serie_bien = ?, valor_bien = ? where id_alta ='" + idAlta + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getNombre());
-            pst.setString(2, datos.getCaracteristica());
-            pst.setString(3, datos.getMarca());
-            pst.setString(4, datos.getModelo());
-            pst.setString(5, datos.getSerie());
-            pst.setString(6, datos.getValor());
-            pst.setString(7, datos.getStock());
-            pst.setDate(8, datos.getFechaAd());
-            pst.setString(9, datos.getFormaAd());           
+            pst.setString(1, datos.getnInventario());
+            pst.setString(2, datos.getArea());
+            pst.setString(3, datos.getFormaAd());
+            pst.setString(4, datos.getDescripcion());
+            pst.setString(5, datos.getCantidad());
+            pst.setString(6, datos.getMarca());
+            pst.setString(7, datos.getModelo());
+            pst.setString(8, datos.getSerie());
+            pst.setString(9, datos.getValor());
             
             int N = pst.executeUpdate();
             if (N != 0) {
@@ -667,12 +667,122 @@ public class Modelo {
 
     }
 
-    public boolean eliminar_bienes(DatosBien datos) {
-        cons = "delete from bienes where id_bien = ?";
+    public boolean eliminar_AltaBienes(DatosAltaBien datos) {
+        cons = "delete from AltaBienes where id_alta = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdBien());
+            pst.setString(1, datos.getIdAltaBien());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }//cierre funcion
+    
+    public DefaultTableModel cargar_tabla_BajaBienes(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Valor", "Nombre y Característica", "Fecha de Baja", "Causa de Baja"};
+
+        String[] registros = new String[8];
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja from BajaBienes WHERE area LIKE '%" + valor + "%' order by id_baja desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_baja");
+                registros[1] = rs.getString("nInventabaja");
+                registros[2] = rs.getString("area");
+                registros[3] = rs.getString("FechaAdquisicion");
+                registros[4] = rs.getString("valor_bien");
+                registros[5] = rs.getString("descripcion");
+                registros[6] = rs.getString("fechaBaja");
+                registros[7] = rs.getString("causa_baja");
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+
+    public boolean insertar_BajaBienes(DatosBajaBien datos) {
+        cons = "INSERT into BajaBienes(nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja) VALUES (?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.setString(1, datos.getnInventario());
+            pst.setString(2, datos.getArea());
+            pst.setDate(3, datos.getFechaAd());
+            pst.setString(4, datos.getValor());
+            pst.setString(5, datos.getDescripcion());
+            pst.setDate(6, datos.getFechaBaja());
+            pst.setString(7, datos.getCausa());
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+
+    public boolean editar_BajaBienes(DatosBajaBien datos, String idBaja) {
+
+        cons = "update Bajabienes set nInventabaja = ? ,area = ?, FechaAdquisicion = ? , valor_bien = ?, descripcion = ?, fechaBaja = ?, causa_baja = ? where id_bien ='" + idBaja + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getnInventario());
+            pst.setString(2, datos.getArea());
+            pst.setDate(3, datos.getFechaAd());
+            pst.setString(4, datos.getValor());
+            pst.setString(5, datos.getDescripcion());
+            pst.setDate(6, datos.getFechaBaja());
+            pst.setString(7, datos.getCausa());
+            
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+
+    }
+    
+    public boolean eliminar_BajaBienes(DatosBajaBien datos) {
+        cons = "delete from BajaBienes where id_baja = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getIdBajaBien());
             int N = pst.executeUpdate();
 
             if (N != 0) {

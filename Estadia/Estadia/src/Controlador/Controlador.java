@@ -6,7 +6,8 @@
 package Controlador;
 
 import Datos.DatosArea;
-import Datos.DatosBien;
+import Datos.DatosAltaBien;
+import Datos.DatosBajaBien;
 import Datos.DatosConsumible;
 import Datos.DatosDetalleVale;
 import Datos.DatosPersonal;
@@ -123,24 +124,53 @@ public class Controlador {
     }
 
     //-------------------------BIENES--------------------------------------------//
-    public DefaultTableModel cargar_tabla_bienes(String valor) {
-        return m.cargar_tabla_Bienes(valor);
+    public DefaultTableModel cargar_tabla_Altabienes(String valor) {
+        return m.cargar_tabla_AltaBienes(valor);
     }
 
-    public boolean Guardar_bienes(String accion, DatosBien datos, String idBien) {
+    public boolean Guardar_Altabienes(String accion, DatosAltaBien datos, String idAlta) {
         if (accion == "A") {
-            return m.insertar_bienes(datos);
+            return m.insertar_AltaBienes(datos);
         }
         if (accion == "M") {
-            return m.editar_bienes(datos, idBien);
+            return m.editar_AltaBienes(datos, idAlta);
         }
         return false;
     }
 
-    public boolean eliminar_bienes(DatosBien datos) {
-        return m.eliminar_bienes(datos);
+    public boolean eliminar_bienes(DatosAltaBien datos) {
+        return m.eliminar_AltaBienes(datos);
+    }
+    
+    public DefaultTableModel cargar_tabla_Bajabienes(String valor) {
+        return m.cargar_tabla_BajaBienes(valor);
+    }
+    
+    public boolean Guardar_Bajabienes(DatosBajaBien datos) {
+        
+            return m.insertar_BajaBienes(datos);
+        
     }
 
+    public boolean eliminar_bienes(DatosBajaBien datos) {
+        return m.eliminar_BajaBienes(datos);
+    }
+    
+    
+//    public DefaultTableModel cargar_tabla_Bienes(int opcion, String valor) {
+//        if (opcion == 0) {
+//            JOptionPane.showMessageDialog(null,"Seleccione una tabla válida");
+//        }
+//        if (opcion == 1) {
+//            return m.cargar_tabla_AltaBienes(valor);
+//        }
+//        if (opcion == 2) {
+//            return m.cargar_tabla_BajaBienes(valor);
+//        }
+//        return null;
+//        
+//    } 
+    
     //-----------------------------------------VALE ALMACEN-------------------//
     public String DevolverCtt() {
         return m.DevolverCtt();
