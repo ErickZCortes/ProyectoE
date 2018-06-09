@@ -648,6 +648,45 @@ public class Modelo {
         }
 
     }
+    public DefaultTableModel cargar_tabla_AltaBienes_tipo(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Forma de Ad.", "Nombre y Característica", "Cantidad", "Marca", "Modelo", "Serie", "Valor"};
+
+        String[] registros = new String[11];
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_alta ,nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien  from AltaBienes WHERE formaAdquisicion LIKE '%" + valor + "%' order by id_alta desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_alta");
+                registros[1] = rs.getString("nInventario");
+                registros[2] = rs.getString("area");
+                registros[3] = rs.getString("FechaAdquisicion");
+                registros[4] = rs.getString("formaAdquisicion");
+                registros[5] = rs.getString("descripcion");
+                registros[6] = rs.getString("cantidad_bien");
+                registros[7] = rs.getString("marca_bien");
+                registros[8] = rs.getString("modelo_bien");
+                registros[9] = rs.getString("serie_bien");
+                registros[10] = rs.getString("valor_bien");
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
 
     public boolean insertar_AltaBienes(DatosAltaBien datos) {
         cons = "INSERT into AltaBienes(nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -774,6 +813,43 @@ public class Modelo {
         modelo = new DefaultTableModel(null, titulos);
 
         cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja from BajaBienes WHERE descripcion LIKE '%" + valor + "%' order by id_baja desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_baja");
+                registros[1] = rs.getString("nInventabaja");
+                registros[2] = rs.getString("area");
+                registros[3] = rs.getString("FechaAdquisicion");
+                registros[4] = rs.getString("valor_bien");
+                registros[5] = rs.getString("descripcion");
+                registros[6] = rs.getString("fechaBaja");
+                registros[7] = rs.getString("causa_baja");
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+    
+    public DefaultTableModel cargar_tabla_BajaBienes_tipo(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Valor", "Nombre y Característica", "Fecha de Baja", "Causa de Baja"};
+
+        String[] registros = new String[8];
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja from BajaBienes WHERE causa_baja LIKE '%" + valor + "%' order by id_baja desc";
 
         try {
 

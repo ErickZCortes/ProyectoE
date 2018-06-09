@@ -130,6 +130,9 @@ public class Controlador {
     public DefaultTableModel cargar_tabla_Altabienes_nombre(String valor) {
         return m.cargar_tabla_AltaBienes_nombre(valor);
     }
+    public DefaultTableModel cargar_tabla_Altabienes_tipo(String valor) {
+        return m.cargar_tabla_AltaBienes_tipo(valor);
+    }
 
     public boolean Guardar_Altabienes(String accion, DatosAltaBien datos, String idAlta) {
         if (accion == "A") {
@@ -150,6 +153,9 @@ public class Controlador {
     }
     public DefaultTableModel cargar_tabla_Bajabienes_nombre(String valor) {
         return m.cargar_tabla_BajaBienes_nombre(valor);
+    }
+    public DefaultTableModel cargar_tabla_Bajabienes_tipo(String valor) {
+        return m.cargar_tabla_BajaBienes_tipo(valor);
     }
     
     public boolean Guardar_Bajabienes(DatosBajaBien datos) {

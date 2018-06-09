@@ -66,6 +66,21 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
+                }else if (cbCond.getSelectedItem() == "Forma o Causa") {
+                DefaultTableModel tb = c.cargar_tabla_Altabienes_tipo(buscar);
+                tbDatos.setModel(tb);
+
+                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
+                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
                 }
                 
             } else if (cbTablas.getSelectedItem() == "Baja de Bienes") {
@@ -83,6 +98,18 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
                 } else if (cbCond.getSelectedItem() == "Nombre") {
                     DefaultTableModel tb = c.cargar_tabla_Bajabienes_nombre(buscar);
+                tbDatos.setModel(tb);
+
+                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
+                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+                }else if (cbCond.getSelectedItem() == "Forma o Causa") {
+                    DefaultTableModel tb = c.cargar_tabla_Bajabienes_tipo(buscar);
                 tbDatos.setModel(tb);
 
                 tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -200,7 +227,7 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         jLabel4.setText("Tabla");
 
         cbCond.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cbCond.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Area", "Nombre" }));
+        cbCond.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Area", "Nombre", "Forma o Causa" }));
         cbCond.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbCondItemStateChanged(evt);
@@ -270,9 +297,9 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
