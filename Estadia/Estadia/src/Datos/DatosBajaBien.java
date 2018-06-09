@@ -16,25 +16,29 @@ public class DatosBajaBien {
     private String nInventario;
     private String area;
     private Date FechaAd;
+    private String idBien;
     private String valor;
     private String descripcion;
+    private String cantidad;
     private Date fechaBaja;
     private String causa;
 
     public DatosBajaBien() {
     }
 
-    public DatosBajaBien(String idBajaBien, String nInventario, String area, Date FechaAd, String valor, String descripcion, Date fechaBaja, String causa) {
+    public DatosBajaBien(String idBajaBien, String nInventario, String area, Date FechaAd, String idBien, String valor, String descripcion, String cantidad, Date fechaBaja, String causa) {
         this.idBajaBien = idBajaBien;
         this.nInventario = nInventario;
         this.area = area;
         this.FechaAd = FechaAd;
+        this.idBien = idBien;
         this.valor = valor;
         this.descripcion = descripcion;
+        this.cantidad = cantidad;
         this.fechaBaja = fechaBaja;
         this.causa = causa;
     }
-
+    
     public String getIdBajaBien() {
         return idBajaBien;
     }
@@ -51,6 +55,10 @@ public class DatosBajaBien {
         return FechaAd;
     }
 
+    public String getIdBien() {
+        return idBien;
+    }
+    
     public String getValor() {
         return valor;
     }
@@ -59,6 +67,10 @@ public class DatosBajaBien {
         return descripcion;
     }
 
+    public String getCantidad() {
+        return cantidad;
+    }
+    
     public Date getFechaBaja() {
         return fechaBaja;
     }
@@ -83,6 +95,10 @@ public class DatosBajaBien {
         this.FechaAd = FechaAd;
     }
 
+    public void setIdBien(String idBien) {
+        this.idBien = idBien;
+    }
+    
     public void setValor(String valor) {
         this.valor = valor;
     }
@@ -91,6 +107,10 @@ public class DatosBajaBien {
         this.descripcion = descripcion;
     }
 
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+    
     public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }

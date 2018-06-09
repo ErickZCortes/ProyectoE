@@ -96,6 +96,8 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 } else if (cbCondicion.getSelectedItem() == "Nombre") {
                     DefaultTableModel tb = c.cargar_tabla_Bajabienes_nombre(buscar);
                 tbDatos.setModel(tb);
@@ -108,6 +110,8 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 }else if (cbCondicion.getSelectedItem() == "Forma o Causa") {
                     DefaultTableModel tb = c.cargar_tabla_Bajabienes_tipo(buscar);
                 tbDatos.setModel(tb);
@@ -120,6 +124,8 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 }
             }
         } catch (Exception e) {
@@ -173,6 +179,11 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
             }
         ));
         tbDatos.getTableHeader().setReorderingAllowed(false);
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDatos);
 
         jPanel3.setBackground(new java.awt.Color(41, 55, 61));
@@ -344,6 +355,23 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     private void cbCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCondicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCondicionActionPerformed
+
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+        if (evt.getClickCount() == 2) {
+            int fila = tbDatos.getSelectedRow();
+            String  nombre, valor, idbien, cantidad;
+            nombre = tbDatos.getValueAt(fila, 5).toString();
+            valor = tbDatos.getValueAt(fila, 10).toString();
+            idbien = tbDatos.getValueAt(fila, 0).toString();
+            cantidad = tbDatos.getValueAt(fila, 6).toString();
+            
+            BajaBienes.txtDescripcion.setText(nombre);
+            BajaBienes.txtValor.setText(valor);
+            BajaBienes.txtIdbien.setText(idbien);
+            BajaBienes.txtCantAlta.setText(cantidad);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbDatosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
