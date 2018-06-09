@@ -98,7 +98,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     }
     
     void cargar_tabla_AltaBienes(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_Altabienes(valor);
+        DefaultTableModel tb = c.cargar_tabla_Altabienes_area(valor);
         tbDatos.setModel(tb);
 
         tbDatos.getColumnModel().getColumn(0).setPreferredWidth(60);

@@ -84,7 +84,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }
     
     void cargar_tabla_Bajabienes(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_Bajabienes(valor);
+        DefaultTableModel tb = c.cargar_tabla_Bajabienes_area(valor);
         tbDatos.setModel(tb);
 
         tbDatos.getColumnModel().getColumn(0).setPreferredWidth(60);
