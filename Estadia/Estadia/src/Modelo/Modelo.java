@@ -745,7 +745,41 @@ public class Modelo {
         }
 
     }
+    
+//    public boolean editar_AltaBienes_x(DatosAltaBien datos) {
+//
+//        cons = "update AltaBienes set cantidad_bien = ? where id_alta = ? ";
+//
+//        try {
+//
+//            PreparedStatement pst = cn.prepareStatement(cons);
+//
+//            pst.setString(1, datos.getIdAltaBien());
+//            pst.setString(2, datos.getCantidad());
+//            
+//            int N = pst.executeUpdate();
+//            if (N != 0) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//            return false;
+//        }
+//
+//    }
+    public void editar_AltaBienes_xBaja(String idAlta,int cantidad) {
+        cons = "UPDATE AltaBienes SET cantidad_bien ='" + cantidad + "' WHERE id_alta = '" + idAlta + "'";
 
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     public boolean eliminar_AltaBienes(DatosAltaBien datos) {
         cons = "delete from AltaBienes where id_alta = ?";
         try {
@@ -766,16 +800,45 @@ public class Modelo {
         }
     }//cierre funcion
     
+//    public boolean eliminar_AltaBienes_x(DatosAltaBien datos) {
+//        cons = "DELETE FROM altabienes WHERE id_alta = ? AND cantidad_bien = 0";
+//        try {
+//            PreparedStatement pst = cn.prepareStatement(cons);
+//
+//            pst.setString(1, datos.getIdAltaBien());
+//            int N = pst.executeUpdate();
+//
+//            if (N != 0) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//            return false;
+//        }
+//    }//cierre funcion
+    public void eliminar_AltaBienes_xBaja(String idalta) {
+        cons = "DELETE FROM AltaBienes WHERE id_alta='" + idalta + "' AND cantidad_bien = 0";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     public DefaultTableModel cargar_tabla_BajaBienes_area(String valor) {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Valor", "Nombre y Característica", "Fecha de Baja", "Causa de Baja"};
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ","Id Bien", "Valor", "Nombre y Característica", "Cantidad", "Fecha de Baja", "Causa de Baja"};
 
-        String[] registros = new String[8];
+        String[] registros = new String[10];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja from BajaBienes WHERE area LIKE '%" + valor + "%' order by id_baja desc";
+        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion , cantidad, fechaBaja , causa_baja from BajaBienes WHERE area LIKE '%" + valor + "%' order by id_baja desc";
 
         try {
 
@@ -788,10 +851,12 @@ public class Modelo {
                 registros[1] = rs.getString("nInventabaja");
                 registros[2] = rs.getString("area");
                 registros[3] = rs.getString("FechaAdquisicion");
-                registros[4] = rs.getString("valor_bien");
-                registros[5] = rs.getString("descripcion");
-                registros[6] = rs.getString("fechaBaja");
-                registros[7] = rs.getString("causa_baja");
+                registros[4] = rs.getString("id_bien");
+                registros[5] = rs.getString("valor_bien");
+                registros[6] = rs.getString("descripcion");
+                registros[7] = rs.getString("cantidad");
+                registros[8] = rs.getString("fechaBaja");
+                registros[9] = rs.getString("causa_baja");
                 modelo.addRow(registros);
             }
             return modelo;
@@ -802,17 +867,17 @@ public class Modelo {
         }
 
     }
-
+    
     public DefaultTableModel cargar_tabla_BajaBienes_nombre(String valor) {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Valor", "Nombre y Característica", "Fecha de Baja", "Causa de Baja"};
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ","Id Bien", "Valor", "Nombre y Característica", "Cantidad", "Fecha de Baja", "Causa de Baja"};
 
-        String[] registros = new String[8];
+        String[] registros = new String[10];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja from BajaBienes WHERE descripcion LIKE '%" + valor + "%' order by id_baja desc";
+        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion , cantidad, fechaBaja , causa_baja from BajaBienes WHERE descripcion LIKE '%" + valor + "%' order by id_baja desc";
 
         try {
 
@@ -825,10 +890,12 @@ public class Modelo {
                 registros[1] = rs.getString("nInventabaja");
                 registros[2] = rs.getString("area");
                 registros[3] = rs.getString("FechaAdquisicion");
-                registros[4] = rs.getString("valor_bien");
-                registros[5] = rs.getString("descripcion");
-                registros[6] = rs.getString("fechaBaja");
-                registros[7] = rs.getString("causa_baja");
+                registros[4] = rs.getString("id_bien");
+                registros[5] = rs.getString("valor_bien");
+                registros[6] = rs.getString("descripcion");
+                registros[7] = rs.getString("cantidad");
+                registros[8] = rs.getString("fechaBaja");
+                registros[9] = rs.getString("causa_baja");
                 modelo.addRow(registros);
             }
             return modelo;
@@ -837,19 +904,18 @@ public class Modelo {
             JOptionPane.showConfirmDialog(null, e);
             return null;
         }
-
     }
     
     public DefaultTableModel cargar_tabla_BajaBienes_tipo(String valor) {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ", "Valor", "Nombre y Característica", "Fecha de Baja", "Causa de Baja"};
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ","Id Bien", "Valor", "Nombre y Característica", "Cantidad", "Fecha de Baja", "Causa de Baja"};
 
-        String[] registros = new String[8];
+        String[] registros = new String[10];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja from BajaBienes WHERE causa_baja LIKE '%" + valor + "%' order by id_baja desc";
+        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion , cantidad, fechaBaja , causa_baja from BajaBienes WHERE causa_baja LIKE '%" + valor + "%' order by id_baja desc";
 
         try {
 
@@ -862,10 +928,12 @@ public class Modelo {
                 registros[1] = rs.getString("nInventabaja");
                 registros[2] = rs.getString("area");
                 registros[3] = rs.getString("FechaAdquisicion");
-                registros[4] = rs.getString("valor_bien");
-                registros[5] = rs.getString("descripcion");
-                registros[6] = rs.getString("fechaBaja");
-                registros[7] = rs.getString("causa_baja");
+                registros[4] = rs.getString("id_bien");
+                registros[5] = rs.getString("valor_bien");
+                registros[6] = rs.getString("descripcion");
+                registros[7] = rs.getString("cantidad");
+                registros[8] = rs.getString("fechaBaja");
+                registros[9] = rs.getString("causa_baja");
                 modelo.addRow(registros);
             }
             return modelo;
@@ -874,21 +942,22 @@ public class Modelo {
             JOptionPane.showConfirmDialog(null, e);
             return null;
         }
-
     }
     
     public boolean insertar_BajaBienes(DatosBajaBien datos) {
-        cons = "INSERT into BajaBienes(nInventabaja , area , FechaAdquisicion , valor_bien , descripcion , fechaBaja , causa_baja) VALUES (?,?,?,?,?,?,?)";
+        cons = "INSERT into BajaBienes(nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion, cantidad, fechaBaja , causa_baja) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setString(1, datos.getnInventario());
             pst.setString(2, datos.getArea());
             pst.setDate(3, datos.getFechaAd());
-            pst.setString(4, datos.getValor());
-            pst.setString(5, datos.getDescripcion());
-            pst.setDate(6, datos.getFechaBaja());
-            pst.setString(7, datos.getCausa());
+            pst.setString(4, datos.getIdBien());
+            pst.setString(5, datos.getValor());
+            pst.setString(6, datos.getDescripcion());
+            pst.setString(7, datos.getCantidad());
+            pst.setDate(8, datos.getFechaBaja());
+            pst.setString(9, datos.getCausa());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;

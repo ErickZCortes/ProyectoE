@@ -143,11 +143,13 @@ public class Controlador {
         }
         return false;
     }
-
-    public boolean eliminar_bienes(DatosAltaBien datos) {
-        return m.eliminar_AltaBienes(datos);
+    public void editar_AltaBienes_xBaja(String idAlta,int cantidad) {
+        m.editar_AltaBienes_xBaja(idAlta, cantidad);
     }
     
+    public void eliminar_AltaBienes_xBaja(String idalta) {
+         m.eliminar_AltaBienes_xBaja(idalta);
+    }
     public DefaultTableModel cargar_tabla_Bajabienes_area(String valor) {
         return m.cargar_tabla_BajaBienes_area(valor);
     }

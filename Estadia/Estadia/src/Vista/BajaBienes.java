@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class BajaBienes extends javax.swing.JInternalFrame {
     
     DatosBajaBien datBBienes = new DatosBajaBien();
+    DatosAltaBien datAlta = new DatosAltaBien();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
     String accion = "";
@@ -38,6 +39,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
      */
     public BajaBienes() throws SQLException {
         initComponents();
+        //txtIdbien.setVisible(false);
         bloquear();
         cargar_tabla_Bajabienes("");
         datArea.mostrarComboAreas(comboAreas);
@@ -45,10 +47,10 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     
     
     void bloquear() {
-        txtId.setVisible(false);
         txtDescripcion.setEnabled(false);
         txtInventario.setEnabled(false);
         txtValor.setEnabled(false);
+        txtCantBaja.setEnabled(false);
         dcFechaBaja.setEnabled(false);
         dcFechaAlta.setEnabled(false);
         comboAreas.setEnabled(false);
@@ -62,10 +64,10 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }
 
     void desbloquear() {
-        txtId.setVisible(true);
         txtInventario.setEnabled(true);
         txtDescripcion.setEnabled(true);
         txtValor.setEnabled(true);
+        txtCantBaja.setEnabled(true);
         dcFechaBaja.setEnabled(true);
         dcFechaAlta.setEnabled(true);
         comboAreas.setEnabled(true);
@@ -78,9 +80,10 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }
 
     void limpiar() {
-        txtId.setText("");
+        txtIdbien.setText("");
         txtDescripcion.setText("");
         txtValor.setText("");
+        txtCantAlta.setText("");
     }
     
     void cargar_tabla_Bajabienes(String valor) throws SQLException {
@@ -95,6 +98,8 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
     }
 
     void actualizarDatos() {
@@ -104,13 +109,13 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Seleccionar Registro");
 
             } else {
-                String idbien = (String) tbDatos.getValueAt(filasel, 0);
+                String idbien = (String) tbDatos.getValueAt(filasel, 4);
                 String inventario = (String) tbDatos.getValueAt(filasel, 1);
-                String valor = (String) tbDatos.getValueAt(filasel, 4);
-                String desc = (String) tbDatos.getValueAt(filasel, 5);
+                String valor = (String) tbDatos.getValueAt(filasel, 5);
+                String desc = (String) tbDatos.getValueAt(filasel, 6);
 
                 
-                txtId.setText(idbien);
+                txtIdbien.setText(idbien);
                 txtInventario.setText(inventario);
                 txtDescripcion.setText(desc);
                 txtValor.setText(valor);
@@ -131,7 +136,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        txtIdbien = new javax.swing.JTextField();
         btnElim = new javax.swing.JButton();
         btnsave = new javax.swing.JButton();
         btncancel = new javax.swing.JButton();
@@ -149,6 +154,9 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         dcFechaAlta = new com.toedter.calendar.JDateChooser();
         btnBuscarBien = new javax.swing.JButton();
         comboCausa = new javax.swing.JComboBox<>();
+        lbCantidad = new javax.swing.JLabel();
+        txtCantBaja = new javax.swing.JTextField();
+        txtCantAlta = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -159,6 +167,12 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel5.setText("Causa de la Baja:");
+
+        txtIdbien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdbienActionPerformed(evt);
+            }
+        });
 
         btnElim.setBackground(new java.awt.Color(64, 74, 83));
         btnElim.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -186,6 +200,11 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         btnsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnsaveMouseClicked(evt);
+            }
+        });
+        btnsave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsaveActionPerformed(evt);
             }
         });
 
@@ -273,6 +292,22 @@ public class BajaBienes extends javax.swing.JInternalFrame {
             }
         });
 
+        lbCantidad.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lbCantidad.setText("Cantidad:");
+
+        txtCantBaja.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCantBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantBajaActionPerformed(evt);
+            }
+        });
+
+        txtCantAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantAltaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -314,7 +349,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                         .addGap(125, 125, 125))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbFecha)
@@ -325,16 +359,28 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(comboCausa, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dcFechaBaja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)))))
-                        .addGap(131, 131, 131))))
+                                        .addComponent(dcFechaBaja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbCantidad)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCantBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)))
+                        .addGap(131, 131, 131))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtIdbien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCantAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdbien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(4, 4, 4)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -364,20 +410,21 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                                             .addComponent(dcFechaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(jLabel5)
                                             .addComponent(comboCausa))))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscarBien))))
+                                    .addComponent(btnBuscarBien)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtCantBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbCantidad)))))
                         .addGap(93, 93, 93)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btncancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnsave, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 277, Short.MAX_VALUE)
                         .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -494,7 +541,12 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
         if (firma.equals(c.obtenerFirma())){
-            Calendar calA,calB;
+            
+        
+        String tipo = comboCausa.getItemAt(comboCausa.getSelectedIndex());
+        
+            if (!"Seleccione una causa...".equals(tipo)) {
+                Calendar calA,calB;
         int dA, mA, aA, dB, mB, aB;
         calA = dcFechaAlta.getCalendar();
         calB = dcFechaBaja.getCalendar();
@@ -513,17 +565,18 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         datBBienes.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
         datBBienes.setDescripcion(txtDescripcion.getText());
         datBBienes.setValor(txtValor.getText());
+        datBBienes.setCantidad(txtCantBaja.getText());
+        datBBienes.setIdBien(txtIdbien.getText());
+        datBBienes.setCausa(tipo);
         
-        String tipo = comboCausa.getItemAt(comboCausa.getSelectedIndex());
+        int CantAl = Integer.parseInt(txtCantAlta.getText());
+        int cantB = Integer.parseInt(txtCantBaja.getText());
+        int resta = CantAl - cantB;
         
-            if (!"Seleccione una causa...".equals(tipo)) {
-                datBBienes.setCausa(tipo);
-            } else {
-                JOptionPane.showMessageDialog(null, "Seleccione un tipo válido");
-            }
         
-        if (c.Guardar_Bajabienes(datBBienes)) {
-            
+                if (c.Guardar_Bajabienes(datBBienes)) {
+                    c.editar_AltaBienes_xBaja(txtIdbien.getText(),resta);
+                    c.eliminar_AltaBienes_xBaja(txtIdbien.getText());
                 JOptionPane.showMessageDialog(null, "Bien Agregado.");
             
             limpiar();
@@ -534,6 +587,11 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                 Logger.getLogger(BajaBienes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un tipo válido");
+            }
+        
+        
         }else{
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
@@ -588,6 +646,22 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         txtInventario.requestFocus();
     }//GEN-LAST:event_btnElimMouseClicked
 
+    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
+        
+    }//GEN-LAST:event_btnsaveActionPerformed
+
+    private void txtCantBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantBajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantBajaActionPerformed
+
+    private void txtIdbienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdbienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdbienActionPerformed
+
+    private void txtCantAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantAltaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantAltaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBien;
@@ -608,12 +682,15 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbCantidad;
     private javax.swing.JLabel lbFecha;
     private javax.swing.JLabel lbFecha1;
     private javax.swing.JTable tbDatos;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtId;
+    public static javax.swing.JTextField txtCantAlta;
+    public static javax.swing.JTextField txtCantBaja;
+    public static javax.swing.JTextField txtDescripcion;
+    public static javax.swing.JTextField txtIdbien;
     private javax.swing.JTextField txtInventario;
-    private javax.swing.JTextField txtValor;
+    public static javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
