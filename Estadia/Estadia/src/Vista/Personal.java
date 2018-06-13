@@ -418,11 +418,7 @@ public class Personal extends javax.swing.JInternalFrame {
             txtNombre.requestFocus();
             return;
         }
-//        if (txtArea.getText().length() == 0) {
-//            JOptionPane.showMessageDialog(null, "Debes ingresar el Area");
-//            txtArea.requestFocus();
-//            return;
-//        }
+        
         if (txtCURP.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el CURP");
             txtCURP.requestFocus();

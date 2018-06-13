@@ -183,6 +183,9 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDatosMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbDatosMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(tbDatos);
 
@@ -372,6 +375,38 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
+        if (evt.getClickCount() == 2) {
+            int fila = tbDatos.getSelectedRow();
+            String  idbien,nombre,ninventario,marca,serie,valor,modelo;
+            
+            idbien = tbDatos.getValueAt(fila, 0).toString();
+            nombre = tbDatos.getValueAt(fila, 5).toString();
+            ninventario= tbDatos.getValueAt(fila, 1).toString();
+            marca = tbDatos.getValueAt(fila, 7).toString();
+            modelo = tbDatos.getValueAt(fila, 8).toString();
+            serie = tbDatos.getValueAt(fila, 9).toString();
+            valor = tbDatos.getValueAt(fila, 10).toString();
+            
+            ValeActivo.txtIdBien.setText(idbien);
+            ValeActivo.txtNomBien.setText(nombre);
+            ValeActivo.txtNInventario.setText(ninventario);
+            ValeActivo.txtMarca.setText(marca);
+            ValeActivo.txtModelo.setText(modelo);
+            ValeActivo.txtSerie.setText(serie);
+            ValeActivo.txtValor.setText(valor);
+//            idbien = tbDatos.getValueAt(fila, 0).toString();
+//            cantidad = tbDatos.getValueAt(fila, 6).toString();
+//            
+//            
+//            BajaBienes.txtDescripcion.setText(nombre);
+//            BajaBienes.txtValor.setText(valor);
+//            BajaBienes.txtIdbien.setText(idbien);
+//            BajaBienes.txtCantAlta.setText(cantidad);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbDatosMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,8 +9,10 @@ import Datos.DatosArea;
 import Datos.DatosAltaBien;
 import Datos.DatosBajaBien;
 import Datos.DatosConsumible;
+import Datos.DatosDetalleResguardo;
 import Datos.DatosDetalleVale;
 import Datos.DatosPersonal;
+import Datos.DatosResguardo;
 import Datos.DatosUsuario;
 import Datos.DatosVale;
 import Modelo.Modelo;
@@ -103,6 +105,15 @@ public class Controlador {
     public boolean eliminar_area(DatosArea datos) {
         return m.eliminar_area(datos);
     }
+    
+    public String obtenerctt(String area) {
+        return m.obtenerctt(area);
+    }
+    
+    public String obteneclaveins(String area) {
+        return m.obteneclaveins(area);
+    }
+    
     //-------------------------PERSONAL---------------------------------------//
 
     public DefaultTableModel cargar_tabla_Personal(String valor) {
@@ -124,6 +135,7 @@ public class Controlador {
     }
 
     //-------------------------BIENES--------------------------------------------//
+    
     public DefaultTableModel cargar_tabla_Altabienes_area(String valor) {
         return m.cargar_tabla_AltaBienes_area(valor);
     }
@@ -209,5 +221,38 @@ public class Controlador {
     
     public boolean agregar_detalleV (DatosDetalleVale datos) {
         return m.agregar_detalleV(datos);
+    }
+    
+    //-----------------------------------------VALE RESGUARDO-------------------//
+    
+    public DefaultTableModel cargar_tabla_detalle_Res(String valor) {
+        return m.cargar_tabla_detalle_Res(valor);
+    }
+    public boolean agregar_vale_resguardo(DatosResguardo datos){
+        return m.agregar_vale_resguardo(datos);
+    }
+    public int select_id_vale_res() {
+        return m.select_id_vale_res();
+    }
+    public boolean modificar_vale_res(DatosResguardo datos){
+        return m.modificar_vale_res(datos);
+    }
+    public boolean eliminar_vale_res(DatosResguardo datos){
+        return m.eliminar_vale_res(datos);
+    }
+    public boolean Guardar_detalle_res(String accion, DatosDetalleResguardo datos) {
+        if (accion == "A") {
+        return m.agregar_detalle_resguardo(datos);
+        }
+        if (accion == "M") {
+        return m.modificar_detalle_res(datos);
+        }
+        return false;
+    }
+    public boolean eliminar_detalle_res(DatosResguardo datos){
+        return m.eliminar_detalle_res(datos);
+    }
+    public boolean eliminar_xregistro_detalle_res(DatosDetalleResguardo datos){
+        return m.eliminar_xregistro_detalle_res(datos);
     }
 }

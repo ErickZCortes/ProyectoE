@@ -59,6 +59,7 @@ public class Principal extends javax.swing.JFrame {
         sBienes = new javax.swing.JMenuItem();
         sBajasBienes = new javax.swing.JMenuItem();
         sConsultasBienes = new javax.swing.JMenuItem();
+        sValeRes = new javax.swing.JMenuItem();
         menuC = new javax.swing.JMenu();
         mConsumibles = new javax.swing.JMenuItem();
         mConsultas = new javax.swing.JMenuItem();
@@ -225,6 +226,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mBienes.add(sConsultasBienes);
+
+        sValeRes.setText("Vale de Resguardo");
+        sValeRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sValeResActionPerformed(evt);
+            }
+        });
+        mBienes.add(sValeRes);
 
         jMenuBar1.add(mBienes);
 
@@ -449,6 +458,20 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sBajasBienesActionPerformed
 
+    private void sValeResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sValeResActionPerformed
+        ValeActivo form = null;
+        try {
+            form = new ValeActivo();
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sValeResActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -513,5 +536,6 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
     private javax.swing.JMenuItem sVale;
+    private javax.swing.JMenuItem sValeRes;
     // End of variables declaration//GEN-END:variables
 }

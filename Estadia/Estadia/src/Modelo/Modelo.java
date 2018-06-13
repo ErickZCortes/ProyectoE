@@ -10,10 +10,13 @@ import Datos.DatosAltaBien;
 import Datos.DatosBajaBien;
 import Datos.DatosUsuario;
 import Datos.DatosConsumible;
+import Datos.DatosDetalleResguardo;
 import Datos.DatosPersonal;
 import Datos.DatosDetalleVale;
+import Datos.DatosResguardo;
 import Datos.DatosVale;
 import Vista.Principal;
+import Vista.ValeActivo;
 import Vista.ValesAlmacen;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -463,6 +466,41 @@ public class Modelo {
         }
     }//cierre funcion
     
+    public String obtenerctt(String area) {
+        
+        cons = "SELECT ctt_area FROM areas WHERE nombre = '" + area + "'";
+        try {
+            String cttarea = "";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                cttarea = rs.getString("ctt_area");
+            }
+            return cttarea;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return "";
+        }
+
+    }
+    
+    public String obteneclaveins(String area) {
+        
+        cons = "SELECT clave_institu FROM areas WHERE nombre = '" + area + "'";
+        try {
+            String clavei = "";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                clavei = rs.getString("clave_institu");
+            }
+            return clavei;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return "";
+        }
+
+    }
     //----------------------------------PERSONAL--------------------------//
     
     public DefaultTableModel cargar_tabla_Personal(String valor) {
@@ -687,6 +725,7 @@ public class Modelo {
         }
 
     }
+    
 
     public boolean insertar_AltaBienes(DatosAltaBien datos) {
         cons = "INSERT into AltaBienes(nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -1135,7 +1174,7 @@ public class Modelo {
     
     public boolean modificar_vale(DatosVale datos){
         String idVale = ValesAlmacen.txtidVale.getText();
-        cons = "update bienes set area_sol = ? ,responsable_area = ? where id_vale ='" + idVale + "' ";
+        cons = "update vale_almacen set area_sol = ? ,responsable_area = ? where id_vale ='" + idVale + "' ";
 
         try {
 
@@ -1178,6 +1217,233 @@ public class Modelo {
                 return false;
             }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    //--------------------------RESGUARDO---------------------------------//
+    public DefaultTableModel cargar_tabla_detalle_Res(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"id detalle","id resguardo","No.","id bien","Nombre","No. Inventario","Marca","Modelo" ,"Serie", "Valor"};
+
+        String[] registros = new String[10];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select * from detalle_resguardo WHERE id_valer LIKE '%" + valor + "%' order by id_detaller asc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+                
+                registros[0] = rs.getString("id_detaller");
+                registros[1] = rs.getString("id_valer");
+                registros[2] = rs.getString("num_ref");
+                registros[3] = rs.getString("id_bien");
+                registros[4] = rs.getString("nombre_b");
+                registros[5] = rs.getString("n_inventario");
+                registros[6] = rs.getString("marca_b");
+                registros[7] = rs.getString("modelo_b");
+                registros[8] = rs.getString("serie_b");
+                registros[9] = rs.getString("valor_b");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+    
+    public boolean agregar_vale_resguardo(DatosResguardo datos){
+        cons = "INSERT into vale_resguardo(fecha, plantel, ctt, clave, nombre_per, curp_pers, cant_total, valor_total) VALUES (?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            
+            pst.setDate(1, datos.getFecha());
+            pst.setString(2, datos.getPlantel());
+            pst.setString(3, datos.getCtt());
+            pst.setInt(4, datos.getClave());
+            pst.setString(5, datos.getNombre_per());
+            pst.setString(6, datos.getCurp_pers());
+            pst.setInt(7, datos.getCant_total());
+            pst.setInt(8, datos.getValor_total());
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public int select_id_vale_res() {
+        cons = "SELECT id_valeres FROM vale_resguardo WHERE fecha order by id_valeres DESC limit 1";
+        try {
+            int idvaleR = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                idvaleR = rs.getInt("id_valeres");
+            }
+            return idvaleR;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+    }
+    
+    public boolean modificar_vale_res(DatosResguardo datos){
+        String idValeR = ValeActivo.txtIdValeR.getText();
+        cons = "update vale_resguardo set plantel = ?, ctt = ?, clave = ?, nombre_per = ?, curp_pers = ?, cant_total = ?, valor_total = ? where id_valeres ='" + idValeR + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setString(1, datos.getPlantel());
+            pst.setString(2, datos.getCtt());
+            pst.setInt(3, datos.getClave());
+            pst.setString(4, datos.getNombre_per());
+            pst.setString(5, datos.getCurp_pers());
+            pst.setInt(6, datos.getCant_total());
+            pst.setInt(7, datos.getValor_total());
+            
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    
+    public boolean eliminar_vale_res(DatosResguardo datos){
+        cons = "delete from vale_resguardo where id_valeres = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(1, datos.getId_valeres());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean agregar_detalle_resguardo(DatosDetalleResguardo datos) {
+        cons = "INSERT into detalle_resguardo(id_valer , num_ref , id_bien , nombre_b, n_inventario, marca_b, modelo_b, serie_b, valor_b) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.setInt(1, datos.getId_valer());
+            pst.setInt(2, datos.getNum_ref());
+            pst.setInt(3, datos.getId_bien());
+            pst.setString(4, datos.getNombre_b());
+            pst.setString(5, datos.getN_inventario());
+            pst.setString(6, datos.getMarca_b());
+            pst.setString(7, datos.getModelo_b());
+            pst.setString(8, datos.getSerie_b());
+            pst.setInt(9, datos.getValor_b());
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean modificar_detalle_res(DatosDetalleResguardo datos){
+        String idDetalleR = ValeActivo.txtIdDetalle.getText();
+        cons = "update detalle_resguardo set id_bien = ? , nombre_b = ?, n_inventario = ?, marca_b = ?, modelo_b = ?, serie_b = ?, valor_b = ? where id_detaller ='" + idDetalleR + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(3, datos.getId_bien());
+            pst.setString(4, datos.getNombre_b());
+            pst.setString(5, datos.getN_inventario());
+            pst.setString(6, datos.getMarca_b());
+            pst.setString(7, datos.getModelo_b());
+            pst.setString(8, datos.getSerie_b());
+            pst.setInt(9, datos.getValor_b());
+            
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean eliminar_detalle_res(DatosResguardo datos){
+        cons = "DELETE FROM detalle_resguardo WHERE id_valeres= ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(1, datos.getId_valeres());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean eliminar_xregistro_detalle_res(DatosDetalleResguardo datos){
+        cons = "DELETE FROM detalle_resguardo WHERE id_detaller= ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(1, datos.getId_detaller());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             return false;
         }
