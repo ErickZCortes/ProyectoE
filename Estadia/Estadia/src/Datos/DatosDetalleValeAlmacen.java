@@ -9,11 +9,10 @@ package Datos;
  *
  * @author Mayra
  */
-public class DatosDetalleVale {
+public class DatosDetalleValeAlmacen {
 
     private int id_detalle;
     private int id_vale;
-    private int id_persona;
     private int id_consumible;
     private int num_referencia;
     private String nombre_consumible;
@@ -21,13 +20,12 @@ public class DatosDetalleVale {
     private String unidad_consumible;
     private int cantidad_entregada;
 
-    public DatosDetalleVale() {
+    public DatosDetalleValeAlmacen() {
     }
 
-    public DatosDetalleVale(int id_detalle, int id_vale, int id_persona, int id_consumible, int num_referencia, String nombre_consumible, int cantidad_solici, String unidad_consumible, int cantidad_entregada) {
+    public DatosDetalleValeAlmacen(int id_detalle, int id_vale, int id_consumible, int num_referencia, String nombre_consumible, int cantidad_solici, String unidad_consumible, int cantidad_entregada) {
         this.id_detalle = id_detalle;
         this.id_vale = id_vale;
-        this.id_persona = id_persona;
         this.id_consumible = id_consumible;
         this.num_referencia = num_referencia;
         this.nombre_consumible = nombre_consumible;
@@ -42,10 +40,6 @@ public class DatosDetalleVale {
 
     public int getId_vale() {
         return id_vale;
-    }
-
-    public int getId_persona() {
-        return id_persona;
     }
 
     public int getId_consumible() {
@@ -78,10 +72,6 @@ public class DatosDetalleVale {
 
     public void setId_vale(int id_vale) {
         this.id_vale = id_vale;
-    }
-
-    public void setId_persona(int id_persona) {
-        this.id_persona = id_persona;
     }
 
     public void setId_consumible(int id_consumible) {

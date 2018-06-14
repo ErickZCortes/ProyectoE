@@ -6,9 +6,10 @@
 package Vista;
 
 import Controlador.Controlador;
-import Datos.DatosDetalleVale;
-import Datos.DatosVale;
+import Datos.DatosDetalleValeAlmacen;
+import Datos.DatosValeAlmacen;
 import static Vista.Principal.Escritorio;
+import static Vista.ValeActivo.txtNomBien;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -23,87 +24,97 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class ValesAlmacen extends javax.swing.JInternalFrame {
+
     Controlador c = new Controlador();
-    DatosVale dVale = new DatosVale();
-    DatosDetalleVale dDetalle = new DatosDetalleVale();
+    DatosValeAlmacen dVale = new DatosValeAlmacen();
+    DatosDetalleValeAlmacen dDetalle = new DatosDetalleValeAlmacen();
+    String accion = "";
+    int contador = 0;
+
     /**
      * Creates new form ValeAlmacen
      */
     public ValesAlmacen() throws SQLException {
         initComponents();
         bloquear();
-        cargar_tabla("");
-        
+
+        Calendar c2 = new GregorianCalendar();
+        dcFecha.setCalendar(c2);
+
     }
-    
-    void bloquear(){
-    txtResA.setEnabled(false);
-    dcFecha.setEnabled(false);
-    txtPerSol.setEnabled(false);
-    txtArea.setEnabled(false);
-    txtMaterial.setEnabled(false);
-    txtCantidadS.setEnabled(false);
-    
-    btnBuscarPe.setEnabled(false);
-    btnBuscarCon.setEnabled(false);
-    btnAdd.setEnabled(false);
-    btnElim.setEnabled(false);
-    btnCancelar.setEnabled(false);
-    btnGenerarR.setEnabled(false);
+
+    void bloquear() {
+        txtResA.setEnabled(false);
+        dcFecha.setEnabled(false);
+        txtPerSol.setEnabled(false);
+        txtArea.setEnabled(false);
+        txtMaterial.setEnabled(false);
+        txtCantidadS.setEnabled(false);
+        txtCantidadE.setEnabled(false);
+        txtUnidad.setEnabled(false);
+
+        btnBuscarPe.setEnabled(false);
+        btnBuscarCon.setEnabled(false);
+        btnAdd.setEnabled(false);
+        btnElim.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        btnGenerarR.setEnabled(false);
     }
-    void desbloquear(){
-    txtResA.setEnabled(true);
-    dcFecha.setEnabled(true);
-    txtPerSol.setEnabled(true);
-    txtArea.setEnabled(true);
-    txtMaterial.setEnabled(true);
-    txtCantidadS.setEnabled(true);
-    
-    btnBuscarPe.setEnabled(true);
-    btnBuscarCon.setEnabled(true);
-    btnAdd.setEnabled(true);
-    btnElim.setEnabled(true);
-    btnCancelar.setEnabled(true);
-    btnGenerarR.setEnabled(true);
+
+    void desbloquear() {
+        txtResA.setEnabled(true);
+        dcFecha.setEnabled(true);
+        txtPerSol.setEnabled(true);
+        txtArea.setEnabled(true);
+        txtMaterial.setEnabled(true);
+        txtCantidadS.setEnabled(true);
+        txtCantidadE.setEnabled(true);
+        txtUnidad.setEnabled(true);
+
+        btnBuscarPe.setEnabled(true);
+        btnBuscarCon.setEnabled(true);
+        btnAdd.setEnabled(true);
+        btnElim.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        btnGenerarR.setEnabled(true);
     }
-    void vaciar(){
-    txtResA.setText("");
-    txtPerSol.setText("");
-    txtArea.setText("");
-    txtMaterial.setText("");
-    txtCantidadS.setText("");
+
+    void vaciar() {
+        txtResA.setText("");
+        txtPerSol.setText("");
+        txtArea.setText("");
+        txtMaterial.setText("");
+        txtCantidadS.setText("");
+        txtCantidadE.setText("");
+        txtUnidad.setText("");
     }
-    
+
     void cargar_tabla(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_detalleV(valor);
         tbDatos.setModel(tb);
-        
+
         tbDatos.getColumnModel().getColumn(0).setMaxWidth(0);
         tbDatos.getColumnModel().getColumn(0).setMinWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-        
+
         tbDatos.getColumnModel().getColumn(1).setMaxWidth(0);
         tbDatos.getColumnModel().getColumn(1).setMinWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
-        
+
         tbDatos.getColumnModel().getColumn(2).setMaxWidth(0);
         tbDatos.getColumnModel().getColumn(2).setMinWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(2).setMinWidth(0);
-        
-        tbDatos.getColumnModel().getColumn(3).setMaxWidth(0);
-        tbDatos.getColumnModel().getColumn(3).setMinWidth(0);
-        tbDatos.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(0);
-        tbDatos.getTableHeader().getColumnModel().getColumn(3).setMinWidth(0);
-        
+
+        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(8).setPreferredWidth(150);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -358,6 +369,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnAdd.setText("Agregar");
         btnAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 74, 83), 2));
         btnAdd.setContentAreaFilled(false);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(64, 74, 83));
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -372,6 +388,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnGenerarR.setText("Generar Reporte");
         btnGenerarR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 74, 83), 2));
         btnGenerarR.setContentAreaFilled(false);
+        btnGenerarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarRActionPerformed(evt);
+            }
+        });
 
         jLCantidadSolicitada.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLCantidadSolicitada.setText("Cantidad Solicitada:");
@@ -490,7 +511,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
             form.setClosable(true);
             form.setIconifiable(true);
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -506,18 +527,19 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
             form.setClosable(true);
             form.setIconifiable(true);
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
         }
         form.toFront();
         form.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btnBuscarConActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         desbloquear();
+        accion = "A";
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
         Calendar cal;
@@ -527,23 +549,118 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         m = cal.get(Calendar.MONTH);
         a = cal.get(Calendar.YEAR) - 1900;
         dVale.setFecha(new Date(a, m, d));
-        
-        dVale.setAreaSoli("update");
-        dVale.setResponsableArea("update");
+
+        int num = 0;
+        String up = "up";
+        dVale.setIdPersona(num);
+        dVale.setNombrePersona(up);
+        dVale.setAreaSoli(up);
+        dVale.setResponsableArea(up);
         c.agregar_vale(dVale);
         String idvale = (String.valueOf(c.selectIdVale()));
-        
+        try {
+            cargar_tabla(idvale);
+        } catch (SQLException ex) {
+            Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+        }
         txtidVale.setText(idvale);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnCancelVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelVActionPerformed
         bloquear();
         vaciar();
-        dVale.setIdVale(txtidVale.getText());
+        dVale.setIdVale(Integer.parseInt(txtidVale.getText()));
+        dDetalle.setId_vale(Integer.parseInt(txtidVale.getText()));
         c.eliminarVale(dVale);
+        c.eliminar_detalle_almacen(dDetalle);
         txtidVale.setText("");
-        
+
     }//GEN-LAST:event_btnCancelVActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        if (txtMaterial.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar el Nombre del material");
+            txtMaterial.requestFocus();
+            return;
+        }
+        if (txtCantidadS.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar la cantidad solicitada del material");
+            txtCantidadS.requestFocus();
+            return;
+        }
+        if (txtCantidadE.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar la cantidad entregada del material");
+            txtCantidadE.requestFocus();
+            return;
+        }
+        if (txtUnidad.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar la unidad del material");
+            txtUnidad.requestFocus();
+            return;
+        }
+        dDetalle.setId_vale(Integer.parseInt(txtidVale.getText()));
+        dDetalle.setNombre_consumible(txtMaterial.getText());
+        dDetalle.setId_consumible(Integer.parseInt(txtidConsumible.getText()));
+        contador = contador + 1;
+        dDetalle.setNum_referencia(contador);
+        dDetalle.setCantidad_solici(Integer.parseInt(txtCantidadS.getText()));
+        dDetalle.setCantidad_entregada(Integer.parseInt(txtCantidadE.getText()));
+        dDetalle.setUnidad_consumible(txtUnidad.getText());
+
+        if (c.Guardar_detalle_almacen(accion, dDetalle)) {
+            if (accion == "A") {
+
+                JOptionPane.showMessageDialog(null, "Información Agregada");
+            } else if (accion == "M") {
+                JOptionPane.showMessageDialog(null, "Información Modificada");
+            }
+
+            try {
+                cargar_tabla(txtidVale.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnGenerarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarRActionPerformed
+
+        if (txtArea.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar el Área ");
+            txtArea.requestFocus();
+            return;
+        }
+        if (txtResA.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar el nombre del responsable de área");
+            txtResA.requestFocus();
+            return;
+        }
+        
+        if (txtPerSol.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar el nombre del solicitante");
+            txtPerSol.requestFocus();
+            return;
+        }
+
+
+        dVale.setAreaSoli(txtArea.getText());
+        dVale.setResponsableArea(txtResA.getText());
+        dVale.setIdPersona(Integer.parseInt(txtidPersona.getText()));
+        dVale.setNombrePersona(txtPerSol.getText());
+        if (c.modificar_vale(dVale)) {
+            JOptionPane.showMessageDialog(null, "Vale Generado");
+            try {
+                txtidVale.setText("");
+                bloquear();
+                cargar_tabla(txtidVale.getText());
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_btnGenerarRActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

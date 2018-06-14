@@ -11,28 +11,40 @@ import java.sql.Date;
  *
  * @author Mayra
  */
-public class DatosVale {
-   private String idVale;
+public class DatosValeAlmacen {
+    private int idVale;
    private Date Fecha;
+   private int idPersona;
+   private String nombrePersona;
    private String AreaSoli;
    private String ResponsableArea;
 
-    public DatosVale() {
+    public DatosValeAlmacen() {
     }
 
-    public DatosVale(String idVale, Date Fecha, String AreaSoli, String ResponsableArea) {
+    public DatosValeAlmacen(int idVale, Date Fecha, int idPersona, String nombrePersona, String AreaSoli, String ResponsableArea) {
         this.idVale = idVale;
         this.Fecha = Fecha;
+        this.idPersona = idPersona;
+        this.nombrePersona = nombrePersona;
         this.AreaSoli = AreaSoli;
         this.ResponsableArea = ResponsableArea;
     }
 
-    public String getIdVale() {
+    public int getIdVale() {
         return idVale;
     }
 
     public Date getFecha() {
         return Fecha;
+    }
+
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public String getNombrePersona() {
+        return nombrePersona;
     }
 
     public String getAreaSoli() {
@@ -43,12 +55,20 @@ public class DatosVale {
         return ResponsableArea;
     }
 
-    public void setIdVale(String idVale) {
+    public void setIdVale(int idVale) {
         this.idVale = idVale;
     }
 
     public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public void setNombrePersona(String nombrePersona) {
+        this.nombrePersona = nombrePersona;
     }
 
     public void setAreaSoli(String AreaSoli) {
@@ -58,6 +78,5 @@ public class DatosVale {
     public void setResponsableArea(String ResponsableArea) {
         this.ResponsableArea = ResponsableArea;
     }
-   
-   
+
 }

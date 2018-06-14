@@ -10,11 +10,11 @@ import Datos.DatosAltaBien;
 import Datos.DatosBajaBien;
 import Datos.DatosConsumible;
 import Datos.DatosDetalleResguardo;
-import Datos.DatosDetalleVale;
+import Datos.DatosDetalleValeAlmacen;
 import Datos.DatosPersonal;
 import Datos.DatosResguardo;
 import Datos.DatosUsuario;
-import Datos.DatosVale;
+import Datos.DatosValeAlmacen;
 import Modelo.Modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -209,16 +209,16 @@ public class Controlador {
     public int selectIdVale() {
         return m.selectIdVale();
     }
-    public boolean agregar_vale(DatosVale datos) {
+    public boolean agregar_vale(DatosValeAlmacen datos) {
         return m.agregar_vale(datos);
     }
-    public boolean eliminarVale(DatosVale datos) {
+    public boolean eliminarVale(DatosValeAlmacen datos) {
         return m.eliminarVale(datos);
     }
-    public boolean modificar_vale(DatosVale datos) {
+    public boolean modificar_vale(DatosValeAlmacen datos) {
         return m.modificar_vale(datos);
     }
-    public boolean Guardar_detalle_almacen(String accion, DatosDetalleVale datos) {
+    public boolean Guardar_detalle_almacen(String accion, DatosDetalleValeAlmacen datos) {
         if (accion == "A") {
             return m.agregar_detalle_almacen(datos);
         }
@@ -227,10 +227,10 @@ public class Controlador {
         }
         return false;
     }
-    public boolean eliminar_detalle_almacen(DatosDetalleVale datos) {
+    public boolean eliminar_detalle_almacen(DatosDetalleValeAlmacen datos) {
         return m.eliminar_detalle_almacen(datos);
     }
-    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleVale datos) {
+    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleValeAlmacen datos) {
         return m.eliminar_xregistro_detalle_almacen(datos);
     }
     
