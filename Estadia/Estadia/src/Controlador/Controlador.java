@@ -105,17 +105,16 @@ public class Controlador {
     public boolean eliminar_area(DatosArea datos) {
         return m.eliminar_area(datos);
     }
-    
+
     public String obtenerctt(String area) {
         return m.obtenerctt(area);
     }
-    
+
     public String obteneclaveins(String area) {
         return m.obteneclaveins(area);
     }
-    
-    //-------------------------PERSONAL---------------------------------------//
 
+    //-------------------------PERSONAL---------------------------------------//
     public DefaultTableModel cargar_tabla_Personal(String valor) {
         return m.cargar_tabla_Personal(valor);
     }
@@ -135,13 +134,14 @@ public class Controlador {
     }
 
     //-------------------------BIENES--------------------------------------------//
-    
     public DefaultTableModel cargar_tabla_Altabienes_area(String valor) {
         return m.cargar_tabla_AltaBienes_area(valor);
     }
+
     public DefaultTableModel cargar_tabla_Altabienes_nombre(String valor) {
         return m.cargar_tabla_AltaBienes_nombre(valor);
     }
+
     public DefaultTableModel cargar_tabla_Altabienes_tipo(String valor) {
         return m.cargar_tabla_AltaBienes_tipo(valor);
     }
@@ -155,34 +155,37 @@ public class Controlador {
         }
         return false;
     }
-    public void editar_AltaBienes_xBaja(String idAlta,int cantidad) {
+
+    public void editar_AltaBienes_xBaja(String idAlta, int cantidad) {
         m.editar_AltaBienes_xBaja(idAlta, cantidad);
     }
-    
+
     public void eliminar_AltaBienes_xBaja(String idalta) {
-         m.eliminar_AltaBienes_xBaja(idalta);
+        m.eliminar_AltaBienes_xBaja(idalta);
     }
+
     public DefaultTableModel cargar_tabla_Bajabienes_area(String valor) {
         return m.cargar_tabla_BajaBienes_area(valor);
     }
+
     public DefaultTableModel cargar_tabla_Bajabienes_nombre(String valor) {
         return m.cargar_tabla_BajaBienes_nombre(valor);
     }
+
     public DefaultTableModel cargar_tabla_Bajabienes_tipo(String valor) {
         return m.cargar_tabla_BajaBienes_tipo(valor);
     }
-    
+
     public boolean Guardar_Bajabienes(DatosBajaBien datos) {
-        
-            return m.insertar_BajaBienes(datos);
-        
+
+        return m.insertar_BajaBienes(datos);
+
     }
 
     public boolean eliminar_bienes(DatosBajaBien datos) {
         return m.eliminar_BajaBienes(datos);
     }
-    
-    
+
 //    public DefaultTableModel cargar_tabla_Bienes(int opcion, String valor) {
 //        if (opcion == 0) {
 //            JOptionPane.showMessageDialog(null,"Seleccione una tabla válida");
@@ -196,63 +199,78 @@ public class Controlador {
 //        return null;
 //        
 //    } 
-    
     //-----------------------------------------VALE ALMACEN-------------------//
     public String DevolverCtt() {
         return m.DevolverCtt();
     }
-
     public DefaultTableModel cargar_tabla_detalleV(String valor) {
         return m.cargar_tabla_detalleV(valor);
     }
-    
     public int selectIdVale() {
         return m.selectIdVale();
     }
     public boolean agregar_vale(DatosVale datos) {
         return m.agregar_vale(datos);
     }
-    public boolean eliminarVale(DatosVale datos){
+    public boolean eliminarVale(DatosVale datos) {
         return m.eliminarVale(datos);
     }
     public boolean modificar_vale(DatosVale datos) {
         return m.modificar_vale(datos);
     }
-    
-    public boolean agregar_detalleV (DatosDetalleVale datos) {
-        return m.agregar_detalleV(datos);
-    }
-    
-    //-----------------------------------------VALE RESGUARDO-------------------//
-    
-    public DefaultTableModel cargar_tabla_detalle_Res(String valor) {
-        return m.cargar_tabla_detalle_Res(valor);
-    }
-    public boolean agregar_vale_resguardo(DatosResguardo datos){
-        return m.agregar_vale_resguardo(datos);
-    }
-    public int select_id_vale_res() {
-        return m.select_id_vale_res();
-    }
-    public boolean modificar_vale_res(DatosResguardo datos){
-        return m.modificar_vale_res(datos);
-    }
-    public boolean eliminar_vale_res(DatosResguardo datos){
-        return m.eliminar_vale_res(datos);
-    }
-    public boolean Guardar_detalle_res(String accion, DatosDetalleResguardo datos) {
+    public boolean Guardar_detalle_almacen(String accion, DatosDetalleVale datos) {
         if (accion == "A") {
-        return m.agregar_detalle_resguardo(datos);
+            return m.agregar_detalle_almacen(datos);
         }
         if (accion == "M") {
-        return m.modificar_detalle_res(datos);
+            return m.modificar_detalle_almacen(datos);
         }
         return false;
     }
-    public boolean eliminar_detalle_res(DatosResguardo datos){
+    public boolean eliminar_detalle_almacen(DatosDetalleVale datos) {
+        return m.eliminar_detalle_almacen(datos);
+    }
+    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleVale datos) {
+        return m.eliminar_xregistro_detalle_almacen(datos);
+    }
+    
+
+    //-----------------------------------------VALE RESGUARDO-------------------//
+    public DefaultTableModel cargar_tabla_detalle_Res(String valor) {
+        return m.cargar_tabla_detalle_Res(valor);
+    }
+
+    public boolean agregar_vale_resguardo(DatosResguardo datos) {
+        return m.agregar_vale_resguardo(datos);
+    }
+
+    public int select_id_vale_res() {
+        return m.select_id_vale_res();
+    }
+
+    public boolean modificar_vale_res(DatosResguardo datos) {
+        return m.modificar_vale_res(datos);
+    }
+
+    public boolean eliminar_vale_res(DatosResguardo datos) {
+        return m.eliminar_vale_res(datos);
+    }
+
+    public boolean Guardar_detalle_res(String accion, DatosDetalleResguardo datos) {
+        if (accion == "A") {
+            return m.agregar_detalle_resguardo(datos);
+        }
+        if (accion == "M") {
+            return m.modificar_detalle_res(datos);
+        }
+        return false;
+    }
+
+    public boolean eliminar_detalle_res(DatosResguardo datos) {
         return m.eliminar_detalle_res(datos);
     }
-    public boolean eliminar_xregistro_detalle_res(DatosDetalleResguardo datos){
+
+    public boolean eliminar_xregistro_detalle_res(DatosDetalleResguardo datos) {
         return m.eliminar_xregistro_detalle_res(datos);
     }
 }

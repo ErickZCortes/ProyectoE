@@ -33,6 +33,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         initComponents();
         bloquear();
         cargar_tabla("");
+        
     }
     
     void bloquear(){

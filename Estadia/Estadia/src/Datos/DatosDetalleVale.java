@@ -11,21 +11,20 @@ package Datos;
  */
 public class DatosDetalleVale {
 
-    private String id_detalle;
-    private String id_vale;
-    private String id_persona;
-    private String id_consumible;
+    private int id_detalle;
+    private int id_vale;
+    private int id_persona;
+    private int id_consumible;
     private int num_referencia;
     private String nombre_consumible;
-    private String cantidad_solici;
+    private int cantidad_solici;
     private String unidad_consumible;
-    private String cantidad_entregada;
+    private int cantidad_entregada;
 
     public DatosDetalleVale() {
     }
 
-    
-    public DatosDetalleVale(String id_detalle, String id_vale, String id_persona, String id_consumible, int num_referencia, String nombre_consumible, String cantidad_solici, String unidad_consumible, String cantidad_entregada) {
+    public DatosDetalleVale(int id_detalle, int id_vale, int id_persona, int id_consumible, int num_referencia, String nombre_consumible, int cantidad_solici, String unidad_consumible, int cantidad_entregada) {
         this.id_detalle = id_detalle;
         this.id_vale = id_vale;
         this.id_persona = id_persona;
@@ -37,19 +36,19 @@ public class DatosDetalleVale {
         this.cantidad_entregada = cantidad_entregada;
     }
 
-    public String getId_detalle() {
+    public int getId_detalle() {
         return id_detalle;
     }
 
-    public String getId_vale() {
+    public int getId_vale() {
         return id_vale;
     }
 
-    public String getId_persona() {
+    public int getId_persona() {
         return id_persona;
     }
 
-    public String getId_consumible() {
+    public int getId_consumible() {
         return id_consumible;
     }
 
@@ -61,7 +60,7 @@ public class DatosDetalleVale {
         return nombre_consumible;
     }
 
-    public String getCantidad_solici() {
+    public int getCantidad_solici() {
         return cantidad_solici;
     }
 
@@ -69,23 +68,23 @@ public class DatosDetalleVale {
         return unidad_consumible;
     }
 
-    public String getCantidad_entregada() {
+    public int getCantidad_entregada() {
         return cantidad_entregada;
     }
 
-    public void setId_detalle(String id_detalle) {
+    public void setId_detalle(int id_detalle) {
         this.id_detalle = id_detalle;
     }
 
-    public void setId_vale(String id_vale) {
+    public void setId_vale(int id_vale) {
         this.id_vale = id_vale;
     }
 
-    public void setId_persona(String id_persona) {
+    public void setId_persona(int id_persona) {
         this.id_persona = id_persona;
     }
 
-    public void setId_consumible(String id_consumible) {
+    public void setId_consumible(int id_consumible) {
         this.id_consumible = id_consumible;
     }
 
@@ -97,7 +96,7 @@ public class DatosDetalleVale {
         this.nombre_consumible = nombre_consumible;
     }
 
-    public void setCantidad_solici(String cantidad_solici) {
+    public void setCantidad_solici(int cantidad_solici) {
         this.cantidad_solici = cantidad_solici;
     }
 
@@ -105,10 +104,7 @@ public class DatosDetalleVale {
         this.unidad_consumible = unidad_consumible;
     }
 
-    public void setCantidad_entregada(String cantidad_entregada) {
+    public void setCantidad_entregada(int cantidad_entregada) {
         this.cantidad_entregada = cantidad_entregada;
     }
-
-    
-
 }

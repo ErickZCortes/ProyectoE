@@ -1196,20 +1196,19 @@ public class Modelo {
         }
     }
     
-    public boolean agregar_detalleV (DatosDetalleVale datos) {
-        cons = "INSERT into detalle_vale(id_detalle ,id_valeA , id_person , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?,?,?)";
+    public boolean agregar_detalle_almacen (DatosDetalleVale datos) {
+        cons = "INSERT into detalle_vale(id_valeA , id_person , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
-            pst.setString(1, datos.getId_detalle());
-            pst.setString(2, datos.getId_vale());
-            pst.setString(3, datos.getId_persona());
-            pst.setString(4, datos.getId_consumible());
-            pst.setInt(5, datos.getNum_referencia());
-            pst.setString(6, datos.getNombre_consumible());
-            pst.setString(7, datos.getCantidad_solici());
-            pst.setString(8, datos.getUnidad_consumible());
-            pst.setString(9, datos.getCantidad_entregada());
+            pst.setInt(1, datos.getId_vale());
+            pst.setInt(2, datos.getId_persona());
+            pst.setInt(3, datos.getId_consumible());
+            pst.setInt(4, datos.getNum_referencia());
+            pst.setString(5, datos.getNombre_consumible());
+            pst.setInt(6, datos.getCantidad_solici());
+            pst.setString(7, datos.getUnidad_consumible());
+            pst.setInt(8, datos.getCantidad_entregada());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -1217,6 +1216,73 @@ public class Modelo {
                 return false;
             }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean modificar_detalle_almacen(DatosDetalleVale datos){
+        String idDetalleA = ValesAlmacen.txtidDetalle.getText();
+        cons = "update detalle_vale set id_person = ?, id_consumibles = ?, nombre_consumible = ?, cantidad_solic = ?, unidad_consumible = ?, cantidad_entregada = ? where id_detalle ='" + idDetalleA + "' ";
+
+        try {
+
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(1, datos.getId_persona());
+            pst.setInt(2, datos.getId_consumible());
+            pst.setString(3, datos.getNombre_consumible());
+            pst.setInt(4, datos.getCantidad_solici());
+            pst.setString(5, datos.getUnidad_consumible());
+            pst.setInt(6, datos.getCantidad_entregada());
+            
+            int N = pst.executeUpdate();
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean eliminar_detalle_almacen(DatosDetalleVale datos){
+        cons = "DELETE FROM detalle_vale WHERE id_valeA = ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(0, datos.getId_detalle());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleVale datos){
+        cons = "DELETE FROM detalle_vale WHERE id_detalle= ?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+
+            pst.setInt(0, datos.getId_detalle());
+            int N = pst.executeUpdate();
+
+            if (N != 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             return false;
         }
