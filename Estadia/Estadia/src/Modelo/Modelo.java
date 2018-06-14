@@ -12,9 +12,9 @@ import Datos.DatosUsuario;
 import Datos.DatosConsumible;
 import Datos.DatosDetalleResguardo;
 import Datos.DatosPersonal;
-import Datos.DatosDetalleVale;
+import Datos.DatosDetalleValeAlmacen;
 import Datos.DatosResguardo;
-import Datos.DatosVale;
+import Datos.DatosValeAlmacen;
 import Vista.Principal;
 import Vista.ValeActivo;
 import Vista.ValesAlmacen;
@@ -1081,13 +1081,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"id_detalle","id_vale","id_personal","consumible","No." ,"Descripción del artículo", "Cantidad solicitada", "Unidad", "Cantidad Entregada"};
+        String[] titulos = {"id detalle","id vale","id consumible","No." ,"Descripción del artículo", "Cantidad solicitada", "Unidad", "Cantidad Entregada"};
 
-        String[] registros = new String[9];
+        String[] registros = new String[8];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_detalle ,id_valeA , id_person , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada from detalle_vale WHERE id_detalle LIKE '%" + valor + "%' order by id_detalle desc";
+        cons = "select * from detalle_vale WHERE id_valeA LIKE '%" + valor + "%' order by id_detalle asc";
 
         try {
 
@@ -1098,13 +1098,12 @@ public class Modelo {
 
                 registros[0] = rs.getString("id_detalle");
                 registros[1] = rs.getString("id_valeA");
-                registros[2] = rs.getString("id_person");
-                registros[3] = rs.getString("id_consumibles");
-                registros[4] = rs.getString("nom_referencia");
-                registros[5] = rs.getString("nombre_consumible");
-                registros[6] = rs.getString("cantidad_solic");
-                registros[7] = rs.getString("unidad_consumible");
-                registros[8] = rs.getString("cantidad_entregada");
+                registros[2] = rs.getString("id_consumibles");
+                registros[3] = rs.getString("num_referencia");
+                registros[4] = rs.getString("nombre_consumible");
+                registros[5] = rs.getString("cantidad_solic");
+                registros[6] = rs.getString("unidad_consumible");
+                registros[7] = rs.getString("cantidad_entregada");
                 
 
                 totalRegistros = totalRegistros + 1;
@@ -1117,15 +1116,17 @@ public class Modelo {
             return null;
         }
     }
-    public boolean agregar_vale(DatosVale datos){
-        cons = "INSERT into vale_almacen(fecha , area_sol , responsable_area) VALUES (?,?,?)";
+    public boolean agregar_vale(DatosValeAlmacen datos){
+        cons = "INSERT into vale_almacen(fecha, id_person, nombre_person, area_sol , responsable_area) VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             
             pst.setDate(1, datos.getFecha());
-            pst.setString(2, datos.getAreaSoli());
-            pst.setString(3, datos.getResponsableArea());
+            pst.setInt(2, datos.getIdPersona());
+            pst.setString(3, datos.getNombrePersona());
+            pst.setString(4, datos.getAreaSoli());
+            pst.setString(5, datos.getResponsableArea());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -1137,12 +1138,12 @@ public class Modelo {
             return false;
         }
     }
-    public boolean eliminarVale(DatosVale datos){
+    public boolean eliminarVale(DatosValeAlmacen datos){
         cons = "delete from vale_almacen where id_vale = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdVale());
+            pst.setInt(1, datos.getIdVale());
             int N = pst.executeUpdate();
 
             if (N != 0) {
@@ -1172,16 +1173,18 @@ public class Modelo {
         }
     }
     
-    public boolean modificar_vale(DatosVale datos){
+    public boolean modificar_vale(DatosValeAlmacen datos){
         String idVale = ValesAlmacen.txtidVale.getText();
-        cons = "update vale_almacen set area_sol = ? ,responsable_area = ? where id_vale ='" + idVale + "' ";
+        cons = "update vale_almacen set id_person = ?, nombre_person = ? ,area_sol = ? ,responsable_area = ? where id_vale ='" + idVale + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getAreaSoli());
-            pst.setString(2, datos.getResponsableArea());
+            pst.setInt(1, datos.getIdPersona());
+            pst.setString(2, datos.getNombrePersona());
+            pst.setString(3, datos.getAreaSoli());
+            pst.setString(4, datos.getResponsableArea());
          
             
             int N = pst.executeUpdate();
@@ -1196,19 +1199,18 @@ public class Modelo {
         }
     }
     
-    public boolean agregar_detalle_almacen (DatosDetalleVale datos) {
-        cons = "INSERT into detalle_vale(id_valeA , id_person , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?,?)";
+    public boolean agregar_detalle_almacen (DatosDetalleValeAlmacen datos) {
+        cons = "INSERT into detalle_vale(id_valeA , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setInt(1, datos.getId_vale());
-            pst.setInt(2, datos.getId_persona());
-            pst.setInt(3, datos.getId_consumible());
-            pst.setInt(4, datos.getNum_referencia());
-            pst.setString(5, datos.getNombre_consumible());
-            pst.setInt(6, datos.getCantidad_solici());
-            pst.setString(7, datos.getUnidad_consumible());
-            pst.setInt(8, datos.getCantidad_entregada());
+            pst.setInt(2, datos.getId_consumible());
+            pst.setInt(3, datos.getNum_referencia());
+            pst.setString(4, datos.getNombre_consumible());
+            pst.setInt(5, datos.getCantidad_solici());
+            pst.setString(6, datos.getUnidad_consumible());
+            pst.setInt(7, datos.getCantidad_entregada());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -1221,20 +1223,19 @@ public class Modelo {
         }
     }
     
-    public boolean modificar_detalle_almacen(DatosDetalleVale datos){
+    public boolean modificar_detalle_almacen(DatosDetalleValeAlmacen datos){
         String idDetalleA = ValesAlmacen.txtidDetalle.getText();
-        cons = "update detalle_vale set id_person = ?, id_consumibles = ?, nombre_consumible = ?, cantidad_solic = ?, unidad_consumible = ?, cantidad_entregada = ? where id_detalle ='" + idDetalleA + "' ";
+        cons = "update detalle_vale set id_consumibles = ?, nombre_consumible = ?, cantidad_solic = ?, unidad_consumible = ?, cantidad_entregada = ? where id_detalle ='" + idDetalleA + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setInt(1, datos.getId_persona());
-            pst.setInt(2, datos.getId_consumible());
-            pst.setString(3, datos.getNombre_consumible());
-            pst.setInt(4, datos.getCantidad_solici());
-            pst.setString(5, datos.getUnidad_consumible());
-            pst.setInt(6, datos.getCantidad_entregada());
+            pst.setInt(1, datos.getId_consumible());
+            pst.setString(2, datos.getNombre_consumible());
+            pst.setInt(3, datos.getCantidad_solici());
+            pst.setString(4, datos.getUnidad_consumible());
+            pst.setInt(5, datos.getCantidad_entregada());
             
             int N = pst.executeUpdate();
             if (N != 0) {
@@ -1248,7 +1249,7 @@ public class Modelo {
         }
     }
     
-    public boolean eliminar_detalle_almacen(DatosDetalleVale datos){
+    public boolean eliminar_detalle_almacen(DatosDetalleValeAlmacen datos){
         cons = "DELETE FROM detalle_vale WHERE id_valeA = ?";
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
@@ -1268,7 +1269,7 @@ public class Modelo {
         }
     }
     
-    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleVale datos){
+    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleValeAlmacen datos){
         cons = "DELETE FROM detalle_vale WHERE id_detalle= ?";
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
@@ -1476,7 +1477,7 @@ public class Modelo {
     }
     
     public boolean eliminar_detalle_res(DatosResguardo datos){
-        cons = "DELETE FROM detalle_resguardo WHERE id_valeres= ?";
+        cons = "DELETE FROM detalle_resguardo WHERE id_valer= ?";
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
