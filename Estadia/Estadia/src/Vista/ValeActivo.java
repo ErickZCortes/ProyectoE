@@ -266,6 +266,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel7.setText("Fecha de elaboración:");
 
+        dcfechaRes.setDateFormatString("yyyy/MM/dd");
+
         txtArea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnAdd.setBackground(new java.awt.Color(64, 74, 83));
