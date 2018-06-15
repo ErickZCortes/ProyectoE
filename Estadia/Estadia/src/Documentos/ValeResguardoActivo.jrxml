@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62744e66-7147-48bd-8b57-98d35a6f5cc5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_vale_resguardo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     detalle_resguardo.`num_ref` AS detalle_resguardo_num_ref,
+     detalle_resguardo.`nombre_b` AS detalle_resguardo_nombre_b,
+     detalle_resguardo.`n_inventario` AS detalle_resguardo_n_inventario,
+     detalle_resguardo.`marca_b` AS detalle_resguardo_marca_b,
+     detalle_resguardo.`modelo_b` AS detalle_resguardo_modelo_b,
+     detalle_resguardo.`serie_b` AS detalle_resguardo_serie_b,
+     detalle_resguardo.`valor_b` AS detalle_resguardo_valor_b,
+     vale_resguardo.`id_valeres` AS vale_resguardo_id_valeres,
+     vale_resguardo.`fecha` AS vale_resguardo_fecha,
+     vale_resguardo.`plantel` AS vale_resguardo_plantel,
+     vale_resguardo.`ctt` AS vale_resguardo_ctt,
+     vale_resguardo.`clave` AS vale_resguardo_clave,
+     vale_resguardo.`nombre_per` AS vale_resguardo_nombre_per,
+     vale_resguardo.`curp_pers` AS vale_resguardo_curp_pers,
+     vale_resguardo.`cant_total` AS vale_resguardo_cant_total,
+     vale_resguardo.`valor_total` AS vale_resguardo_valor_total
+FROM
+     `vale_resguardo` vale_resguardo INNER JOIN `detalle_resguardo` detalle_resguardo ON vale_resguardo.`id_valeres` = detalle_resguardo.`id_valer`
+WHERE
+     vale_resguardo.`id_valeres` = $P{id_vale_resguardo}]]>
+	</queryString>
+	<field name="detalle_resguardo_num_ref" class="java.lang.Integer"/>
+	<field name="detalle_resguardo_nombre_b" class="java.lang.String"/>
+	<field name="detalle_resguardo_n_inventario" class="java.lang.String"/>
+	<field name="detalle_resguardo_marca_b" class="java.lang.String"/>
+	<field name="detalle_resguardo_modelo_b" class="java.lang.String"/>
+	<field name="detalle_resguardo_serie_b" class="java.lang.String"/>
+	<field name="detalle_resguardo_valor_b" class="java.lang.Integer"/>
+	<field name="vale_resguardo_id_valeres" class="java.lang.Integer"/>
+	<field name="vale_resguardo_fecha" class="java.sql.Date"/>
+	<field name="vale_resguardo_plantel" class="java.lang.String"/>
+	<field name="vale_resguardo_ctt" class="java.lang.String"/>
+	<field name="vale_resguardo_clave" class="java.lang.Integer"/>
+	<field name="vale_resguardo_nombre_per" class="java.lang.String"/>
+	<field name="vale_resguardo_curp_pers" class="java.lang.String"/>
+	<field name="vale_resguardo_cant_total" class="java.lang.Integer"/>
+	<field name="vale_resguardo_valor_total" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="13" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="123" splitType="Stretch">
+			<staticText>
+				<reportElement x="99" y="62" width="216" height="20" uuid="a80e43e4-3676-4551-83ee-d92a4b00290e"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[ DIRECCIÓN GENERAL DE EDUCACIÓN TECNOLÓGICA INDUSTRIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="82" width="69" height="20" uuid="3b32bd95-77be-4173-b3bb-71829f304033"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[PLANTEL O ÁREA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="586" y="70" width="82" height="13" uuid="7132d85b-2366-4b83-884e-23ac6e9c8b59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[CENTRO DE TRABAJO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="62" width="82" height="20" uuid="3f905d25-ad55-4cae-b204-8b75a96d79af"/>
+				<textElement>
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[UNIDAD RESPONSABLE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="82" width="217" height="20" uuid="3d46ece8-27e6-4c84-a434-1f674e5c04df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[VALE ÚNICO DE RESGUARDO DE BIENES MUEBLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="23" width="217" height="13" uuid="e8a905fa-c23c-4a7e-b379-6846efa14eb0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL SERVIDOR PÚBLICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="627" y="49" width="41" height="13" uuid="d0bd84d9-b42b-40d6-9f99-60d038f3213f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[CLAVE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="83" width="100" height="20" uuid="2a4eb465-2a1a-4169-8157-3afd995f6b28"/>
+				<textFieldExpression><![CDATA[$F{vale_resguardo_plantel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="678" y="49" width="100" height="20" uuid="cca184f2-db77-4f8e-adb4-bfe8dd59eeaa"/>
+				<textFieldExpression><![CDATA[$F{vale_resguardo_clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="678" y="70" width="100" height="20" uuid="2b39203d-8951-476b-9df3-af7941846b0f"/>
+				<textFieldExpression><![CDATA[$F{vale_resguardo_ctt}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="154" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="133" height="8" uuid="22830bd3-60f7-47c3-9c5a-a04300248149"/>
+				<textElement>
+					<font fontName="Calibri" size="5"/>
+				</textElement>
+				<text><![CDATA[NOTAS: PARA EL LLENADO DE ESTE FORMATO SE REQUIERE QUE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="18" width="172" height="10" uuid="5cff119f-e0f8-4e3c-91e7-2e66468bca8e"/>
+				<textElement>
+					<font fontName="Calibri" size="5"/>
+				</textElement>
+				<text><![CDATA[1) TODAS LAS HOJAS DEBEN SER FIRMADAS POR EL RESPONSABLE DEL RESGUARDO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="28" width="279" height="10" uuid="3a9c5393-1de1-415c-9238-24ef3d964571"/>
+				<textElement>
+					<font fontName="Calibri" size="5"/>
+				</textElement>
+				<text><![CDATA[2) EN EL CASO DE HABER DOS O MÁS HOJAS, ÉSTAS DEBEN INCLUÍR EL CURP DEL SERVIDOR PÚBLICO EN EL ESPACIO CORRESPONDIENTE.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
