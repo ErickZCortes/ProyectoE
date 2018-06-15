@@ -8,16 +8,26 @@ package Vista;
 import Controlador.Controlador;
 import Datos.DatosDetalleValeAlmacen;
 import Datos.DatosValeAlmacen;
+import Documentos.ValeAlmacen;
+import Modelo.Conexion;
 import static Vista.Principal.Escritorio;
 import static Vista.ValeActivo.txtNomBien;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -25,6 +35,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ValesAlmacen extends javax.swing.JInternalFrame {
 
+    Conexion cc = new Conexion();
+    Connection cn = cc.GetConnection();
     Controlador c = new Controlador();
     DatosValeAlmacen dVale = new DatosValeAlmacen();
     DatosDetalleValeAlmacen dDetalle = new DatosDetalleValeAlmacen();
@@ -649,7 +661,23 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dVale.setIdPersona(Integer.parseInt(txtidPersona.getText()));
         dVale.setNombrePersona(txtPerSol.getText());
         if (c.modificar_vale(dVale)) {
-            JOptionPane.showMessageDialog(null, "Vale Generado");
+            JOptionPane.showMessageDialog(null, "Generando vale...");
+            try {
+              //  Integer codigo = Integer.parseInt(txtIdVenta.getText());
+
+                JasperReport jr = (JasperReport) JRLoader.loadObject(ValeAlmacen.class.getResource("/Documentos/ValeConsumible.jasper"));
+
+                Map parametro = new HashMap<String, Integer>();
+                parametro.put("id_vale_almacen", Integer.parseInt(txtidVale.getText()));
+
+                JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.show();
+
+                //JasperPrintManager.printReport( jp, true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error" + e);
+            }
             try {
                 txtidVale.setText("");
                 bloquear();

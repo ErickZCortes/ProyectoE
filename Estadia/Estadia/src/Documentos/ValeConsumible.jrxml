@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="325b3698-6408-4f5e-ab04-3a4d62825300">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_vale_almacen" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     detalle_vale.`num_referencia` AS detalle_vale_num_referencia,
+     detalle_vale.`nombre_consumible` AS detalle_vale_nombre_consumible,
+     detalle_vale.`cantidad_solic` AS detalle_vale_cantidad_solic,
+     detalle_vale.`unidad_consumible` AS detalle_vale_unidad_consumible,
+     detalle_vale.`cantidad_entregada` AS detalle_vale_cantidad_entregada,
+     vale_almacen.`id_vale` AS vale_almacen_id_vale,
+     vale_almacen.`area_sol` AS vale_almacen_area_sol,
+     vale_almacen.`fecha` AS vale_almacen_fecha,
+     vale_almacen.`nombre_person` AS vale_almacen_nombre_person,
+     vale_almacen.`responsable_area` AS vale_almacen_responsable_area
+FROM
+      vale_almacen INNER JOIN  detalle_vale ON vale_almacen.`id_vale` = detalle_vale.`id_valeA`
+WHERE
+      vale_almacen.`id_vale` = $P{id_vale_almacen}]]>
+	</queryString>
+	<field name="detalle_vale_num_referencia" class="java.lang.Integer"/>
+	<field name="detalle_vale_nombre_consumible" class="java.lang.String"/>
+	<field name="detalle_vale_cantidad_solic" class="java.lang.Integer"/>
+	<field name="detalle_vale_unidad_consumible" class="java.lang.String"/>
+	<field name="detalle_vale_cantidad_entregada" class="java.lang.Integer"/>
+	<field name="vale_almacen_id_vale" class="java.lang.Integer"/>
+	<field name="vale_almacen_area_sol" class="java.lang.String"/>
+	<field name="vale_almacen_fecha" class="java.sql.Date"/>
+	<field name="vale_almacen_nombre_person" class="java.lang.String"/>
+	<field name="vale_almacen_responsable_area" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
