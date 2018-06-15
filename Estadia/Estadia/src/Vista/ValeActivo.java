@@ -9,22 +9,33 @@ import Controlador.Controlador;
 import Datos.DatosArea;
 import Datos.DatosDetalleResguardo;
 import Datos.DatosResguardo;
+import Documentos.ValeResguardo;
+import Modelo.Conexion;
 import static Vista.Principal.Escritorio;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Mayra
  */
 public class ValeActivo extends javax.swing.JInternalFrame {
-    
+    Conexion cc = new Conexion();
+    Connection cn = cc.GetConnection();
     Controlador c = new Controlador();
     DatosResguardo datRes = new DatosResguardo();
     DatosDetalleResguardo datDet = new DatosDetalleResguardo();
@@ -841,6 +852,23 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         
         if (c.modificar_vale_res(datRes)) {
            JOptionPane.showMessageDialog(null, "Vale generado.");
+           
+           try {
+                int codigo = Integer.parseInt(txtIdValeR.getText());
+                System.out.println(codigo);
+                JasperReport jr = (JasperReport) JRLoader.loadObject(ValeResguardo.class.getResource("/Documentos/ValeResguardoActivo.jasper"));
+
+                Map parametro = new HashMap<String, Integer>();
+                parametro.put("id_vale_resguardo", Integer.parseInt(txtIdValeR.getText()));
+
+                JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.show();
+
+                //JasperPrintManager.printReport( jp, true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "error" + e);
+            }
             try {
                 cargar_tabla(txtIdValeR.getText());
             } catch (SQLException ex) {
