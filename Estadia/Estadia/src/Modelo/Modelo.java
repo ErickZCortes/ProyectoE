@@ -1254,7 +1254,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setInt(0, datos.getId_detalle());
+            pst.setInt(1, datos.getId_vale());
             int N = pst.executeUpdate();
 
             if (N != 0) {
