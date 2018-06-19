@@ -663,7 +663,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         if (c.modificar_vale(dVale)) {
             JOptionPane.showMessageDialog(null, "Generando vale...");
             try {
-              //  Integer codigo = Integer.parseInt(txtIdVenta.getText());
 
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ValeAlmacen.class.getResource("/Documentos/ValeConsumible.jasper"));
 
