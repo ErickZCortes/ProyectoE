@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="325b3698-6408-4f5e-ab04-3a4d62825300">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<parameter name="id_vale_almacen" class="java.lang.Integer">
+	<property name="ireport.y" value="93"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="01742534-df19-4a85-aab2-a2069003aab4"/>
+	<parameter name="id_vale_almacen" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -19,9 +40,9 @@
      vale_almacen.`nombre_person` AS vale_almacen_nombre_person,
      vale_almacen.`responsable_area` AS vale_almacen_responsable_area
 FROM
-      vale_almacen INNER JOIN  detalle_vale ON vale_almacen.`id_vale` = detalle_vale.`id_valeA`
+     `vale_almacen` vale_almacen INNER JOIN `detalle_vale` detalle_vale ON vale_almacen.`id_vale` = detalle_vale.`id_valeA`
 WHERE
-      vale_almacen.`id_vale` = $P{id_vale_almacen}]]>
+     vale_almacen.`id_vale` = $P{id_vale_almacen}]]>
 	</queryString>
 	<field name="detalle_vale_num_referencia" class="java.lang.Integer"/>
 	<field name="detalle_vale_nombre_consumible" class="java.lang.String"/>
@@ -36,25 +57,274 @@ WHERE
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="79" splitType="Stretch"/>
-	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="83" y="9" width="407" height="16" uuid="afc87751-a1c0-4c8d-9785-9839e8e187e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[CENTRO DE BACHILLERATO TECNOLOGICO INDUSTRIAL Y DE SERVICIOS NO.229]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="25" width="264" height="15" uuid="8b9fae79-01ae-4d78-bbe5-9061624d0f78"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[DEPARTAMENTO DE SERVICIOS ADMINISTRATIVOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="40" width="180" height="15" uuid="baa9b4bf-73c8-463f-8d3f-500bf337596d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recursos Materiales y Servicios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="62" width="221" height="21" uuid="ef02b6dd-dff9-4c01-9bfb-9bf68e2ce98d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[VALE DE SALIDA DE ALMACEN]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="8" width="71" height="13" uuid="9b2ccd0b-1cb4-49ca-a077-55bf54267cfd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[AREA SOLICITANTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="32" width="84" height="13" uuid="74754c6b-dee6-4664-888a-945d222f696c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[REPONSABLE DEL AREA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="9" width="27" height="12" uuid="17b57f76-f456-42f2-8c7f-4cf89bc98ff3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="442" y="20" width="93" height="1" uuid="7d18a7fe-45b1-4c1f-aae8-b5eeb3d522b4"/>
+			</line>
+			<line>
+				<reportElement x="93" y="20" width="165" height="1" uuid="b67be8e0-80f8-4554-a1d2-63989ac5b8cb"/>
+			</line>
+			<line>
+				<reportElement x="110" y="44" width="170" height="1" uuid="ed98388f-386d-4432-bd4a-f200eb700638"/>
+			</line>
+			<textField>
+				<reportElement x="442" y="9" width="90" height="12" uuid="b46fb9d3-579e-4aa4-9eea-3fc72191dcd4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vale_almacen_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="32" width="165" height="12" uuid="d42e9f8f-c67e-4f29-b2af-0703d9c1a7bd"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vale_almacen_responsable_area}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="8" width="148" height="12" uuid="542f831e-adca-4543-b9bb-398178ece31e"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vale_almacen_area_sol}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="59" width="55" height="35" uuid="8ba45eb2-a636-4d0d-ad0f-732571ea3259"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="59" width="237" height="35" uuid="187329d4-8558-40d7-928a-23255efcc90e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN DEL ARTICULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="59" width="90" height="35" uuid="64bde3ce-d0ca-4438-bc95-a7a6f6377431"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD SOLICITADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="59" width="78" height="35" uuid="9ece8164-993e-484d-a419-9166a0b70013"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="59" width="80" height="35" uuid="0ba228e7-d999-406e-b7ef-b64700190d13"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD ENTREGADA]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="1" width="55" height="20" uuid="f6a52aa7-fd0a-4b58-b54b-95dca9eda9ce"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_vale_num_referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="1" width="237" height="20" uuid="c834fa28-6e0e-4114-8c48-ca6054edb32a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_vale_nombre_consumible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="1" width="78" height="20" uuid="65cc206d-6b5d-4e6a-bc95-0be6940f0f39"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_vale_unidad_consumible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="1" width="80" height="20" uuid="662f62e8-a476-4f7e-8d70-8ed33acb359e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_vale_cantidad_entregada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="1" width="90" height="20" uuid="ff350d07-6f3f-4269-966b-cafee1e760d6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_vale_cantidad_solic}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="377" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="15" width="82" height="10" uuid="c70d902f-f15f-4189-bbe0-5466cffaef0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[PERSONA QUE SOLICITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="15" width="65" height="10" uuid="8ac2ce12-0df4-47b6-89a1-b9c69e19f31c"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[JEFE INMEDIATO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="15" width="91" height="10" uuid="acda3472-6d63-4cd8-a7a2-af8ee3dbda2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[JEFE DEL DEPTO. SERVS.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="25" width="38" height="10" uuid="ebb06b6a-9a5e-484b-9414-4b9c2a3444fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[ADMVOS.]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Transparent" x="50" y="10" width="100" height="1" uuid="faf1a597-7cdd-4e1d-b4a7-7d84cc48d6a4"/>
+			</line>
+			<line>
+				<reportElement mode="Transparent" x="180" y="10" width="100" height="1" uuid="7b6752e9-6bf4-4e23-a4c7-05d298094e07"/>
+			</line>
+			<line>
+				<reportElement mode="Transparent" x="320" y="10" width="100" height="1" uuid="c3cc0188-bf77-4542-b958-bba24f557a50"/>
+			</line>
+		</band>
 	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
