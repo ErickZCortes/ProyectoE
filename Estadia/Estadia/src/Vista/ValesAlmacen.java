@@ -11,7 +11,6 @@ import Datos.DatosValeAlmacen;
 import Documentos.ValeAlmacen;
 import Modelo.Conexion;
 import static Vista.Principal.Escritorio;
-import static Vista.ValeActivo.txtNomBien;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -270,6 +269,12 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             }
         });
 
+        txtidVale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidValeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -347,7 +352,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                         .addComponent(txtResA, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 111, Short.MAX_VALUE))
+                .addGap(30, 119, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Datos del Solicitante ", jPanel3);
@@ -488,7 +493,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLCURP6))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Datos del Material", jPanel4);
@@ -505,7 +510,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -638,6 +643,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
     private void btnGenerarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarRActionPerformed
 
+        if (txtPerSol.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar el nombre del solicitante");
+            txtPerSol.requestFocus();
+            return;
+        }
         if (txtArea.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Área ");
             txtArea.requestFocus();
@@ -649,19 +659,14 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             return;
         }
         
-        if (txtPerSol.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar el nombre del solicitante");
-            txtPerSol.requestFocus();
-            return;
-        }
-
-
+      
         dVale.setAreaSoli(txtArea.getText());
         dVale.setResponsableArea(txtResA.getText());
         dVale.setIdPersona(Integer.parseInt(txtidPersona.getText()));
         dVale.setNombrePersona(txtPerSol.getText());
+        
         if (c.modificar_vale(dVale)) {
-            JOptionPane.showMessageDialog(null, "Generando vale...");
+            JOptionPane.showMessageDialog(null, "Vale generado.");
             try {
 
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ValeAlmacen.class.getResource("/Documentos/ValeConsumible.jasper"));
@@ -677,17 +682,15 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
-            try {
-                txtidVale.setText("");
-                bloquear();
-                cargar_tabla(txtidVale.getText());
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            txtidVale.setText("");
+            bloquear();
         }
         
     }//GEN-LAST:event_btnGenerarRActionPerformed
+
+    private void txtidValeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidValeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidValeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

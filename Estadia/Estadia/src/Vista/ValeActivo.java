@@ -828,7 +828,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         }
         
         if (txtclave.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar la Clave ");
+            JOptionPane.showMessageDialog(null, "Debes ingresar la Clave");
             txtclave.requestFocus();
             return;
         }
@@ -839,7 +839,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             return;
         }
         if (txtcurp.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar  ");
+            JOptionPane.showMessageDialog(null, "Debes ingresar el CURP");
             txtcurp.requestFocus();
             return;
         }
