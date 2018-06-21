@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="93"/>
+	<property name="ireport.y" value="192"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -24,7 +24,7 @@
 		</box>
 	</style>
 	<subDataset name="Table Dataset 1" uuid="01742534-df19-4a85-aab2-a2069003aab4"/>
-	<parameter name="id_vale_almacen" class="java.lang.String">
+	<parameter name="id_vale_almacen" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -213,7 +213,7 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="26" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
 				<reportElement x="17" y="1" width="55" height="20" uuid="f6a52aa7-fd0a-4b58-b54b-95dca9eda9ce"/>
 				<box>
@@ -325,6 +325,13 @@ WHERE
 			<line>
 				<reportElement mode="Transparent" x="320" y="10" width="100" height="1" uuid="c3cc0188-bf77-4542-b958-bba24f557a50"/>
 			</line>
+			<textField>
+				<reportElement x="45" y="0" width="115" height="10" uuid="97ee0b30-a75d-4710-ac89-868b1c7b2c7e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vale_almacen_nombre_person}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 </jasperReport>
