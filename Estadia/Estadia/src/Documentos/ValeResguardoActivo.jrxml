@@ -48,89 +48,101 @@ WHERE
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="13" splitType="Stretch"/>
-	</title>
 	<pageHeader>
 		<band height="113" splitType="Stretch">
 			<staticText>
-				<reportElement x="99" y="62" width="216" height="20" uuid="a80e43e4-3676-4551-83ee-d92a4b00290e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="99" y="52" width="185" height="12" uuid="a80e43e4-3676-4551-83ee-d92a4b00290e"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[ DIRECCIÓN GENERAL DE EDUCACIÓN TECNOLÓGICA INDUSTRIAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="82" width="69" height="20" uuid="3b32bd95-77be-4173-b3bb-71829f304033"/>
+				<reportElement x="17" y="72" width="69" height="12" uuid="3b32bd95-77be-4173-b3bb-71829f304033"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[PLANTEL O ÁREA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="596" y="70" width="82" height="13" uuid="7132d85b-2366-4b83-884e-23ac6e9c8b59"/>
+				<reportElement x="596" y="70" width="82" height="12" uuid="7132d85b-2366-4b83-884e-23ac6e9c8b59"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[CENTRO DE TRABAJO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="62" width="82" height="20" uuid="3f905d25-ad55-4cae-b204-8b75a96d79af"/>
+				<reportElement x="17" y="52" width="82" height="12" uuid="3f905d25-ad55-4cae-b204-8b75a96d79af"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[UNIDAD RESPONSABLE:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="268" y="23" width="217" height="13" uuid="e8a905fa-c23c-4a7e-b379-6846efa14eb0"/>
+				<reportElement x="312" y="100" width="133" height="13" uuid="e8a905fa-c23c-4a7e-b379-6846efa14eb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="10" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[DATOS DEL SERVIDOR PÚBLICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="637" y="57" width="41" height="13" uuid="d0bd84d9-b42b-40d6-9f99-60d038f3213f"/>
+				<reportElement x="637" y="57" width="41" height="12" uuid="d0bd84d9-b42b-40d6-9f99-60d038f3213f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[CLAVE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="86" y="82" width="111" height="20" uuid="2a4eb465-2a1a-4169-8157-3afd995f6b28"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="86" y="72" width="198" height="12" uuid="2a4eb465-2a1a-4169-8157-3afd995f6b28"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_plantel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="678" y="57" width="63" height="13" uuid="cca184f2-db77-4f8e-adb4-bfe8dd59eeaa"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="678" y="57" width="63" height="12" uuid="cca184f2-db77-4f8e-adb4-bfe8dd59eeaa"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_clave}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="678" y="70" width="63" height="13" uuid="2b39203d-8951-476b-9df3-af7941846b0f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="678" y="70" width="63" height="12" uuid="2b39203d-8951-476b-9df3-af7941846b0f"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_ctt}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="229" y="10" width="296" height="13" uuid="fec6babe-8b4c-4636-b732-b60bb0657c06"/>
+				<reportElement x="268" y="10" width="210" height="13" uuid="fec6babe-8b4c-4636-b732-b60bb0657c06"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="10" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[VALE ÚNICO DE RESGUARDO DE BIENES MUEBLES]]></text>
 			</staticText>
-			<image>
-				<reportElement x="37" y="10" width="134" height="47" uuid="7c641e54-90cb-41cd-81eb-bb9610b18b24"/>
-				<imageExpression><![CDATA["C:\\Users\\Erick\\Documents\\ESTADIA\\ProyectoE\\Estadia\\Estadia\\src\\Img\\SEP_septiembre_1.jpg"]]></imageExpression>
-			</image>
+			<line>
+				<reportElement x="99" y="64" width="185" height="1" uuid="3e218f68-ec9d-47d2-abc1-2efd47a3013f"/>
+			</line>
+			<line>
+				<reportElement x="86" y="84" width="198" height="1" uuid="1d34e983-a786-45e9-909a-23957e98b636"/>
+			</line>
+			<line>
+				<reportElement x="678" y="69" width="63" height="1" uuid="39f36645-cb27-410f-8b08-2e969434ed98"/>
+			</line>
+			<line>
+				<reportElement x="678" y="82" width="63" height="1" uuid="150988c7-8a1e-4a25-a378-243ff0adb420"/>
+			</line>
+			<staticText>
+				<reportElement x="312" y="23" width="133" height="13" uuid="eaf58263-dff7-4dc5-8a04-e587e2277ee6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[BIENES INFORMÁTICOS]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="89" splitType="Stretch">
+		<band height="88" splitType="Stretch">
 			<staticText>
 				<reportElement x="14" y="31" width="215" height="20" uuid="facb408b-c5fa-47e9-ac82-c95a267784d7"/>
 				<box>
@@ -328,9 +340,9 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="525" y="1" width="71" height="20" uuid="1b85ae23-8618-4ca7-a999-5a68cc3fb97e"/>
+				<reportElement x="525" y="0" width="71" height="21" uuid="1b85ae23-8618-4ca7-a999-5a68cc3fb97e"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -344,7 +356,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_resguardo_modelo_b}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="445" y="1" width="80" height="20" uuid="8c724f6b-899b-4d9b-bf1b-66bf85231a94"/>
+				<reportElement x="445" y="0" width="80" height="21" uuid="8c724f6b-899b-4d9b-bf1b-66bf85231a94"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -358,7 +370,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_resguardo_marca_b}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="596" y="1" width="71" height="20" uuid="b3e1d63c-008d-4444-ab23-db046326d7a2"/>
+				<reportElement x="596" y="0" width="71" height="21" uuid="b3e1d63c-008d-4444-ab23-db046326d7a2"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -372,7 +384,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_resguardo_serie_b}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="667" y="1" width="74" height="20" uuid="0bdbe904-2e9c-4b54-a1f6-22e7107acf12"/>
+				<reportElement x="667" y="0" width="74" height="21" uuid="0bdbe904-2e9c-4b54-a1f6-22e7107acf12"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -386,7 +398,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_resguardo_valor_b}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="229" y="1" width="216" height="20" uuid="7701b57e-df68-4718-8803-241edc5996e1"/>
+				<reportElement x="229" y="0" width="216" height="21" uuid="7701b57e-df68-4718-8803-241edc5996e1"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -400,7 +412,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_resguardo_n_inventario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="1" width="179" height="20" uuid="c81b4d43-4cbb-4545-bef2-ffe45cd3cb58"/>
+				<reportElement x="39" y="0" width="190" height="21" uuid="c81b4d43-4cbb-4545-bef2-ffe45cd3cb58"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -414,7 +426,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_resguardo_nombre_b}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="14" y="1" width="36" height="20" uuid="3de90653-1821-485c-9c23-3dd41feb61dc"/>
+				<reportElement x="14" y="0" width="25" height="21" uuid="3de90653-1821-485c-9c23-3dd41feb61dc"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -429,29 +441,29 @@ WHERE
 			</textField>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="54" splitType="Stretch">
+	<columnFooter>
+		<band height="50">
 			<staticText>
-				<reportElement x="17" y="10" width="133" height="8" uuid="22830bd3-60f7-47c3-9c5a-a04300248149"/>
+				<reportElement x="14" y="6" width="133" height="8" uuid="22830bd3-60f7-47c3-9c5a-a04300248149"/>
 				<textElement>
 					<font fontName="Calibri" size="5"/>
 				</textElement>
 				<text><![CDATA[NOTAS: PARA EL LLENADO DE ESTE FORMATO SE REQUIERE QUE:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="18" width="172" height="10" uuid="5cff119f-e0f8-4e3c-91e7-2e66468bca8e"/>
+				<reportElement x="14" y="14" width="172" height="10" uuid="5cff119f-e0f8-4e3c-91e7-2e66468bca8e"/>
 				<textElement>
 					<font fontName="Calibri" size="5"/>
 				</textElement>
 				<text><![CDATA[1) TODAS LAS HOJAS DEBEN SER FIRMADAS POR EL RESPONSABLE DEL RESGUARDO.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="28" width="279" height="10" uuid="3a9c5393-1de1-415c-9238-24ef3d964571"/>
+				<reportElement x="14" y="24" width="279" height="10" uuid="3a9c5393-1de1-415c-9238-24ef3d964571"/>
 				<textElement>
 					<font fontName="Calibri" size="5"/>
 				</textElement>
 				<text><![CDATA[2) EN EL CASO DE HABER DOS O MÁS HOJAS, ÉSTAS DEBEN INCLUÍR EL CURP DEL SERVIDOR PÚBLICO EN EL ESPACIO CORRESPONDIENTE.]]></text>
 			</staticText>
 		</band>
-	</pageFooter>
+	</columnFooter>
 </jasperReport>
