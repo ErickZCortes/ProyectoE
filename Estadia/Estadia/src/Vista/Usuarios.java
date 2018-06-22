@@ -443,7 +443,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
-                datUsuarios.setIdUsuario(txtId.getText());
+                datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
                 c.eliminar_usuario(datUsuarios);
                 try {
                     cargar_tabla_usuarios("");

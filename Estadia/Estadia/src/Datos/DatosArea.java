@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Mayra
  */
 public class DatosArea {
-    private String idArea;
+    private int idArea;
     private String Nombre;
     private String Clave_inst;
     private String Clave_ctt;
@@ -29,7 +29,7 @@ public class DatosArea {
     public DatosArea() {
     }
 
-    public DatosArea(String idArea, String Nombre, String Clave_inst, String Clave_ctt) {
+    public DatosArea(int idArea, String Nombre, String Clave_inst, String Clave_ctt) {
         this.idArea = idArea;
         this.Nombre = Nombre;
         this.Clave_inst = Clave_inst;
@@ -38,7 +38,7 @@ public class DatosArea {
 
     
 
-    public String getIdArea() {
+    public int getIdArea() {
         return idArea;
     }
 
@@ -54,7 +54,7 @@ public class DatosArea {
         return Clave_ctt;
     }
 
-    public void setIdArea(String idArea) {
+    public void setIdArea(int idArea) {
         this.idArea = idArea;
     }
 
@@ -83,7 +83,7 @@ public class DatosArea {
             while (rs.next()) {
                 comboArea.addItem(
                 new DatosArea(
-                rs.getString("id_area"),
+                rs.getInt("id_area"),
                 rs.getString("nombre"),
                 rs.getString("ctt_area"),
                 rs.getString("clave_institu")

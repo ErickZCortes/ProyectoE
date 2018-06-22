@@ -580,11 +580,11 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         datAltaB.setnInventario(txtInventario.getText());
         datAltaB.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
         datAltaB.setDescripcion(txtDescripcion.getText());
-        datAltaB.setCantidad(txtCantidad.getText());
+        datAltaB.setCantidad(Integer.parseInt(txtCantidad.getText()));
         datAltaB.setMarca(txtMarca.getText());
         datAltaB.setModelo(txtModelo.getText());
         datAltaB.setSerie(txtSerie.getText());
-        datAltaB.setValor(txtValor.getText());
+        datAltaB.setValor(Integer.parseInt(txtValor.getText()));
         
         String forma = comboForma.getItemAt(comboForma.getSelectedIndex());
         

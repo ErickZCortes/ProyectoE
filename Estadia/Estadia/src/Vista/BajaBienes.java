@@ -564,9 +564,9 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         datBBienes.setnInventario(txtInventario.getText());
         datBBienes.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
         datBBienes.setDescripcion(txtDescripcion.getText());
-        datBBienes.setValor(txtValor.getText());
-        datBBienes.setCantidad(txtCantBaja.getText());
-        datBBienes.setIdBien(txtIdbien.getText());
+        datBBienes.setValor(Integer.parseInt(txtValor.getText()));
+        datBBienes.setCantidad(Integer.parseInt(txtCantBaja.getText()));
+        datBBienes.setIdBien(Integer.parseInt(txtIdbien.getText()));
         datBBienes.setCausa(tipo);
         
         int CantAl = Integer.parseInt(txtCantAlta.getText());

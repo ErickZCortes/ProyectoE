@@ -14,22 +14,22 @@ import java.sql.Date;
  * @author Mayra
  */
 public class DatosAltaBien {
-    private String idAltaBien;
+    private int idAltaBien;
     private String nInventario;
     private String area;
     private Date FechaAd;
     private String FormaAd;
     private String descripcion;
-    private String cantidad;
+    private int cantidad;
     private String marca;
     private String modelo;
     private String serie;
-    private String valor;
+    private int valor;
 
     public DatosAltaBien() {
     }
 
-    public DatosAltaBien(String idAltaBien, String nInventario, String area, Date FechaAd, String FormaAd, String descripcion, String cantidad, String marca, String modelo, String serie, String valor) {
+    public DatosAltaBien(int idAltaBien, String nInventario, String area, Date FechaAd, String FormaAd, String descripcion, int cantidad, String marca, String modelo, String serie, int valor) {
         this.idAltaBien = idAltaBien;
         this.nInventario = nInventario;
         this.area = area;
@@ -43,7 +43,7 @@ public class DatosAltaBien {
         this.valor = valor;
     }
 
-    public String getIdAltaBien() {
+    public int getIdAltaBien() {
         return idAltaBien;
     }
 
@@ -67,7 +67,7 @@ public class DatosAltaBien {
         return descripcion;
     }
 
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
@@ -83,11 +83,11 @@ public class DatosAltaBien {
         return serie;
     }
 
-    public String getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setIdAltaBien(String idAltaBien) {
+    public void setIdAltaBien(int idAltaBien) {
         this.idAltaBien = idAltaBien;
     }
 
@@ -111,7 +111,7 @@ public class DatosAltaBien {
         this.descripcion = descripcion;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -127,10 +127,8 @@ public class DatosAltaBien {
         this.serie = serie;
     }
 
-    public void setValor(String valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
-    
-    
-    
+
 }

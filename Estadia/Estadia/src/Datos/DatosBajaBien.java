@@ -12,21 +12,21 @@ import java.sql.Date;
  * @author Mayra
  */
 public class DatosBajaBien {
-    private String idBajaBien;
+    private int idBajaBien;
     private String nInventario;
     private String area;
     private Date FechaAd;
-    private String idBien;
-    private String valor;
+    private int idBien;
+    private int valor;
     private String descripcion;
-    private String cantidad;
+    private int cantidad;
     private Date fechaBaja;
     private String causa;
 
     public DatosBajaBien() {
     }
 
-    public DatosBajaBien(String idBajaBien, String nInventario, String area, Date FechaAd, String idBien, String valor, String descripcion, String cantidad, Date fechaBaja, String causa) {
+    public DatosBajaBien(int idBajaBien, String nInventario, String area, Date FechaAd, int idBien, int valor, String descripcion, int cantidad, Date fechaBaja, String causa) {
         this.idBajaBien = idBajaBien;
         this.nInventario = nInventario;
         this.area = area;
@@ -38,8 +38,8 @@ public class DatosBajaBien {
         this.fechaBaja = fechaBaja;
         this.causa = causa;
     }
-    
-    public String getIdBajaBien() {
+
+    public int getIdBajaBien() {
         return idBajaBien;
     }
 
@@ -55,11 +55,11 @@ public class DatosBajaBien {
         return FechaAd;
     }
 
-    public String getIdBien() {
+    public int getIdBien() {
         return idBien;
     }
-    
-    public String getValor() {
+
+    public int getValor() {
         return valor;
     }
 
@@ -67,10 +67,10 @@ public class DatosBajaBien {
         return descripcion;
     }
 
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
-    
+
     public Date getFechaBaja() {
         return fechaBaja;
     }
@@ -79,7 +79,7 @@ public class DatosBajaBien {
         return causa;
     }
 
-    public void setIdBajaBien(String idBajaBien) {
+    public void setIdBajaBien(int idBajaBien) {
         this.idBajaBien = idBajaBien;
     }
 
@@ -95,11 +95,11 @@ public class DatosBajaBien {
         this.FechaAd = FechaAd;
     }
 
-    public void setIdBien(String idBien) {
+    public void setIdBien(int idBien) {
         this.idBien = idBien;
     }
-    
-    public void setValor(String valor) {
+
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
@@ -107,10 +107,10 @@ public class DatosBajaBien {
         this.descripcion = descripcion;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
+
     public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }

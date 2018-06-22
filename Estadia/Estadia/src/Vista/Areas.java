@@ -395,7 +395,7 @@ public class Areas extends javax.swing.JInternalFrame {
         int i = JOptionPane.showConfirmDialog(this, "Si elimina el área lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtId.getText().equals("")) {
-                datAreas.setIdArea(txtId.getText());
+                datAreas.setIdArea(Integer.parseInt(txtId.getText()));
                 c.eliminar_area(datAreas);
                 try {
                     cargar_tabla_areas("");

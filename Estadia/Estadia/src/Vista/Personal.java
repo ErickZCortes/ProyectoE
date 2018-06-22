@@ -393,7 +393,7 @@ public class Personal extends javax.swing.JInternalFrame {
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtIdPersonal.getText().equals("")) {
-                datPersonal.setIdPersonal(txtIdPersonal.getText());
+                datPersonal.setIdPersonal(Integer.parseInt(txtIdPersonal.getText()));
                 c.eliminar_personal(datPersonal);
                 try {
                     cargar_tabla_Personal("");
