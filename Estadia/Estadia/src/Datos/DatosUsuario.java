@@ -17,12 +17,12 @@ public class DatosUsuario {
     private String RFC;
     private String CURP;
     private String Acceso;
-    private String idUsuario;
+    private int idUsuario;
     
     public DatosUsuario() {
     }
 
-    public DatosUsuario(String Nombre, String User, String Password, String FirmaD, String RFC, String CURP, String Acceso, String idUsuario) {
+    public DatosUsuario(String Nombre, String User, String Password, String FirmaD, String RFC, String CURP, String Acceso, int idUsuario) {
         this.Nombre = Nombre;
         this.User = User;
         this.Password = Password;
@@ -33,7 +33,7 @@ public class DatosUsuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
     
@@ -66,7 +66,7 @@ public class DatosUsuario {
         return Acceso;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 

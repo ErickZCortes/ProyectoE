@@ -458,7 +458,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         int i = JOptionPane.showConfirmDialog(this, "Si elimina el Consumible lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             if (!txtidConsum.getText().equals("")) {
-                datCons.setIdConsumible(txtidConsum.getText());
+                datCons.setIdConsumible(Integer.parseInt(txtidConsum.getText()));
                 c.eliminar_consumible(datCons);
                 try {
                     cargar_tabla_consumibles("");
@@ -521,12 +521,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
         Date fecha = datCons.getFechaC();
 
         String idConsumible = txtidConsum.getText();
-        datCons.setCodigo(txtCod.getText());
+        datCons.setCodigo(Integer.parseInt(txtCod.getText()));
         datCons.setNombre(txtNombre.getText());
-        datCons.setExistencia(txtExistencia.getText());
+        datCons.setExistencia(Integer.parseInt(txtExistencia.getText()));
         datCons.setUnidad(txtUnidad.getText());
-        datCons.setStockM(txtStockM.getText());
-        datCons.setValor(txtValor.getText());
+        datCons.setStockM(Integer.parseInt(txtStockM.getText()));
+        datCons.setValor(Integer.parseInt(txtValor.getText()));
 
         if (c.Guardar_consumible(accion, datCons, idConsumible)) {
             if (accion == "A") {

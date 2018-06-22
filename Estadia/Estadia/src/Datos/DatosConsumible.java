@@ -12,19 +12,19 @@ import java.sql.Date;
  * @author Mayra
  */
 public class DatosConsumible {
-   private String IdConsumible;
-   private String Codigo;
+   private int IdConsumible;
+   private int Codigo;
    private String Nombre;
    private Date FechaC;
-   private String Existencia;
-   private String stockM;
-   private String Valor;
+   private int Existencia;
+   private int stockM;
+   private int Valor;
    private String unidad;
 
     public DatosConsumible() {
     }
 
-    public DatosConsumible(String IdConsumible, String Codigo, String Nombre, Date FechaC, String Existencia, String stockM, String Valor, String unidad) {
+    public DatosConsumible(int IdConsumible, int Codigo, String Nombre, Date FechaC, int Existencia, int stockM, int Valor, String unidad) {
         this.IdConsumible = IdConsumible;
         this.Codigo = Codigo;
         this.Nombre = Nombre;
@@ -35,11 +35,11 @@ public class DatosConsumible {
         this.unidad = unidad;
     }
 
-    public String getIdConsumible() {
+    public int getIdConsumible() {
         return IdConsumible;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return Codigo;
     }
 
@@ -51,15 +51,15 @@ public class DatosConsumible {
         return FechaC;
     }
 
-    public String getExistencia() {
+    public int getExistencia() {
         return Existencia;
     }
 
-    public String getStockM() {
+    public int getStockM() {
         return stockM;
     }
-    
-    public String getValor() {
+
+    public int getValor() {
         return Valor;
     }
 
@@ -67,11 +67,11 @@ public class DatosConsumible {
         return unidad;
     }
 
-    public void setIdConsumible(String IdConsumible) {
+    public void setIdConsumible(int IdConsumible) {
         this.IdConsumible = IdConsumible;
     }
 
-    public void setCodigo(String Codigo) {
+    public void setCodigo(int Codigo) {
         this.Codigo = Codigo;
     }
 
@@ -83,15 +83,15 @@ public class DatosConsumible {
         this.FechaC = FechaC;
     }
 
-    public void setExistencia(String Existencia) {
+    public void setExistencia(int Existencia) {
         this.Existencia = Existencia;
     }
 
-    public void setStockM(String stockM) {
+    public void setStockM(int stockM) {
         this.stockM = stockM;
     }
-    
-    public void setValor(String Valor) {
+
+    public void setValor(int Valor) {
         this.Valor = Valor;
     }
 

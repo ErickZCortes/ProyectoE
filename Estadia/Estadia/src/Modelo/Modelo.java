@@ -233,7 +233,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdUsuario());
+            pst.setInt(1, datos.getIdUsuario());
             int N = pst.executeUpdate();
 
             if (N != 0) {
@@ -295,13 +295,13 @@ public class Modelo {
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
-            pst.setString(1, datos.getCodigo());
+            pst.setInt(1, datos.getCodigo());
             pst.setString(2, datos.getNombre());
             pst.setDate(3, datos.getFechaC());
-            pst.setString(4, datos.getExistencia());
+            pst.setInt(4, datos.getExistencia());
             pst.setString(5, datos.getUnidad());
-            pst.setString(6, datos.getStockM());
-            pst.setString(7, datos.getValor());
+            pst.setInt(6, datos.getStockM());
+            pst.setInt(7, datos.getValor());
             
 
             int n = pst.executeUpdate();
@@ -324,12 +324,12 @@ public class Modelo {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getCodigo());
+            pst.setInt(1, datos.getCodigo());
             pst.setString(2, datos.getNombre());
-            pst.setString(3, datos.getExistencia());
+            pst.setInt(3, datos.getExistencia());
             pst.setString(4, datos.getUnidad());
-            pst.setString(5, datos.getStockM());
-            pst.setString(6, datos.getValor());
+            pst.setInt(5, datos.getStockM());
+            pst.setInt(6, datos.getValor());
             int N = pst.executeUpdate();
             if (N != 0) {
                 return true;
@@ -348,7 +348,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdConsumible());
+            pst.setInt(1, datos.getIdConsumible());
             int N = pst.executeUpdate();
 
             if (N != 0) {
@@ -451,7 +451,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdArea());
+            pst.setInt(1, datos.getIdArea());
             int N = pst.executeUpdate();
 
             if (N != 0) {
@@ -590,7 +590,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdPersonal());
+            pst.setInt(1, datos.getIdPersonal());
             int N = pst.executeUpdate();
 
             if (N != 0) {
@@ -737,11 +737,11 @@ public class Modelo {
             pst.setDate(3, datos.getFechaAd());
             pst.setString(4, datos.getFormaAd());
             pst.setString(5, datos.getDescripcion());
-            pst.setString(6, datos.getCantidad());
+            pst.setInt(6, datos.getCantidad());
             pst.setString(7, datos.getMarca());
             pst.setString(8, datos.getModelo());
             pst.setString(9, datos.getSerie());
-            pst.setString(10, datos.getValor());
+            pst.setInt(10, datos.getValor());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -766,11 +766,11 @@ public class Modelo {
             pst.setString(2, datos.getArea());
             pst.setString(3, datos.getFormaAd());
             pst.setString(4, datos.getDescripcion());
-            pst.setString(5, datos.getCantidad());
+            pst.setInt(5, datos.getCantidad());
             pst.setString(6, datos.getMarca());
             pst.setString(7, datos.getModelo());
             pst.setString(8, datos.getSerie());
-            pst.setString(9, datos.getValor());
+            pst.setInt(9, datos.getValor());
             
             int N = pst.executeUpdate();
             if (N != 0) {
@@ -824,7 +824,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdAltaBien());
+            pst.setInt(1, datos.getIdAltaBien());
             int N = pst.executeUpdate();
 
             if (N != 0) {
@@ -991,10 +991,10 @@ public class Modelo {
             pst.setString(1, datos.getnInventario());
             pst.setString(2, datos.getArea());
             pst.setDate(3, datos.getFechaAd());
-            pst.setString(4, datos.getIdBien());
-            pst.setString(5, datos.getValor());
+            pst.setInt(4, datos.getIdBien());
+            pst.setInt(5, datos.getValor());
             pst.setString(6, datos.getDescripcion());
-            pst.setString(7, datos.getCantidad());
+            pst.setInt(7, datos.getCantidad());
             pst.setDate(8, datos.getFechaBaja());
             pst.setString(9, datos.getCausa());
             int n = pst.executeUpdate();
@@ -1020,7 +1020,7 @@ public class Modelo {
             pst.setString(1, datos.getnInventario());
             pst.setString(2, datos.getArea());
             pst.setDate(3, datos.getFechaAd());
-            pst.setString(4, datos.getValor());
+            pst.setInt(4, datos.getValor());
             pst.setString(5, datos.getDescripcion());
             pst.setDate(6, datos.getFechaBaja());
             pst.setString(7, datos.getCausa());
@@ -1043,7 +1043,7 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getIdBajaBien());
+            pst.setInt(1, datos.getIdBajaBien());
             int N = pst.executeUpdate();
 
             if (N != 0) {

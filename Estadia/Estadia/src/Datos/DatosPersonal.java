@@ -11,7 +11,7 @@ package Datos;
  */
 public class DatosPersonal {
 
-    private String idPersonal;
+    private int idPersonal;
     private String Nombre;
     private String CURP;
     private String Area;
@@ -19,7 +19,7 @@ public class DatosPersonal {
     public DatosPersonal() {
     }
 
-    public DatosPersonal(String idPersonal, String Nombre, String CURP, String Area) {
+    public DatosPersonal(int idPersonal, String Nombre, String CURP, String Area) {
         this.idPersonal = idPersonal;
         this.Nombre = Nombre;
         this.CURP = CURP;
@@ -28,7 +28,7 @@ public class DatosPersonal {
 
     
 
-    public String getIdPersonal() {
+    public int getIdPersonal() {
         return idPersonal;
     }
 
@@ -45,7 +45,7 @@ public class DatosPersonal {
     }
 
     
-    public void setIdPersonal(String idPersonal) {
+    public void setIdPersonal(int idPersonal) {
         this.idPersonal = idPersonal;
     }
 
