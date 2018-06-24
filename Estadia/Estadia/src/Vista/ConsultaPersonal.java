@@ -86,9 +86,6 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         ));
         tbDatos.getTableHeader().setReorderingAllowed(false);
         tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbDatosMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbDatosMousePressed(evt);
             }
@@ -205,7 +202,20 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-        if (evt.getClickCount() == 2) {
+        if(evt.getClickCount() == 3){
+            int fila = tbDatos.getSelectedRow();
+            String  nombre, curp, area, idpersona;
+            nombre = tbDatos.getValueAt(fila, 1).toString();
+            curp = tbDatos.getValueAt(fila, 2).toString();
+            area = tbDatos.getValueAt(fila, 3).toString();
+            idpersona= tbDatos.getValueAt(fila, 0).toString();
+            ValeActivo.txtName.setText(nombre);
+            ValeActivo.txtArea.setText(area);
+            ValeActivo.txtcurp.setText(curp);
+            ValeActivo.txtCTT.setText(c.obtenerctt(area));
+            ValeActivo.txtclave.setText(c.obteneclaveins(area));
+            this.dispose();
+        }else if (evt.getClickCount() == 2) {
             int fila = tbDatos.getSelectedRow();
             String  nombre, curp, area, idpersona;
             nombre = tbDatos.getValueAt(fila, 1).toString();
@@ -218,40 +228,12 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             ValesAlmacen.txtArea.setText(area);
             ValesAlmacen.txtidPersona.setText(idpersona);
             
-//            ValeActivo.txtName.setText(nombre);
-//            ValeActivo.txtArea.setText(area);
-//            ValeActivo.txtcurp.setText(curp);
-//            ValeActivo.txtCTT.setText(c.obtenerctt(area));
-//            ValeActivo.txtclave.setText(c.obteneclaveins(area));
-            
             this.dispose();   
+        
+           
         }
         
     }//GEN-LAST:event_tbDatosMousePressed
-
-    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-        if (evt.getClickCount() == 2) {
-            int fila = tbDatos.getSelectedRow();
-            String  nombre, curp, area, idpersona;
-            nombre = tbDatos.getValueAt(fila, 1).toString();
-            curp = tbDatos.getValueAt(fila, 2).toString();
-            area = tbDatos.getValueAt(fila, 3).toString();
-            idpersona= tbDatos.getValueAt(fila, 0).toString();
-            
-           
-////            ValesAlmacen.txtPerSol.setText(nombre);
-////            ValesAlmacen.txtArea.setText(area);
-////            ValesAlmacen.txtidPersona.setText(idpersona);
-            
-            ValeActivo.txtName.setText(nombre);
-            ValeActivo.txtArea.setText(area);
-            ValeActivo.txtcurp.setText(curp);
-            ValeActivo.txtCTT.setText(c.obtenerctt(area));
-            ValeActivo.txtclave.setText(c.obteneclaveins(area));
-            
-            this.dispose();
-        }
-    }//GEN-LAST:event_tbDatosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
