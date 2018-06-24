@@ -121,6 +121,17 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtIdValeR.setText("");
     }
     
+    void vaciardos(){
+        txtNomBien.setText("");
+        txtNInventario.setText("");
+        txtValor.setText("");
+        txtSerie.setText("");
+        txtModelo.setText("");
+        txtMarca.setText("");
+        txtIdDetalle.setText("");
+        txtIdBien.setText("");
+    }
+    
     void cargar_tabla(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_detalle_Res(valor);
         tbDatos.setModel(tb);
@@ -724,19 +735,16 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         String idRes = (String.valueOf(c.select_id_vale_res()));
         txtIdValeR.setText(idRes);
         c.cargar_tabla_detalle_Res(idRes);
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         datRes.setId_valeres(Integer.parseInt(txtIdValeR.getText()));
         c.eliminar_detalle_res(datRes);
         c.eliminar_vale_res(datRes);
-        try {
-            cargar_tabla("");
-        } catch (SQLException ex) {
-            Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
-        }
         bloquear();
         vaciar();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtIdValeRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdValeRActionPerformed
@@ -806,13 +814,13 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             if (accion == "A") {
                 
          //       JOptionPane.showMessageDialog(null, "El bien ha sido Agregado.");
+            vaciardos();
             } else if (accion == "M") {
                 JOptionPane.showMessageDialog(null, "El bien ha sido Actualizado.");
             }
             
             try {
-                vaciar();
-                cargar_tabla("");
+                cargar_tabla(txtIdValeR.getText());
             } catch (SQLException ex) {
                 Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -876,6 +884,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
+           vaciar();
+           bloquear();
         }
     }//GEN-LAST:event_btnGenerarActionPerformed
 

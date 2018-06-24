@@ -11,6 +11,7 @@ import Datos.DatosValeAlmacen;
 import Documentos.ValeAlmacen;
 import Modelo.Conexion;
 import static Vista.Principal.Escritorio;
+import static Vista.ValeActivo.txtIdValeR;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -103,7 +104,14 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtidPersona.setText("");
         txtidConsumible.setText("");
     }
-
+    
+    void vaciardos(){
+     txtMaterial.setText("");
+        txtCantidadS.setText("");
+        txtCantidadE.setText("");
+        txtUnidad.setText("");   
+        txtidConsumible.setText("");
+    }
     void cargar_tabla(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_detalleV(valor);
         tbDatos.setModel(tb);
@@ -612,15 +620,16 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     private void btnCancelVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelVActionPerformed
         dVale.setIdVale(Integer.parseInt(txtidVale.getText()));
         dDetalle.setId_vale(Integer.parseInt(txtidVale.getText()));
-        c.eliminarVale(dVale);
         c.eliminar_detalle_almacen(dDetalle);
+        c.eliminarVale(dVale);
         try {
-            cargar_tabla("");
+            bloquear();
+            vaciar();
+            txtidVale.setText("");
+            cargar_tabla(txtidVale.getText());
         } catch (SQLException ex) {
             Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bloquear();
-        vaciar();
     }//GEN-LAST:event_btnCancelVActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -655,16 +664,15 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dDetalle.setUnidad_consumible(txtUnidad.getText());
 
         if (c.Guardar_detalle_almacen(accion, dDetalle)) {
-           vaciar();
             if (accion == "A") {
-
-                JOptionPane.showMessageDialog(null, "Información Agregada");
+                vaciardos();
+             //   JOptionPane.showMessageDialog(null, "Información Agregada");
             } else if (accion == "M") {
                 JOptionPane.showMessageDialog(null, "Información Modificada");
             }
 
             try {
-                cargar_tabla("");
+                cargar_tabla(txtidVale.getText());
             } catch (SQLException ex) {
                 Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
             }
