@@ -1269,24 +1269,17 @@ public class Modelo {
         }
     }
     
-    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleValeAlmacen datos){
-        cons = "DELETE FROM detalle_vale WHERE id_detalle= ?";
-        try {
+    public void eliminar_xregistro_detalle_almacen(Integer idDetalle) throws SQLException {
+
+        int result = JOptionPane.showConfirmDialog(null,
+                "¿Seguro que desea eliminar éste Registro?", null, JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            cons = "DELETE FROM detalle_vale WHERE id_detalle=" + idDetalle + "";
             PreparedStatement pst = cn.prepareStatement(cons);
-
-            pst.setInt(0, datos.getId_detalle());
-            int N = pst.executeUpdate();
-
-            if (N != 0) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            return false;
+            pst.executeUpdate();
+            System.out.println("Registro Eliminado con Éxito");
         }
+
     }
     
     //--------------------------RESGUARDO---------------------------------//

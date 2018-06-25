@@ -85,7 +85,7 @@ public class Personal extends javax.swing.JInternalFrame {
         int filasel = tbDatos.getSelectedRow();
         try {
             if (filasel == -1) {
-                JOptionPane.showMessageDialog(null, "Seleccionar Registro");
+                JOptionPane.showMessageDialog(null, "Seleccionar un registro");
 
             } else {
                 String idpersona = (String) tbDatos.getValueAt(filasel, 0);

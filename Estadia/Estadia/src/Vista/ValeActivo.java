@@ -29,19 +29,22 @@ import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Mayra
  */
 public class ValeActivo extends javax.swing.JInternalFrame {
+
     Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();
     Controlador c = new Controlador();
     DatosResguardo datRes = new DatosResguardo();
     DatosDetalleResguardo datDet = new DatosDetalleResguardo();
-    String accion ="";
+    String accion = "";
     int contador = 0;
     int ValorT = 0;
+
     /**
      * Creates new form ValeActivo
      */
@@ -68,8 +71,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtMarca.setEnabled(false);
         txtCanTotal.setEnabled(false);
         txtValTotal.setEnabled(false);
-      
-                
+
         btnBuscarPersona.setEnabled(false);
         btnBuscarBien.setEnabled(false);
         btnAdd.setEnabled(true);
@@ -120,8 +122,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtIdBien.setText("");
         txtIdValeR.setText("");
     }
-    
-    void vaciardos(){
+
+    void vaciardos() {
         txtNomBien.setText("");
         txtNInventario.setText("");
         txtValor.setText("");
@@ -131,28 +133,28 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtIdDetalle.setText("");
         txtIdBien.setText("");
     }
-    
+
     void cargar_tabla(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_detalle_Res(valor);
         tbDatos.setModel(tb);
-        
+
         tbDatos.getColumnModel().getColumn(0).setMaxWidth(0);
         tbDatos.getColumnModel().getColumn(0).setMinWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-        
+
         tbDatos.getColumnModel().getColumn(1).setMaxWidth(0);
         tbDatos.getColumnModel().getColumn(1).setMinWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
-        
+
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
-        
+
         tbDatos.getColumnModel().getColumn(3).setMaxWidth(0);
         tbDatos.getColumnModel().getColumn(3).setMinWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(3).setMinWidth(0);
-        
+
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
@@ -160,7 +162,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -698,7 +700,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarBienActionPerformed
 
     private void txtcurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcurpKeyTyped
-      if (txtcurp.getText().length() == 18) {
+        if (txtcurp.getText().length() == 18) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -719,7 +721,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         m = cal.get(Calendar.MONTH);
         a = cal.get(Calendar.YEAR) - 1900;
         datRes.setFecha(new Date(a, m, d));
-        
+
         String update = "update";
         int up = 0;
         datRes.setPlantel(update);
@@ -729,13 +731,13 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         datRes.setCurp_pers(update);
         datRes.setCant_total(up);
         datRes.setValor_total(up);
-        
+
         c.agregar_vale_resguardo(datRes);
-                
+
         String idRes = (String.valueOf(c.select_id_vale_res()));
         txtIdValeR.setText(idRes);
         c.cargar_tabla_detalle_Res(idRes);
-        
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -760,25 +762,25 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIdDetalleActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-            
+
         if (txtNomBien.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Nombre del Bien ");
             txtNomBien.requestFocus();
             return;
         }
-        
+
         if (txtNInventario.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Numero de Inventario");
             txtNInventario.requestFocus();
             return;
         }
-        
+
         if (txtValor.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Valor ");
             txtValor.requestFocus();
             return;
         }
-        
+
         if (txtModelo.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Modelo");
             txtModelo.requestFocus();
@@ -789,7 +791,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             txtMarca.requestFocus();
             return;
         }
-        
+
         if (txtSerie.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Número de Serie");
             txtSerie.requestFocus();
@@ -803,22 +805,22 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         datDet.setModelo_b(txtModelo.getText());
         datDet.setSerie_b(txtSerie.getText());
         datDet.setValor_b(Integer.parseInt(txtValor.getText()));
-        contador = contador +1;
+        contador = contador + 1;
         datDet.setNum_ref(contador);
-        
+
         txtCanTotal.setText(String.valueOf(contador));
         int valorB = Integer.parseInt(txtValor.getText());
         ValorT = ValorT + valorB;
         txtValTotal.setText(String.valueOf(ValorT));
         if (c.Guardar_detalle_res(accion, datDet)) {
             if (accion == "A") {
-                
-         //       JOptionPane.showMessageDialog(null, "El bien ha sido Agregado.");
-            vaciardos();
+
+                //       JOptionPane.showMessageDialog(null, "El bien ha sido Agregado.");
+                vaciardos();
             } else if (accion == "M") {
                 JOptionPane.showMessageDialog(null, "El bien ha sido Actualizado.");
             }
-            
+
             try {
                 cargar_tabla(txtIdValeR.getText());
             } catch (SQLException ex) {
@@ -828,24 +830,24 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-       if (txtArea.getText().length() == 0) {
+        if (txtArea.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Área");
             txtArea.requestFocus();
             return;
         }
-        
+
         if (txtCTT.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Centro de trabajo");
             txtCTT.requestFocus();
             return;
         }
-        
+
         if (txtclave.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar la Clave");
             txtclave.requestFocus();
             return;
         }
-        
+
         if (txtName.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Nombre");
             txtName.requestFocus();
@@ -856,7 +858,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             txtcurp.requestFocus();
             return;
         }
-        
+
         datRes.setNombre_per(txtName.getText());
         datRes.setCtt(txtCTT.getText());
         datRes.setPlantel(txtArea.getText());
@@ -864,11 +866,11 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         datRes.setCurp_pers(txtcurp.getText());
         datRes.setCant_total(Integer.parseInt(txtCanTotal.getText()));
         datRes.setValor_total(Integer.parseInt(txtValTotal.getText()));
-        
+
         if (c.modificar_vale_res(datRes)) {
-           JOptionPane.showMessageDialog(null, "Vale generado.");
-           
-           try {
+            JOptionPane.showMessageDialog(null, "Vale generado.");
+
+            try {
                 int codigo = Integer.parseInt(txtIdValeR.getText());
                 System.out.println(codigo);
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ValeResguardo.class.getResource("/Documentos/ValeResguardoActivo.jasper"));
@@ -881,11 +883,13 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 jv.show();
 
                 //JasperPrintManager.printReport( jp, true);
+                vaciar();
+                bloquear();
+                this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
-           vaciar();
-           bloquear();
+
         }
     }//GEN-LAST:event_btnGenerarActionPerformed
 

@@ -230,8 +230,8 @@ public class Controlador {
     public boolean eliminar_detalle_almacen(DatosDetalleValeAlmacen datos) {
         return m.eliminar_detalle_almacen(datos);
     }
-    public boolean eliminar_xregistro_detalle_almacen(DatosDetalleValeAlmacen datos) {
-        return m.eliminar_xregistro_detalle_almacen(datos);
+    public void eliminar_xregistro_detalle_almacen(Integer idDetalle) throws SQLException {
+         m.eliminar_xregistro_detalle_almacen(idDetalle);
     }
     
 

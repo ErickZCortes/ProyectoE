@@ -69,7 +69,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnBuscarCon.setEnabled(false);
         btnAdd.setEnabled(false);
         btnElim.setEnabled(false);
-        btnCancelar.setEnabled(false);
         btnGenerarR.setEnabled(false);
     }
 
@@ -87,7 +86,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnBuscarCon.setEnabled(true);
         btnAdd.setEnabled(true);
         btnElim.setEnabled(true);
-        btnCancelar.setEnabled(true);
         btnGenerarR.setEnabled(true);
     }
 
@@ -137,7 +135,19 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);
     }
-
+    
+    void actualizarDatos() {
+        int filasel = tbDatos.getSelectedRow();
+        try {
+            if (filasel == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccionar Registro");
+            } else {
+                String iddetalle = (String) tbDatos.getValueAt(filasel, 0);           
+                txtidDetalle.setText(iddetalle);
+            }
+        } catch (Exception e) {
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,7 +182,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnBuscarCon = new javax.swing.JButton();
         btnElim = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         jLCantidadSolicitada = new javax.swing.JLabel();
         txtCantidadS = new javax.swing.JTextField();
         jLCURP5 = new javax.swing.JLabel();
@@ -226,6 +235,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDatos);
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -258,12 +272,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel9.setText("Fecha:");
-
-        txtidVale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidValeActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -314,11 +322,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtPerSol, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addComponent(btnBuscarPe))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPerSol, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8))
+                            .addComponent(btnBuscarPe)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -356,6 +363,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnElim.setText("Eliminar");
         btnElim.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 74, 83), 2));
         btnElim.setContentAreaFilled(false);
+        btnElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimActionPerformed(evt);
+            }
+        });
 
         btnAdd.setBackground(new java.awt.Color(64, 74, 83));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -368,13 +380,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 btnAddActionPerformed(evt);
             }
         });
-
-        btnCancelar.setBackground(new java.awt.Color(64, 74, 83));
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/if_cancel_216128.png"))); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 74, 83), 2));
-        btnCancelar.setContentAreaFilled(false);
 
         jLCantidadSolicitada.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLCantidadSolicitada.setText("Cantidad Solicitada:");
@@ -418,14 +423,9 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addComponent(btnBuscarCon, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(82, 82, 82)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(250, 250, 250))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(250, 250, 250))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,16 +442,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCantidadS, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLCantidadSolicitada))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCantidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLCURP5))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCantidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLCURP5))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLCURP6))
@@ -622,14 +617,9 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dDetalle.setId_vale(Integer.parseInt(txtidVale.getText()));
         c.eliminar_detalle_almacen(dDetalle);
         c.eliminarVale(dVale);
-        try {
-            bloquear();
-            vaciar();
-            txtidVale.setText("");
-            cargar_tabla(txtidVale.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        bloquear();
+        vaciar();
+        this.dispose();
     }//GEN-LAST:event_btnCancelVActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -715,20 +705,38 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
                 jv.show();
-
+                vaciar();
+                bloquear();
+                this.dispose();
                 //JasperPrintManager.printReport( jp, true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
-            txtidVale.setText("");
-            bloquear();
+            
         }
         
     }//GEN-LAST:event_btnGenerarRActionPerformed
 
-    private void txtidValeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidValeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidValeActionPerformed
+    private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
+         int filasel = tbDatos.getSelectedRow();
+
+        try {
+            if (filasel == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione Registro");
+            } else {
+                int idDetalle = (Integer.parseInt(txtidDetalle.getText()));
+                c.eliminar_xregistro_detalle_almacen(idDetalle);
+                cargar_tabla(txtidVale.getText());
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnElimActionPerformed
+
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+      actualizarDatos();
+      
+    }//GEN-LAST:event_tbDatosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -736,7 +744,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscarCon;
     private javax.swing.JButton btnBuscarPe;
     private javax.swing.JButton btnCancelV;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnElim;
     private javax.swing.JButton btnGenerarR;
