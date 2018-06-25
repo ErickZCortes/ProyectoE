@@ -622,14 +622,9 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dDetalle.setId_vale(Integer.parseInt(txtidVale.getText()));
         c.eliminar_detalle_almacen(dDetalle);
         c.eliminarVale(dVale);
-        try {
-            bloquear();
-            vaciar();
-            txtidVale.setText("");
-            cargar_tabla(txtidVale.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        bloquear();
+        vaciar();
+        this.dispose();
     }//GEN-LAST:event_btnCancelVActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -715,13 +710,14 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
                 jv.show();
-
+                vaciar();
+                bloquear();
+                this.dispose();
                 //JasperPrintManager.printReport( jp, true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
-            txtidVale.setText("");
-            bloquear();
+            
         }
         
     }//GEN-LAST:event_btnGenerarRActionPerformed
