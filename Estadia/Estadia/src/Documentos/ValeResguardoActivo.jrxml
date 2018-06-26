@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62744e66-7147-48bd-8b57-98d35a6f5cc5">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="13"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id_vale_resguardo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -51,7 +51,7 @@ WHERE
 	<pageHeader>
 		<band height="113" splitType="Stretch">
 			<staticText>
-				<reportElement x="99" y="52" width="185" height="12" uuid="a80e43e4-3676-4551-83ee-d92a4b00290e"/>
+				<reportElement x="99" y="52" width="227" height="12" uuid="a80e43e4-3676-4551-83ee-d92a4b00290e"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
@@ -93,7 +93,7 @@ WHERE
 				<text><![CDATA[CLAVE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="86" y="72" width="198" height="12" uuid="2a4eb465-2a1a-4169-8157-3afd995f6b28"/>
+				<reportElement x="88" y="72" width="196" height="12" uuid="2a4eb465-2a1a-4169-8157-3afd995f6b28"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
@@ -101,14 +101,14 @@ WHERE
 			</textField>
 			<textField>
 				<reportElement x="678" y="57" width="63" height="12" uuid="cca184f2-db77-4f8e-adb4-bfe8dd59eeaa"/>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_clave}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="678" y="70" width="63" height="12" uuid="2b39203d-8951-476b-9df3-af7941846b0f"/>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_ctt}]]></textFieldExpression>
@@ -121,7 +121,7 @@ WHERE
 				<text><![CDATA[VALE ÚNICO DE RESGUARDO DE BIENES MUEBLES]]></text>
 			</staticText>
 			<line>
-				<reportElement x="99" y="64" width="185" height="1" uuid="3e218f68-ec9d-47d2-abc1-2efd47a3013f"/>
+				<reportElement x="99" y="64" width="227" height="1" uuid="3e218f68-ec9d-47d2-abc1-2efd47a3013f"/>
 			</line>
 			<line>
 				<reportElement x="86" y="84" width="198" height="1" uuid="1d34e983-a786-45e9-909a-23957e98b636"/>
@@ -263,7 +263,7 @@ WHERE
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRE Y CARACTERISTICAS DEL BIEN]]></text>
 			</staticText>
@@ -277,7 +277,7 @@ WHERE
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[No. DE INVENTARIO]]></text>
 			</staticText>
@@ -291,7 +291,7 @@ WHERE
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MARCA]]></text>
 			</staticText>
@@ -305,7 +305,7 @@ WHERE
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MODELO]]></text>
 			</staticText>
@@ -319,7 +319,7 @@ WHERE
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SERIE]]></text>
 			</staticText>
@@ -333,7 +333,7 @@ WHERE
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="8" isBold="true"/>
+					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VALOR]]></text>
 			</staticText>
@@ -442,28 +442,56 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="50">
+		<band height="65">
 			<staticText>
-				<reportElement x="14" y="6" width="133" height="8" uuid="22830bd3-60f7-47c3-9c5a-a04300248149"/>
+				<reportElement x="17" y="26" width="133" height="8" uuid="22830bd3-60f7-47c3-9c5a-a04300248149"/>
 				<textElement>
 					<font fontName="Calibri" size="5"/>
 				</textElement>
 				<text><![CDATA[NOTAS: PARA EL LLENADO DE ESTE FORMATO SE REQUIERE QUE:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="14" y="14" width="172" height="10" uuid="5cff119f-e0f8-4e3c-91e7-2e66468bca8e"/>
+				<reportElement x="17" y="34" width="172" height="10" uuid="5cff119f-e0f8-4e3c-91e7-2e66468bca8e"/>
 				<textElement>
 					<font fontName="Calibri" size="5"/>
 				</textElement>
 				<text><![CDATA[1) TODAS LAS HOJAS DEBEN SER FIRMADAS POR EL RESPONSABLE DEL RESGUARDO.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="14" y="24" width="279" height="10" uuid="3a9c5393-1de1-415c-9238-24ef3d964571"/>
+				<reportElement x="17" y="44" width="279" height="10" uuid="3a9c5393-1de1-415c-9238-24ef3d964571"/>
 				<textElement>
 					<font fontName="Calibri" size="5"/>
 				</textElement>
 				<text><![CDATA[2) EN EL CASO DE HABER DOS O MÁS HOJAS, ÉSTAS DEBEN INCLUÍR EL CURP DEL SERVIDOR PÚBLICO EN EL ESPACIO CORRESPONDIENTE.]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="14" y="0" width="727" height="10" uuid="879e4f72-ba4b-405b-9e85-a7c608ef1d7c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE BIENES RESGUARDADOS:	CON UN VALOR DE: $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="496" y="0" width="100" height="10" uuid="ba6b210d-fceb-48e9-a417-5feb165be945"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vale_resguardo_valor_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="27" height="10" uuid="7352416a-94e4-4aac-ab5b-af0038556af3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vale_resguardo_cant_total}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 </jasperReport>
