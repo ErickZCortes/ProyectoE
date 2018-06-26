@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62744e66-7147-48bd-8b57-98d35a6f5cc5">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="13"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.2"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="29"/>
 	<parameter name="id_vale_resguardo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -139,6 +139,10 @@ WHERE
 				</textElement>
 				<text><![CDATA[BIENES INFORMÁTICOS]]></text>
 			</staticText>
+			<image>
+				<reportElement x="44" y="0" width="185" height="54" uuid="b3e6ed91-dc92-420d-b05b-8f62e13ddf0d"/>
+				<imageExpression><![CDATA["..\\Img\\SEP_septiembre_1.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
