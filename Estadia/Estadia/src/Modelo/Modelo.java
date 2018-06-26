@@ -449,6 +449,9 @@ public class Modelo {
     public boolean eliminar_area(DatosArea datos) {
         cons = "delete from areas where id_area = ?";
         try {
+            int result = JOptionPane.showConfirmDialog(null,
+                    "¿Seguro que desea eliminar éste Registro?", null, JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
             PreparedStatement pst = cn.prepareStatement(cons);
 
             pst.setInt(1, datos.getIdArea());
@@ -459,11 +462,12 @@ public class Modelo {
             } else {
                 return false;
             }
-
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "No se puede eliminar este registro, está siendo utilizado");   
             return false;
         }
+        return false;
     }//cierre funcion
     
     public String obtenerctt(String area) {
@@ -1489,24 +1493,14 @@ public class Modelo {
         }
     }
     
-    public boolean eliminar_xregistro_detalle_res(DatosDetalleResguardo datos){
-        cons = "DELETE FROM detalle_resguardo WHERE id_detaller= ?";
-        try {
+    public void eliminar_xregistro_detalle_res(Integer idResguardo) throws SQLException{
+        int result = JOptionPane.showConfirmDialog(null,
+                "¿Seguro que desea eliminar éste Registro?", null, JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            cons = "DELETE FROM detalle_resguardo WHERE id_detaller=" + idResguardo + "";
             PreparedStatement pst = cn.prepareStatement(cons);
-
-            pst.setInt(1, datos.getId_detaller());
-            int N = pst.executeUpdate();
-
-            if (N != 0) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            return false;
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Eliminado con Éxito");
         }
-    }
-    
+    }  
 }
