@@ -103,7 +103,7 @@ public class Controlador {
     }
 
     public boolean eliminar_area(DatosArea datos) {
-        return m.eliminar_area(datos);
+         return m.eliminar_area(datos);
     }
 
     public String obtenerctt(String area) {
@@ -270,7 +270,7 @@ public class Controlador {
         return m.eliminar_detalle_res(datos);
     }
 
-    public boolean eliminar_xregistro_detalle_res(DatosDetalleResguardo datos) {
-        return m.eliminar_xregistro_detalle_res(datos);
+    public void eliminar_xregistro_detalle_res(Integer idResguardo) throws SQLException{
+         m.eliminar_xregistro_detalle_res(idResguardo);
     }
 }

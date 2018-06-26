@@ -162,6 +162,34 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
     }
+    
+    void actualizarDatos() {
+        int filasel = tbDatos.getSelectedRow();
+        try {
+            if (filasel == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccionar Registro");
+            } else {
+                String iddetalleA = (String) tbDatos.getValueAt(filasel, 0);
+                String Nombre = (String) tbDatos.getValueAt(filasel, 4);
+                String inventario = (String) tbDatos.getValueAt(filasel, 5);
+                String valor = (String) tbDatos.getValueAt(filasel, 9);
+                String modelo = (String) tbDatos.getValueAt(filasel, 7);
+                String marca = (String) tbDatos.getValueAt(filasel, 6);
+                String serie = (String) tbDatos.getValueAt(filasel, 8);
+                
+                txtIdDetalle.setText(iddetalleA);
+                txtNomBien.setText(Nombre);
+                txtNInventario.setText(inventario);
+                txtValor.setText(valor);
+                txtModelo.setText(modelo);
+                txtMarca.setText(marca);
+                txtSerie.setText(serie);
+                
+                
+            }
+        } catch (Exception e) {
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -207,6 +235,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtIdBien = new javax.swing.JTextField();
         txtIdDetalle = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
+        btnEliminarD = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
@@ -428,6 +457,18 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEliminarD.setBackground(new java.awt.Color(64, 74, 83));
+        btnEliminarD.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnEliminarD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/315224-24.png"))); // NOI18N
+        btnEliminarD.setText("Eliminar");
+        btnEliminarD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 74, 83), 2));
+        btnEliminarD.setContentAreaFilled(false);
+        btnEliminarD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -469,8 +510,10 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                     .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(157, 157, 157))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(334, 334, 334)
+                .addGap(184, 184, 184)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -507,9 +550,11 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Datos del bien", jPanel1);
@@ -531,6 +576,11 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             }
         ));
         tbDatos.getTableHeader().setReorderingAllowed(false);
+        tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDatosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbDatos);
 
         jLabel1.setText("Cantidad Total:");
@@ -893,6 +943,33 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGenerarActionPerformed
 
+    private void btnEliminarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDActionPerformed
+        int filasel = tbDatos.getSelectedRow();
+
+        try {
+            if (filasel == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione Registro");
+            } else {
+                int cantT = Integer.parseInt(txtCanTotal.getText());
+                int cantR = cantT -1;
+                int valorT = Integer.parseInt(txtValTotal.getText());
+                int ValP = Integer.parseInt(txtValor.getText());
+                int Res = valorT - ValP;
+                
+                c.eliminar_xregistro_detalle_res(Integer.parseInt(txtIdDetalle.getText()));
+                txtCanTotal.setText(String.valueOf(cantR));
+                txtValTotal.setText(String.valueOf(Res));
+                cargar_tabla(txtIdValeR.getText());
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnEliminarDActionPerformed
+
+    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
+        actualizarDatos();
+    }//GEN-LAST:event_tbDatosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -900,6 +977,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscarBien;
     private javax.swing.JButton btnBuscarPersona;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminarD;
     private javax.swing.JButton btnGenerar;
     private com.toedter.calendar.JDateChooser dcfechaRes;
     private javax.swing.JLabel jLTitulo24;

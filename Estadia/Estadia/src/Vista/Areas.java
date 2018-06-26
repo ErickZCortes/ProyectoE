@@ -170,6 +170,11 @@ public class Areas extends javax.swing.JInternalFrame {
                 btnModMouseClicked(evt);
             }
         });
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
+            }
+        });
 
         btnElim.setBackground(new java.awt.Color(64, 74, 83));
         btnElim.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -180,6 +185,11 @@ public class Areas extends javax.swing.JInternalFrame {
         btnElim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnElimMouseClicked(evt);
+            }
+        });
+        btnElim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnElimActionPerformed(evt);
             }
         });
 
@@ -392,8 +402,7 @@ public class Areas extends javax.swing.JInternalFrame {
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         
         if (firma.equals(c.obtenerFirma())){
-        int i = JOptionPane.showConfirmDialog(this, "Si elimina el área lo borrara de las ventanas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
-        if (i == 0) {
+        
             if (!txtId.getText().equals("")) {
                 datAreas.setIdArea(Integer.parseInt(txtId.getText()));
                 c.eliminar_area(datAreas);
@@ -407,7 +416,7 @@ public class Areas extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No se elimino el área.");
             }
-        }    
+        
         }else{
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
@@ -478,6 +487,14 @@ public class Areas extends javax.swing.JInternalFrame {
         actualizarDatos();
         bloquear();
     }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModActionPerformed
+
+    private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnElimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
