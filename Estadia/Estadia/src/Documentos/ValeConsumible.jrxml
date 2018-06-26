@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
-	<property name="ireport.zoom" value="4.0"/>
-	<property name="ireport.x" value="1469"/>
-	<property name="ireport.y" value="634"/>
+	<property name="ireport.zoom" value="1.24184264611831"/>
+	<property name="ireport.x" value="4"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -85,6 +85,14 @@ WHERE
 				</textElement>
 				<text><![CDATA[VALE DE SALIDA DE ALMACEN]]></text>
 			</staticText>
+			<image>
+				<reportElement x="490" y="0" width="82" height="87" uuid="d041e986-6032-41f0-a600-b079efb69d0d"/>
+				<imageExpression><![CDATA["..\\Img\\cropped-cropped-logo-dgti-16-1.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="0" width="93" height="85" uuid="5ad99a8e-69ab-4fd9-ad47-8548c96eb51a"/>
+				<imageExpression><![CDATA["..\\Img\\image-2018-05-21.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
