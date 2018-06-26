@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="192"/>
+	<property name="ireport.zoom" value="4.0"/>
+	<property name="ireport.x" value="1469"/>
+	<property name="ireport.y" value="634"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -97,7 +97,7 @@ WHERE
 				<text><![CDATA[AREA SOLICITANTE:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="26" y="32" width="84" height="13" uuid="74754c6b-dee6-4664-888a-945d222f696c"/>
+				<reportElement x="22" y="32" width="88" height="13" uuid="74754c6b-dee6-4664-888a-945d222f696c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
@@ -111,31 +111,31 @@ WHERE
 				<text><![CDATA[FECHA:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="442" y="20" width="93" height="1" uuid="7d18a7fe-45b1-4c1f-aae8-b5eeb3d522b4"/>
+				<reportElement x="442" y="20" width="71" height="1" uuid="7d18a7fe-45b1-4c1f-aae8-b5eeb3d522b4"/>
 			</line>
 			<line>
-				<reportElement x="93" y="20" width="165" height="1" uuid="b67be8e0-80f8-4554-a1d2-63989ac5b8cb"/>
+				<reportElement x="93" y="19" width="131" height="1" uuid="b67be8e0-80f8-4554-a1d2-63989ac5b8cb"/>
 			</line>
 			<line>
-				<reportElement x="110" y="44" width="170" height="1" uuid="ed98388f-386d-4432-bd4a-f200eb700638"/>
+				<reportElement x="110" y="43" width="143" height="1" uuid="ed98388f-386d-4432-bd4a-f200eb700638"/>
 			</line>
 			<textField>
-				<reportElement x="442" y="9" width="90" height="12" uuid="b46fb9d3-579e-4aa4-9eea-3fc72191dcd4"/>
+				<reportElement x="445" y="9" width="68" height="11" uuid="b46fb9d3-579e-4aa4-9eea-3fc72191dcd4"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_almacen_fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="113" y="32" width="165" height="12" uuid="d42e9f8f-c67e-4f29-b2af-0703d9c1a7bd"/>
-				<textElement verticalAlignment="Bottom">
+				<reportElement x="113" y="32" width="140" height="12" uuid="d42e9f8f-c67e-4f29-b2af-0703d9c1a7bd"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_almacen_responsable_area}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="95" y="8" width="148" height="12" uuid="542f831e-adca-4543-b9bb-398178ece31e"/>
-				<textElement verticalAlignment="Bottom">
+				<reportElement x="95" y="8" width="129" height="12" uuid="542f831e-adca-4543-b9bb-398178ece31e"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_almacen_area_sol}]]></textFieldExpression>
@@ -213,9 +213,9 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="17" y="1" width="55" height="20" uuid="f6a52aa7-fd0a-4b58-b54b-95dca9eda9ce"/>
+				<reportElement x="17" y="0" width="55" height="20" uuid="f6a52aa7-fd0a-4b58-b54b-95dca9eda9ce"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -229,7 +229,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_vale_num_referencia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="72" y="1" width="237" height="20" uuid="c834fa28-6e0e-4114-8c48-ca6054edb32a"/>
+				<reportElement x="72" y="0" width="237" height="20" uuid="c834fa28-6e0e-4114-8c48-ca6054edb32a"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -243,7 +243,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_vale_nombre_consumible}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="399" y="1" width="78" height="20" uuid="65cc206d-6b5d-4e6a-bc95-0be6940f0f39"/>
+				<reportElement x="399" y="0" width="78" height="20" uuid="65cc206d-6b5d-4e6a-bc95-0be6940f0f39"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -257,7 +257,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_vale_unidad_consumible}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="477" y="1" width="80" height="20" uuid="662f62e8-a476-4f7e-8d70-8ed33acb359e"/>
+				<reportElement x="477" y="0" width="80" height="20" uuid="662f62e8-a476-4f7e-8d70-8ed33acb359e"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -271,7 +271,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{detalle_vale_cantidad_entregada}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="309" y="1" width="90" height="20" uuid="ff350d07-6f3f-4269-966b-cafee1e760d6"/>
+				<reportElement x="309" y="0" width="90" height="20" uuid="ff350d07-6f3f-4269-966b-cafee1e760d6"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
