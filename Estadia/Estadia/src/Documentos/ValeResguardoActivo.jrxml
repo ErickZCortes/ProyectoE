@@ -139,10 +139,6 @@ WHERE
 				</textElement>
 				<text><![CDATA[BIENES INFORMÁTICOS]]></text>
 			</staticText>
-			<image>
-				<reportElement x="44" y="0" width="185" height="54" uuid="b3e6ed91-dc92-420d-b05b-8f62e13ddf0d"/>
-				<imageExpression><![CDATA["..\\Img\\SEP_septiembre_1.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
