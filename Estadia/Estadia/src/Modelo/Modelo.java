@@ -74,7 +74,7 @@ public class Modelo {
         totalRegistros = 0;
         model = new DefaultTableModel(null, titulos);
 
-        cons = "select id_user,nombre,user,password,firma_dig,rfc,curp,acceso from usuarios where user = '" + user + "' AND password = '" + password + "'";
+        cons = "select id_user,nombre,user,password,firma_dig,rfc,curp,acceso from usuarios where user = BINARY '" + user + "'  AND password = BINARY '" + password + "'";
 
         try {
             Statement st = cn.createStatement();

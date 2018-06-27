@@ -25,7 +25,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-
     }
 
     /**
@@ -67,6 +66,8 @@ public class Principal extends javax.swing.JFrame {
         mSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú");
+        setIconImages(null);
 
         Escritorio.setBackground(new java.awt.Color(255, 255, 255));
         Escritorio.setPreferredSize(new java.awt.Dimension(374, 374));
@@ -136,7 +137,7 @@ public class Principal extends javax.swing.JFrame {
 
         mUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         mUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        mUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216498-24.png"))); // NOI18N
+        mUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Male_User_24px.png"))); // NOI18N
         mUsuarios.setText("Usuarios");
         mUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
@@ -152,6 +153,7 @@ public class Principal extends javax.swing.JFrame {
 
         mAreas.setBackground(new java.awt.Color(255, 255, 255));
         mAreas.setForeground(new java.awt.Color(255, 255, 255));
+        mAreas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Flow_Chart_24px.png"))); // NOI18N
         mAreas.setText("Areas");
         mAreas.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
@@ -167,6 +169,7 @@ public class Principal extends javax.swing.JFrame {
 
         mPersonal.setBackground(new java.awt.Color(255, 255, 255));
         mPersonal.setForeground(new java.awt.Color(255, 255, 255));
+        mPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_People_24px.png"))); // NOI18N
         mPersonal.setText("Personal");
         mPersonal.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
@@ -190,6 +193,7 @@ public class Principal extends javax.swing.JFrame {
 
         mReportes.setBackground(new java.awt.Color(255, 255, 255));
         mReportes.setForeground(new java.awt.Color(255, 255, 255));
+        mReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Documents_24px.png"))); // NOI18N
         mReportes.setText("Reportes");
         mReportes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
@@ -200,6 +204,7 @@ public class Principal extends javax.swing.JFrame {
 
         mBienes.setBackground(new java.awt.Color(255, 255, 255));
         mBienes.setForeground(new java.awt.Color(255, 255, 255));
+        mBienes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Organization_24px.png"))); // NOI18N
         mBienes.setText("Activo Fijo");
         mBienes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
@@ -239,7 +244,7 @@ public class Principal extends javax.swing.JFrame {
 
         menuC.setBackground(new java.awt.Color(255, 255, 255));
         menuC.setForeground(new java.awt.Color(255, 255, 255));
-        menuC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/3209270-24.png"))); // NOI18N
+        menuC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Paid_24px_1.png"))); // NOI18N
         menuC.setText("Consumibles");
         menuC.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
@@ -271,7 +276,7 @@ public class Principal extends javax.swing.JFrame {
 
         mSalir.setBackground(new java.awt.Color(255, 255, 255));
         mSalir.setForeground(new java.awt.Color(255, 255, 255));
-        mSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/326635-24.png"))); // NOI18N
+        mSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Exit_24px.png"))); // NOI18N
         mSalir.setText("Salir");
         mSalir.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         mSalir.addMouseListener(new java.awt.event.MouseAdapter() {
