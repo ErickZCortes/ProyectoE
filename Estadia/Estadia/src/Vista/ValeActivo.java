@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import Datos.DatosAltaBien;
 import Datos.DatosArea;
 import Datos.DatosDetalleResguardo;
 import Datos.DatosResguardo;
@@ -41,6 +42,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     Controlador c = new Controlador();
     DatosResguardo datRes = new DatosResguardo();
     DatosDetalleResguardo datDet = new DatosDetalleResguardo();
+    DatosAltaBien AltaB = new DatosAltaBien();
     String accion = "";
     int contador = 0;
     int ValorT = 0;
@@ -62,7 +64,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtcurp.setEnabled(false);
         txtclave.setEnabled(false);
         dcfechaRes.setEnabled(false);
-
         txtNomBien.setEnabled(false);
         txtNInventario.setEnabled(false);
         txtValor.setEnabled(false);
@@ -71,14 +72,34 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtMarca.setEnabled(false);
         txtCanTotal.setEnabled(false);
         txtValTotal.setEnabled(false);
-
+        
+        btnAgregar.setEnabled(false);
+        btnEliminarD.setEnabled(false);
+        
         btnBuscarPersona.setEnabled(false);
         btnBuscarBien.setEnabled(false);
         btnAdd.setEnabled(true);
         btnGenerar.setEnabled(false);
         btnCancelar.setEnabled(false);
     }
-
+    
+    void bloqueardos() {
+        txtName.setEnabled(false);
+        txtCTT.setEnabled(false);
+        txtArea.setEnabled(false);
+        txtcurp.setEnabled(false);
+        txtclave.setEnabled(false);
+        dcfechaRes.setEnabled(false);
+        txtNomBien.setEnabled(false);
+        txtNInventario.setEnabled(false);
+        txtValor.setEnabled(false);
+        txtSerie.setEnabled(false);
+        txtModelo.setEnabled(false);
+        txtMarca.setEnabled(false);
+        txtCanTotal.setEnabled(false);
+        txtValTotal.setEnabled(false);
+        
+    }
     void desbloquear() {
         txtName.setEnabled(true);
         txtCTT.setEnabled(true);
@@ -86,7 +107,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtcurp.setEnabled(true);
         txtclave.setEnabled(true);
         dcfechaRes.setEnabled(true);
-
         txtNomBien.setEnabled(true);
         txtNInventario.setEnabled(true);
         txtValor.setEnabled(true);
@@ -95,7 +115,9 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtMarca.setEnabled(true);
         txtCanTotal.setEnabled(true);
         txtValTotal.setEnabled(true);
-
+        
+        btnAgregar.setEnabled(true);
+        btnEliminarD.setEnabled(true);
         btnBuscarPersona.setEnabled(true);
         btnBuscarBien.setEnabled(true);
         btnAdd.setEnabled(false);
@@ -176,6 +198,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 String modelo = (String) tbDatos.getValueAt(filasel, 7);
                 String marca = (String) tbDatos.getValueAt(filasel, 6);
                 String serie = (String) tbDatos.getValueAt(filasel, 8);
+                String idBien = (String) tbDatos.getValueAt(filasel, 3);
                 
                 txtIdDetalle.setText(iddetalleA);
                 txtNomBien.setText(Nombre);
@@ -184,13 +207,13 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 txtModelo.setText(modelo);
                 txtMarca.setText(marca);
                 txtSerie.setText(serie);
-                
+                txtIdBien.setText(idBien);
                 
             }
         } catch (Exception e) {
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,6 +259,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         txtIdDetalle = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnEliminarD = new javax.swing.JButton();
+        txtIdCantB = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         txtCanTotal = new javax.swing.JTextField();
         txtValTotal = new javax.swing.JTextField();
@@ -250,7 +274,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        setClosable(true);
         setIconifiable(true);
         setTitle("Asignación de bienes");
         setFrameIcon(null);
@@ -443,24 +466,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
         txtNInventario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtIdValeR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdValeRActionPerformed(evt);
-            }
-        });
-
-        txtIdBien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdBienActionPerformed(evt);
-            }
-        });
-
-        txtIdDetalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdDetalleActionPerformed(evt);
-            }
-        });
-
         btnAgregar.setBackground(new java.awt.Color(41, 55, 61));
         btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -538,6 +543,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                                     .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(157, 157, 157))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtIdCantB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdBien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -554,7 +561,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtIdDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdValeR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIdValeR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdCantB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -585,7 +593,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Datos del bien", jPanel1);
@@ -750,9 +758,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -830,30 +836,32 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
         String idRes = (String.valueOf(c.select_id_vale_res()));
         txtIdValeR.setText(idRes);
-        c.cargar_tabla_detalle_Res(idRes);
+        try {
+            cargar_tabla(idRes);
+        } catch (SQLException ex) {
+            Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         datRes.setId_valeres(Integer.parseInt(txtIdValeR.getText()));
-        c.eliminar_detalle_res(datRes);
+        
+        int fila = tbDatos.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            String idBien =(String)(tbDatos.getValueAt(i, 3));
+            int idb = Integer.parseInt(idBien);
+            
+            int existencia = c.seleccionar_ex_Bien(idBien);
+            existencia = existencia + 1;
+            c.editar_AltaBienes_xBaja(idBien, existencia);
+            c.eliminar_detalle_res(datRes);
+        }
         c.eliminar_vale_res(datRes);
         bloquear();
         vaciar();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtIdValeRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdValeRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdValeRActionPerformed
-
-    private void txtIdBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdBienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdBienActionPerformed
-
-    private void txtIdDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdDetalleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdDetalleActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
@@ -901,17 +909,20 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         datDet.setValor_b(Integer.parseInt(txtValor.getText()));
         contador = contador + 1;
         datDet.setNum_ref(contador);
-
+        int cantidadB = Integer.parseInt(txtIdCantB.getText());
+        cantidadB = cantidadB - 1;
         txtCanTotal.setText(String.valueOf(contador));
         int valorB = Integer.parseInt(txtValor.getText());
         ValorT = ValorT + valorB;
         txtValTotal.setText(String.valueOf(ValorT));
+        
         if (c.Guardar_detalle_res(accion, datDet)) {
             if (accion == "A") {
-
+                c.editar_AltaBienes_xBaja(txtIdBien.getText(), cantidadB);
                 //       JOptionPane.showMessageDialog(null, "El bien ha sido Agregado.");
                 vaciardos();
             } else if (accion == "M") {
+                c.editar_AltaBienes_xBaja(txtIdBien.getText(), cantidadB);
                 JOptionPane.showMessageDialog(null, "El bien ha sido Actualizado.");
             }
 
@@ -989,7 +1000,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
     private void btnEliminarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDActionPerformed
         int filasel = tbDatos.getSelectedRow();
-
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
@@ -999,11 +1009,15 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 int valorT = Integer.parseInt(txtValTotal.getText());
                 int ValP = Integer.parseInt(txtValor.getText());
                 int Res = valorT - ValP;
-                
+                int exisB = c.seleccionar_ex_Bien(txtIdBien.getText());
+                exisB = exisB+1;
+                c.editar_AltaBienes_xBaja(txtIdBien.getText(), exisB);
                 c.eliminar_xregistro_detalle_res(Integer.parseInt(txtIdDetalle.getText()));
                 txtCanTotal.setText(String.valueOf(cantR));
                 txtValTotal.setText(String.valueOf(Res));
                 cargar_tabla(txtIdValeR.getText());
+                desbloquear();
+                vaciardos();
             }
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
@@ -1012,6 +1026,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
         actualizarDatos();
+        bloqueardos();
     }//GEN-LAST:event_tbDatosMouseClicked
 
 
@@ -1051,6 +1066,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtCTT;
     private javax.swing.JTextField txtCanTotal;
     public static javax.swing.JTextField txtIdBien;
+    public static javax.swing.JTextField txtIdCantB;
     public static javax.swing.JTextField txtIdDetalle;
     public static javax.swing.JTextField txtIdValeR;
     public static javax.swing.JTextField txtMarca;

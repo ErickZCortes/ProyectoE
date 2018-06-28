@@ -394,10 +394,11 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
         if (evt.getClickCount() == 2) {
             int fila = tbDatos.getSelectedRow();
-            String  idbien,nombre,ninventario,marca,serie,valor,modelo;
+            String  idbien,nombre,ninventario,marca,serie,valor,modelo, cantidad;
             
             idbien = tbDatos.getValueAt(fila, 0).toString();
             nombre = tbDatos.getValueAt(fila, 5).toString();
+            cantidad = tbDatos.getValueAt(fila, 6).toString();
             ninventario= tbDatos.getValueAt(fila, 1).toString();
             marca = tbDatos.getValueAt(fila, 7).toString();
             modelo = tbDatos.getValueAt(fila, 8).toString();
@@ -411,6 +412,7 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
             ValeActivo.txtModelo.setText(modelo);
             ValeActivo.txtSerie.setText(serie);
             ValeActivo.txtValor.setText(valor);
+            ValeActivo.txtIdCantB.setText(cantidad);
 //            idbien = tbDatos.getValueAt(fila, 0).toString();
 //            cantidad = tbDatos.getValueAt(fila, 6).toString();
 //            

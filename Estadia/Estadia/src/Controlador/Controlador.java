@@ -82,7 +82,15 @@ public class Controlador {
         }
         return false;
     }
-
+    public int seleccionarStock_Con() {
+        return m.seleccionarStock_Con();
+    }
+    public int seleccionar_ex_Cons(String idCons) {
+        return m.seleccionar_ex_Cons(idCons);
+    }
+    public void editar_Consumible_x_existencia(String idConsumible,int cantidad) {
+        m.editar_Consumible_x_existencia(idConsumible, cantidad);
+    }
     public boolean eliminar_consumible(DatosConsumible datos) {
         return m.eliminar_consumible(datos);
     }
@@ -155,7 +163,10 @@ public class Controlador {
         }
         return false;
     }
-
+    
+    public int seleccionar_ex_Bien(String idAlta) {
+        return m.seleccionar_ex_Bien(idAlta);
+    }
     public void editar_AltaBienes_xBaja(String idAlta, int cantidad) {
         m.editar_AltaBienes_xBaja(idAlta, cantidad);
     }
