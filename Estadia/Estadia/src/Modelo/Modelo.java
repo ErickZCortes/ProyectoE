@@ -15,6 +15,7 @@ import Datos.DatosPersonal;
 import Datos.DatosDetalleValeAlmacen;
 import Datos.DatosResguardo;
 import Datos.DatosValeAlmacen;
+import Documentos.ValeAlmacen;
 import Vista.Principal;
 import Vista.ValeActivo;
 import Vista.ValesAlmacen;
@@ -342,7 +343,49 @@ public class Modelo {
         }
 
     }
+    public int seleccionarStock_Con() {
+        int idCons = Integer.parseInt(ValesAlmacen.txtidConsumible.getText());
+        cons = "SELECT stock_minimo FROM consumibles WHERE id_consum = " + idCons + "";
+        try {
+            int existencia = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                existencia = rs.getInt("stock_minimo");
+            }
+            return existencia;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+    }
+    public int seleccionar_ex_Cons(String idCons) {
+        cons="SELECT existencia FROM Consumibles WHERE id_consum = " + idCons + "";
+        try {
+            int existencia = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                
+                existencia = rs.getInt("existencia");
+            }
+            return existencia;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+    }
+    public void editar_Consumible_x_existencia(String idConsumible,int cantidad) {
+        cons = "UPDATE consumibles SET existencia ='" + cantidad + "' WHERE id_consum = '" + idConsumible + "'";
 
+        try {
+            PreparedStatement pst = cn.prepareStatement(cons);
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     public boolean eliminar_consumible(DatosConsumible datos) {
         cons = "delete from consumibles where id_consum = ?";
         try {
@@ -757,7 +800,23 @@ public class Modelo {
             return false;
         }
     }
-
+    
+    public int seleccionar_ex_Bien(String idAlta) {
+        cons="SELECT cantidad_bien FROM Altabienes WHERE id_alta = " + idAlta + "";
+        try {
+            int existencia = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                
+                existencia = rs.getInt("cantidad_bien");
+            }
+            return existencia;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+    }
     public boolean editar_AltaBienes(DatosAltaBien datos, String idAlta) {
 
         cons = "update AltaBienes set nInventario = ? ,area = ?, formaAdquisicion = ?, descripcion = ?, cantidad_bien = ?, marca_bien = ?, modelo_bien = ?, serie_bien = ?, valor_bien = ? where id_alta ='" + idAlta + "' ";
@@ -788,6 +847,7 @@ public class Modelo {
         }
 
     }
+    
     
 //    public boolean editar_AltaBienes_x(DatosAltaBien datos) {
 //
@@ -1281,7 +1341,7 @@ public class Modelo {
             cons = "DELETE FROM detalle_vale WHERE id_detalle=" + idDetalle + "";
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.executeUpdate();
-            System.out.println("Registro Eliminado con Éxito");
+            //System.out.println("Registro Eliminado con Éxito");
         }
 
     }

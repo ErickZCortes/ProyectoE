@@ -214,14 +214,16 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
         if (evt.getClickCount() == 2) {
             int fila = tbDatos.getSelectedRow();
-            String  nombre,idcon,unidad;
+            String  nombre,idcon,unidad, existencia;
             nombre = tbDatos.getValueAt(fila, 2).toString();
             idcon = tbDatos.getValueAt(fila, 0).toString();
             unidad = tbDatos.getValueAt(fila, 5).toString();
+            existencia = tbDatos.getValueAt(fila, 4).toString();
             
             ValesAlmacen.txtMaterial.setText(nombre);
             ValesAlmacen.txtidConsumible.setText(idcon);
             ValesAlmacen.txtUnidad.setText(unidad);
+            ValesAlmacen.txtidCantidadC.setText(existencia);
             this.dispose();
         }
     }//GEN-LAST:event_tbDatosMousePressed

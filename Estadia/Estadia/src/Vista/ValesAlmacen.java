@@ -49,7 +49,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     public ValesAlmacen() throws SQLException {
         initComponents();
         bloquear();
-
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
 
@@ -67,9 +66,26 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
         btnBuscarPe.setEnabled(false);
         btnBuscarCon.setEnabled(false);
-        btnAdd.setEnabled(false);
+        btnAgregar.setEnabled(false);
         btnElim.setEnabled(false);
         btnGenerarR.setEnabled(false);
+        btnCancelV.setEnabled(false);
+        btnCrear.setEnabled(true);
+    }
+    void bloquearTbdatos() {
+        txtResA.setEnabled(false);
+        dcFecha.setEnabled(false);
+        txtPerSol.setEnabled(false);
+        txtArea.setEnabled(false);
+        txtMaterial.setEnabled(false);
+        txtCantidadS.setEnabled(false);
+        txtCantidadE.setEnabled(false);
+        txtUnidad.setEnabled(false);
+
+//        btnModificar.setEnabled(true);
+//        btnElim.setEnabled(true);
+//        btnGenerarR.setEnabled(true);
+//        
     }
 
     void desbloquear() {
@@ -84,9 +100,12 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
         btnBuscarPe.setEnabled(true);
         btnBuscarCon.setEnabled(true);
-        btnAdd.setEnabled(true);
+        btnAgregar.setEnabled(true);
         btnElim.setEnabled(true);
         btnGenerarR.setEnabled(true);
+        btnCancelV.setEnabled(true);
+        btnCrear.setEnabled(false);
+
     }
 
     void vaciar() {
@@ -142,8 +161,19 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccionar Registro");
             } else {
-                String iddetalle = (String) tbDatos.getValueAt(filasel, 0);           
+                String iddetalle = (String) tbDatos.getValueAt(filasel, 0);
+                String nombre = (String) tbDatos.getValueAt(filasel, 4);
+                String cantA = (String) tbDatos.getValueAt(filasel, 5);
+                String cantE = (String) tbDatos.getValueAt(filasel, 7);
+                String unidad = (String) tbDatos.getValueAt(filasel, 6);
+                String idCon = (String) tbDatos.getValueAt(filasel, 2);
+                
                 txtidDetalle.setText(iddetalle);
+                txtMaterial.setText(nombre);
+                txtCantidadS.setText(cantA);
+                txtCantidadE.setText(cantE);
+                txtUnidad.setText(unidad);
+                txtidConsumible.setText(idCon);
             }
         } catch (Exception e) {
         }
@@ -174,12 +204,13 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtidVale = new javax.swing.JTextField();
         txtidPersona = new javax.swing.JTextField();
         txtidConsumible = new javax.swing.JTextField();
+        txtidCantidadC = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLMaterial = new javax.swing.JLabel();
         txtMaterial = new javax.swing.JTextField();
         btnBuscarCon = new javax.swing.JButton();
         btnElim = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jLCantidadSolicitada = new javax.swing.JLabel();
         txtCantidadS = new javax.swing.JTextField();
         jLCURP5 = new javax.swing.JLabel();
@@ -195,7 +226,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        setClosable(true);
         setIconifiable(true);
         setTitle("Vales de almacen");
         setFrameIcon(null);
@@ -286,7 +316,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtArea)
                     .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,7 +326,9 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addComponent(txtidPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +337,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -367,18 +400,18 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             }
         });
 
-        btnAdd.setBackground(new java.awt.Color(41, 55, 61));
-        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Add_24px.png"))); // NOI18N
-        btnAdd.setText("Agregar");
-        btnAdd.setBorder(null);
-        btnAdd.setBorderPainted(false);
-        btnAdd.setContentAreaFilled(false);
-        btnAdd.setOpaque(true);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setBackground(new java.awt.Color(41, 55, 61));
+        btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Add_24px.png"))); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.setBorder(null);
+        btnAgregar.setBorderPainted(false);
+        btnAgregar.setContentAreaFilled(false);
+        btnAgregar.setOpaque(true);
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
@@ -419,7 +452,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
                                 .addComponent(jLCURP6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -429,10 +461,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                                 .addComponent(txtCantidadE, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(153, 153, 153))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(168, 168, 168))))
+                        .addGap(215, 215, 215))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,17 +480,18 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                             .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLCURP6)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLMaterial)
-                            .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscarCon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBuscarCon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLMaterial)
+                                .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCantidadS, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLCantidadSolicitada))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -546,7 +579,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addComponent(btnCancelV, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(btnGenerarR, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -570,9 +603,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,16 +684,28 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
     private void btnCancelVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelVActionPerformed
         dVale.setIdVale(Integer.parseInt(txtidVale.getText()));
-        dDetalle.setId_vale(Integer.parseInt(txtidVale.getText()));
-        c.eliminar_detalle_almacen(dDetalle);
+        int stock = 0;
+        int modificado;
+        
+        int fila = tbDatos.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            String idCons =  (String) (tbDatos.getValueAt(i, 2));
+            String cantidad = (String)(tbDatos.getValueAt(i, 7));
+            int idc = Integer.parseInt(idCons);
+            
+            int existencia = c.seleccionar_ex_Cons(idCons);
+            stock = Integer.parseInt(cantidad);
+            modificado = existencia+ stock;
+            c.editar_Consumible_x_existencia(idCons, modificado);
+            c.eliminar_detalle_almacen(dDetalle);
+        }
         c.eliminarVale(dVale);
         bloquear();
         vaciar();
         this.dispose();
     }//GEN-LAST:event_btnCancelVActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (txtMaterial.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el Nombre del material");
             txtMaterial.requestFocus();
@@ -691,12 +734,23 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dDetalle.setCantidad_solici(Integer.parseInt(txtCantidadS.getText()));
         dDetalle.setCantidad_entregada(Integer.parseInt(txtCantidadE.getText()));
         dDetalle.setUnidad_consumible(txtUnidad.getText());
-
-        if (c.Guardar_detalle_almacen(accion, dDetalle)) {
+        
+        
+        int CantC = Integer.parseInt(txtidCantidadC.getText());
+        int CantE = Integer.parseInt(txtCantidadE.getText());
+        int resC = CantC - CantE;
+        
+        if (CantC == 0) {
+            JOptionPane.showMessageDialog(null, "NEL :V");
+            vaciardos();
+        }else{
+        c.Guardar_detalle_almacen(accion, dDetalle);
             if (accion == "A") {
+                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
                 vaciardos();
              //   JOptionPane.showMessageDialog(null, "Información Agregada");
             } else if (accion == "M") {
+                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
                 JOptionPane.showMessageDialog(null, "Información Modificada");
             }
 
@@ -706,7 +760,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+        
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGenerarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarRActionPerformed
 
@@ -764,8 +819,16 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
             } else {
                 int idDetalle = (Integer.parseInt(txtidDetalle.getText()));
+                
+                
+                int CantC = c.seleccionar_ex_Cons(txtidConsumible.getText());
+                int CantE = Integer.parseInt(txtCantidadE.getText());
+                int Modificado = CantC + CantE;
+                c.editar_Consumible_x_existencia(txtidConsumible.getText(), Modificado);
                 c.eliminar_xregistro_detalle_almacen(idDetalle);
                 cargar_tabla(txtidVale.getText());
+                vaciardos();
+                desbloquear();
             }
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
@@ -774,12 +837,12 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
       actualizarDatos();
-      
+     // bloquearTbdatos();
     }//GEN-LAST:event_tbDatosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscarCon;
     private javax.swing.JButton btnBuscarPe;
     private javax.swing.JButton btnCancelV;
@@ -810,6 +873,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtPerSol;
     public static javax.swing.JTextField txtResA;
     public static javax.swing.JTextField txtUnidad;
+    public static javax.swing.JTextField txtidCantidadC;
     public static javax.swing.JTextField txtidConsumible;
     public static javax.swing.JTextField txtidDetalle;
     public static javax.swing.JTextField txtidPersona;
