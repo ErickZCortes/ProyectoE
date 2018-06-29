@@ -11,6 +11,8 @@ import Controlador.Controlador;
 import Datos.DatosAltaBien;
 import Datos.DatosArea;
 import Modelo.Modelo;
+import Validar.Validar;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -27,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class AltaBienes extends javax.swing.JInternalFrame {
-    
+    Validar v = new Validar();
     DatosAltaBien datAltaB = new DatosAltaBien();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -38,6 +40,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
      */
     public AltaBienes() throws SQLException {
         initComponents();
+        v.validarSoloLetras(txtDescripcion);
+        v.validarSoloNumeros(txtCantidad);
+        v.validarSoloNumeros(txtValor);
         bloquear();
         cargar_tabla_AltaBienes("");
         Calendar c2 = new GregorianCalendar();
@@ -209,13 +214,16 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         txtInventario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtInventario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtInventarioKeyTyped(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtInventarioKeyPressed(evt);
             }
         });
 
         txtMarca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMarcaKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMarcaKeyTyped(evt);
             }
@@ -223,6 +231,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         txtCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyTyped(evt);
             }
@@ -306,6 +317,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         txtModelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtModelo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtModeloKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtModeloKeyTyped(evt);
             }
@@ -313,6 +327,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         txtSerie.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtSerie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSerieKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSerieKeyTyped(evt);
             }
@@ -333,6 +350,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescripcionKeyTyped(evt);
             }
@@ -342,7 +362,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         jLabel9.setText("Nombre y Característica:");
 
         comboForma.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        comboForma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un tipo...", "Entrada de almacén", "Compra directa", "Donación", "Nanencia o producción", "Indocumentación", "Reposición", "Transferencia", "Reasignación" }));
+        comboForma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UN TIPO...", "ENTRADA DE ALMACÉN", "COMPRA DIRECTA", "DONACIÓN", "NANENCIA O PRODUCCIÓN", "INDOCUMENTACIÓN", "REPOSICIÓN", "TRANSFERENCIA", "REASIGNACIÓN" }));
 
         tbDatos = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -379,9 +399,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(179, 179, 179)
@@ -477,9 +495,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(9, 9, 9)))
+                            .addComponent(jLabel9))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -692,15 +708,15 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnAddMouseClicked
 
-    private void txtInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyTyped
-        if (txtInventario.getText().length() == 27) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtInventarioKeyTyped
-
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
         if (txtDescripcion.getText().length() == 70) {
             evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
         }
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
@@ -714,17 +730,36 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         if (txtMarca.getText().length() == 20) {
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_txtMarcaKeyTyped
 
     private void txtModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModeloKeyTyped
         if (txtModelo.getText().length() == 20) {
             evt.consume();
         }
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_txtModeloKeyTyped
 
     private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
        if (txtSerie.getText().length() == 20) {
             evt.consume();
+        }
+       char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
         }
     }//GEN-LAST:event_txtSerieKeyTyped
 
@@ -733,6 +768,42 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtValorKeyTyped
+
+    private void txtInventarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtDescripcion.requestFocus();
+        }
+    }//GEN-LAST:event_txtInventarioKeyPressed
+
+    private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCantidad.requestFocus();
+        }
+    }//GEN-LAST:event_txtDescripcionKeyPressed
+
+    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtMarca.requestFocus();
+        }
+    }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void txtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtModelo.requestFocus();
+        }
+    }//GEN-LAST:event_txtMarcaKeyPressed
+
+    private void txtModeloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModeloKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtSerie.requestFocus();
+        }
+    }//GEN-LAST:event_txtModeloKeyPressed
+
+    private void txtSerieKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtValor.requestFocus();
+        }
+    }//GEN-LAST:event_txtSerieKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

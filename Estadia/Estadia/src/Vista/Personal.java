@@ -9,6 +9,9 @@ import Controlador.Controlador;
 import Datos.DatosArea;
 import Datos.DatosPersonal;
 import Modelo.Modelo;
+import Validar.Validar;
+import static Vista.BajaBienes.txtDescripcion;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Personal extends javax.swing.JInternalFrame {
-
+    Validar v = new Validar();
     DatosPersonal datPersonal = new DatosPersonal();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -177,6 +180,9 @@ public class Personal extends javax.swing.JInternalFrame {
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
@@ -530,7 +536,19 @@ public class Personal extends javax.swing.JInternalFrame {
       if (txtNombre.getText().length() == 60) {
             evt.consume();
         }
+      char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCURP.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

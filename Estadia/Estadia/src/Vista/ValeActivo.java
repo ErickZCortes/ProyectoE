@@ -13,6 +13,7 @@ import Datos.DatosResguardo;
 import Documentos.ValeResguardo;
 import Modelo.Conexion;
 import static Vista.Principal.Escritorio;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -309,6 +310,11 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         jLabel2.setText("Clave: ");
 
         txtName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Plantel o área: ");
@@ -323,8 +329,18 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         jLabel6.setText("Nombre del personal:");
 
         txtclave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtclave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtclaveKeyPressed(evt);
+            }
+        });
 
         txtCTT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCTT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCTTKeyPressed(evt);
+            }
+        });
 
         txtcurp.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcurp.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -353,6 +369,11 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         dcfechaRes.setDateFormatString("yyyy/MM/dd");
 
         txtArea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAreaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -441,6 +462,11 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         jLabel13.setText("Serie:");
 
         txtNomBien.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNomBien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomBienKeyPressed(evt);
+            }
+        });
 
         txtValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -1028,6 +1054,36 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         actualizarDatos();
         bloqueardos();
     }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCTT.requestFocus();
+        }
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtCTTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCTTKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtArea.requestFocus();
+        }
+    }//GEN-LAST:event_txtCTTKeyPressed
+
+    private void txtAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtclave.requestFocus();
+        }
+    }//GEN-LAST:event_txtAreaKeyPressed
+
+    private void txtclaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtclaveKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtcurp.requestFocus();
+        }
+    }//GEN-LAST:event_txtclaveKeyPressed
+
+    private void txtNomBienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomBienKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtNInventario.requestFocus();
+        }
+    }//GEN-LAST:event_txtNomBienKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

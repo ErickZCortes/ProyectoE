@@ -8,6 +8,8 @@ package Vista;
 import Controlador.Controlador;
 import Datos.DatosConsumible;
 import Modelo.Modelo;
+import Validar.Validar;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -22,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Consumibles extends javax.swing.JInternalFrame {
-
+    Validar v = new Validar();
     DatosConsumible datCons = new DatosConsumible();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -33,6 +35,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
      */
     public Consumibles() throws SQLException {
         initComponents();
+        v.validarSoloNumeros(txtCod);
+        v.validarSoloLetras(txtNombre);
+        v.validarSoloNumeros(txtValor);
+        v.validarSoloLetras(txtUnidad);
+        v.validarSoloNumeros(txtExistencia);
+        v.validarSoloNumeros(txtStockM);
         txtidConsum.setVisible(false);
         bloquear();
         cargar_tabla_consumibles("");
@@ -187,12 +195,44 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLabel6.setText("Existencia:");
 
         txtCod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodKeyTyped(evt);
+            }
+        });
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         txtExistencia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtExistencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExistenciaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtExistenciaKeyTyped(evt);
+            }
+        });
 
         txtValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtValorKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorKeyTyped(evt);
+            }
+        });
 
         btneditar.setBackground(new java.awt.Color(41, 55, 61));
         btneditar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -302,9 +342,12 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tbDatos);
 
         txtStockM.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtStockM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStockMActionPerformed(evt);
+        txtStockM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtStockMKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockMKeyTyped(evt);
             }
         });
 
@@ -312,6 +355,14 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLabel7.setText("Stock Mínimo:");
 
         txtUnidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtUnidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUnidadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUnidadKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel8.setText("Unidad:");
@@ -468,8 +519,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         dcFecha.setVisible(true);
         dcFecha.setEnabled(true);
         jLFecha.setVisible(true);
-
-        
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btneditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btneditarMouseClicked
@@ -602,9 +651,81 @@ public class Consumibles extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidConsumActionPerformed
 
-    private void txtStockMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStockMActionPerformed
+    private void txtCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtNombre.requestFocus();
+        }
+    }//GEN-LAST:event_txtCodKeyPressed
+
+    private void txtCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodKeyTyped
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtValor.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtValorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtUnidad.requestFocus();
+        }
+    }//GEN-LAST:event_txtValorKeyPressed
+
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtValorKeyTyped
+
+    private void txtUnidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtExistencia.requestFocus();
+        }
+    }//GEN-LAST:event_txtUnidadKeyPressed
+
+    private void txtUnidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUnidadKeyTyped
+
+    private void txtExistenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtStockM.requestFocus();
+        }
+    }//GEN-LAST:event_txtExistenciaKeyPressed
+
+    private void txtExistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciaKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtExistenciaKeyTyped
+
+    private void txtStockMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockMKeyPressed
+        
+    }//GEN-LAST:event_txtStockMKeyPressed
+
+    private void txtStockMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockMKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStockMKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

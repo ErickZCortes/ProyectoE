@@ -330,7 +330,6 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescripcionActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDescripcionKeyTyped"/>
           </Events>
           <AuxValues>
@@ -375,7 +374,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtValorKeyPressed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtValorKeyTyped"/>
           </Events>
           <AuxValues>
@@ -397,6 +396,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtInventarioKeyPressed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtInventarioKeyTyped"/>
           </Events>
         </Component>
@@ -417,9 +417,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboAreasActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;DatosArea&gt;"/>
           </AuxValues>
@@ -471,13 +468,13 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="7">
-                <StringItem index="0" value="Seleccione una causa..."/>
-                <StringItem index="1" value="Inutilidad"/>
-                <StringItem index="2" value="Siniestro"/>
-                <StringItem index="3" value="Accidente o muerte"/>
-                <StringItem index="4" value="Robo o extrav&#xed;o"/>
-                <StringItem index="5" value="Reasignaci&#xf3;n"/>
-                <StringItem index="6" value="Reclasificaci&#xf3;n"/>
+                <StringItem index="0" value="SELECCIONE UNA CAUSA..."/>
+                <StringItem index="1" value="INUTILIDAD"/>
+                <StringItem index="2" value="SINIESTRO"/>
+                <StringItem index="3" value="ACCIDENTE O MUERTE"/>
+                <StringItem index="4" value="ROBO O EXTRAV&#xcd;O"/>
+                <StringItem index="5" value="REASIGNACI&#xd3;N"/>
+                <StringItem index="6" value="RECLASIFICACI&#xd3;N"/>
               </StringArray>
             </Property>
           </Properties>
