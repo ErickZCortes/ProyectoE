@@ -8,7 +8,9 @@ package Vista;
 import Controlador.Controlador;
 import Datos.DatosArea;
 import Modelo.Modelo;
+import Validar.Validar;
 import static Vista.Principal.Escritorio;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Areas extends javax.swing.JInternalFrame {
-
+    Validar v = new Validar();
     DatosArea datAreas = new DatosArea();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -31,6 +33,8 @@ public class Areas extends javax.swing.JInternalFrame {
      */
     public Areas() throws SQLException {
         initComponents();
+        v.validarSoloLetras(txtNombreC);
+        v.validarSoloNumeros(txtClaveI);
         bloquear();
         cargar_tabla_areas("");
     }
@@ -174,6 +178,9 @@ public class Areas extends javax.swing.JInternalFrame {
 
         txtNombreC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNombreC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreCKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreCKeyTyped(evt);
             }
@@ -188,6 +195,9 @@ public class Areas extends javax.swing.JInternalFrame {
 
         txtClaveCTT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtClaveCTT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtClaveCTTKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtClaveCTTKeyTyped(evt);
             }
@@ -525,19 +535,44 @@ public class Areas extends javax.swing.JInternalFrame {
         if (txtNombreC.getText().length() == 60) {
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_txtNombreCKeyTyped
 
     private void txtClaveCTTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveCTTKeyTyped
         if (txtClaveCTT.getText().length() == 10) {
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_txtClaveCTTKeyTyped
 
     private void txtClaveIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveIKeyTyped
-        if (txtClaveI.getText().length() == 15) {
+        if (txtClaveI.getText().length() == 5) {
             evt.consume();
         }
+        
     }//GEN-LAST:event_txtClaveIKeyTyped
+
+    private void txtNombreCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtClaveCTT.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreCKeyPressed
+
+    private void txtClaveCTTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveCTTKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtClaveI.requestFocus();
+        }
+    }//GEN-LAST:event_txtClaveCTTKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

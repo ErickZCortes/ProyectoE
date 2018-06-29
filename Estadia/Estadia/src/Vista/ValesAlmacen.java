@@ -12,6 +12,7 @@ import Documentos.ValeAlmacen;
 import Modelo.Conexion;
 import static Vista.Principal.Escritorio;
 import static Vista.ValeActivo.txtIdValeR;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -419,6 +420,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         jLCantidadSolicitada.setText("Cantidad Solicitada:");
 
         txtCantidadS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCantidadS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadSKeyPressed(evt);
+            }
+        });
 
         jLCURP5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLCURP5.setText("Cantidad Entregada:");
@@ -839,6 +845,12 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
       actualizarDatos();
      // bloquearTbdatos();
     }//GEN-LAST:event_tbDatosMouseClicked
+
+    private void txtCantidadSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCantidadE.requestFocus();
+        }
+    }//GEN-LAST:event_txtCantidadSKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,6 +9,7 @@ import Controlador.Controlador;
 import Datos.DatosPersonal;
 import Datos.DatosUsuario;
 import Modelo.Modelo;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -141,6 +142,9 @@ public class Registro extends javax.swing.JFrame {
 
         txtCURP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCURP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCURPKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCURPKeyTyped(evt);
             }
@@ -166,6 +170,9 @@ public class Registro extends javax.swing.JFrame {
 
         txtName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNameKeyTyped(evt);
             }
@@ -173,6 +180,9 @@ public class Registro extends javax.swing.JFrame {
 
         txtRFC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRFCKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtRFCKeyTyped(evt);
             }
@@ -184,6 +194,9 @@ public class Registro extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyTyped(evt);
             }
@@ -198,6 +211,9 @@ public class Registro extends javax.swing.JFrame {
 
         txtUser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUserKeyTyped(evt);
             }
@@ -513,6 +529,36 @@ public class Registro extends javax.swing.JFrame {
     private void btnminimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnminimizeActionPerformed
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnminimizeActionPerformed
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtRFC.requestFocus();
+        }
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCURP.requestFocus();
+        }
+    }//GEN-LAST:event_txtRFCKeyPressed
+
+    private void txtCURPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCURPKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtUser.requestFocus();
+        }
+    }//GEN-LAST:event_txtCURPKeyPressed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtPassword.requestFocus();
+        }
+    }//GEN-LAST:event_txtUserKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtSign.requestFocus();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments

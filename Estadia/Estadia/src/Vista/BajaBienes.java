@@ -13,6 +13,7 @@ import Datos.DatosArea;
 import Datos.DatosBajaBien;
 import Modelo.Modelo;
 import static Vista.Principal.Escritorio;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -245,11 +246,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         });
 
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
-            }
-        });
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescripcionKeyTyped(evt);
@@ -268,12 +264,10 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         dcFechaBaja.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         txtValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
-            }
-        });
         txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtValorKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtValorKeyTyped(evt);
             }
@@ -284,6 +278,9 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
         txtInventario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtInventario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtInventarioKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtInventarioKeyTyped(evt);
             }
@@ -293,11 +290,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         jLabel6.setText("Area: ");
 
         comboAreas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        comboAreas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAreasActionPerformed(evt);
-            }
-        });
 
         lbFecha1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lbFecha1.setText("Fecha de Adqusición:");
@@ -319,7 +311,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         });
 
         comboCausa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        comboCausa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una causa...", "Inutilidad", "Siniestro", "Accidente o muerte", "Robo o extravío", "Reasignación", "Reclasificación" }));
+        comboCausa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA CAUSA...", "INUTILIDAD", "SINIESTRO", "ACCIDENTE O MUERTE", "ROBO O EXTRAVÍO", "REASIGNACIÓN", "RECLASIFICACIÓN" }));
         comboCausa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCausaActionPerformed(evt);
@@ -625,18 +617,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnsaveMouseClicked
 
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
-
-    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboAreasActionPerformed
-
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
-
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btncancelActionPerformed
@@ -693,6 +673,12 @@ public class BajaBienes extends javax.swing.JInternalFrame {
        if (txtInventario.getText().length() == 27) {
             evt.consume();
         }
+       char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
     }//GEN-LAST:event_txtInventarioKeyTyped
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
@@ -712,6 +698,18 @@ public class BajaBienes extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtCantBajaKeyTyped
+
+    private void txtInventarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtDescripcion.requestFocus();
+        }
+    }//GEN-LAST:event_txtInventarioKeyPressed
+
+    private void txtValorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCantBaja.requestFocus();
+        }
+    }//GEN-LAST:event_txtValorKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
