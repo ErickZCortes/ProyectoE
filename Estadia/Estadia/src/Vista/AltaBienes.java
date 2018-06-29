@@ -11,7 +11,6 @@ import Controlador.Controlador;
 import Datos.DatosAltaBien;
 import Datos.DatosArea;
 import Modelo.Modelo;
-import Validar.Validar;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -29,7 +28,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class AltaBienes extends javax.swing.JInternalFrame {
-    Validar v = new Validar();
     DatosAltaBien datAltaB = new DatosAltaBien();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -40,9 +38,6 @@ public class AltaBienes extends javax.swing.JInternalFrame {
      */
     public AltaBienes() throws SQLException {
         initComponents();
-        v.validarSoloLetras(txtDescripcion);
-        v.validarSoloNumeros(txtCantidad);
-        v.validarSoloNumeros(txtValor);
         bloquear();
         cargar_tabla_AltaBienes("");
         Calendar c2 = new GregorianCalendar();
@@ -718,10 +713,18 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
        if (txtCantidad.getText().length() == 10) {
+            evt.consume();
+        }
+       char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtCantidadKeyTyped
@@ -765,6 +768,10 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
         if (txtValor.getText().length() == 10) {
+            evt.consume();
+        }
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtValorKeyTyped

@@ -255,13 +255,13 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"Id", " Codigo", "Nombre", "Fecha", "Existencia","Unidad", "Stock Mínimo", "ValorTotal"};
+        String[] titulos = {"Id", " Categoría", "Nombre", "Fecha", "Existencia","Unidad", "Stock Mínimo", "ValorTotal"};
 
         String[] registros = new String[8];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_consum ,codigo , nombre , fechaAd , existencia , unidad, stock_minimo, valorTot from consumibles WHERE nombre LIKE '%" + valor + "%' order by id_consum desc";
+        cons = "select id_consum ,categoria , nombre , fechaAd , existencia , unidad, stock_minimo, valorTot from consumibles WHERE nombre LIKE '%" + valor + "%' order by id_consum desc";
 
         try {
 
@@ -271,7 +271,7 @@ public class Modelo {
             while (rs.next()) {
 
                 registros[0] = rs.getString("id_consum");
-                registros[1] = rs.getString("codigo");
+                registros[1] = rs.getString("categoria");
                 registros[2] = rs.getString("nombre");
                 registros[3] = rs.getString("fechaAd");
                 registros[4] = rs.getString("existencia");
@@ -292,11 +292,11 @@ public class Modelo {
     }
 
     public boolean insertar_consumible(DatosConsumible datos) {
-        cons = "INSERT into consumibles(codigo,nombre,fechaAd,existencia,unidad,stock_minimo,valorTot) VALUES (?,?,?,?,?,?,?)";
+        cons = "INSERT into consumibles(categoria,nombre,fechaAd,existencia,unidad,stock_minimo,valorTot) VALUES (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
-            pst.setInt(1, datos.getCodigo());
+            pst.setString(1, datos.getCategoria());
             pst.setString(2, datos.getNombre());
             pst.setDate(3, datos.getFechaC());
             pst.setInt(4, datos.getExistencia());
@@ -319,13 +319,13 @@ public class Modelo {
 
     public boolean editar_consumible(DatosConsumible datos, String IdConsumible) {
 
-        cons = "update consumibles set codigo = ? ,nombre = ?, existencia = ?, unidad = ?, stock_minimo = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
+        cons = "update consumibles set categoria = ? ,nombre = ?, existencia = ?, unidad = ?, stock_minimo = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setInt(1, datos.getCodigo());
+            pst.setString(1, datos.getCategoria());
             pst.setString(2, datos.getNombre());
             pst.setInt(3, datos.getExistencia());
             pst.setString(4, datos.getUnidad());
