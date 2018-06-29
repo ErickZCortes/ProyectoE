@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class DatosConsumible {
    private int IdConsumible;
-   private int Codigo;
+   private String Categoria;
    private String Nombre;
    private Date FechaC;
    private int Existencia;
@@ -24,9 +24,9 @@ public class DatosConsumible {
     public DatosConsumible() {
     }
 
-    public DatosConsumible(int IdConsumible, int Codigo, String Nombre, Date FechaC, int Existencia, int stockM, int Valor, String unidad) {
+    public DatosConsumible(int IdConsumible, String Categoria, String Nombre, Date FechaC, int Existencia, int stockM, int Valor, String unidad) {
         this.IdConsumible = IdConsumible;
-        this.Codigo = Codigo;
+        this.Categoria = Categoria;
         this.Nombre = Nombre;
         this.FechaC = FechaC;
         this.Existencia = Existencia;
@@ -39,10 +39,10 @@ public class DatosConsumible {
         return IdConsumible;
     }
 
-    public int getCodigo() {
-        return Codigo;
+    public String getCategoria() {
+        return Categoria;
     }
-
+    
     public String getNombre() {
         return Nombre;
     }
@@ -71,10 +71,10 @@ public class DatosConsumible {
         this.IdConsumible = IdConsumible;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
     }
-
+    
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }

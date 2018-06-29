@@ -247,6 +247,9 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescripcionKeyTyped(evt);
             }
@@ -312,21 +315,11 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
         comboCausa.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         comboCausa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA CAUSA...", "INUTILIDAD", "SINIESTRO", "ACCIDENTE O MUERTE", "ROBO O EXTRAVÍO", "REASIGNACIÓN", "RECLASIFICACIÓN" }));
-        comboCausa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCausaActionPerformed(evt);
-            }
-        });
 
         lbCantidad.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lbCantidad.setText("Cantidad:");
 
         txtCantBaja.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCantBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantBajaActionPerformed(evt);
-            }
-        });
         txtCantBaja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantBajaKeyTyped(evt);
@@ -564,7 +557,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         
         String tipo = comboCausa.getItemAt(comboCausa.getSelectedIndex());
         
-            if (!"Seleccione una causa...".equals(tipo)) {
+            if (!"SELECCIONE UNA CAUSA...".equals(tipo)) {
                 Calendar calA,calB;
         int dA, mA, aA, dB, mB, aB;
         calA = dcFechaAlta.getCalendar();
@@ -621,10 +614,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btncancelActionPerformed
 
-    private void comboCausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCausaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboCausaActionPerformed
-
     private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnElimActionPerformed
@@ -640,10 +629,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         
     }//GEN-LAST:event_btnsaveActionPerformed
-
-    private void txtCantBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantBajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantBajaActionPerformed
 
     private void txtIdbienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdbienActionPerformed
         // TODO add your handling code here:
@@ -685,16 +670,34 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         if (txtDescripcion.getText().length() == 70) {
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
         if (txtValor.getText().length() == 10) {
             evt.consume();
         }
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtValorKeyTyped
 
     private void txtCantBajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantBajaKeyTyped
         if (txtCantBaja.getText().length() == 10) {
+            evt.consume();
+        }
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtCantBajaKeyTyped
@@ -710,6 +713,12 @@ public class BajaBienes extends javax.swing.JInternalFrame {
             txtCantBaja.requestFocus();
         }
     }//GEN-LAST:event_txtValorKeyPressed
+
+    private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtValor.requestFocus();
+        }
+    }//GEN-LAST:event_txtDescripcionKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -263,10 +263,25 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         jLNombre1.setText("Responsable del Área:");
 
         txtResA.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtResA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtResAKeyTyped(evt);
+            }
+        });
 
         txtArea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAreaKeyTyped(evt);
+            }
+        });
 
         txtPerSol.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPerSol.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPerSolKeyTyped(evt);
+            }
+        });
 
         btnBuscarPe.setBackground(new java.awt.Color(41, 55, 61));
         btnBuscarPe.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -371,6 +386,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         jLMaterial.setText("Material a agregar:");
 
         txtMaterial.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtMaterial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaterialKeyTyped(evt);
+            }
+        });
 
         btnBuscarCon.setBackground(new java.awt.Color(41, 55, 61));
         btnBuscarCon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -424,14 +444,27 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantidadSKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadSKeyTyped(evt);
+            }
         });
 
         jLCURP5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLCURP5.setText("Cantidad Entregada:");
 
         txtCantidadE.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCantidadE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadEKeyTyped(evt);
+            }
+        });
 
         txtUnidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtUnidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUnidadKeyTyped(evt);
+            }
+        });
 
         jLCURP6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLCURP6.setText("Unidad:");
@@ -851,6 +884,85 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             txtCantidadE.requestFocus();
         }
     }//GEN-LAST:event_txtCantidadSKeyPressed
+
+    private void txtPerSolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPerSolKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPerSolKeyTyped
+
+    private void txtResAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtResAKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtResAKeyTyped
+
+    private void txtAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAreaKeyTyped
+
+    private void txtMaterialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMaterialKeyTyped
+
+    private void txtUnidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUnidadKeyTyped
+
+    private void txtCantidadSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadSKeyTyped
+
+    private void txtCantidadEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadEKeyTyped
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadEKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

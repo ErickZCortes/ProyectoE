@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
  * @author Erick
  */
 public class Registro extends javax.swing.JFrame {
-
     DatosUsuario datosU = new DatosUsuario();
     DatosPersonal datosP = new DatosPersonal();
     Controlador c = new Controlador();
@@ -475,6 +474,16 @@ public class Registro extends javax.swing.JFrame {
 
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
         if (txtName.getText().length() == 35) {
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNameKeyTyped

@@ -9,7 +9,6 @@ import Controlador.Controlador;
 import Datos.DatosArea;
 import Datos.DatosPersonal;
 import Modelo.Modelo;
-import Validar.Validar;
 import static Vista.BajaBienes.txtDescripcion;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -23,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Personal extends javax.swing.JInternalFrame {
-    Validar v = new Validar();
     DatosPersonal datPersonal = new DatosPersonal();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -43,7 +41,6 @@ public class Personal extends javax.swing.JInternalFrame {
         txtIdPersonal.setVisible(false);
         txtNombre.setEnabled(false);
         txtCURP.setEnabled(false);
-        //txtArea.setEnabled(false);
         comboAreas.setEnabled(false);
 
         btnAdd.setEnabled(true);
@@ -316,8 +313,9 @@ public class Personal extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
                                 .addComponent(jLabel1)
-                                .addGap(97, 97, 97)
+                                .addGap(71, 71, 71)
                                 .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -341,8 +339,8 @@ public class Personal extends javax.swing.JInternalFrame {
                                         .addComponent(jLArea)
                                         .addGap(36, 36, 36)))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCURP, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                                    .addComponent(comboAreas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtCURP)
+                                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(41, 41, 41)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,7 +379,7 @@ public class Personal extends javax.swing.JInternalFrame {
                                     .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(17, 17, 17)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLArea))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -541,6 +539,10 @@ public class Personal extends javax.swing.JInternalFrame {
             String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
             evt.setKeyChar(c);
+        }
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 

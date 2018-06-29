@@ -8,7 +8,6 @@ package Vista;
 import Controlador.Controlador;
 import Datos.DatosConsumible;
 import Modelo.Modelo;
-import Validar.Validar;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -24,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Consumibles extends javax.swing.JInternalFrame {
-    Validar v = new Validar();
     DatosConsumible datCons = new DatosConsumible();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -35,12 +33,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
      */
     public Consumibles() throws SQLException {
         initComponents();
-        v.validarSoloNumeros(txtCod);
-        v.validarSoloLetras(txtNombre);
-        v.validarSoloNumeros(txtValor);
-        v.validarSoloLetras(txtUnidad);
-        v.validarSoloNumeros(txtExistencia);
-        v.validarSoloNumeros(txtStockM);
         txtidConsum.setVisible(false);
         bloquear();
         cargar_tabla_consumibles("");
@@ -49,7 +41,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }
 
     void bloquear() {
-        txtCod.setEnabled(false);
+        cboCategoria.setEnabled(false);
         txtNombre.setEnabled(false);
         dcFecha.setEnabled(false);
         txtExistencia.setEnabled(false);
@@ -66,7 +58,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }
 
     void desbloquear() {
-        txtCod.setEnabled(true);
+        cboCategoria.setEnabled(true);
         txtNombre.setEnabled(true);
         dcFecha.setEnabled(true);
         txtExistencia.setEnabled(true);
@@ -82,7 +74,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }
 
     void limpiar() {
-        txtCod.setText("");
         txtNombre.setText("");
         txtExistencia.setText("");
         txtStockM.setText("");
@@ -101,7 +92,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);    
+        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);
     }
 
     void actualizarDatos() {
@@ -120,7 +111,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
                 String valor = (String) tbDatos.getValueAt(filasel, 7);
 
                 txtidConsum.setText(idCon);
-                txtCod.setText(codigo);
                 txtNombre.setText(nombre);
                 txtExistencia.setText(existencia);
                 txtUnidad.setText(unidad);
@@ -148,7 +138,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLFecha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtCod = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtExistencia = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
@@ -166,6 +155,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtUnidad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        cboCategoria = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -180,7 +170,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jLabel2.setText("Codigo: ");
+        jLabel2.setText("Categoría: ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Nombre: ");
@@ -193,16 +183,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel6.setText("Existencia:");
-
-        txtCod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCod.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodKeyTyped(evt);
-            }
-        });
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -343,9 +323,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
 
         txtStockM.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtStockM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtStockMKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtStockMKeyTyped(evt);
             }
@@ -367,6 +344,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel8.setText("Unidad:");
 
+        cboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE UNA CATEGORIA...", "PAPELERÍA", "MEDICAMENTOS", "LIBROS", "LIMPIEZA", "VARIOS" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -381,12 +360,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel8))
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtValor)
-                                .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUnidad)))
+                        .addComponent(txtUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -410,8 +384,14 @@ public class Consumibles extends javax.swing.JInternalFrame {
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(txtidConsum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(551, 551, 551)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtidConsum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(175, 175, 175)
+                                        .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(190, 190, 190)
                                 .addComponent(jLFecha)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -427,13 +407,13 @@ public class Consumibles extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jLFecha))
+                            .addComponent(jLFecha)
+                            .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,7 +495,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
         desbloquear();
         limpiar();
         accion = "A";
-        txtCod.requestFocus();
+        cboCategoria.requestFocus();
         dcFecha.setVisible(true);
         dcFecha.setEnabled(true);
         jLFecha.setVisible(true);
@@ -532,7 +512,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
             dcFecha.setVisible(false);
             dcFecha.setEnabled(false);
             jLFecha.setVisible(false);
-            txtCod.requestFocus();
+            cboCategoria.requestFocus();
         }
     }//GEN-LAST:event_btneditarMouseClicked
 
@@ -563,31 +543,24 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        if (txtCod.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debes ingresar un Codigo");
-            txtCod.requestFocus();
-            return;
-        }
-
         if (txtNombre.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un nombre de consumible");
             txtNombre.requestFocus();
             return;
         }
-        
 
         if (txtExistencia.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar una Existencia");
             txtExistencia.requestFocus();
             return;
         }
-        
+
         if (txtUnidad.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar una Unidad");
             txtUnidad.requestFocus();
             return;
         }
-        
+
         if (txtStockM.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un Stock Mínimo");
             txtStockM.requestFocus();
@@ -608,28 +581,33 @@ public class Consumibles extends javax.swing.JInternalFrame {
         datCons.setFechaC(new Date(a, m, d));
         Date fecha = datCons.getFechaC();
 
-        String idConsumible = txtidConsum.getText();
-        datCons.setCodigo(Integer.parseInt(txtCod.getText()));
-        datCons.setNombre(txtNombre.getText());
-        datCons.setExistencia(Integer.parseInt(txtExistencia.getText()));
-        datCons.setUnidad(txtUnidad.getText());
-        datCons.setStockM(Integer.parseInt(txtStockM.getText()));
-        datCons.setValor(Integer.parseInt(txtValor.getText()));
+        String tipo = cboCategoria.getItemAt(cboCategoria.getSelectedIndex());
 
-        if (c.Guardar_consumible(accion, datCons, idConsumible)) {
-            if (accion == "A") {
-                JOptionPane.showMessageDialog(null, "Consumible Agregado.");
-            } else if (accion == "M") {
-                JOptionPane.showMessageDialog(null, "Consumible Actualizado.");
-            }
-            limpiar();
-            bloquear();
-            try {
-                cargar_tabla_consumibles("");
-            } catch (SQLException ex) {
-                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        if (!"SELECCIONE UNA CATEGORIA...".equals(tipo)) {
+            String idConsumible = txtidConsum.getText();
+            datCons.setCategoria(cboCategoria.getItemAt(cboCategoria.getSelectedIndex()));
+            datCons.setNombre(txtNombre.getText());
+            datCons.setExistencia(Integer.parseInt(txtExistencia.getText()));
+            datCons.setUnidad(txtUnidad.getText());
+            datCons.setStockM(Integer.parseInt(txtStockM.getText()));
+            datCons.setValor(Integer.parseInt(txtValor.getText()));
+
+            if (c.Guardar_consumible(accion, datCons, idConsumible)) {
+                if (accion == "A") {
+                    JOptionPane.showMessageDialog(null, "Consumible Agregado.");
+                } else if (accion == "M") {
+                    JOptionPane.showMessageDialog(null, "Consumible Actualizado.");
+                }
+                limpiar();
+                bloquear();
+                try {
+                    cargar_tabla_consumibles("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
+
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -651,19 +629,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidConsumActionPerformed
 
-    private void txtCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtNombre.requestFocus();
-        }
-    }//GEN-LAST:event_txtCodKeyPressed
-
-    private void txtCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodKeyTyped
-        char a = evt.getKeyChar();
-        if (!Character.isDigit(a)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtCodKeyTyped
-
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtValor.requestFocus();
@@ -671,8 +636,14 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreKeyPressed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
         char a = evt.getKeyChar();
-        if (!Character.isDigit(a)) {
+        if (Character.isDigit(a)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
@@ -697,8 +668,14 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtUnidadKeyPressed
 
     private void txtUnidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
         char a = evt.getKeyChar();
-        if (!Character.isDigit(a)) {
+        if (Character.isDigit(a)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtUnidadKeyTyped
@@ -716,10 +693,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtExistenciaKeyTyped
 
-    private void txtStockMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockMKeyPressed
-        
-    }//GEN-LAST:event_txtStockMKeyPressed
-
     private void txtStockMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockMKeyTyped
         char a = evt.getKeyChar();
         if (!Character.isDigit(a)) {
@@ -734,6 +707,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btneditar;
+    private javax.swing.JComboBox<String> cboCategoria;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JLabel jLFecha;
     private javax.swing.JLabel jLabel10;
@@ -748,7 +722,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbDatos;
-    private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtExistencia;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtStockM;

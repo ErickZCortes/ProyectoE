@@ -8,7 +8,6 @@ package Vista;
 import Controlador.Controlador;
 import Datos.DatosArea;
 import Modelo.Modelo;
-import Validar.Validar;
 import static Vista.Principal.Escritorio;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -22,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Areas extends javax.swing.JInternalFrame {
-    Validar v = new Validar();
     DatosArea datAreas = new DatosArea();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -33,15 +31,13 @@ public class Areas extends javax.swing.JInternalFrame {
      */
     public Areas() throws SQLException {
         initComponents();
-        v.validarSoloLetras(txtNombreC);
-        v.validarSoloNumeros(txtClaveI);
         bloquear();
         cargar_tabla_areas("");
     }
 
     void bloquear() {
         txtId.setVisible(false);
-        txtNombreC.setEnabled(false);
+        txtNombreA.setEnabled(false);
         txtClaveCTT.setEnabled(false);
         txtClaveI.setEnabled(false);
 
@@ -54,7 +50,7 @@ public class Areas extends javax.swing.JInternalFrame {
     }
 
     void desbloquear() {
-        txtNombreC.setEnabled(true);
+        txtNombreA.setEnabled(true);
         txtClaveCTT.setEnabled(true);
         txtClaveI.setEnabled(true);
 
@@ -67,7 +63,7 @@ public class Areas extends javax.swing.JInternalFrame {
 
     void limpiar() {
         txtClaveCTT.setText("");
-        txtNombreC.setText("");
+        txtNombreA.setText("");
         txtClaveI.setText("");
     }
 
@@ -95,7 +91,7 @@ public class Areas extends javax.swing.JInternalFrame {
                 String claveinst = (String) tbDatos.getValueAt(filasel, 3);
 
                 txtId.setText(idarea);
-                txtNombreC.setText(nombre);
+                txtNombreA.setText(nombre);
                 txtClaveCTT.setText(clavectt);
                 txtClaveI.setText(claveinst);
             }
@@ -120,7 +116,7 @@ public class Areas extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtNombreC = new javax.swing.JTextField();
+        txtNombreA = new javax.swing.JTextField();
         txtClaveI = new javax.swing.JTextField();
         txtClaveCTT = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
@@ -176,13 +172,13 @@ public class Areas extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel6.setText("Clave del CCT:");
 
-        txtNombreC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNombreC.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombreA.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombreA.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreCKeyPressed(evt);
+                txtNombreAKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreCKeyTyped(evt);
+                txtNombreAKeyTyped(evt);
             }
         });
 
@@ -328,7 +324,7 @@ public class Areas extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreA, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtClaveCTT, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3))
@@ -378,7 +374,7 @@ public class Areas extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreA, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -422,7 +418,7 @@ public class Areas extends javax.swing.JInternalFrame {
         desbloquear();
         limpiar();
         accion = "A";
-        txtNombreC.requestFocus();
+        txtNombreA.requestFocus();
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModMouseClicked
@@ -432,7 +428,7 @@ public class Areas extends javax.swing.JInternalFrame {
         } else {
             desbloquear();
             accion = "M";
-            txtNombreC.requestFocus();
+            txtNombreA.requestFocus();
         }
     }//GEN-LAST:event_btnModMouseClicked
 
@@ -472,9 +468,9 @@ public class Areas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
-        if (txtNombreC.getText().length() == 0) {
+        if (txtNombreA.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un Nombre de área");
-            txtNombreC.requestFocus();
+            txtNombreA.requestFocus();
             return;
         }
         if (txtClaveI.getText().length() == 0) {
@@ -492,7 +488,7 @@ public class Areas extends javax.swing.JInternalFrame {
         String verificar = c.obtenerFirma();
         if (firma.equals(c.obtenerFirma())) {
             String idArea = txtId.getText();
-            datAreas.setNombre(txtNombreC.getText());
+            datAreas.setNombre(txtNombreA.getText());
             datAreas.setClave_ctt(txtClaveCTT.getText());
             datAreas.setClave_inst(txtClaveI.getText());
 
@@ -531,8 +527,8 @@ public class Areas extends javax.swing.JInternalFrame {
         bloquear();
     }//GEN-LAST:event_tbDatosMouseClicked
 
-    private void txtNombreCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCKeyTyped
-        if (txtNombreC.getText().length() == 60) {
+    private void txtNombreAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAKeyTyped
+        if (txtNombreA.getText().length() == 60) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -541,7 +537,11 @@ public class Areas extends javax.swing.JInternalFrame {
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
-    }//GEN-LAST:event_txtNombreCKeyTyped
+        char a = evt.getKeyChar();
+        if (Character.isDigit(a)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreAKeyTyped
 
     private void txtClaveCTTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveCTTKeyTyped
         if (txtClaveCTT.getText().length() == 10) {
@@ -553,20 +553,24 @@ public class Areas extends javax.swing.JInternalFrame {
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
+        
     }//GEN-LAST:event_txtClaveCTTKeyTyped
 
     private void txtClaveIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveIKeyTyped
         if (txtClaveI.getText().length() == 5) {
             evt.consume();
         }
-        
+        char a = evt.getKeyChar();
+        if (!Character.isDigit(a)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtClaveIKeyTyped
 
-    private void txtNombreCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCKeyPressed
+    private void txtNombreAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtClaveCTT.requestFocus();
         }
-    }//GEN-LAST:event_txtNombreCKeyPressed
+    }//GEN-LAST:event_txtNombreAKeyPressed
 
     private void txtClaveCTTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveCTTKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -594,6 +598,6 @@ public class Areas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtClaveCTT;
     private javax.swing.JTextField txtClaveI;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtNombreC;
+    private javax.swing.JTextField txtNombreA;
     // End of variables declaration//GEN-END:variables
 }
