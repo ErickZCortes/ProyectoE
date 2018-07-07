@@ -54,6 +54,12 @@ public class Principal extends javax.swing.JFrame {
         sConsultasPersonal = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenu1 = new javax.swing.JMenu();
+        sEtiqueta = new javax.swing.JMenuItem();
+        sEtiquetaArea = new javax.swing.JMenuItem();
+        sEtiquetasAll = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
         sBienes = new javax.swing.JMenuItem();
         sBajasBienes = new javax.swing.JMenuItem();
@@ -197,8 +203,40 @@ public class Principal extends javax.swing.JFrame {
         mReportes.setText("Reportes");
         mReportes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.setText("jMenuItem1");
         mReportes.add(jMenuItem3);
+
+        jMenuItem5.setText("jMenuItem5");
+        mReportes.add(jMenuItem5);
+        mReportes.add(jSeparator1);
+
+        jMenu1.setText("Etiquetas");
+
+        sEtiqueta.setText("Imprimir una etiqueta");
+        sEtiqueta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sEtiquetaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sEtiqueta);
+
+        sEtiquetaArea.setText("Imprimir etiqueta por area");
+        sEtiquetaArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sEtiquetaAreaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sEtiquetaArea);
+
+        sEtiquetasAll.setText("Imprimir todas las etiquetas");
+        sEtiquetasAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sEtiquetasAllActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sEtiquetasAll);
+
+        mReportes.add(jMenu1);
 
         jMenuBar1.add(mReportes);
 
@@ -477,6 +515,36 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sValeResActionPerformed
 
+    private void sEtiquetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEtiquetaActionPerformed
+        EtiquetaUno form = null;
+        form = new EtiquetaUno();
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sEtiquetaActionPerformed
+
+    private void sEtiquetaAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEtiquetaAreaActionPerformed
+        EtiquetasArea form = null;
+        form = new EtiquetasArea();
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sEtiquetaAreaActionPerformed
+
+    private void sEtiquetasAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEtiquetasAllActionPerformed
+      EtiquetasVarias form = null;
+        form = new EtiquetasVarias();
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sEtiquetasAllActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -518,9 +586,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     public static javax.swing.JLabel lblAcceso;
     public static javax.swing.JLabel lblIdUsuario;
     public static javax.swing.JLabel lblNombre;
@@ -538,6 +609,9 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem sBienes;
     public static javax.swing.JMenuItem sConsultasBienes;
     public static javax.swing.JMenuItem sConsultasPersonal;
+    private javax.swing.JMenuItem sEtiqueta;
+    private javax.swing.JMenuItem sEtiquetaArea;
+    private javax.swing.JMenuItem sEtiquetasAll;
     public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
     private javax.swing.JMenuItem sVale;
