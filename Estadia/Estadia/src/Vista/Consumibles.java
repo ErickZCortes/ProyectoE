@@ -82,7 +82,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }
 
     void cargar_tabla_consumibles(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_consumibles(valor);
+        DefaultTableModel tb = c.cargar_tabla_consumibles_xnombre(valor);
         tbDatos.setModel(tb);
 
         tbDatos.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -116,7 +116,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
                 txtUnidad.setText(unidad);
                 txtStockM.setText(stockM);
                 txtValor.setText(valor);
-
+                
+                cboCategoria.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 1)));
             }
         } catch (Exception e) {
 
@@ -606,7 +607,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
                     Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
+        } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una Categoría Válida");
+            }
 
     }//GEN-LAST:event_btnGuardarMouseClicked
 

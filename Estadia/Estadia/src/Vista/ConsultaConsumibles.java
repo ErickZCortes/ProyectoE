@@ -10,6 +10,7 @@ import Datos.DatosConsumible;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,11 +26,11 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
      */
     public ConsultaConsumibles() throws SQLException {
         initComponents();
-        cargar_tabla("");
     }
-    
-    void cargar_tabla(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_consumibles(valor);
+    void mostrar (String buscar){
+        try {
+            if (cbCondicion.getSelectedItem() == "Categoría") {
+                DefaultTableModel tb = c.cargar_tabla_consumibles_xcategoria(buscar);
         tbDatos.setModel(tb);
 
         tbDatos.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -37,7 +38,19 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
-        
+            }else if(cbCondicion.getSelectedItem() == "Nombre"){
+                DefaultTableModel tb = c.cargar_tabla_consumibles_xnombre(buscar);
+        tbDatos.setModel(tb);
+
+        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccionar una opción válida");
+        }
     }
     
     /**
@@ -57,6 +70,8 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cbCondicion = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -136,6 +151,22 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Dato: ");
 
+        cbCondicion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Categoría", "Nombre" }));
+        cbCondicion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbCondicionItemStateChanged(evt);
+            }
+        });
+        cbCondicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCondicionActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel5.setText("Buscar por:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,18 +178,29 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -186,29 +228,15 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String filtro;
-        
         filtro = txtBuscar.getText();
-        
-        try {
-            cargar_tabla( filtro);
-            txtBuscar.setText("");
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaConsumibles.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            
+        mostrar(filtro);
+        txtBuscar.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         String filtro;
-        
         filtro = txtBuscar.getText();
-        
-        try {
-            cargar_tabla( filtro);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaConsumibles.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        mostrar(filtro);
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
@@ -228,10 +256,21 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbDatosMousePressed
 
+    private void cbCondicionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCondicionItemStateChanged
+        mostrar("");
+        txtBuscar.setText("");
+    }//GEN-LAST:event_cbCondicionItemStateChanged
+
+    private void cbCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCondicionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCondicionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> cbCondicion;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

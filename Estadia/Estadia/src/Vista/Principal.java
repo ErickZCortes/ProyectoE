@@ -426,7 +426,7 @@ public class Principal extends javax.swing.JFrame {
     private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {                                                   
       ConsultaPersonal form = null;
         try {
-            form = new ConsultaPersonal();
+            form = new ConsultaPersonal("");
             Escritorio.add(form);
 
             form.setClosable(true);

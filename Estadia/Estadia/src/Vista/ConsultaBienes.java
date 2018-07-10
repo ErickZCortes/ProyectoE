@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.Controlador;
 import Datos.DatosAltaBien;
+import Datos.DatosArea;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,38 +22,25 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     
     Controlador c = new Controlador();
     DatosAltaBien datBienes = new DatosAltaBien();
+    DatosArea datArea = new DatosArea();
     /**
      * Creates new form ConsultaBienes
      */
     public ConsultaBienes() throws SQLException {
         initComponents();
+        datArea.mostrarComboAreas(comboAreas);
     }
     
     
     public void mostrar(String buscar) {
-        
         try {
-            
-            //DefaultTableModel modelo = null;
-
             if (cbTablas.getSelectedItem() == "Alta de Bienes") {
-                if (cbCondicion.getSelectedItem() == "Area") {
-                    DefaultTableModel tb = c.cargar_tabla_Altabienes_area(buscar);
-                tbDatos.setModel(tb);
-
-                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
-                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
-                } else if (cbCondicion.getSelectedItem() == "Nombre") {
-                    DefaultTableModel tb = c.cargar_tabla_Altabienes_nombre(buscar);
+                if (comboAreas.getSelectedItem()== "") {
+                    JOptionPane.showMessageDialog(null, "Selecciona un área existente");
+                } else {
+                   String area = comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre();
+                    if (cbCondicion.getSelectedItem() == "Nombre") {
+                    DefaultTableModel tb = c.cargar_tabla_Altabienes_nombre(area,buscar);
                 tbDatos.setModel(tb);
 
                 tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -67,7 +55,7 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
                 }else if (cbCondicion.getSelectedItem() == "Forma o Causa") {
-                DefaultTableModel tb = c.cargar_tabla_Altabienes_tipo(buscar);
+                DefaultTableModel tb = c.cargar_tabla_Altabienes_tipo(area,buscar);
                 tbDatos.setModel(tb);
 
                 tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -82,24 +70,14 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
                 }
-                
+                }  
             } else if (cbTablas.getSelectedItem() == "Baja de Bienes") {
-                if (cbCondicion.getSelectedItem() == "Area") {
-                    DefaultTableModel tb = c.cargar_tabla_Bajabienes_area(buscar);
-                tbDatos.setModel(tb);
-
-                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
-                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
-                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
-                } else if (cbCondicion.getSelectedItem() == "Nombre") {
-                    DefaultTableModel tb = c.cargar_tabla_Bajabienes_nombre(buscar);
+                if (comboAreas.getSelectedItem()== "") {
+                    JOptionPane.showMessageDialog(null, "Selecciona un área existente");
+                } else {
+                   String area = comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre();
+                   if (cbCondicion.getSelectedItem() == "Nombre") {
+                    DefaultTableModel tb = c.cargar_tabla_Bajabienes_nombre(area,buscar);
                 tbDatos.setModel(tb);
 
                 tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -113,7 +91,7 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 }else if (cbCondicion.getSelectedItem() == "Forma o Causa") {
-                    DefaultTableModel tb = c.cargar_tabla_Bajabienes_tipo(buscar);
+                    DefaultTableModel tb = c.cargar_tabla_Bajabienes_tipo(area,buscar);
                 tbDatos.setModel(tb);
 
                 tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -126,6 +104,7 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
+                }
                 }
             }
         } catch (Exception e) {
@@ -151,6 +130,8 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        comboAreas = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -205,7 +186,7 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         jLabel4.setText("Tabla");
 
         cbCondicion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Area", "Nombre", "Forma o Causa" }));
+        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Nombre", "Forma o Causa" }));
         cbCondicion.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbCondicionItemStateChanged(evt);
@@ -247,6 +228,21 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbDatos);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel6.setText("Área:");
+
+        comboAreas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        comboAreas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboAreasItemStateChanged(evt);
+            }
+        });
+        comboAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAreasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -262,36 +258,45 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 216, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(204, 204, 204)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(cbTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
+                .addComponent(jLabel6)
                 .addGap(18, 18, 18)
+                .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(147, 147, 147))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -361,8 +366,8 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbTablasActionPerformed
 
     private void cbTablasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTablasItemStateChanged
-        
-        
+        mostrar("");
+        txtBuscar.setText("");
     }//GEN-LAST:event_cbTablasItemStateChanged
 
     private void cbCondicionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCondicionItemStateChanged
@@ -425,15 +430,26 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbDatosMousePressed
 
+    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAreasActionPerformed
+
+    private void comboAreasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreasItemStateChanged
+        mostrar("");
+        txtBuscar.setText("");
+    }//GEN-LAST:event_comboAreasItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JComboBox<String> cbCondicion;
     private javax.swing.JComboBox<String> cbTablas;
+    public static javax.swing.JComboBox<DatosArea> comboAreas;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

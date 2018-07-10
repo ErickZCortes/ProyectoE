@@ -55,6 +55,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         bloquear();
         Calendar c2 = new GregorianCalendar();
         dcfechaRes.setCalendar(c2);
+        txtActivo.setText("ACTIVO");
     }
 
     void bloquear() {
@@ -260,6 +261,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         btnAgregar = new javax.swing.JButton();
         btnEliminarD = new javax.swing.JButton();
         txtIdCantB = new javax.swing.JTextField();
+        txtActivo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         txtCanTotal = new javax.swing.JTextField();
         txtValTotal = new javax.swing.JTextField();
@@ -605,6 +607,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                                     .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(157, 157, 157))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
                                 .addComponent(txtIdCantB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -624,7 +628,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                             .addComponent(txtIdDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdValeR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdCantB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIdCantB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -831,7 +836,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     private void btnBuscarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPersonaActionPerformed
         ConsultaPersonal form = null;
         try {
-            form = new ConsultaPersonal();
+            form = new ConsultaPersonal("Activo");
             Escritorio.add(form);
 
             form.setClosable(true);
@@ -845,9 +850,9 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarPersonaActionPerformed
 
     private void btnBuscarBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBienActionPerformed
-        ConsultaBienes form = null;
+        ConsultaBienesSeleccionar form = null;
         try {
-            form = new ConsultaBienes();
+            form = new ConsultaBienesSeleccionar("Activo");
             Escritorio.add(form);
 
             form.setClosable(true);
@@ -1247,6 +1252,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tbDatos;
+    public static javax.swing.JTextField txtActivo;
     public static javax.swing.JTextField txtArea;
     public static javax.swing.JTextField txtCTT;
     private javax.swing.JTextField txtCanTotal;
