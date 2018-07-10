@@ -139,6 +139,8 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                 txtModelo.setText(modelo);
                 txtSerie.setText(serie);
                 txtValor.setText(valor);
+                comboForma.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 4)));
+                comboAreas.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 2)));
             }
         } catch (Exception e) {
 

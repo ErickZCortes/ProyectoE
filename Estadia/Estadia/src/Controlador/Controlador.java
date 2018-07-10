@@ -52,6 +52,7 @@ public class Controlador {
         DefaultTableModel tb = m.cargar_tabla_usuarios(valor);
         return tb;
     }
+    
 
     public boolean Guardar_usuario(String accion, DatosUsuario datos, String idUsuario) {
         if (accion == "A") {
@@ -68,8 +69,12 @@ public class Controlador {
     }
 
     //-----------------------CONSUMIBLES---------------------//
-    public DefaultTableModel cargar_tabla_consumibles(String valor) {
-        DefaultTableModel tb = m.cargar_tabla_consumibles(valor);
+    public DefaultTableModel cargar_tabla_consumibles_xcategoria(String valor) {
+        DefaultTableModel tb = m.cargar_tabla_consumibles_xcategoria(valor);
+        return tb;
+    }
+    public DefaultTableModel cargar_tabla_consumibles_xnombre(String valor) {
+        DefaultTableModel tb = m.cargar_tabla_consumibles_xnombre(valor);
         return tb;
     }
 
@@ -146,12 +151,24 @@ public class Controlador {
         return m.cargar_tabla_AltaBienes_area(valor);
     }
 
-    public DefaultTableModel cargar_tabla_Altabienes_nombre(String valor) {
-        return m.cargar_tabla_AltaBienes_nombre(valor);
+    public DefaultTableModel cargar_tabla_Altabienes_nombre(String area,String valor) {
+        return m.cargar_tabla_AltaBienes_nombre(area, valor);
     }
 
-    public DefaultTableModel cargar_tabla_Altabienes_tipo(String valor) {
-        return m.cargar_tabla_AltaBienes_tipo(valor);
+    public DefaultTableModel cargar_tabla_Altabienes_tipo(String area,String valor) {
+        return m.cargar_tabla_AltaBienes_tipo(area,valor);
+    }
+    
+    public DefaultTableModel cargar_tabla_Bajabienes_area(String valor) {
+        return m.cargar_tabla_BajaBienes_area(valor);
+    }
+
+    public DefaultTableModel cargar_tabla_Bajabienes_nombre(String area, String valor) {
+        return m.cargar_tabla_BajaBienes_nombre(area, valor);
+    }
+
+    public DefaultTableModel cargar_tabla_Bajabienes_tipo(String area, String valor) {
+        return m.cargar_tabla_BajaBienes_tipo(area, valor);
     }
 
     public boolean Guardar_Altabienes(String accion, DatosAltaBien datos, String idAlta) {
@@ -173,18 +190,6 @@ public class Controlador {
 
     public void eliminar_AltaBienes_xBaja(String idalta) {
         m.eliminar_AltaBienes_xBaja(idalta);
-    }
-
-    public DefaultTableModel cargar_tabla_Bajabienes_area(String valor) {
-        return m.cargar_tabla_BajaBienes_area(valor);
-    }
-
-    public DefaultTableModel cargar_tabla_Bajabienes_nombre(String valor) {
-        return m.cargar_tabla_BajaBienes_nombre(valor);
-    }
-
-    public DefaultTableModel cargar_tabla_Bajabienes_tipo(String valor) {
-        return m.cargar_tabla_BajaBienes_tipo(valor);
     }
 
     public boolean Guardar_Bajabienes(DatosBajaBien datos) {

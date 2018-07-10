@@ -426,6 +426,8 @@
                                       <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
+                                      <Component id="txtActivo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                       <Component id="txtIdCantB" min="-2" pref="30" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtIdDetalle" min="-2" pref="30" max="-2" attributes="0"/>
@@ -452,6 +454,7 @@
                                   <Component id="txtIdBien" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtIdValeR" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtIdCantB" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtActivo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -720,6 +723,11 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtIdCantB">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtActivo">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>

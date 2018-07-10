@@ -65,7 +65,6 @@ public class Modelo {
         }
 
     }
-
     public DefaultTableModel login(String user, String password) {
 
         String[] titulos = {"COD", "NOMBRE", "USER", "PASS", "FIRMA", "RFC", "CURP", "ACCESO"};
@@ -102,7 +101,6 @@ public class Modelo {
         }
 
     }
-    
     public String obtenerFirma() {
         String acceso = Principal.lblAcceso.getText();
         cons = "SELECT firma_dig FROM usuarios WHERE acceso = '" + acceso + "'";
@@ -120,24 +118,45 @@ public class Modelo {
         }
 
     }
-//    public void validar_usuario(String usuario, String contrasena) {
-//        cons = "Select user,password VALUES (?,?)";
-//
-//        try {
-//            PreparedStatement pst = cn.prepareStatement(cons);
-//
-//            pst.setString(1, usuario);
-//            pst.setString(2, contrasena);
-//            
-//            int n = pst.executeUpdate();
-//            if (n > 0) {
-//                JOptionPane.showMessageDialog(null, "Acceso");
-//            }
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-//    }
     //----------------------------------USUARIOS--------------------------//
+    public DefaultTableModel cargar_tabla_usuarios_xarea(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"IdUsuario", "Nombre", "Usuario", "Contraseña", "RFC", "CURP", "Acceso"};
+
+        String[] registros = new String[7];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_user , nombre , user , password , rfc , curp , acceso from usuarios WHERE id_user LIKE '%" + valor + "%' order by id_user desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_user");
+                registros[1] = rs.getString("nombre");
+                registros[2] = rs.getString("user");
+                registros[3] = rs.getString("password");
+                registros[4] = rs.getString("rfc");
+                registros[5] = rs.getString("curp");
+                registros[6] = rs.getString("acceso");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
     public DefaultTableModel cargar_tabla_usuarios(String valor) {
 
         DefaultTableModel modelo;
@@ -176,7 +195,6 @@ public class Modelo {
         }
 
     }
-
     public boolean insertar_usuario(DatosUsuario datos) {
         cons = "INSERT into  usuarios(nombre,user,password, firma_dig, rfc,curp,acceso) VALUES (?,?,?,?,?,?,?)";
 
@@ -201,7 +219,6 @@ public class Modelo {
             return false;
         }
     }
-
     public boolean editar_usuario(DatosUsuario datos, String idUsuario) {
 
         cons = "update usuarios set nombre = ? , user = ?  , password = ? , rfc = ? ,curp=?  where id_user ='" + idUsuario + "' ";
@@ -227,7 +244,6 @@ public class Modelo {
             return false;
         }
     }
-
     public boolean eliminar_usuario(DatosUsuario datos) {
          
         cons = "delete from usuarios where id_user = ?";
@@ -249,9 +265,47 @@ public class Modelo {
         }
 
     }//cierre funcion
-
     //----------------------------------CONSUMIBLES--------------------------//
-    public DefaultTableModel cargar_tabla_consumibles(String valor) {
+    public DefaultTableModel cargar_tabla_consumibles_xcategoria(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"Id", " Categoría", "Nombre", "Fecha", "Existencia","Unidad", "Stock Mínimo", "ValorTotal"};
+
+        String[] registros = new String[8];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_consum ,categoria , nombre , fechaAd , existencia , unidad, stock_minimo, valorTot from consumibles WHERE categoria LIKE '%" + valor + "%' order by id_consum desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_consum");
+                registros[1] = rs.getString("categoria");
+                registros[2] = rs.getString("nombre");
+                registros[3] = rs.getString("fechaAd");
+                registros[4] = rs.getString("existencia");
+                registros[5] = rs.getString("unidad");
+                registros[6] = rs.getString("stock_minimo");
+                registros[7] = rs.getString("valorTot");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+    public DefaultTableModel cargar_tabla_consumibles_xnombre(String valor) {
 
         DefaultTableModel modelo;
 
@@ -290,7 +344,6 @@ public class Modelo {
         }
 
     }
-
     public boolean insertar_consumible(DatosConsumible datos) {
         cons = "INSERT into consumibles(categoria,nombre,fechaAd,existencia,unidad,stock_minimo,valorTot) VALUES (?,?,?,?,?,?,?)";
 
@@ -316,7 +369,6 @@ public class Modelo {
             return false;
         }
     }
-
     public boolean editar_consumible(DatosConsumible datos, String IdConsumible) {
 
         cons = "update consumibles set categoria = ? ,nombre = ?, existencia = ?, unidad = ?, stock_minimo = ?, valorTot = ? where id_consum ='" + IdConsumible + "' ";
@@ -405,9 +457,7 @@ public class Modelo {
             return false;
         }
     }//cierre funcion
-    
     //----------------------------------AREA--------------------------//
-    
     public DefaultTableModel cargar_tabla_Areas(String valor) {
 
         DefaultTableModel modelo;
@@ -443,7 +493,6 @@ public class Modelo {
         }
 
     }
-
     public boolean insertar_area(DatosArea datos) {
         cons = "INSERT into areas(nombre,ctt_area,clave_institu) VALUES (?,?,?)";
 
@@ -464,7 +513,6 @@ public class Modelo {
             return false;
         }
     }
-
     public boolean editar_areas(DatosArea datos, String IdArea) {
 
         cons = "update areas set nombre = ? ,ctt_area = ?, clave_institu = ?  where id_area ='" + IdArea + "' ";
@@ -488,7 +536,6 @@ public class Modelo {
         }
 
     }
-
     public boolean eliminar_area(DatosArea datos) {
         cons = "delete from areas where id_area = ?";
         try {
@@ -512,7 +559,6 @@ public class Modelo {
         }
         return false;
     }//cierre funcion
-    
     public String obtenerctt(String area) {
         
         cons = "SELECT ctt_area FROM areas WHERE nombre = '" + area + "'";
@@ -530,7 +576,6 @@ public class Modelo {
         }
 
     }
-    
     public String obteneclaveins(String area) {
         
         cons = "SELECT clave_institu FROM areas WHERE nombre = '" + area + "'";
@@ -549,7 +594,6 @@ public class Modelo {
 
     }
     //----------------------------------PERSONAL--------------------------//
-    
     public DefaultTableModel cargar_tabla_Personal(String valor) {
 
         DefaultTableModel modelo;
@@ -585,7 +629,6 @@ public class Modelo {
         }
 
     }
-
     public boolean insertar_personal(DatosPersonal datos) {
         cons = "INSERT into personal(nombre_persona,curp_persona,area_persona) VALUES (?,?,?)";
 
@@ -606,7 +649,6 @@ public class Modelo {
             return false;
         }
     }
-
     public boolean editar_personal(DatosPersonal datos, String IdPersonal) {
 
         cons = "update personal set nombre_persona = ?, curp_persona = ? , area_persona = ? where id_persona ='" + IdPersonal + "' ";
@@ -631,7 +673,6 @@ public class Modelo {
         }
 
     }
-
     public boolean eliminar_personal(DatosPersonal datos) {
         cons = "delete from personal where id_persona = ?";
         try {
@@ -651,9 +692,7 @@ public class Modelo {
             return false;
         }
     }//cierre funcion
-    
     //--------------------------------------------BIENES-----------------------------------------------------//
-    
     public DefaultTableModel cargar_tabla_AltaBienes_area(String valor) {
 
         DefaultTableModel modelo;
@@ -693,8 +732,7 @@ public class Modelo {
         }
 
     }
-    
-    public DefaultTableModel cargar_tabla_AltaBienes_nombre(String valor) {
+    public DefaultTableModel cargar_tabla_AltaBienes_nombre(String area, String valor) {
 
         DefaultTableModel modelo;
 
@@ -703,7 +741,7 @@ public class Modelo {
         String[] registros = new String[11];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_alta ,nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien  from AltaBienes WHERE descripcion LIKE '%" + valor + "%' order by id_alta desc";
+        cons = "select* from AltaBienes WHERE area = '"+area+"' AND descripcion LIKE '%"+valor+"%' order by id_alta desc";
 
         try {
 
@@ -733,7 +771,7 @@ public class Modelo {
         }
 
     }
-    public DefaultTableModel cargar_tabla_AltaBienes_tipo(String valor) {
+    public DefaultTableModel cargar_tabla_AltaBienes_tipo(String area, String valor) {
 
         DefaultTableModel modelo;
 
@@ -742,7 +780,7 @@ public class Modelo {
         String[] registros = new String[11];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_alta ,nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien  from AltaBienes WHERE formaAdquisicion LIKE '%" + valor + "%' order by id_alta desc";
+        cons = "select* from AltaBienes WHERE area = '"+area+"' AND formaAdquisicion LIKE '%"+valor+"%' order by id_alta desc";
 
         try {
 
@@ -772,8 +810,6 @@ public class Modelo {
         }
 
     }
-    
-
     public boolean insertar_AltaBienes(DatosAltaBien datos) {
         cons = "INSERT into AltaBienes(nInventario , area , FechaAdquisicion , formaAdquisicion , descripcion , cantidad_bien , marca_bien , modelo_bien , serie_bien , valor_bien) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
@@ -800,7 +836,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public int seleccionar_ex_Bien(String idAlta) {
         cons="SELECT cantidad_bien FROM Altabienes WHERE id_alta = " + idAlta + "";
         try {
@@ -847,31 +882,6 @@ public class Modelo {
         }
 
     }
-    
-    
-//    public boolean editar_AltaBienes_x(DatosAltaBien datos) {
-//
-//        cons = "update AltaBienes set cantidad_bien = ? where id_alta = ? ";
-//
-//        try {
-//
-//            PreparedStatement pst = cn.prepareStatement(cons);
-//
-//            pst.setString(1, datos.getIdAltaBien());
-//            pst.setString(2, datos.getCantidad());
-//            
-//            int N = pst.executeUpdate();
-//            if (N != 0) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//            return false;
-//        }
-//
-//    }
     public void editar_AltaBienes_xBaja(String idAlta,int cantidad) {
         cons = "UPDATE AltaBienes SET cantidad_bien ='" + cantidad + "' WHERE id_alta = '" + idAlta + "'";
 
@@ -902,26 +912,6 @@ public class Modelo {
             return false;
         }
     }//cierre funcion
-    
-//    public boolean eliminar_AltaBienes_x(DatosAltaBien datos) {
-//        cons = "DELETE FROM altabienes WHERE id_alta = ? AND cantidad_bien = 0";
-//        try {
-//            PreparedStatement pst = cn.prepareStatement(cons);
-//
-//            pst.setString(1, datos.getIdAltaBien());
-//            int N = pst.executeUpdate();
-//
-//            if (N != 0) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//            return false;
-//        }
-//    }//cierre funcion
     public void eliminar_AltaBienes_xBaja(String idalta) {
         cons = "DELETE FROM AltaBienes WHERE id_alta='" + idalta + "' AND cantidad_bien = 0";
         try {
@@ -970,8 +960,7 @@ public class Modelo {
         }
 
     }
-    
-    public DefaultTableModel cargar_tabla_BajaBienes_nombre(String valor) {
+    public DefaultTableModel cargar_tabla_BajaBienes_nombre(String area,String valor) {
 
         DefaultTableModel modelo;
 
@@ -980,7 +969,44 @@ public class Modelo {
         String[] registros = new String[10];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion , cantidad, fechaBaja , causa_baja from BajaBienes WHERE descripcion LIKE '%" + valor + "%' order by id_baja desc";
+        cons = "select* from BajaBienes WHERE area = '"+area+"' AND descripcion LIKE '%"+valor+"%' order by id_baja desc";
+            
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_baja");
+                registros[1] = rs.getString("nInventabaja");
+                registros[2] = rs.getString("area");
+                registros[3] = rs.getString("FechaAdquisicion");
+                registros[4] = rs.getString("id_bien");
+                registros[5] = rs.getString("valor_bien");
+                registros[6] = rs.getString("descripcion");
+                registros[7] = rs.getString("cantidad");
+                registros[8] = rs.getString("fechaBaja");
+                registros[9] = rs.getString("causa_baja");
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+    public DefaultTableModel cargar_tabla_BajaBienes_tipo(String area,String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ","Id Bien", "Valor", "Nombre y Característica", "Cantidad", "Fecha de Baja", "Causa de Baja"};
+
+        String[] registros = new String[10];
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select* from BajaBienes WHERE area = '"+area+"' AND causa_baja LIKE '%"+valor+"%' order by id_baja desc";
 
         try {
 
@@ -1008,45 +1034,6 @@ public class Modelo {
             return null;
         }
     }
-    
-    public DefaultTableModel cargar_tabla_BajaBienes_tipo(String valor) {
-
-        DefaultTableModel modelo;
-
-        String[] titulos = {"ID", "No.Inventario", "Area", "Fecha de Ad. ","Id Bien", "Valor", "Nombre y Característica", "Cantidad", "Fecha de Baja", "Causa de Baja"};
-
-        String[] registros = new String[10];
-        modelo = new DefaultTableModel(null, titulos);
-
-        cons = "select id_baja ,nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion , cantidad, fechaBaja , causa_baja from BajaBienes WHERE causa_baja LIKE '%" + valor + "%' order by id_baja desc";
-
-        try {
-
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(cons);
-
-            while (rs.next()) {
-
-                registros[0] = rs.getString("id_baja");
-                registros[1] = rs.getString("nInventabaja");
-                registros[2] = rs.getString("area");
-                registros[3] = rs.getString("FechaAdquisicion");
-                registros[4] = rs.getString("id_bien");
-                registros[5] = rs.getString("valor_bien");
-                registros[6] = rs.getString("descripcion");
-                registros[7] = rs.getString("cantidad");
-                registros[8] = rs.getString("fechaBaja");
-                registros[9] = rs.getString("causa_baja");
-                modelo.addRow(registros);
-            }
-            return modelo;
-
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, e);
-            return null;
-        }
-    }
-    
     public boolean insertar_BajaBienes(DatosBajaBien datos) {
         cons = "INSERT into BajaBienes(nInventabaja , area , FechaAdquisicion , id_bien, valor_bien , descripcion, cantidad, fechaBaja , causa_baja) VALUES (?,?,?,?,?,?,?,?,?)";
 
@@ -1072,7 +1059,6 @@ public class Modelo {
             return false;
         }
     }
-
     public boolean editar_BajaBienes(DatosBajaBien datos, String idBaja) {
 
         cons = "update Bajabienes set nInventabaja = ? ,area = ?, FechaAdquisicion = ? , valor_bien = ?, descripcion = ?, fechaBaja = ?, causa_baja = ? where id_bien ='" + idBaja + "' ";
@@ -1101,7 +1087,6 @@ public class Modelo {
         }
 
     }
-    
     public boolean eliminar_BajaBienes(DatosBajaBien datos) {
         cons = "delete from BajaBienes where id_baja = ?";
         try {
@@ -1120,10 +1105,8 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, e);
             return false;
         }
-    }//cierre funcion
-    
+    }//cierre funcion    
     //-----------------------------------------VALE ALMACEN-------------------//
-    
     public String DevolverCtt(){
         String area = ValesAlmacen.txtArea.getText();
         cons = "SELECT ctt_area FROM areas WHERE nombre = '" + area + "'";
@@ -1140,7 +1123,6 @@ public class Modelo {
             return "";
         }
     }
-    
     public DefaultTableModel cargar_tabla_detalleV(String valor) {
 
         DefaultTableModel modelo;
@@ -1236,7 +1218,6 @@ public class Modelo {
             return 0;
         }
     }
-    
     public boolean modificar_vale(DatosValeAlmacen datos){
         String idVale = ValesAlmacen.txtidVale.getText();
         cons = "update vale_almacen set id_person = ?, nombre_person = ? ,area_sol = ? ,responsable_area = ? where id_vale ='" + idVale + "' ";
@@ -1262,7 +1243,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public boolean agregar_detalle_almacen (DatosDetalleValeAlmacen datos) {
         cons = "INSERT into detalle_vale(id_valeA , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?)";
 
@@ -1286,7 +1266,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public boolean modificar_detalle_almacen(DatosDetalleValeAlmacen datos){
         String idDetalleA = ValesAlmacen.txtidDetalle.getText();
         cons = "update detalle_vale set id_consumibles = ?, nombre_consumible = ?, cantidad_solic = ?, unidad_consumible = ?, cantidad_entregada = ? where id_detalle ='" + idDetalleA + "' ";
@@ -1312,7 +1291,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public boolean eliminar_detalle_almacen(DatosDetalleValeAlmacen datos){
         cons = "DELETE FROM detalle_vale WHERE id_valeA = ?";
         try {
@@ -1332,7 +1310,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public void eliminar_xregistro_detalle_almacen(Integer idDetalle) throws SQLException {
 
         int result = JOptionPane.showConfirmDialog(null,
@@ -1345,7 +1322,6 @@ public class Modelo {
         }
 
     }
-    
     //--------------------------RESGUARDO---------------------------------//
     public DefaultTableModel cargar_tabla_detalle_Res(String valor) {
 
@@ -1387,7 +1363,6 @@ public class Modelo {
             return null;
         }
     }
-    
     public boolean agregar_vale_resguardo(DatosResguardo datos){
         cons = "INSERT into vale_resguardo(fecha, plantel, ctt, clave, nombre_per, curp_pers, cant_total, valor_total) VALUES (?,?,?,?,?,?,?,?)";
 
@@ -1413,7 +1388,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public int select_id_vale_res() {
         cons = "SELECT id_valeres FROM vale_resguardo WHERE fecha order by id_valeres DESC limit 1";
         try {
@@ -1429,7 +1403,6 @@ public class Modelo {
             return 0;
         }
     }
-    
     public boolean modificar_vale_res(DatosResguardo datos){
         String idValeR = ValeActivo.txtIdValeR.getText();
         cons = "update vale_resguardo set plantel = ?, ctt = ?, clave = ?, nombre_per = ?, curp_pers = ?, cant_total = ?, valor_total = ? where id_valeres ='" + idValeR + "' ";
@@ -1457,8 +1430,6 @@ public class Modelo {
             return false;
         }
     }
-    
-    
     public boolean eliminar_vale_res(DatosResguardo datos){
         cons = "delete from vale_resguardo where id_valeres = ?";
         try {
@@ -1478,7 +1449,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public boolean agregar_detalle_resguardo(DatosDetalleResguardo datos) {
         cons = "INSERT into detalle_resguardo(id_valer , num_ref , id_bien , nombre_b, n_inventario, marca_b, modelo_b, serie_b, valor_b) VALUES (?,?,?,?,?,?,?,?,?)";
 
@@ -1504,7 +1474,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public boolean modificar_detalle_res(DatosDetalleResguardo datos){
         String idDetalleR = ValeActivo.txtIdDetalle.getText();
         cons = "update detalle_resguardo set id_bien = ? , nombre_b = ?, n_inventario = ?, marca_b = ?, modelo_b = ?, serie_b = ?, valor_b = ? where id_detaller ='" + idDetalleR + "' ";
@@ -1532,7 +1501,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public boolean eliminar_detalle_res(DatosResguardo datos){
         cons = "DELETE FROM detalle_resguardo WHERE id_valer= ?";
         try {
@@ -1552,7 +1520,6 @@ public class Modelo {
             return false;
         }
     }
-    
     public void eliminar_xregistro_detalle_res(Integer idResguardo) throws SQLException{
         int result = JOptionPane.showConfirmDialog(null,
                 "¿Seguro que desea eliminar éste Registro?", null, JOptionPane.YES_NO_OPTION);

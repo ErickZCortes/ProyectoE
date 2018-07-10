@@ -18,15 +18,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class ConsultaPersonal extends javax.swing.JInternalFrame {
-    
     Controlador c = new Controlador();
+    String seleccion = "";
     DatosPersonal datosPersonal = new DatosPersonal();
     /**
      * Creates new form ConsultaConsumibles
      */
-    public ConsultaPersonal() throws SQLException {
+    public ConsultaPersonal(String accion) throws SQLException {
         initComponents();
         cargar_tabla("");
+        seleccion = accion;
     }
     
     void cargar_tabla(String valor) throws SQLException {
@@ -185,7 +186,6 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String filtro;
-        
         filtro = txtBuscar.getText();
         try {
             cargar_tabla(filtro);
@@ -210,20 +210,8 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-        if(evt.getClickCount() == 3){
-            int fila = tbDatos.getSelectedRow();
-            String  nombre, curp, area, idpersona;
-            nombre = tbDatos.getValueAt(fila, 1).toString();
-            curp = tbDatos.getValueAt(fila, 2).toString();
-            area = tbDatos.getValueAt(fila, 3).toString();
-            idpersona= tbDatos.getValueAt(fila, 0).toString();
-            ValeActivo.txtName.setText(nombre);
-            ValeActivo.txtArea.setText(area);
-            ValeActivo.txtcurp.setText(curp);
-            ValeActivo.txtCTT.setText(c.obtenerctt(area));
-            ValeActivo.txtclave.setText(c.obteneclaveins(area));
-            this.dispose();
-        }else if (evt.getClickCount() == 2) {
+        if (seleccion.equals("Almacen")) {
+             if (evt.getClickCount() == 2) {
             int fila = tbDatos.getSelectedRow();
             String  nombre, curp, area, idpersona;
             nombre = tbDatos.getValueAt(fila, 1).toString();
@@ -237,10 +225,23 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             ValesAlmacen.txtidPersona.setText(idpersona);
             
             this.dispose();   
-        
-           
+             }
+        }else if (seleccion.equals("Activo")) {
+            if(evt.getClickCount() == 2){
+            int fila = tbDatos.getSelectedRow();
+            String  nombre, curp, area, idpersona;
+            nombre = tbDatos.getValueAt(fila, 1).toString();
+            curp = tbDatos.getValueAt(fila, 2).toString();
+            area = tbDatos.getValueAt(fila, 3).toString();
+            idpersona= tbDatos.getValueAt(fila, 0).toString();
+            ValeActivo.txtName.setText(nombre);
+            ValeActivo.txtArea.setText(area);
+            ValeActivo.txtcurp.setText(curp);
+            ValeActivo.txtCTT.setText(c.obtenerctt(area));
+            ValeActivo.txtclave.setText(c.obteneclaveins(area));
+            this.dispose();
+            }
         }
-        
     }//GEN-LAST:event_tbDatosMousePressed
 
 

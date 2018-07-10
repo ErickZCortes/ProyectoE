@@ -419,6 +419,8 @@ public class Areas extends javax.swing.JInternalFrame {
         limpiar();
         accion = "A";
         txtNombreA.requestFocus();
+        txtClaveCTT.setText("21DCT0306L");
+        txtClaveI.setText("11611");
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModMouseClicked

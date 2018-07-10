@@ -120,7 +120,8 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                 txtInventario.setText(inventario);
                 txtDescripcion.setText(desc);
                 txtValor.setText(valor);
-
+                comboAreas.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 2)));
+                comboCausa.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 9)));
             }
         } catch (Exception e) {
 
@@ -293,6 +294,11 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         jLabel6.setText("Area: ");
 
         comboAreas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        comboAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAreasActionPerformed(evt);
+            }
+        });
 
         lbFecha1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lbFecha1.setText("Fecha de Adqusición:");
@@ -639,9 +645,9 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCantAltaActionPerformed
 
     private void btnBuscarBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBienActionPerformed
-        ConsultaBienes form = null;
+        ConsultaBienesSeleccionar form = null;
         try {
-            form = new ConsultaBienes();
+            form = new ConsultaBienesSeleccionar("BajaBienes");
             Escritorio.add(form);
 
             form.setClosable(true);
@@ -720,13 +726,17 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtDescripcionKeyPressed
 
+    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAreasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBien;
     private javax.swing.JButton btnElim;
     private javax.swing.JButton btncancel;
     private javax.swing.JButton btnsave;
-    private javax.swing.JComboBox<DatosArea> comboAreas;
+    public static javax.swing.JComboBox<DatosArea> comboAreas;
     private javax.swing.JComboBox<String> comboCausa;
     private com.toedter.calendar.JDateChooser dcFechaAlta;
     private com.toedter.calendar.JDateChooser dcFechaBaja;

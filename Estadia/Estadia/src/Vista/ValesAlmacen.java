@@ -35,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Mayra
  */
 public class ValesAlmacen extends javax.swing.JInternalFrame {
-
+    String prueba = "";
     Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();
     Controlador c = new Controlador();
@@ -52,7 +52,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         bloquear();
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
-
+        txtAlmacen.setText("ALMACEN");
     }
 
     void bloquear() {
@@ -206,6 +206,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtidPersona = new javax.swing.JTextField();
         txtidConsumible = new javax.swing.JTextField();
         txtidCantidadC = new javax.swing.JTextField();
+        txtAlmacen = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLMaterial = new javax.swing.JLabel();
         txtMaterial = new javax.swing.JTextField();
@@ -335,6 +336,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addContainerGap(344, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,7 +357,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -659,9 +663,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarPeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeActionPerformed
+            String prueba = "almacen";
         ConsultaPersonal form = null;
         try {
-            form = new ConsultaPersonal();
+            form = new ConsultaPersonal("Almacen");
             Escritorio.add(form);
 
             form.setClosable(true);
@@ -990,6 +995,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tbDatos;
+    public static javax.swing.JTextField txtAlmacen;
     public static javax.swing.JTextField txtArea;
     public static javax.swing.JTextField txtCantidadE;
     private javax.swing.JTextField txtCantidadS;
