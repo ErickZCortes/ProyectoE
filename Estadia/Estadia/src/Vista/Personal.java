@@ -71,7 +71,7 @@ public class Personal extends javax.swing.JInternalFrame {
     }
 
     void cargar_tabla_Personal(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_Personal(valor);
+        DefaultTableModel tb = c.cargar_tabla_Personal_xnombre(valor);
         tbDatos.setModel(tb);
 
         tbDatos.getColumnModel().getColumn(0).setPreferredWidth(150);

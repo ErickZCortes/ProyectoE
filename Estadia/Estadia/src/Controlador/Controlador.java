@@ -128,8 +128,11 @@ public class Controlador {
     }
 
     //-------------------------PERSONAL---------------------------------------//
-    public DefaultTableModel cargar_tabla_Personal(String valor) {
-        return m.cargar_tabla_Personal(valor);
+    public DefaultTableModel cargar_tabla_Personal_xarea(String valor) {
+        return m.cargar_tabla_Personal_xarea(valor);
+    }
+    public DefaultTableModel cargar_tabla_Personal_xnombre(String valor) {
+        return m.cargar_tabla_Personal_xnombre(valor);
     }
 
     public boolean Guardar_personal(String accion, DatosPersonal datos, String idPersonal) {
