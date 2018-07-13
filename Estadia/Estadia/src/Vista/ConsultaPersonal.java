@@ -26,18 +26,31 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
      */
     public ConsultaPersonal(String accion) throws SQLException {
         initComponents();
-        cargar_tabla("");
         seleccion = accion;
     }
     
-    void cargar_tabla(String valor) throws SQLException {
-        DefaultTableModel tb = c.cargar_tabla_Personal(valor);
+    void mostrar(String valor) {
+        try {
+         if (cbCondicion.getSelectedItem() == "Área") {
+            DefaultTableModel tb = c.cargar_tabla_Personal_xarea(valor);
         tbDatos.setModel(tb);
 
         tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+        }else if(cbCondicion.getSelectedItem() == "Nombre"){
+            DefaultTableModel tb = c.cargar_tabla_Personal_xnombre(valor);
+        tbDatos.setModel(tb);
+
+        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+        }   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccionar una opción válida");
+        }
     }
     
     /**
@@ -57,6 +70,8 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cbCondicion = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -136,6 +151,22 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel3.setText("Dato: ");
 
+        cbCondicion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Área", "Nombre" }));
+        cbCondicion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbCondicionItemStateChanged(evt);
+            }
+        });
+        cbCondicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCondicionActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel5.setText("Buscar por:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -143,22 +174,33 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1048, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +220,7 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,26 +229,14 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String filtro;
         filtro = txtBuscar.getText();
-        try {
-            cargar_tabla(filtro);
-            txtBuscar.setText("");
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            
+        mostrar(filtro);
+        txtBuscar.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         String filtro;
-        
         filtro = txtBuscar.getText();
-        
-        try {
-            cargar_tabla( filtro);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        mostrar(filtro);
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
@@ -244,10 +274,21 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbDatosMousePressed
 
+    private void cbCondicionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCondicionItemStateChanged
+        mostrar("");
+        txtBuscar.setText("");
+    }//GEN-LAST:event_cbCondicionItemStateChanged
+
+    private void cbCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCondicionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCondicionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> cbCondicion;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

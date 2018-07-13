@@ -594,7 +594,42 @@ public class Modelo {
 
     }
     //----------------------------------PERSONAL--------------------------//
-    public DefaultTableModel cargar_tabla_Personal(String valor) {
+    public DefaultTableModel cargar_tabla_Personal_xarea(String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"id_persona", "Nombre", "CURP", "Area"};
+
+        String[] registros = new String[4];
+        totalRegistros = 0;
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_persona  , nombre_persona , curp_persona , area_persona  from personal WHERE area_persona LIKE '%" + valor + "%' order by id_persona desc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_persona");
+                registros[1] = rs.getString("nombre_persona");
+                registros[2] = rs.getString("curp_persona");
+                registros[3] = rs.getString("area_persona");
+
+                totalRegistros = totalRegistros + 1;
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+
+    }
+    public DefaultTableModel cargar_tabla_Personal_xnombre(String valor) {
 
         DefaultTableModel modelo;
 
