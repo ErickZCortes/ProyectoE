@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" columnCount="2" pageWidth="612" pageHeight="792" columnWidth="286" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c13afb5a-bbbc-4159-a64f-e60134b00df6">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" columnCount="3" pageWidth="612" pageHeight="792" columnWidth="190" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c13afb5a-bbbc-4159-a64f-e60134b00df6">
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="CodeBar" class="java.lang.String">
@@ -25,30 +25,49 @@ WHERE
 	</background>
 	<detail>
 		<band height="146" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="45" width="161" height="16" uuid="4142501a-00a8-4fa4-b840-080255734821"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_area}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="18" y="13" width="70" height="30" uuid="614b37ec-517f-4bb4-80fa-486e02b1f12b"/>
+				<imageExpression><![CDATA["..\\Img\\SEPLogo.jpg"]]></imageExpression>
+			</image>
 			<rectangle radius="10">
-				<reportElement x="9" y="9" width="268" height="126" uuid="82b5ff99-2d0d-4517-9cc2-dc11bdfe90cb"/>
+				<reportElement x="10" y="10" width="171" height="122" uuid="4f4030e4-67af-4ac0-9580-671a6d5c868a"/>
 			</rectangle>
 			<image>
-				<reportElement x="10" y="49" width="87" height="74" uuid="0d5ae89b-9d52-4354-b7fe-7cba4633dbfa"/>
+				<reportElement x="147" y="13" width="30" height="30" uuid="a23d5c7c-176b-401e-99f1-4510a5adfc77"/>
+				<imageExpression><![CDATA["..\\Img\\CBTISLogo.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="16" y="65" width="78" height="62" uuid="7b98a2cd-fcaf-438e-bf9a-99ad39d13dd4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Informacion}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="99" y="61" width="78" height="68" uuid="4586e634-477d-448d-a103-41803329d3d2"/>
 				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
 new com.google.zxing.qrcode.QRCodeWriter().encode(
 $F{altabienes_nInventario},
 com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="113" y="29" width="164" height="20" uuid="60e64748-ba65-4d8c-b168-7b929a090013"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="18" y="45" width="159" height="16" uuid="eaf14d32-c3c9-4477-906b-d66b34426a3b"/>
+				<textElement textAlignment="Center">
 					<font fontName="Cambria"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{altabienes_area}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="113" y="63" width="164" height="60" uuid="b96c9ac1-614f-4412-a7ce-7b16256f963e"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Cambria"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Informacion}]]></textFieldExpression>
-			</textField>
+			<image>
+				<reportElement x="18" y="15" width="76" height="28" uuid="155cedc4-5ff6-4124-bd21-113a82b883ec"/>
+				<imageExpression><![CDATA["..\\Img\\SEPLogo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 </jasperReport>
