@@ -380,54 +380,11 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbCondicionActionPerformed
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-        if (evt.getClickCount() == 2) {
-            int fila = tbDatos.getSelectedRow();
-            String  nombre, valor, idbien, cantidad;
-            nombre = tbDatos.getValueAt(fila, 5).toString();
-            valor = tbDatos.getValueAt(fila, 10).toString();
-            idbien = tbDatos.getValueAt(fila, 0).toString();
-            cantidad = tbDatos.getValueAt(fila, 6).toString();
-            
-            BajaBienes.txtDescripcion.setText(nombre);
-            BajaBienes.txtValor.setText(valor);
-            BajaBienes.txtIdbien.setText(idbien);
-            BajaBienes.txtCantAlta.setText(cantidad);
-            this.dispose();
-        }
+        
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-        if (evt.getClickCount() == 2) {
-            int fila = tbDatos.getSelectedRow();
-            String  idbien,nombre,ninventario,marca,serie,valor,modelo, cantidad;
-            
-            idbien = tbDatos.getValueAt(fila, 0).toString();
-            nombre = tbDatos.getValueAt(fila, 5).toString();
-            cantidad = tbDatos.getValueAt(fila, 6).toString();
-            ninventario= tbDatos.getValueAt(fila, 1).toString();
-            marca = tbDatos.getValueAt(fila, 7).toString();
-            modelo = tbDatos.getValueAt(fila, 8).toString();
-            serie = tbDatos.getValueAt(fila, 9).toString();
-            valor = tbDatos.getValueAt(fila, 10).toString();
-            
-            ValeActivo.txtIdBien.setText(idbien);
-            ValeActivo.txtNomBien.setText(nombre);
-            ValeActivo.txtNInventario.setText(ninventario);
-            ValeActivo.txtMarca.setText(marca);
-            ValeActivo.txtModelo.setText(modelo);
-            ValeActivo.txtSerie.setText(serie);
-            ValeActivo.txtValor.setText(valor);
-            ValeActivo.txtIdCantB.setText(cantidad);
-//            idbien = tbDatos.getValueAt(fila, 0).toString();
-//            cantidad = tbDatos.getValueAt(fila, 6).toString();
-//            
-//            
-//            BajaBienes.txtDescripcion.setText(nombre);
-//            BajaBienes.txtValor.setText(valor);
-//            BajaBienes.txtIdbien.setText(idbien);
-//            BajaBienes.txtCantAlta.setText(cantidad);
-            this.dispose();
-        }
+        
     }//GEN-LAST:event_tbDatosMousePressed
 
     private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed

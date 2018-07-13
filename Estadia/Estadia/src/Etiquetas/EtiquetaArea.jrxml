@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c13afb5a-bbbc-4159-a64f-e60134b00df6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CodeBar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     altabienes.`nInventario` AS altabienes_nInventario
+FROM
+     `altabienes` altabienes
+WHERE
+     altabienes.`area` = $P{CodeBar}]]>
+	</queryString>
+	<field name="altabienes_nInventario" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="397" y="68" width="100" height="20" uuid="ce71e7d0-5593-417c-9236-1f8efa7068b6"/>
+				<textFieldExpression><![CDATA[$F{altabienes_nInventario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="48" width="100" height="20" uuid="631f115a-9bc8-498b-8692-7994819479fa"/>
+				<textFieldExpression><![CDATA[$P{CodeBar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
