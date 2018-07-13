@@ -156,6 +156,9 @@ public class Controlador {
     public DefaultTableModel cargar_tabla_Altabienes_nombre(String area,String valor) {
         return m.cargar_tabla_AltaBienes_nombre(area, valor);
     }
+    public DefaultTableModel cargar_tabla_Altabienes_NInventario(String area,String valor) {
+        return m.cargar_tabla_AltaBienes_NInventario(area, valor);
+    }
     public DefaultTableModel cargar_tabla_Altabienes_tipo(String area,String valor) {
         return m.cargar_tabla_AltaBienes_tipo(area,valor);
     }

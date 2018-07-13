@@ -23,12 +23,14 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     Controlador c = new Controlador();
     DatosAltaBien datBienes = new DatosAltaBien();
     DatosArea datArea = new DatosArea();
+     String seleccion = "";
     /**
      * Creates new form ConsultaBienes
      */
-    public ConsultaBienes() throws SQLException {
+    public ConsultaBienes(String select) throws SQLException {
         initComponents();
         datArea.mostrarComboAreas(comboAreas);
+        seleccion = select;
     }
     
     
@@ -69,7 +71,22 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
                 tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
-                }
+                }else if (cbCondicion.getSelectedItem() == "No. Inventario") {
+                DefaultTableModel tb = c.cargar_tabla_Altabienes_NInventario(area,buscar);
+                tbDatos.setModel(tb);
+
+                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
+                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(10).setPreferredWidth(160);
+                }  
                 }  
             } else if (cbTablas.getSelectedItem() == "Baja de Bienes") {
                 if (comboAreas.getSelectedItem()== "") {
@@ -176,17 +193,12 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
                 cbTablasItemStateChanged(evt);
             }
         });
-        cbTablas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTablasActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel4.setText("Tabla");
 
         cbCondicion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Nombre", "Forma o Causa" }));
+        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Nombre", "Forma o Causa", "No. Inventario" }));
         cbCondicion.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbCondicionItemStateChanged(evt);
@@ -361,10 +373,6 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void cbTablasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTablasActionPerformed
-        
-    }//GEN-LAST:event_cbTablasActionPerformed
-
     private void cbTablasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTablasItemStateChanged
         mostrar("");
         txtBuscar.setText("");
@@ -380,7 +388,17 @@ public class ConsultaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbCondicionActionPerformed
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-        
+        if (seleccion.equals("Etiqueta")) {
+            if (evt.getClickCount() == 2) {
+                  int fila = tbDatos.getSelectedRow();
+                String NInventario;
+                NInventario = tbDatos.getValueAt(fila, 1).toString();
+                EtiquetaInventario.txtInventario.setText(NInventario);
+                this.dispose();
+            }
+        }else{
+            //Consulta
+        }
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed

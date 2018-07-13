@@ -18,9 +18,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class ConsultaPersonal extends javax.swing.JInternalFrame {
+
     Controlador c = new Controlador();
     String seleccion = "";
     DatosPersonal datosPersonal = new DatosPersonal();
+
     /**
      * Creates new form ConsultaConsumibles
      */
@@ -28,31 +30,31 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         initComponents();
         seleccion = accion;
     }
-    
+
     void mostrar(String valor) {
         try {
-         if (cbCondicion.getSelectedItem() == "Área") {
-            DefaultTableModel tb = c.cargar_tabla_Personal_xarea(valor);
-        tbDatos.setModel(tb);
+            if (cbCondicion.getSelectedItem() == "Área") {
+                DefaultTableModel tb = c.cargar_tabla_Personal_xarea(valor);
+                tbDatos.setModel(tb);
 
-        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
-        }else if(cbCondicion.getSelectedItem() == "Nombre"){
-            DefaultTableModel tb = c.cargar_tabla_Personal_xnombre(valor);
-        tbDatos.setModel(tb);
+                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+            } else if (cbCondicion.getSelectedItem() == "Nombre") {
+                DefaultTableModel tb = c.cargar_tabla_Personal_xnombre(valor);
+                tbDatos.setModel(tb);
 
-        tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
-        }   
+                tbDatos.getColumnModel().getColumn(0).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(1).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(2).setPreferredWidth(160);
+                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Seleccionar una opción válida");
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -241,35 +243,42 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
         if (seleccion.equals("Almacen")) {
-             if (evt.getClickCount() == 2) {
-            int fila = tbDatos.getSelectedRow();
-            String  nombre, curp, area, idpersona;
-            nombre = tbDatos.getValueAt(fila, 1).toString();
-            curp = tbDatos.getValueAt(fila, 2).toString();
-            area = tbDatos.getValueAt(fila, 3).toString();
-            idpersona= tbDatos.getValueAt(fila, 0).toString();
-            
-           
-            ValesAlmacen.txtPerSol.setText(nombre);
-            ValesAlmacen.txtArea.setText(area);
-            ValesAlmacen.txtidPersona.setText(idpersona);
-            
-            this.dispose();   
-             }
-        }else if (seleccion.equals("Activo")) {
-            if(evt.getClickCount() == 2){
-            int fila = tbDatos.getSelectedRow();
-            String  nombre, curp, area, idpersona;
-            nombre = tbDatos.getValueAt(fila, 1).toString();
-            curp = tbDatos.getValueAt(fila, 2).toString();
-            area = tbDatos.getValueAt(fila, 3).toString();
-            idpersona= tbDatos.getValueAt(fila, 0).toString();
-            ValeActivo.txtName.setText(nombre);
-            ValeActivo.txtArea.setText(area);
-            ValeActivo.txtcurp.setText(curp);
-            ValeActivo.txtCTT.setText(c.obtenerctt(area));
-            ValeActivo.txtclave.setText(c.obteneclaveins(area));
-            this.dispose();
+            if (evt.getClickCount() == 2) {
+                int fila = tbDatos.getSelectedRow();
+                String nombre, curp, area, idpersona;
+                nombre = tbDatos.getValueAt(fila, 1).toString();
+                curp = tbDatos.getValueAt(fila, 2).toString();
+                area = tbDatos.getValueAt(fila, 3).toString();
+                idpersona = tbDatos.getValueAt(fila, 0).toString();
+
+                ValesAlmacen.txtPerSol.setText(nombre);
+                ValesAlmacen.txtArea.setText(area);
+                ValesAlmacen.txtidPersona.setText(idpersona);
+
+                this.dispose();
+            }
+        } else if (seleccion.equals("Activo")) {
+            if (evt.getClickCount() == 2) {
+                int fila = tbDatos.getSelectedRow();
+                String nombre, curp, area, idpersona;
+                nombre = tbDatos.getValueAt(fila, 1).toString();
+                curp = tbDatos.getValueAt(fila, 2).toString();
+                area = tbDatos.getValueAt(fila, 3).toString();
+                idpersona = tbDatos.getValueAt(fila, 0).toString();
+                ValeActivo.txtName.setText(nombre);
+                ValeActivo.txtArea.setText(area);
+                ValeActivo.txtcurp.setText(curp);
+                ValeActivo.txtCTT.setText(c.obtenerctt(area));
+                ValeActivo.txtclave.setText(c.obteneclaveins(area));
+                this.dispose();
+            }
+        } else if (seleccion.equals("Etiqueta")) {
+            if (evt.getClickCount() == 2) {
+                int fila = tbDatos.getSelectedRow();
+                String nombre;
+                nombre = tbDatos.getValueAt(fila, 1).toString();
+                EtiquetasPersonal.txtNomPersonal.setText(nombre);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_tbDatosMousePressed
