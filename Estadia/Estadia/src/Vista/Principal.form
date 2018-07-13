@@ -161,7 +161,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="sEtiqueta">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Imprimir una etiqueta"/>
+                    <Property name="text" type="java.lang.String" value="Generar etiqueta por Bien"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sEtiquetaActionPerformed"/>
@@ -169,7 +169,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sEtiquetaArea">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Imprimir etiqueta por area"/>
+                    <Property name="text" type="java.lang.String" value="Generar etiqueta por area"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sEtiquetaAreaActionPerformed"/>
@@ -177,7 +177,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="sEtiquetasAll">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Imprimir todas las etiquetas"/>
+                    <Property name="text" type="java.lang.String" value="Generar etiqueta por personal"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sEtiquetasAllActionPerformed"/>
@@ -413,16 +413,16 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="lblNombre" min="-2" pref="182" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblNombre" min="-2" pref="215" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblIdUsuario" min="-2" pref="116" max="-2" attributes="0"/>
-                      <EmptySpace pref="194" max="32767" attributes="0"/>
+                      <Component id="lblIdUsuario" min="-2" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace pref="127" max="32767" attributes="0"/>
                       <Component id="jLabel3" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblAcceso" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="lblAcceso" min="-2" pref="109" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

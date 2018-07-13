@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c13afb5a-bbbc-4159-a64f-e60134b00df6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" columnCount="2" pageWidth="612" pageHeight="792" columnWidth="286" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c13afb5a-bbbc-4159-a64f-e60134b00df6">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,25 +8,46 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     altabienes.`nInventario` AS altabienes_nInventario
+     altabienes.`nInventario` AS altabienes_nInventario,
+     altabienes.`area` AS altabienes_area,
+CONCAT(
+     altabienes.`descripcion`," ",altabienes.`marca_bien`," ",altabienes.`modelo_bien`," ",altabienes.`serie_bien`)AS Informacion
 FROM
      `altabienes` altabienes
 WHERE
      altabienes.`area` = $P{CodeBar}]]>
 	</queryString>
 	<field name="altabienes_nInventario" class="java.lang.String"/>
+	<field name="altabienes_area" class="java.lang.String"/>
+	<field name="Informacion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="146" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="9" y="9" width="268" height="126" uuid="82b5ff99-2d0d-4517-9cc2-dc11bdfe90cb"/>
+			</rectangle>
+			<image>
+				<reportElement x="10" y="49" width="87" height="74" uuid="0d5ae89b-9d52-4354-b7fe-7cba4633dbfa"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+new com.google.zxing.qrcode.QRCodeWriter().encode(
+$F{altabienes_nInventario},
+com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
 			<textField>
-				<reportElement x="397" y="68" width="100" height="20" uuid="ce71e7d0-5593-417c-9236-1f8efa7068b6"/>
-				<textFieldExpression><![CDATA[$F{altabienes_nInventario}]]></textFieldExpression>
+				<reportElement x="113" y="29" width="164" height="20" uuid="60e64748-ba65-4d8c-b168-7b929a090013"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_area}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="43" y="48" width="100" height="20" uuid="631f115a-9bc8-498b-8692-7994819479fa"/>
-				<textFieldExpression><![CDATA[$P{CodeBar}]]></textFieldExpression>
+				<reportElement x="113" y="63" width="164" height="60" uuid="b96c9ac1-614f-4412-a7ce-7b16256f963e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Cambria"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Informacion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

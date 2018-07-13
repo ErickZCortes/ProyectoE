@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Erick
  */
-public class EtiquetasVarias extends javax.swing.JInternalFrame {
+public class EtiquetasPersonal extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form EtiquetasVarias
      */
-    public EtiquetasVarias() {
+    public EtiquetasPersonal() {
         initComponents();
     }
 
@@ -32,16 +32,21 @@ public class EtiquetasVarias extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btnGenerar2 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtNomBien1 = new javax.swing.JTextField();
+        btnBuscarBien = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
         setIconifiable(true);
-        setPreferredSize(new java.awt.Dimension(538, 407));
+        setTitle("Etiquetas por personal");
+        setFrameIcon(null);
 
         jPanel2.setBackground(new java.awt.Color(41, 55, 61));
 
         jLTitulo24.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLTitulo24.setForeground(new java.awt.Color(255, 255, 255));
+        jLTitulo24.setText("Etiquetas por personal");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -89,21 +94,53 @@ public class EtiquetasVarias extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel10.setText("Nombre del personal:");
+
+        txtNomBien1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        btnBuscarBien.setBackground(new java.awt.Color(41, 55, 61));
+        btnBuscarBien.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBuscarBien.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarBien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Search_24px.png"))); // NOI18N
+        btnBuscarBien.setBorder(null);
+        btnBuscarBien.setBorderPainted(false);
+        btnBuscarBien.setContentAreaFilled(false);
+        btnBuscarBien.setOpaque(true);
+        btnBuscarBien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarBienActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(234, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerar2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(txtNomBien1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarBien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(178, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNomBien1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarBien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGenerar2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,12 +174,19 @@ public class EtiquetasVarias extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnBuscarBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarBienActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarBien;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGenerar2;
     private javax.swing.JLabel jLTitulo24;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public static javax.swing.JTextField txtNomBien1;
     // End of variables declaration//GEN-END:variables
 }
