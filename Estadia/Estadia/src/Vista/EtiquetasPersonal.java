@@ -5,12 +5,29 @@
  */
 package Vista;
 
+import Etiquetas.EtiquetaPersonal;
+import Modelo.Conexion;
+import static Vista.Principal.Escritorio;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Erick
  */
 public class EtiquetasPersonal extends javax.swing.JInternalFrame {
-
+Conexion cc = new Conexion();
+    Connection cn = cc.GetConnection();
     /**
      * Creates new form EtiquetasVarias
      */
@@ -33,8 +50,8 @@ public class EtiquetasPersonal extends javax.swing.JInternalFrame {
         btnGenerar2 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        txtNomBien1 = new javax.swing.JTextField();
-        btnBuscarBien = new javax.swing.JButton();
+        txtNomPersonal = new javax.swing.JTextField();
+        btnBuscarPersonal = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
@@ -97,19 +114,19 @@ public class EtiquetasPersonal extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel10.setText("Nombre del personal:");
 
-        txtNomBien1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNomPersonal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        btnBuscarBien.setBackground(new java.awt.Color(41, 55, 61));
-        btnBuscarBien.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnBuscarBien.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarBien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Search_24px.png"))); // NOI18N
-        btnBuscarBien.setBorder(null);
-        btnBuscarBien.setBorderPainted(false);
-        btnBuscarBien.setContentAreaFilled(false);
-        btnBuscarBien.setOpaque(true);
-        btnBuscarBien.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarPersonal.setBackground(new java.awt.Color(41, 55, 61));
+        btnBuscarPersonal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBuscarPersonal.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Search_24px.png"))); // NOI18N
+        btnBuscarPersonal.setBorder(null);
+        btnBuscarPersonal.setBorderPainted(false);
+        btnBuscarPersonal.setContentAreaFilled(false);
+        btnBuscarPersonal.setOpaque(true);
+        btnBuscarPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarBienActionPerformed(evt);
+                btnBuscarPersonalActionPerformed(evt);
             }
         });
 
@@ -127,9 +144,9 @@ public class EtiquetasPersonal extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addComponent(txtNomBien1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarBien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuscarPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,8 +154,8 @@ public class EtiquetasPersonal extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNomBien1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarBien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -167,26 +184,54 @@ public class EtiquetasPersonal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar2ActionPerformed
+        if (txtNomPersonal.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Debes ingresar un nombre de Personal para generar la etiqueta");
+            txtNomPersonal.requestFocus();
+            return;
+        }
         
+        try {
+            JasperReport jr = (JasperReport) JRLoader.loadObject(EtiquetaPersonal.class.getResource("../Etiquetas/EtiquetaPersona.jasper"));
+            Map parametro = new HashMap<String, String>();
+            parametro.put("NombrePersonal",txtNomPersonal.getText());
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.show();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "error" + e);
+        }  
     }//GEN-LAST:event_btnGenerar2ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnBuscarBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarBienActionPerformed
+    private void btnBuscarPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPersonalActionPerformed
+       ConsultaPersonal form = null;
+        try {
+            form = new ConsultaPersonal("Etiqueta");
+            Escritorio.add(form);
+
+            form.setClosable(true);
+            form.setIconifiable(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_btnBuscarPersonalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarBien;
+    private javax.swing.JButton btnBuscarPersonal;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGenerar2;
     private javax.swing.JLabel jLTitulo24;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public static javax.swing.JTextField txtNomBien1;
+    public static javax.swing.JTextField txtNomPersonal;
     // End of variables declaration//GEN-END:variables
 }

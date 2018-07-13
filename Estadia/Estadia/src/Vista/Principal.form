@@ -161,7 +161,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="sEtiqueta">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Generar etiqueta por Bien"/>
+                    <Property name="text" type="java.lang.String" value="Generar etiqueta por No. Inventario"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sEtiquetaActionPerformed"/>

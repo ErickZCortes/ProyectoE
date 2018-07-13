@@ -215,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.setText("Etiquetas");
 
-        sEtiqueta.setText("Generar etiqueta por Bien");
+        sEtiqueta.setText("Generar etiqueta por No. Inventario");
         sEtiqueta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sEtiquetaActionPerformed(evt);
@@ -479,10 +479,9 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void sConsultasBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasBienesActionPerformed
-        
         ConsultaBienes form = null;
         try {
-            form = new ConsultaBienes();
+            form = new ConsultaBienes("Consulta");
             Escritorio.add(form);
 
             form.setClosable(true);
@@ -539,8 +538,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sValeResActionPerformed
 
     private void sEtiquetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEtiquetaActionPerformed
-        EtiquetaUno form = null;
-        form = new EtiquetaUno();
+        EtiquetaInventario form = null;
+        form = new EtiquetaInventario();
         Escritorio.add(form);
         form.setClosable(true);
         form.setIconifiable(true);
