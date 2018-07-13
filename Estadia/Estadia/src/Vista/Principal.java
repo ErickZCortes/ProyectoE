@@ -103,16 +103,16 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(0, 0, 0)
-                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addComponent(lblIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.setText("Etiquetas");
 
-        sEtiqueta.setText("Imprimir una etiqueta");
+        sEtiqueta.setText("Generar etiqueta por Bien");
         sEtiqueta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sEtiquetaActionPerformed(evt);
@@ -223,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(sEtiqueta);
 
-        sEtiquetaArea.setText("Imprimir etiqueta por area");
+        sEtiquetaArea.setText("Generar etiqueta por area");
         sEtiquetaArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sEtiquetaAreaActionPerformed(evt);
@@ -231,7 +231,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(sEtiquetaArea);
 
-        sEtiquetasAll.setText("Imprimir todas las etiquetas");
+        sEtiquetasAll.setText("Generar etiqueta por personal");
         sEtiquetasAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sEtiquetasAllActionPerformed(evt);
@@ -559,8 +559,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sEtiquetaAreaActionPerformed
 
     private void sEtiquetasAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEtiquetasAllActionPerformed
-      EtiquetasVarias form = null;
-        form = new EtiquetasVarias();
+      EtiquetasPersonal form = null;
+        form = new EtiquetasPersonal();
         Escritorio.add(form);
         form.setClosable(true);
         form.setIconifiable(true);
