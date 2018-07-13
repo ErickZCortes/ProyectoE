@@ -1106,6 +1106,38 @@ public class Modelo {
             return false;
         }
     }//cierre funcion    
+    
+    public DefaultTableModel cargar_tabla_AsignacionBienes_nombre(String area, String valor) {
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID", "Fecha", "Area", "Nombre"};
+
+        String[] registros = new String[4];
+        modelo = new DefaultTableModel(null, titulos);
+
+        cons = "select id_valeres, fecha, plantel, nombre_per from vale_resguardo WHERE plantel = '"+area+"' AND nombre_per LIKE '%"+valor+"%' order by id_valeres asc";
+
+        try {
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+
+            while (rs.next()) {
+
+                registros[0] = rs.getString("id_valeres");
+                registros[1] = rs.getString("fecha");
+                registros[2] = rs.getString("plantel");
+                registros[3] = rs.getString("nombre_per");
+                modelo.addRow(registros);
+            }
+            return modelo;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
     //-----------------------------------------VALE ALMACEN-------------------//
     public String DevolverCtt(){
         String area = ValesAlmacen.txtArea.getText();

@@ -63,8 +63,11 @@ public class Principal extends javax.swing.JFrame {
         mBienes = new javax.swing.JMenu();
         sBienes = new javax.swing.JMenuItem();
         sBajasBienes = new javax.swing.JMenuItem();
-        sConsultasBienes = new javax.swing.JMenuItem();
         sValeRes = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        sConsultasBienes = new javax.swing.JMenuItem();
+        wConsultaAsig = new javax.swing.JMenuItem();
+        sCambioAsig = new javax.swing.JMenuItem();
         menuC = new javax.swing.JMenu();
         mConsumibles = new javax.swing.JMenuItem();
         mConsultas = new javax.swing.JMenuItem();
@@ -262,14 +265,6 @@ public class Principal extends javax.swing.JFrame {
         });
         mBienes.add(sBajasBienes);
 
-        sConsultasBienes.setText("Consultas");
-        sConsultasBienes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sConsultasBienesActionPerformed(evt);
-            }
-        });
-        mBienes.add(sConsultasBienes);
-
         sValeRes.setText("Vale de Resguardo");
         sValeRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +272,34 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mBienes.add(sValeRes);
+
+        jMenu2.setText("Consultas");
+
+        sConsultasBienes.setText("Consultas Bienes");
+        sConsultasBienes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sConsultasBienesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(sConsultasBienes);
+
+        wConsultaAsig.setText("Consultas Asignación de Bienes");
+        wConsultaAsig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wConsultaAsigActionPerformed(evt);
+            }
+        });
+        jMenu2.add(wConsultaAsig);
+
+        mBienes.add(jMenu2);
+
+        sCambioAsig.setText("Cambio de Asignación");
+        sCambioAsig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sCambioAsigActionPerformed(evt);
+            }
+        });
+        mBienes.add(sCambioAsig);
 
         jMenuBar1.add(mBienes);
 
@@ -545,6 +568,26 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sEtiquetasAllActionPerformed
 
+    private void wConsultaAsigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wConsultaAsigActionPerformed
+        ConsultaAsignacion form = null;
+        form = new ConsultaAsignacion("ConsultaAsig");
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_wConsultaAsigActionPerformed
+
+    private void sCambioAsigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sCambioAsigActionPerformed
+        ConsultaAsignacion form = null;
+        form = new ConsultaAsignacion("CambioAsig");
+        Escritorio.add(form);
+        form.setClosable(true);
+        form.setIconifiable(true);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_sCambioAsigActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -587,6 +630,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
@@ -607,6 +651,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem sAreas;
     private javax.swing.JMenuItem sBajasBienes;
     public static javax.swing.JMenuItem sBienes;
+    private javax.swing.JMenuItem sCambioAsig;
     public static javax.swing.JMenuItem sConsultasBienes;
     public static javax.swing.JMenuItem sConsultasPersonal;
     private javax.swing.JMenuItem sEtiqueta;
@@ -616,5 +661,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem sUsuarios;
     private javax.swing.JMenuItem sVale;
     private javax.swing.JMenuItem sValeRes;
+    private javax.swing.JMenuItem wConsultaAsig;
     // End of variables declaration//GEN-END:variables
 }

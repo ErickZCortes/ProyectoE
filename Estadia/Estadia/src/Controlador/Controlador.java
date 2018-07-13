@@ -150,27 +150,21 @@ public class Controlador {
     public DefaultTableModel cargar_tabla_Altabienes_area(String valor) {
         return m.cargar_tabla_AltaBienes_area(valor);
     }
-
     public DefaultTableModel cargar_tabla_Altabienes_nombre(String area,String valor) {
         return m.cargar_tabla_AltaBienes_nombre(area, valor);
     }
-
     public DefaultTableModel cargar_tabla_Altabienes_tipo(String area,String valor) {
         return m.cargar_tabla_AltaBienes_tipo(area,valor);
     }
-    
     public DefaultTableModel cargar_tabla_Bajabienes_area(String valor) {
         return m.cargar_tabla_BajaBienes_area(valor);
     }
-
     public DefaultTableModel cargar_tabla_Bajabienes_nombre(String area, String valor) {
         return m.cargar_tabla_BajaBienes_nombre(area, valor);
     }
-
     public DefaultTableModel cargar_tabla_Bajabienes_tipo(String area, String valor) {
         return m.cargar_tabla_BajaBienes_tipo(area, valor);
     }
-
     public boolean Guardar_Altabienes(String accion, DatosAltaBien datos, String idAlta) {
         if (accion == "A") {
             return m.insertar_AltaBienes(datos);
@@ -180,41 +174,26 @@ public class Controlador {
         }
         return false;
     }
-    
     public int seleccionar_ex_Bien(String idAlta) {
         return m.seleccionar_ex_Bien(idAlta);
     }
     public void editar_AltaBienes_xBaja(String idAlta, int cantidad) {
         m.editar_AltaBienes_xBaja(idAlta, cantidad);
     }
-
     public void eliminar_AltaBienes_xBaja(String idalta) {
         m.eliminar_AltaBienes_xBaja(idalta);
     }
-
     public boolean Guardar_Bajabienes(DatosBajaBien datos) {
 
         return m.insertar_BajaBienes(datos);
 
     }
-
     public boolean eliminar_bienes(DatosBajaBien datos) {
         return m.eliminar_BajaBienes(datos);
     }
-
-//    public DefaultTableModel cargar_tabla_Bienes(int opcion, String valor) {
-//        if (opcion == 0) {
-//            JOptionPane.showMessageDialog(null,"Seleccione una tabla válida");
-//        }
-//        if (opcion == 1) {
-//            return m.cargar_tabla_AltaBienes(valor);
-//        }
-//        if (opcion == 2) {
-//            return m.cargar_tabla_BajaBienes(valor);
-//        }
-//        return null;
-//        
-//    } 
+    public DefaultTableModel cargar_tabla_AsignacionBienes_nombre(String area, String valor) {
+        return m.cargar_tabla_AsignacionBienes_nombre(area, valor);
+    }
     //-----------------------------------------VALE ALMACEN-------------------//
     public String DevolverCtt() {
         return m.DevolverCtt();

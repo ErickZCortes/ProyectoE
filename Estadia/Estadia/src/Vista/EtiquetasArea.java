@@ -7,7 +7,7 @@ package Vista;
 
 import Controlador.Controlador;
 import Datos.DatosArea;
-import Etiquetas.EtiquetasxArea;
+import Etiquetas.Etiquetaarea;
 import Modelo.Conexion;
 import Modelo.Modelo;
 import java.awt.event.KeyEvent;
@@ -96,6 +96,11 @@ public class EtiquetasArea extends javax.swing.JInternalFrame {
         btnGenerar2.setBorderPainted(false);
         btnGenerar2.setContentAreaFilled(false);
         btnGenerar2.setOpaque(true);
+        btnGenerar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGenerar2MouseClicked(evt);
+            }
+        });
         btnGenerar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerar2ActionPerformed(evt);
@@ -183,18 +188,28 @@ public class EtiquetasArea extends javax.swing.JInternalFrame {
         this.dispose(); 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnGenerar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar2ActionPerformed
+    private void btnGenerar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerar2MouseClicked
         try { 
-            JasperReport jr = (JasperReport) JRLoader.loadObject(EtiquetasxArea.class.getResource("/Etiquetas/ReporteArea.jasper"));
-            Map parametro = new HashMap<String, String>();
-            parametro.put("qrCode", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
-            JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
-            JasperViewer jv = new JasperViewer(jp, false);
-            jv.show();
-            this.dispose();
+            
+                JasperReport jr = (JasperReport) JRLoader.loadObject(Etiquetaarea.class.getResource("/Etiquetas/EtiquetaArea.jasper"));
+
+                Map parametro = new HashMap<String, String>();
+                parametro.put("CodeBar", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
+
+                JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.show();
+
+                //JasperPrintManager.printReport( jp, true);
+               
+                this.dispose();
         } catch (Exception e) { 
             JOptionPane.showMessageDialog(rootPane, "error" + e);
         }
+    }//GEN-LAST:event_btnGenerar2MouseClicked
+
+    private void btnGenerar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar2ActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerar2ActionPerformed
 
 

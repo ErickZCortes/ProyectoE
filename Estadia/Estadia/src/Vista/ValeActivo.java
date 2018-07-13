@@ -55,7 +55,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         bloquear();
         Calendar c2 = new GregorianCalendar();
         dcfechaRes.setCalendar(c2);
-        txtActivo.setText("ACTIVO");
     }
 
     void bloquear() {
@@ -1043,8 +1042,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Vale generado.");
 
             try {
-                int codigo = Integer.parseInt(txtIdValeR.getText());
-                System.out.println(codigo);
+                
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ValeResguardo.class.getResource("/Documentos/ValeResguardoActivo.jasper"));
 
                 Map parametro = new HashMap<String, Integer>();
@@ -1221,7 +1219,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    public static javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscarBien;
     private javax.swing.JButton btnBuscarPersona;
