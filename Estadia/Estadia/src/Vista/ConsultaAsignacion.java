@@ -245,6 +245,7 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
         if (seleccion.equals("CambioAsig")) {
+            ValeActivo.btnAdd.setVisible(false);
             if (evt.getClickCount() == 2) {
                   int fila = tbDatos.getSelectedRow();
                 String idbien;

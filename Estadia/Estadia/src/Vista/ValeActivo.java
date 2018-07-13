@@ -1219,7 +1219,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    public static javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscarBien;
     private javax.swing.JButton btnBuscarPersona;
