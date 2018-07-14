@@ -526,7 +526,7 @@ public class Principal extends javax.swing.JFrame {
     private void sValeResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sValeResActionPerformed
         ValeActivo form = null;
         try {
-            form = new ValeActivo();
+            form = new ValeActivo("AgregarAsig","");
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }

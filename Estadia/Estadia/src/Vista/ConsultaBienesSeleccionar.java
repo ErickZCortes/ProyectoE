@@ -340,7 +340,7 @@ public class ConsultaBienesSeleccionar extends javax.swing.JInternalFrame {
                 ValeActivo.txtModelo.setText(modelo);
                 ValeActivo.txtSerie.setText(serie);
                 ValeActivo.txtValor.setText(valor);
-                ValeActivo.txtIdCantB.setText(cantidad);
+                ValeActivo.txtCantB.setText(cantidad);
                 this.dispose();
             }
         } else if (seleccion.equals("BajaBienes")) {

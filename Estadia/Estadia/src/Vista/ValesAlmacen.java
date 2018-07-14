@@ -82,7 +82,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtCantidadS.setEnabled(false);
         txtCantidadE.setEnabled(false);
         txtUnidad.setEnabled(false);
-
+        btnAgregar.setEnabled(false);
 //        btnModificar.setEnabled(true);
 //        btnElim.setEnabled(true);
 //        btnGenerarR.setEnabled(true);
@@ -608,6 +608,17 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDatosMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbDatosMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbDatosMouseReleased(evt);
+            }
+        });
+        tbDatos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbDatosKeyPressed(evt);
+            }
         });
         jScrollPane1.setViewportView(tbDatos);
 
@@ -880,8 +891,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnElimActionPerformed
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-      actualizarDatos();
-     // bloquearTbdatos();
+      
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void txtCantidadSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyPressed
@@ -968,6 +978,20 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtCantidadEKeyTyped
+
+    private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
+        
+    }//GEN-LAST:event_tbDatosMousePressed
+
+    private void tbDatosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDatosKeyPressed
+        
+    }//GEN-LAST:event_tbDatosKeyPressed
+
+    private void tbDatosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseReleased
+        actualizarDatos();
+     bloquearTbdatos();
+     
+    }//GEN-LAST:event_tbDatosMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

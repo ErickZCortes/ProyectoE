@@ -9,6 +9,10 @@ import Controlador.Controlador;
 import Datos.DatosAltaBien;
 import Datos.DatosArea;
 import static Vista.ConsultaBienes.comboAreas;
+import static Vista.Principal.Escritorio;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,11 +21,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class ConsultaAsignacion extends javax.swing.JInternalFrame {
-    
+
     Controlador c = new Controlador();
     DatosAltaBien datBienes = new DatosAltaBien();
     DatosArea datArea = new DatosArea();
     String seleccion = "";
+
     /**
      * Creates new form ConsultaAsignacion
      */
@@ -31,31 +36,58 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
         seleccion = select;
         if (seleccion.equals("CambioAsig")) {
             lbTitulo.setText("Cambio de Asignación de Bienes");
-        }else if (seleccion.equals("ConsultaAsig")) {
+        } else if (seleccion.equals("ConsultaAsig")) {
             lbTitulo.setText("Consulta de Asignación de Bienes");
         }
     }
-    
+
     public void mostrar(String buscar) {
         try {
-                
-                if (comboAreas.getSelectedItem()== "") {
-                    JOptionPane.showMessageDialog(null, "Selecciona un área existente");
-                } else {
-                   String area = comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre();
 
-                   DefaultTableModel tb = c.cargar_tabla_AsignacionBienes_nombre(area,buscar);
+            if (comboAreas.getSelectedItem() == "") {
+                JOptionPane.showMessageDialog(null, "Selecciona un área existente");
+            } else {
+                String area = comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre();
+
+                DefaultTableModel tb = c.cargar_tabla_AsignacionBienes_nombre(area, buscar);
                 tbDatos.setModel(tb);
 
                 tbDatos.getColumnModel().getColumn(0).setPreferredWidth(40);
                 tbDatos.getColumnModel().getColumn(1).setPreferredWidth(180);
                 tbDatos.getColumnModel().getColumn(2).setPreferredWidth(180);
-                tbDatos.getColumnModel().getColumn(3).setPreferredWidth(180);
+
+                tbDatos.getColumnModel().getColumn(3).setMaxWidth(0);
+                tbDatos.getColumnModel().getColumn(3).setMinWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(3).setMinWidth(0);
+
+                tbDatos.getColumnModel().getColumn(4).setMaxWidth(0);
+                tbDatos.getColumnModel().getColumn(4).setMinWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+
+                tbDatos.getColumnModel().getColumn(5).setPreferredWidth(180);
+
+                tbDatos.getColumnModel().getColumn(6).setMaxWidth(0);
+                tbDatos.getColumnModel().getColumn(6).setMinWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
+
+                tbDatos.getColumnModel().getColumn(7).setMaxWidth(0);
+                tbDatos.getColumnModel().getColumn(7).setMinWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(7).setMaxWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(7).setMinWidth(0);
+
+                tbDatos.getColumnModel().getColumn(8).setMaxWidth(0);
+                tbDatos.getColumnModel().getColumn(8).setMinWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
+                tbDatos.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,19 +277,49 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
         if (seleccion.equals("CambioAsig")) {
-            ValeActivo.btnAdd.setVisible(false);
+
             if (evt.getClickCount() == 2) {
-                  int fila = tbDatos.getSelectedRow();
-                String idbien;
-                idbien = tbDatos.getValueAt(fila, 0).toString();
+                int fila = tbDatos.getSelectedRow();
+                String idvaleR, nombre, ctt, area, clave, curp, cantidadt, valort;
+                idvaleR = tbDatos.getValueAt(fila, 0).toString();
+                nombre = tbDatos.getValueAt(fila, 5).toString();
+                ctt = tbDatos.getValueAt(fila, 3).toString();
+                area = tbDatos.getValueAt(fila, 2).toString();
+                clave = tbDatos.getValueAt(fila, 4).toString();
+                curp = tbDatos.getValueAt(fila, 6).toString();
+                cantidadt = tbDatos.getValueAt(fila, 7).toString();
+                valort = tbDatos.getValueAt(fila, 8).toString();
+
+                this.dispose();
+                ValeActivo form = null;
+
+                try {
+                    form = new ValeActivo("cambioAsig",idvaleR);
+                ValeActivo.txtIdValeR.setText(idvaleR);
+                ValeActivo.txtName.setText(nombre);
+                ValeActivo.txtCTT.setText(ctt);
+                ValeActivo.txtArea.setText(area);
+                ValeActivo.txtclave.setText(clave);
+                ValeActivo.txtcurp.setText(curp);
+                ValeActivo.txtCanTotal.setText(cantidadt);
+                ValeActivo.txtValTotal.setText(valort);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Escritorio.add(form);
+                form.setClosable(true);
+                form.setIconifiable(true);
+                form.toFront();
+                form.setVisible(true);
+
             }
-        }else{
+        } else {
             //Consulta
         }
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-        
+
     }//GEN-LAST:event_tbDatosMousePressed
 
     private void comboAreasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreasItemStateChanged

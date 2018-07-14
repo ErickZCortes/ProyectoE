@@ -1185,12 +1185,12 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "Fecha", "Area", "Nombre"};
+        String[] titulos = {"ID", "Fecha", "Area", "CTT", "C. INSTITUCIONAL", "Nombre", "CURP", "CANTIDAD T", "VALOR T",};
 
-        String[] registros = new String[4];
+        String[] registros = new String[9];
         modelo = new DefaultTableModel(null, titulos);
 
-        cons = "select id_valeres, fecha, plantel, nombre_per from vale_resguardo WHERE plantel = '"+area+"' AND nombre_per LIKE '%"+valor+"%' order by id_valeres asc";
+        cons = "select* from vale_resguardo WHERE plantel = '"+area+"' AND nombre_per LIKE '%"+valor+"%' order by id_valeres asc";
 
         try {
 
@@ -1202,7 +1202,12 @@ public class Modelo {
                 registros[0] = rs.getString("id_valeres");
                 registros[1] = rs.getString("fecha");
                 registros[2] = rs.getString("plantel");
-                registros[3] = rs.getString("nombre_per");
+                registros[3] = rs.getString("ctt");
+                registros[4] = rs.getString("clave");
+                registros[5] = rs.getString("nombre_per");
+                registros[6] = rs.getString("curp_pers");
+                registros[7] = rs.getString("cant_total");
+                registros[8] = rs.getString("valor_total");
                 modelo.addRow(registros);
             }
             return modelo;
