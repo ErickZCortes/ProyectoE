@@ -213,6 +213,11 @@ public class Areas extends javax.swing.JInternalFrame {
                 btnAddMouseClicked(evt);
             }
         });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnMod.setBackground(new java.awt.Color(41, 55, 61));
         btnMod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -579,6 +584,10 @@ public class Areas extends javax.swing.JInternalFrame {
             txtClaveI.requestFocus();
         }
     }//GEN-LAST:event_txtClaveCTTKeyPressed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
