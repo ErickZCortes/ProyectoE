@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
-	<property name="ireport.zoom" value="1.5"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="572" pageHeight="356" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -295,7 +295,7 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="311" splitType="Stretch">
+		<band height="155" splitType="Stretch">
 			<staticText>
 				<reportElement x="60" y="15" width="82" height="10" uuid="c70d902f-f15f-4189-bbe0-5466cffaef0a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
