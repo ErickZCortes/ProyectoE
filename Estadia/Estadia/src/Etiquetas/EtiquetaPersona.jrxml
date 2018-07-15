@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dea05ebf-12f3-4056-abe6-91e2e8d84af5">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" columnCount="3" pageWidth="612" pageHeight="792" columnWidth="190" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dea05ebf-12f3-4056-abe6-91e2e8d84af5">
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="NombrePersonal" class="java.lang.String">
@@ -29,22 +29,39 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="113" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="144" height="103" uuid="f5261681-39a6-4578-904c-1ea9d3595a2b"/>
+			</rectangle>
 			<image>
-				<reportElement x="30" y="39" width="100" height="50" uuid="4869569d-46da-499b-b100-80011f38a9db"/>
+				<reportElement x="80" y="49" width="60" height="48" uuid="4869569d-46da-499b-b100-80011f38a9db"/>
 				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
 new com.google.zxing.qrcode.QRCodeWriter().encode(
 $F{altabienes_Inventario},
 com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="157" y="19" width="100" height="20" uuid="616b73c0-2bbf-4936-bd07-eb201ff47c04"/>
+				<reportElement x="4" y="33" width="136" height="16" uuid="616b73c0-2bbf-4936-bd07-eb201ff47c04"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{altabienes_area}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="53" width="145" height="54" uuid="93d63142-de74-4fc8-948c-5a6f8110cc5c"/>
+				<reportElement x="4" y="48" width="75" height="48" uuid="93d63142-de74-4fc8-948c-5a6f8110cc5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="6" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{Informacion}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="4" y="4" width="80" height="28" uuid="1f98e5bc-887b-4d3a-81cc-d87f035281c0"/>
+				<imageExpression><![CDATA["Etiquetas\\SEPLogo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="112" y="4" width="28" height="28" uuid="716386fa-eda9-4625-94d9-86b96ad31175"/>
+				<imageExpression><![CDATA["Etiquetas\\CBTISLogo.png"]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 </jasperReport>
