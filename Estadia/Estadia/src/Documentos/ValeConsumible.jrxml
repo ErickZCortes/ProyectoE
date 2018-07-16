@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="572" pageHeight="356" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="abf837ae-a8e1-44fc-8261-bff8feb6014c">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.24184264611831"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="63"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -86,11 +86,11 @@ WHERE
 				<text><![CDATA[VALE DE SALIDA DE ALMACEN]]></text>
 			</staticText>
 			<image>
-				<reportElement x="7" y="6" width="77" height="77" uuid="b8297ab2-0e83-44f1-b4c8-d523cd68f8b8"/>
+				<reportElement x="0" y="6" width="77" height="77" uuid="4d54eed0-9bc6-435e-997c-1549eadbda88"/>
 				<imageExpression><![CDATA["Documentos\\CBTISLogo.png"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="495" y="4" width="77" height="77" uuid="31503401-5dab-4302-ab1f-a0da841a9290"/>
+				<reportElement x="490" y="6" width="77" height="77" uuid="4cbfde22-3a58-4eb3-870b-470f0d4d2e98"/>
 				<imageExpression><![CDATA["Documentos\\DGETILogo.png"]]></imageExpression>
 			</image>
 		</band>
@@ -221,7 +221,7 @@ WHERE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
 				<reportElement x="17" y="0" width="55" height="20" uuid="f6a52aa7-fd0a-4b58-b54b-95dca9eda9ce"/>
 				<box>
@@ -294,52 +294,52 @@ WHERE
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="155" splitType="Stretch">
+	<pageFooter>
+		<band height="107">
 			<staticText>
-				<reportElement x="60" y="15" width="82" height="10" uuid="c70d902f-f15f-4189-bbe0-5466cffaef0a"/>
+				<reportElement x="108" y="81" width="82" height="10" uuid="c70d902f-f15f-4189-bbe0-5466cffaef0a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[PERSONA QUE SOLICITA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="15" width="65" height="10" uuid="8ac2ce12-0df4-47b6-89a1-b9c69e19f31c"/>
+				<reportElement x="248" y="81" width="65" height="10" uuid="8ac2ce12-0df4-47b6-89a1-b9c69e19f31c"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[JEFE INMEDIATO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="325" y="15" width="91" height="10" uuid="acda3472-6d63-4cd8-a7a2-af8ee3dbda2a"/>
+				<reportElement x="373" y="81" width="91" height="10" uuid="acda3472-6d63-4cd8-a7a2-af8ee3dbda2a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[JEFE DEL DEPTO. SERVS.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="25" width="38" height="10" uuid="ebb06b6a-9a5e-484b-9414-4b9c2a3444fb"/>
+				<reportElement x="403" y="91" width="38" height="10" uuid="ebb06b6a-9a5e-484b-9414-4b9c2a3444fb"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<text><![CDATA[ADMVOS.]]></text>
 			</staticText>
 			<line>
-				<reportElement mode="Transparent" x="50" y="10" width="100" height="1" uuid="faf1a597-7cdd-4e1d-b4a7-7d84cc48d6a4"/>
+				<reportElement mode="Transparent" x="98" y="76" width="100" height="1" uuid="faf1a597-7cdd-4e1d-b4a7-7d84cc48d6a4"/>
 			</line>
 			<line>
-				<reportElement mode="Transparent" x="180" y="10" width="100" height="1" uuid="7b6752e9-6bf4-4e23-a4c7-05d298094e07"/>
+				<reportElement mode="Transparent" x="228" y="76" width="100" height="1" uuid="7b6752e9-6bf4-4e23-a4c7-05d298094e07"/>
 			</line>
 			<line>
-				<reportElement mode="Transparent" x="320" y="10" width="100" height="1" uuid="c3cc0188-bf77-4542-b958-bba24f557a50"/>
+				<reportElement mode="Transparent" x="368" y="76" width="100" height="1" uuid="c3cc0188-bf77-4542-b958-bba24f557a50"/>
 			</line>
 			<textField>
-				<reportElement x="45" y="0" width="115" height="10" uuid="97ee0b30-a75d-4710-ac89-868b1c7b2c7e"/>
+				<reportElement x="93" y="66" width="115" height="10" uuid="97ee0b30-a75d-4710-ac89-868b1c7b2c7e"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_almacen_nombre_person}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnFooter>
+	</pageFooter>
 </jasperReport>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2caf57f3-3438-49bc-ba35-e11eb95b56e0">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa194374-f1ea-4f29-b0ce-0dcba94ebbd2">
+	<property name="ireport.zoom" value="0.75"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="250"/>
+	<property name="ireport.y" value="38"/>
 	<parameter name="id_vale_almacen_principal" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -31,10 +31,18 @@ FROM
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<detail>
-		<band height="269" splitType="Stretch">
+	<pageFooter>
+		<band height="752">
 			<subreport>
-				<reportElement x="0" y="0" width="572" height="269" uuid="f9921124-79d7-4bea-a7de-6dd25a71017b"/>
+				<reportElement x="0" y="0" width="572" height="381" uuid="62d2cdd5-6ed4-455d-8f84-28bf73ca7aa7"/>
+				<subreportParameter name="id_vale_almacen">
+					<subreportParameterExpression><![CDATA[$P{id_vale_almacen_principal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ValeConsumible.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="381" width="572" height="371" uuid="ee6d4a66-f4de-4dcf-9e40-f39b9f7fcbac"/>
 				<subreportParameter name="id_vale_almacen">
 					<subreportParameterExpression><![CDATA[$P{id_vale_almacen_principal}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -42,15 +50,5 @@ FROM
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ValeConsumible.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="312">
-			<subreport>
-				<reportElement x="0" y="0" width="572" height="311" uuid="04454253-c04c-478c-aeaa-83a3c8af1cab"/>
-				<subreportParameter name="id_vale_almacen">
-					<subreportParameterExpression><![CDATA[$P{id_vale_almacen_principal}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ValeConsumible.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
-	</detail>
+	</pageFooter>
 </jasperReport>
