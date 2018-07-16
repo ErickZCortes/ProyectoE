@@ -846,10 +846,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Vale generado.");
             try {
 
-                JasperReport jr = (JasperReport) JRLoader.loadObject(ValeAlmacen.class.getResource("/Documentos/ValeConsumible.jasper"));
+                JasperReport jr = (JasperReport) JRLoader.loadObject(ValeAlmacen.class.getResource("/Documentos/PrincipalAlmacen.jasper"));
 
                 Map parametro = new HashMap<String, Integer>();
-                parametro.put("id_vale_almacen", Integer.parseInt(txtidVale.getText()));
+                parametro.put("id_vale_almacen_principal", Integer.parseInt(txtidVale.getText()));
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
@@ -861,6 +861,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
+            
             
         }
         

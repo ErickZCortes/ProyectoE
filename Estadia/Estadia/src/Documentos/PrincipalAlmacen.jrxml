@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\Mayra\\Desktop\\ESTADÍA\\Estadia\\ProyectoE\\Estadia\\Estadia\\src\\Documentos\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["\\Documentos\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
