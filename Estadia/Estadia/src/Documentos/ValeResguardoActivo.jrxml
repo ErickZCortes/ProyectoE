@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62744e66-7147-48bd-8b57-98d35a6f5cc5">
-	<property name="ireport.zoom" value="2.2"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="29"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="294"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="id_vale_resguardo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -49,7 +49,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="113" splitType="Stretch">
+		<band height="114" splitType="Stretch">
 			<staticText>
 				<reportElement x="99" y="52" width="227" height="12" uuid="a80e43e4-3676-4551-83ee-d92a4b00290e"/>
 				<textElement verticalAlignment="Middle">
@@ -146,9 +146,9 @@ WHERE
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="88" splitType="Stretch">
+		<band height="65" splitType="Stretch">
 			<staticText>
-				<reportElement x="14" y="31" width="215" height="20" uuid="facb408b-c5fa-47e9-ac82-c95a267784d7"/>
+				<reportElement x="14" y="22" width="215" height="17" uuid="facb408b-c5fa-47e9-ac82-c95a267784d7"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -162,7 +162,7 @@ WHERE
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="31" width="216" height="20" uuid="0583fd35-a1e0-486c-a3e1-9892742cc811"/>
+				<reportElement x="229" y="22" width="216" height="17" uuid="0583fd35-a1e0-486c-a3e1-9892742cc811"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -176,7 +176,7 @@ WHERE
 				<text><![CDATA[CURP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="445" y="31" width="151" height="20" uuid="0e5e75d6-e8c1-4430-b3f9-c9c2e78ee1e6"/>
+				<reportElement x="445" y="22" width="151" height="17" uuid="0e5e75d6-e8c1-4430-b3f9-c9c2e78ee1e6"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -190,7 +190,7 @@ WHERE
 				<text><![CDATA[FECHA DE ELABORACIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="596" y="31" width="145" height="20" uuid="bf309a80-e619-4f07-8d2a-5bdeba29c30d"/>
+				<reportElement x="596" y="22" width="145" height="17" uuid="bf309a80-e619-4f07-8d2a-5bdeba29c30d"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -204,7 +204,7 @@ WHERE
 				<text><![CDATA[FIRMA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="14" y="11" width="215" height="20" uuid="f054e585-817f-47a3-ae4f-fa86218f1e18"/>
+				<reportElement x="14" y="5" width="215" height="17" uuid="f054e585-817f-47a3-ae4f-fa86218f1e18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -218,7 +218,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{vale_resguardo_nombre_per}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="229" y="11" width="216" height="20" uuid="bc1d5509-484d-4f9c-9531-4928a879e55b"/>
+				<reportElement x="229" y="5" width="216" height="17" uuid="bc1d5509-484d-4f9c-9531-4928a879e55b"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -230,7 +230,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{vale_resguardo_curp_pers}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="596" y="11" width="145" height="20" uuid="6b45f99f-8f0d-4e6e-b6af-89c1ba5a6aa0"/>
+				<reportElement x="596" y="5" width="145" height="17" uuid="6b45f99f-8f0d-4e6e-b6af-89c1ba5a6aa0"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#000000"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -244,7 +244,7 @@ WHERE
 				<text><![CDATA[]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="445" y="11" width="151" height="20" uuid="898cd578-23e0-4171-9c56-c020c2b47629"/>
+				<reportElement x="445" y="5" width="151" height="17" uuid="898cd578-23e0-4171-9c56-c020c2b47629"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -258,7 +258,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{vale_resguardo_fecha}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="14" y="68" width="215" height="20" uuid="8c7a5d29-362a-4da3-b49a-d7573c7408a1"/>
+				<reportElement x="14" y="45" width="215" height="20" uuid="8c7a5d29-362a-4da3-b49a-d7573c7408a1"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -272,7 +272,7 @@ WHERE
 				<text><![CDATA[NOMBRE Y CARACTERISTICAS DEL BIEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="68" width="216" height="20" uuid="a95b1baa-e982-49c6-895b-7062a0464748"/>
+				<reportElement x="229" y="45" width="216" height="20" uuid="a95b1baa-e982-49c6-895b-7062a0464748"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -286,7 +286,7 @@ WHERE
 				<text><![CDATA[No. DE INVENTARIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="445" y="68" width="80" height="20" uuid="153e1a69-7cac-4f00-9823-505820d81a88"/>
+				<reportElement x="445" y="45" width="80" height="20" uuid="153e1a69-7cac-4f00-9823-505820d81a88"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -300,7 +300,7 @@ WHERE
 				<text><![CDATA[MARCA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="525" y="68" width="71" height="20" uuid="5d7eed72-9af5-48d6-a2a4-cace1b0172d0"/>
+				<reportElement x="525" y="45" width="71" height="20" uuid="5d7eed72-9af5-48d6-a2a4-cace1b0172d0"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -314,7 +314,7 @@ WHERE
 				<text><![CDATA[MODELO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="596" y="68" width="71" height="20" uuid="e97c6786-fa82-4737-9bbf-b033017c707c"/>
+				<reportElement x="596" y="45" width="71" height="20" uuid="e97c6786-fa82-4737-9bbf-b033017c707c"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -328,7 +328,7 @@ WHERE
 				<text><![CDATA[SERIE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="667" y="68" width="74" height="20" uuid="77c1b44e-6a20-4bd9-a2f7-0acdc523a479"/>
+				<reportElement x="667" y="45" width="74" height="20" uuid="77c1b44e-6a20-4bd9-a2f7-0acdc523a479"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -468,8 +468,12 @@ WHERE
 				</textElement>
 				<text><![CDATA[2) EN EL CASO DE HABER DOS O MÁS HOJAS, ÉSTAS DEBEN INCLUÍR EL CURP DEL SERVIDOR PÚBLICO EN EL ESPACIO CORRESPONDIENTE.]]></text>
 			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="28">
 			<staticText>
-				<reportElement x="14" y="0" width="727" height="10" uuid="879e4f72-ba4b-405b-9e85-a7c608ef1d7c"/>
+				<reportElement x="14" y="10" width="727" height="10" uuid="b33ff75f-de1e-4f0c-b857-0c5b7c916c5d"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -483,19 +487,19 @@ WHERE
 				<text><![CDATA[TOTAL DE BIENES RESGUARDADOS:	CON UN VALOR DE: $]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="496" y="0" width="100" height="10" uuid="ba6b210d-fceb-48e9-a417-5feb165be945"/>
+				<reportElement x="492" y="10" width="100" height="10" uuid="9ff11d78-3864-4b07-a9ac-dd24dd12a64c"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_valor_total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="392" y="0" width="27" height="10" uuid="7352416a-94e4-4aac-ab5b-af0038556af3"/>
+				<reportElement x="388" y="10" width="27" height="10" uuid="5728f64b-cf83-4396-bee5-acb2f3dc7441"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Cambria" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vale_resguardo_cant_total}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnFooter>
+	</summary>
 </jasperReport>
