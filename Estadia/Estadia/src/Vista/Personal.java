@@ -22,11 +22,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Personal extends javax.swing.JInternalFrame {
+
     DatosPersonal datPersonal = new DatosPersonal();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
     String accion = "";
     DatosArea datArea = new DatosArea();
+
     /**
      * Creates new form Usuarios
      */
@@ -55,7 +57,6 @@ public class Personal extends javax.swing.JInternalFrame {
         txtNombre.setEnabled(true);
         txtCURP.setEnabled(true);
         comboAreas.setEnabled(true);
-       
 
         btnAdd.setEnabled(false);
         btnMod.setEnabled(false);
@@ -95,9 +96,8 @@ public class Personal extends javax.swing.JInternalFrame {
 
                 txtIdPersonal.setText(idpersona);
                 txtNombre.setText(nombre);
-               // txtArea.setText(area);
                 txtCURP.setText(curp);
-
+                comboAreas.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 3)));
             }
         } catch (Exception e) {
 
@@ -425,6 +425,7 @@ public class Personal extends javax.swing.JInternalFrame {
             desbloquear();
             accion = "M";
             txtNombre.requestFocus();
+            JOptionPane.showMessageDialog(null, "Asegurese de seleccionar su área nuevamente.");
         }
     }//GEN-LAST:event_btnModMouseClicked
 
@@ -434,30 +435,30 @@ public class Personal extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-        
+
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())){
+        if (firma.equals(c.obtenerFirma())) {
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
-        if (i == 0) {
-            if (!txtIdPersonal.getText().equals("")) {
-                datPersonal.setIdPersonal(Integer.parseInt(txtIdPersonal.getText()));
-                c.eliminar_personal(datPersonal);
-                try {
-                    cargar_tabla_Personal("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+            if (i == 0) {
+                if (!txtIdPersonal.getText().equals("")) {
+                    datPersonal.setIdPersonal(Integer.parseInt(txtIdPersonal.getText()));
+                    c.eliminar_personal(datPersonal);
+                    try {
+                        cargar_tabla_Personal("");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    limpiar();
+                    bloquear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se elimino el personal.");
                 }
-                limpiar();
-                bloquear();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se elimino el personal.");
             }
-        }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        
+
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
@@ -466,41 +467,39 @@ public class Personal extends javax.swing.JInternalFrame {
             txtNombre.requestFocus();
             return;
         }
-        
+
         if (txtCURP.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar el CURP");
             txtCURP.requestFocus();
             return;
         }
-        
+
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())){
+        if (firma.equals(c.obtenerFirma())) {
             String idPersonal = txtIdPersonal.getText();
-        datPersonal.setNombre(txtNombre.getText());
-        datPersonal.setCURP(txtCURP.getText());
-        datPersonal.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
-        
+            datPersonal.setNombre(txtNombre.getText());
+            datPersonal.setCURP(txtCURP.getText());
 
-        if (c.Guardar_personal(accion, datPersonal, idPersonal)) {
-            if (accion == "A") {
-                JOptionPane.showMessageDialog(null, "Personal Agregado.");
-            } else if (accion == "M") {
-                JOptionPane.showMessageDialog(null, "Personal Actualizado.");
+            datPersonal.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
+
+            if (c.Guardar_personal(accion, datPersonal, idPersonal)) {
+                if (accion == "A") {
+                    JOptionPane.showMessageDialog(null, "Personal Agregado.");
+                } else if (accion == "M") {
+                    JOptionPane.showMessageDialog(null, "Personal Actualizado.");
+                }
+                limpiar();
+                bloquear();
+                try {
+                    cargar_tabla_Personal("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            limpiar();
-            bloquear();
-            try {
-                cargar_tabla_Personal("");
-            } catch (SQLException ex) {
-                Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-
-        
     }//GEN-LAST:event_btnSaveMouseClicked
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
@@ -519,7 +518,7 @@ public class Personal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelMouseClicked
 
     private void txtCURPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCURPKeyTyped
-         if (txtCURP.getText().length() == 18) {
+        if (txtCURP.getText().length() == 18) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -531,10 +530,10 @@ public class Personal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCURPKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-      if (txtNombre.getText().length() == 60) {
+        if (txtNombre.getText().length() == 60) {
             evt.consume();
         }
-      char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);

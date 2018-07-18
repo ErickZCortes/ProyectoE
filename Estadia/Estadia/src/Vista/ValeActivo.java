@@ -1005,6 +1005,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                     txtSerie.requestFocus();
                     return;
                 }
+
                 datDet.setId_valer(Integer.parseInt(txtIdValeR.getText()));
                 datDet.setId_bien(Integer.parseInt(txtIdBien.getText()));
                 datDet.setNombre_b(txtNomBien.getText());
@@ -1022,7 +1023,12 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 ValorT = ValorT + valorB;
                 txtValTotal.setText(String.valueOf(ValorT));
 
-                if (c.Guardar_detalle_res(accion, datDet)) {
+                int CantB = Integer.parseInt(txtCantB.getText());
+
+                if (CantB == 0) {
+                    JOptionPane.showMessageDialog(null, "No existen bienes disponibles");
+                } else {
+                    c.Guardar_detalle_res(accion, datDet);
                     if (accion == "A") {
                         c.editar_AltaBienes_xBaja(txtIdBien.getText(), cantidadB);
                         //       JOptionPane.showMessageDialog(null, "El bien ha sido Agregado.");
@@ -1038,10 +1044,10 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                         Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+
             }
         } catch (Exception e) {
         }
-
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
@@ -1073,6 +1079,14 @@ public class ValeActivo extends javax.swing.JInternalFrame {
             txtcurp.requestFocus();
             return;
         }
+
+        Calendar cal;
+        int d, m, a;
+        cal = dcfechaRes.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        datRes.setFecha(new Date(a, m, d));
 
         datRes.setNombre_per(txtName.getText());
         datRes.setCtt(txtCTT.getText());

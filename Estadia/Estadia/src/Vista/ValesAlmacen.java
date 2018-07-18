@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
- 
+
 import Controlador.Controlador;
 import Datos.DatosDetalleValeAlmacen;
 import Datos.DatosValeAlmacen;
@@ -35,6 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Mayra
  */
 public class ValesAlmacen extends javax.swing.JInternalFrame {
+
     String prueba = "";
     Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();
@@ -73,6 +74,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         btnCancelV.setEnabled(false);
         btnCrear.setEnabled(true);
     }
+
     void bloquearTbdatos() {
         txtResA.setEnabled(false);
         dcFecha.setEnabled(false);
@@ -122,14 +124,15 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtidPersona.setText("");
         txtidConsumible.setText("");
     }
-    
-    void vaciardos(){
-     txtMaterial.setText("");
+
+    void vaciardos() {
+        txtMaterial.setText("");
         txtCantidadS.setText("");
         txtCantidadE.setText("");
-        txtUnidad.setText("");   
+        txtUnidad.setText("");
         txtidConsumible.setText("");
     }
+
     void cargar_tabla(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_detalleV(valor);
         tbDatos.setModel(tb);
@@ -155,7 +158,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);
     }
-    
+
     void actualizarDatos() {
         int filasel = tbDatos.getSelectedRow();
         try {
@@ -168,7 +171,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 String cantE = (String) tbDatos.getValueAt(filasel, 7);
                 String unidad = (String) tbDatos.getValueAt(filasel, 6);
                 String idCon = (String) tbDatos.getValueAt(filasel, 2);
-                
+
                 txtidDetalle.setText(iddetalle);
                 txtMaterial.setText(nombre);
                 txtCantidadS.setText(cantA);
@@ -179,6 +182,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,6 +211,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtidConsumible = new javax.swing.JTextField();
         txtidCantidadC = new javax.swing.JTextField();
         txtAlmacen = new javax.swing.JTextField();
+        txtStockM = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLMaterial = new javax.swing.JLabel();
         txtMaterial = new javax.swing.JTextField();
@@ -336,6 +341,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addContainerGap(344, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtStockM, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +365,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addComponent(txtidPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStockM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -674,7 +682,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarPeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeActionPerformed
-            String prueba = "almacen";
+        String prueba = "almacen";
         ConsultaPersonal form = null;
         try {
             form = new ConsultaPersonal("Almacen");
@@ -741,16 +749,16 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dVale.setIdVale(Integer.parseInt(txtidVale.getText()));
         int stock = 0;
         int modificado;
-        
+
         int fila = tbDatos.getRowCount();
         for (int i = 0; i < fila; i++) {
-            String idCons =  (String) (tbDatos.getValueAt(i, 2));
-            String cantidad = (String)(tbDatos.getValueAt(i, 7));
+            String idCons = (String) (tbDatos.getValueAt(i, 2));
+            String cantidad = (String) (tbDatos.getValueAt(i, 7));
             int idc = Integer.parseInt(idCons);
-            
+
             int existencia = c.seleccionar_ex_Cons(idCons);
             stock = Integer.parseInt(cantidad);
-            modificado = existencia+ stock;
+            modificado = existencia + stock;
             c.editar_Consumible_x_existencia(idCons, modificado);
             c.eliminar_detalle_almacen(dDetalle);
         }
@@ -789,21 +797,42 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dDetalle.setCantidad_solici(Integer.parseInt(txtCantidadS.getText()));
         dDetalle.setCantidad_entregada(Integer.parseInt(txtCantidadE.getText()));
         dDetalle.setUnidad_consumible(txtUnidad.getText());
-        
-        
+
         int CantC = Integer.parseInt(txtidCantidadC.getText());
+        int StocM = Integer.parseInt(txtStockM.getText());
         int CantE = Integer.parseInt(txtCantidadE.getText());
         int resC = CantC - CantE;
-        
-        if (CantC == 0) {
-            JOptionPane.showMessageDialog(null, "NEL :V");
+
+        if (contador >= 13) {
+            JOptionPane.showMessageDialog(null, "No puedes agregar más Material, debes crear otro Vale");
             vaciardos();
-        }else{
-        c.Guardar_detalle_almacen(accion, dDetalle);
+        }else {
+            if (CantC == 0) {
+            JOptionPane.showMessageDialog(null, "No hay Material");
+            vaciardos();
+        } else if (CantC <= StocM) {
+            JOptionPane.showMessageDialog(null, "Stock mínimo superado");
+            c.Guardar_detalle_almacen(accion, dDetalle);
             if (accion == "A") {
                 c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
                 vaciardos();
-             //   JOptionPane.showMessageDialog(null, "Información Agregada");
+            } else if (accion == "M") {
+                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+                JOptionPane.showMessageDialog(null, "Información Modificada");
+            }
+
+            try {
+                cargar_tabla(txtidVale.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+            c.Guardar_detalle_almacen(accion, dDetalle);
+            if (accion == "A") {
+                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+                vaciardos();
+                //   JOptionPane.showMessageDialog(null, "Información Agregada");
             } else if (accion == "M") {
                 c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
                 JOptionPane.showMessageDialog(null, "Información Modificada");
@@ -815,7 +844,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }
         
+
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGenerarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarRActionPerformed
@@ -835,13 +867,12 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             txtResA.requestFocus();
             return;
         }
-        
-      
+
         dVale.setAreaSoli(txtArea.getText());
         dVale.setResponsableArea(txtResA.getText());
         dVale.setIdPersona(Integer.parseInt(txtidPersona.getText()));
         dVale.setNombrePersona(txtPerSol.getText());
-        
+
         if (c.modificar_vale(dVale)) {
             JOptionPane.showMessageDialog(null, "Vale generado.");
             try {
@@ -861,22 +892,20 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
             }
-            
-            
+
         }
-        
+
     }//GEN-LAST:event_btnGenerarRActionPerformed
 
     private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
-         int filasel = tbDatos.getSelectedRow();
-
+        int filasel = tbDatos.getSelectedRow();
+        contador = contador - 1;
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
             } else {
                 int idDetalle = (Integer.parseInt(txtidDetalle.getText()));
-                
-                
+
                 int CantC = c.seleccionar_ex_Cons(txtidConsumible.getText());
                 int CantE = Integer.parseInt(txtCantidadE.getText());
                 int Modificado = CantC + CantE;
@@ -892,7 +921,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnElimActionPerformed
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-      
+
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void txtCantidadSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyPressed
@@ -981,17 +1010,17 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCantidadEKeyTyped
 
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-        
+
     }//GEN-LAST:event_tbDatosMousePressed
 
     private void tbDatosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDatosKeyPressed
-        
+
     }//GEN-LAST:event_tbDatosKeyPressed
 
     private void tbDatosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseReleased
         actualizarDatos();
-     bloquearTbdatos();
-     
+        bloquearTbdatos();
+
     }//GEN-LAST:event_tbDatosMouseReleased
 
 
@@ -1023,10 +1052,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtAlmacen;
     public static javax.swing.JTextField txtArea;
     public static javax.swing.JTextField txtCantidadE;
-    private javax.swing.JTextField txtCantidadS;
+    public static javax.swing.JTextField txtCantidadS;
     public static javax.swing.JTextField txtMaterial;
     public static javax.swing.JTextField txtPerSol;
     public static javax.swing.JTextField txtResA;
+    public static javax.swing.JTextField txtStockM;
     public static javax.swing.JTextField txtUnidad;
     public static javax.swing.JTextField txtidCantidadC;
     public static javax.swing.JTextField txtidConsumible;
