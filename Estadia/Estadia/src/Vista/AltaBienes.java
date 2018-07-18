@@ -5,8 +5,6 @@ package Vista;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import Controlador.Controlador;
 import Datos.DatosAltaBien;
 import Datos.DatosArea;
@@ -28,11 +26,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class AltaBienes extends javax.swing.JInternalFrame {
+
     DatosAltaBien datAltaB = new DatosAltaBien();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
     String accion = "";
     DatosArea datArea = new DatosArea();
+
     /**
      * Creates new form Bienes
      */
@@ -44,8 +44,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         dcFecha.setCalendar(c2);
         datArea.mostrarComboAreas(comboAreas);
     }
-    
-    
+
     void bloquear() {
         txtId.setVisible(false);
         txtInventario.setEnabled(false);
@@ -94,9 +93,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         txtModelo.setText("");
         txtSerie.setText("");
         txtValor.setText("");
-        
+
     }
-    
+
     void cargar_tabla_AltaBienes(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_Altabienes_area(valor);
         tbDatos.setModel(tb);
@@ -130,7 +129,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                 String modelo = (String) tbDatos.getValueAt(filasel, 8);
                 String serie = (String) tbDatos.getValueAt(filasel, 9);
                 String valor = (String) tbDatos.getValueAt(filasel, 10);
-                
+
                 txtId.setText(idalta);
                 txtInventario.setText(inventario);
                 txtDescripcion.setText(descripcion);
@@ -146,6 +145,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -250,6 +250,11 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                 btnAddMouseClicked(evt);
             }
         });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnMod.setBackground(new java.awt.Color(41, 55, 61));
         btnMod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -263,6 +268,11 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         btnMod.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModMouseClicked(evt);
+            }
+        });
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
             }
         });
 
@@ -633,7 +643,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
 
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())){
+        if (firma.equals(c.obtenerFirma())) {
             Calendar cal;
             int d, m, a;
             cal = dcFecha.getCalendar();
@@ -674,7 +684,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                     Logger.getLogger(AltaBienes.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
 
@@ -691,6 +701,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             dcFecha.setVisible(false);
             dcFecha.setEnabled(false);
             lbFecha.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Asegurese de seleccionar su área nuevamente.");
         }
     }//GEN-LAST:event_btnModMouseClicked
 
@@ -722,10 +733,10 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
-       if (txtCantidad.getText().length() == 10) {
+        if (txtCantidad.getText().length() == 10) {
             evt.consume();
         }
-       char a = evt.getKeyChar();
+        char a = evt.getKeyChar();
         if (!Character.isDigit(a)) {
             evt.consume();
         }
@@ -747,7 +758,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         if (txtModelo.getText().length() == 20) {
             evt.consume();
         }
-        
+
         char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
@@ -757,10 +768,10 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtModeloKeyTyped
 
     private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
-       if (txtSerie.getText().length() == 20) {
+        if (txtSerie.getText().length() == 20) {
             evt.consume();
         }
-       char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
@@ -813,6 +824,14 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             txtValor.requestFocus();
         }
     }//GEN-LAST:event_txtSerieKeyPressed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

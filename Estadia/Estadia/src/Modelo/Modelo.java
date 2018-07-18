@@ -1516,19 +1516,20 @@ public class Modelo {
     }
     public boolean modificar_vale_res(DatosResguardo datos){
         String idValeR = ValeActivo.txtIdValeR.getText();
-        cons = "update vale_resguardo set plantel = ?, ctt = ?, clave = ?, nombre_per = ?, curp_pers = ?, cant_total = ?, valor_total = ? where id_valeres ='" + idValeR + "' ";
+        cons = "update vale_resguardo set fecha = ?, plantel = ?, ctt = ?, clave = ?, nombre_per = ?, curp_pers = ?, cant_total = ?, valor_total = ? where id_valeres ='" + idValeR + "' ";
 
         try {
 
             PreparedStatement pst = cn.prepareStatement(cons);
 
-            pst.setString(1, datos.getPlantel());
-            pst.setString(2, datos.getCtt());
-            pst.setInt(3, datos.getClave());
-            pst.setString(4, datos.getNombre_per());
-            pst.setString(5, datos.getCurp_pers());
-            pst.setInt(6, datos.getCant_total());
-            pst.setInt(7, datos.getValor_total());
+            pst.setDate(1, datos.getFecha());
+            pst.setString(2, datos.getPlantel());
+            pst.setString(3, datos.getCtt());
+            pst.setInt(4, datos.getClave());
+            pst.setString(5, datos.getNombre_per());
+            pst.setString(6, datos.getCurp_pers());
+            pst.setInt(7, datos.getCant_total());
+            pst.setInt(8, datos.getValor_total());
             
             int N = pst.executeUpdate();
             if (N != 0) {
