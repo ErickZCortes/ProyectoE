@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a411bbfe-cd4d-4550-85f6-073bf4cc9cfd">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     altabienes.`id_alta` AS altabienes_id_alta,
+     altabienes.`area` AS altabienes_area,
+     altabienes.`FechaAdquisicion` AS altabienes_FechaAdquisicion,
+     altabienes.`nInventario` AS altabienes_nInventario,
+     altabienes.`formaAdquisicion` AS altabienes_formaAdquisicion
+FROM
+     `altabienes` altabienes]]>
+	</queryString>
+	<field name="altabienes_id_alta" class="java.lang.Integer"/>
+	<field name="altabienes_area" class="java.lang.String"/>
+	<field name="altabienes_FechaAdquisicion" class="java.sql.Date"/>
+	<field name="altabienes_nInventario" class="java.lang.String"/>
+	<field name="altabienes_formaAdquisicion" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="50">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="612" height="70" backcolor="#006699" uuid="0dcc9677-f40b-4961-90e7-63c6153d44cc"/>
+				<staticText>
+					<reportElement x="204" y="40" width="186" height="27" forecolor="#FFFFFF" uuid="714fc011-7b8a-484b-bb87-5150e53779ab"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ALTA DE BIENES ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="91" y="10" width="408" height="15" forecolor="#FFFFFF" uuid="b39d66f7-4313-4c6e-b99b-191c9f369d35"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[CENTRO DE BACHILLERATO TECNOLOGICO INDUSTRIAL Y DE SERVICIOS NO.229]]></text>
+				</staticText>
+				<image>
+					<reportElement x="20" y="9" width="50" height="50" uuid="c6efb74d-692c-4381-afbc-98d8bd0b3b31"/>
+					<imageExpression><![CDATA["Reportes\\CBTISLogo.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="542" y="9" width="50" height="50" uuid="15153825-bf9f-46fd-a723-431b01c1c093"/>
+					<imageExpression><![CDATA["Reportes\\Logo.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="172" y="25" width="264" height="15" forecolor="#FFFFFF" uuid="a6f1dfb8-c535-4c83-8ebc-f6a82a865b82"/>
+					<textElement textAlignment="Center" verticalAlignment="Top"/>
+					<text><![CDATA[DEPARTAMENTO DE SERVICIOS ADMINISTRATIVOS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="612" height="1" forecolor="#666666" uuid="03e87c26-9454-498f-834c-11210445f0c4"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d57490c2-88f5-4db7-bb73-238f629f721e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1cf44ade-bc4e-4b54-b52e-ad2b507ce7ed"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AREA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="85683388-7ec4-4703-9b8d-cdffddb72583"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1f581371-1701-4bce-b3b5-5b64620d03ba"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVENTARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5b1d7b3f-bfdd-48d6-bc5d-091556bf1d34"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADQUISICIÓN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="745a66f2-8e16-40ad-b648-7d28ff1147ea"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="111" height="20" uuid="3ee33bad-fa89-434f-97a7-8453625de811"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_id_alta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="111" y="0" width="111" height="20" uuid="6481c51f-3989-4961-ad5e-9200960bbc9c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_area}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="0" width="111" height="20" uuid="67b5edcc-f441-467d-ac5c-d941cc844b8b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_FechaAdquisicion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="333" y="0" width="111" height="20" uuid="473beff0-39bb-40d3-b664-aad6a9aae7a8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_nInventario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="444" y="0" width="111" height="20" uuid="dda8c4ac-755b-4d51-a9ab-b95b6cf573f2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{altabienes_formaAdquisicion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="6acb9049-7551-466e-9548-415cbf13fdb1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c74c7ca2-7c90-45e1-9bda-86484705d96a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="59c3672b-3c4a-42f5-9e14-b5cc39f92b65"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
