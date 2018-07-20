@@ -280,6 +280,14 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
                 EtiquetasPersonal.txtNomPersonal.setText(nombre);
                 this.dispose();
             }
+        }else if (seleccion.equals("Reporte")) {
+            if (evt.getClickCount() == 2) {
+                int fila = tbDatos.getSelectedRow();
+                String nombre;
+                nombre = tbDatos.getValueAt(fila, 1).toString();
+                EtiquetasPersonal.txtNomPersonal.setText(nombre);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_tbDatosMousePressed
 

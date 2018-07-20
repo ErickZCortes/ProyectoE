@@ -281,6 +281,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(rBajaBienesFecha);
 
         rBajaBienesArea.setText("Por Área");
+        rBajaBienesArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBajaBienesAreaActionPerformed(evt);
+            }
+        });
         jMenu4.add(rBajaBienesArea);
 
         mReportes.add(jMenu4);
@@ -288,6 +293,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu5.setText("Consumibles");
 
         rConsumiblesFecha.setText("Fecha");
+        rConsumiblesFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rConsumiblesFechaActionPerformed(evt);
+            }
+        });
         jMenu5.add(rConsumiblesFecha);
 
         rConsumiblesCategoria.setText("Categoría");
@@ -311,9 +321,19 @@ public class Principal extends javax.swing.JFrame {
         jMenu6.add(rAsignBienesFecha);
 
         rAsignBienesPersona.setText("Por Persona");
+        rAsignBienesPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rAsignBienesPersonaActionPerformed(evt);
+            }
+        });
         jMenu6.add(rAsignBienesPersona);
 
         rAsignBienesArea.setText("Por Área");
+        rAsignBienesArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rAsignBienesAreaActionPerformed(evt);
+            }
+        });
         jMenu6.add(rAsignBienesArea);
 
         mReportes.add(jMenu6);
@@ -321,9 +341,19 @@ public class Principal extends javax.swing.JFrame {
         jMenu7.setText("Salida de Consumibles");
 
         rSalConsumiblesFecha.setText("Por Fecha");
+        rSalConsumiblesFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSalConsumiblesFechaActionPerformed(evt);
+            }
+        });
         jMenu7.add(rSalConsumiblesFecha);
 
         rSalConsumiblesPersonal.setText("Por Persona");
+        rSalConsumiblesPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSalConsumiblesPersonalActionPerformed(evt);
+            }
+        });
         jMenu7.add(rSalConsumiblesPersonal);
 
         rSalConsumiblesArea.setText("Por Área");
@@ -683,28 +713,100 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sCambioAsigActionPerformed
 
     private void rAltaBienesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAltaBienesFechaActionPerformed
-        
+        ReporteFecha form = null;
+        form = new ReporteFecha("AltaBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_rAltaBienesFechaActionPerformed
 
     private void rAltaBienesAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAltaBienesAreaActionPerformed
-        // TODO add your handling code here:
+        ReporteArea form = null;
+        form = new ReporteArea("AltaBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_rAltaBienesAreaActionPerformed
 
     private void rBajaBienesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBajaBienesFechaActionPerformed
-        // TODO add your handling code here:
+        ReporteFecha form = null;
+        form = new ReporteFecha("BajaBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_rBajaBienesFechaActionPerformed
 
     private void rConsumiblesCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rConsumiblesCategoriaActionPerformed
-        // TODO add your handling code here:
+        ReporteCategoria form = null;
+        form = new ReporteCategoria();
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_rConsumiblesCategoriaActionPerformed
 
     private void rAsignBienesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAsignBienesFechaActionPerformed
-        // TODO add your handling code here:
+        ReporteFecha form = null;
+        form = new ReporteFecha("AsigBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_rAsignBienesFechaActionPerformed
 
     private void rSalConsumiblesAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSalConsumiblesAreaActionPerformed
-        // TODO add your handling code here:
+        ReporteArea form = null;
+        form = new ReporteArea("SalConsumibles");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_rSalConsumiblesAreaActionPerformed
+
+    private void rBajaBienesAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBajaBienesAreaActionPerformed
+        ReporteArea form = null;
+        form = new ReporteArea("BajaBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_rBajaBienesAreaActionPerformed
+
+    private void rAsignBienesAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAsignBienesAreaActionPerformed
+        ReporteArea form = null;
+        form = new ReporteArea("AsigBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_rAsignBienesAreaActionPerformed
+
+    private void rConsumiblesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rConsumiblesFechaActionPerformed
+        ReporteFecha form = null;
+        form = new ReporteFecha("Consumibles");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_rConsumiblesFechaActionPerformed
+
+    private void rSalConsumiblesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSalConsumiblesFechaActionPerformed
+        ReporteFecha form = null;
+        form = new ReporteFecha("SalConsumibles");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_rSalConsumiblesFechaActionPerformed
+
+    private void rAsignBienesPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAsignBienesPersonaActionPerformed
+        ReportePersona form = null;
+        form = new ReportePersona("AsigBienes");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_rAsignBienesPersonaActionPerformed
+
+    private void rSalConsumiblesPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSalConsumiblesPersonalActionPerformed
+        ReportePersona form = null;
+        form = new ReportePersona("SalConsumibles");
+        Escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_rSalConsumiblesPersonalActionPerformed
 
     /**
      * @param args the command line arguments
