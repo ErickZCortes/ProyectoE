@@ -285,7 +285,7 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
                 int fila = tbDatos.getSelectedRow();
                 String nombre;
                 nombre = tbDatos.getValueAt(fila, 1).toString();
-                EtiquetasPersonal.txtNomPersonal.setText(nombre);
+                ReportesPersona.txtNomPersonal.setText(nombre);
                 this.dispose();
             }
         }
