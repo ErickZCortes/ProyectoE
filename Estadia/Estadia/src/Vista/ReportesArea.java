@@ -30,12 +30,14 @@ public class ReportesArea extends javax.swing.JInternalFrame {
     Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();
     String seleccion = "";
+    DatosArea datArea = new DatosArea();
 
     /**
      * Creates new form ReportesArea
      */
     public ReportesArea(String select) {
         initComponents();
+        datArea.mostrarComboAreas(comboAreas);
         seleccion = select;
         if (seleccion.equals("AltaBienes")) {
             lbTitulo.setText("Reporte de Alta de Bienes por Área");
@@ -62,8 +64,8 @@ public class ReportesArea extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnGenerar = new javax.swing.JButton();
-        comboAreas = new javax.swing.JComboBox<>();
         jLArea = new javax.swing.JLabel();
+        comboAreas = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
 
@@ -105,6 +107,12 @@ public class ReportesArea extends javax.swing.JInternalFrame {
         jLArea.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLArea.setText("Seleccione el área:");
 
+        comboAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAreasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -116,9 +124,9 @@ public class ReportesArea extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLArea)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,9 +141,9 @@ public class ReportesArea extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLArea))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(jLArea)
+                    .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,6 +246,10 @@ public class ReportesArea extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnGenerarMouseClicked
+
+    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAreasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
