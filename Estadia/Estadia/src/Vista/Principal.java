@@ -53,13 +53,28 @@ public class Principal extends javax.swing.JFrame {
         sPersonal = new javax.swing.JMenuItem();
         sConsultasPersonal = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
         sEtiqueta = new javax.swing.JMenuItem();
         sEtiquetaArea = new javax.swing.JMenuItem();
         sEtiquetasAll = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        rAltaBienesFecha = new javax.swing.JMenuItem();
+        rAltaBienesArea = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        rBajaBienesFecha = new javax.swing.JMenuItem();
+        rBajaBienesArea = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        rConsumiblesFecha = new javax.swing.JMenuItem();
+        rConsumiblesCategoria = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        rAsignBienesFecha = new javax.swing.JMenuItem();
+        rAsignBienesPersona = new javax.swing.JMenuItem();
+        rAsignBienesArea = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        rSalConsumiblesFecha = new javax.swing.JMenuItem();
+        rSalConsumiblesPersonal = new javax.swing.JMenuItem();
+        rSalConsumiblesArea = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
         sBienes = new javax.swing.JMenuItem();
         sBajasBienes = new javax.swing.JMenuItem();
@@ -205,12 +220,6 @@ public class Principal extends javax.swing.JFrame {
         mReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Documents_24px.png"))); // NOI18N
         mReportes.setText("Reportes");
         mReportes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-
-        jMenuItem3.setText("jMenuItem1");
-        mReportes.add(jMenuItem3);
-
-        jMenuItem5.setText("jMenuItem5");
-        mReportes.add(jMenuItem5);
         mReportes.add(jSeparator1);
 
         jMenu1.setText("Etiquetas");
@@ -240,6 +249,92 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(sEtiquetasAll);
 
         mReportes.add(jMenu1);
+
+        jMenu3.setText("Alta de bienes");
+
+        rAltaBienesFecha.setText("Por Fecha");
+        rAltaBienesFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rAltaBienesFechaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(rAltaBienesFecha);
+
+        rAltaBienesArea.setText("Por Área");
+        rAltaBienesArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rAltaBienesAreaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(rAltaBienesArea);
+
+        mReportes.add(jMenu3);
+
+        jMenu4.setText("Baja de bienes");
+
+        rBajaBienesFecha.setText("Por Fecha");
+        rBajaBienesFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBajaBienesFechaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(rBajaBienesFecha);
+
+        rBajaBienesArea.setText("Por Área");
+        jMenu4.add(rBajaBienesArea);
+
+        mReportes.add(jMenu4);
+
+        jMenu5.setText("Consumibles");
+
+        rConsumiblesFecha.setText("Fecha");
+        jMenu5.add(rConsumiblesFecha);
+
+        rConsumiblesCategoria.setText("Categoría");
+        rConsumiblesCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rConsumiblesCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(rConsumiblesCategoria);
+
+        mReportes.add(jMenu5);
+
+        jMenu6.setText("Asingnación de bienes");
+
+        rAsignBienesFecha.setText("Por Fecha");
+        rAsignBienesFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rAsignBienesFechaActionPerformed(evt);
+            }
+        });
+        jMenu6.add(rAsignBienesFecha);
+
+        rAsignBienesPersona.setText("Por Persona");
+        jMenu6.add(rAsignBienesPersona);
+
+        rAsignBienesArea.setText("Por Área");
+        jMenu6.add(rAsignBienesArea);
+
+        mReportes.add(jMenu6);
+
+        jMenu7.setText("Salida de Consumibles");
+
+        rSalConsumiblesFecha.setText("Por Fecha");
+        jMenu7.add(rSalConsumiblesFecha);
+
+        rSalConsumiblesPersonal.setText("Por Persona");
+        jMenu7.add(rSalConsumiblesPersonal);
+
+        rSalConsumiblesArea.setText("Por Área");
+        rSalConsumiblesArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSalConsumiblesAreaActionPerformed(evt);
+            }
+        });
+        jMenu7.add(rSalConsumiblesArea);
+
+        mReportes.add(jMenu7);
 
         jMenuBar1.add(mReportes);
 
@@ -587,6 +682,30 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sCambioAsigActionPerformed
 
+    private void rAltaBienesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAltaBienesFechaActionPerformed
+        
+    }//GEN-LAST:event_rAltaBienesFechaActionPerformed
+
+    private void rAltaBienesAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAltaBienesAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rAltaBienesAreaActionPerformed
+
+    private void rBajaBienesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBajaBienesFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rBajaBienesFechaActionPerformed
+
+    private void rConsumiblesCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rConsumiblesCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rConsumiblesCategoriaActionPerformed
+
+    private void rAsignBienesFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAsignBienesFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rAsignBienesFechaActionPerformed
+
+    private void rSalConsumiblesAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSalConsumiblesAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSalConsumiblesAreaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -630,9 +749,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     public static javax.swing.JLabel lblAcceso;
@@ -647,6 +769,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu mSalir;
     public static javax.swing.JMenu mUsuarios;
     private javax.swing.JMenu menuC;
+    private javax.swing.JMenuItem rAltaBienesArea;
+    private javax.swing.JMenuItem rAltaBienesFecha;
+    private javax.swing.JMenuItem rAsignBienesArea;
+    private javax.swing.JMenuItem rAsignBienesFecha;
+    private javax.swing.JMenuItem rAsignBienesPersona;
+    private javax.swing.JMenuItem rBajaBienesArea;
+    private javax.swing.JMenuItem rBajaBienesFecha;
+    private javax.swing.JMenuItem rConsumiblesCategoria;
+    private javax.swing.JMenuItem rConsumiblesFecha;
+    private javax.swing.JMenuItem rSalConsumiblesArea;
+    private javax.swing.JMenuItem rSalConsumiblesFecha;
+    private javax.swing.JMenuItem rSalConsumiblesPersonal;
     public static javax.swing.JMenuItem sAreas;
     private javax.swing.JMenuItem sBajasBienes;
     public static javax.swing.JMenuItem sBienes;

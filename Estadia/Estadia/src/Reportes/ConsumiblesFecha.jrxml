@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a411bbfe-cd4d-4550-85f6-073bf4cc9cfd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_termino" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     consumibles.`id_consum` AS consumibles_id_consum,
+     consumibles.`categoria` AS consumibles_categoria,
+     consumibles.`nombre` AS consumibles_nombre,
+     consumibles.`fechaAd` AS consumibles_fechaAd,
+     consumibles.`existencia` AS consumibles_existencia,
+     consumibles.`unidad` AS consumibles_unidad,
+     consumibles.`stock_minimo` AS consumibles_stock_minimo,
+     consumibles.`valorTot` AS consumibles_valorTot
+FROM
+     `consumibles` consumibles
+WHERE
+     consumibles.`fechaAd` BETWEEN $P{fecha_inicio} AND $P{fecha_termino}
+ORDER BY
+     consumibles.`id_consum` ASC]]>
+	</queryString>
+	<field name="consumibles_id_consum" class="java.lang.Integer"/>
+	<field name="consumibles_categoria" class="java.lang.String"/>
+	<field name="consumibles_nombre" class="java.lang.String"/>
+	<field name="consumibles_fechaAd" class="java.sql.Date"/>
+	<field name="consumibles_existencia" class="java.lang.Integer"/>
+	<field name="consumibles_unidad" class="java.lang.String"/>
+	<field name="consumibles_stock_minimo" class="java.lang.Integer"/>
+	<field name="consumibles_valorTot" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="50">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="792" height="70" backcolor="#FFFFFF" uuid="0dcc9677-f40b-4961-90e7-63c6153d44cc"/>
+				<staticText>
+					<reportElement x="317" y="40" width="186" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="714fc011-7b8a-484b-bb87-5150e53779ab"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CONSUMIBLES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="204" y="10" width="408" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b39d66f7-4313-4c6e-b99b-191c9f369d35"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[CENTRO DE BACHILLERATO TECNOLOGICO INDUSTRIAL Y DE SERVICIOS NO.229]]></text>
+				</staticText>
+				<image>
+					<reportElement x="20" y="9" width="50" height="50" uuid="c6efb74d-692c-4381-afbc-98d8bd0b3b31"/>
+					<imageExpression><![CDATA["Reportes\\CBTISLogo.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="725" y="9" width="50" height="50" uuid="15153825-bf9f-46fd-a723-431b01c1c093"/>
+					<imageExpression><![CDATA["Reportes\\Logo.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="285" y="25" width="264" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a6f1dfb8-c535-4c83-8ebc-f6a82a865b82"/>
+					<textElement textAlignment="Center" verticalAlignment="Top"/>
+					<text><![CDATA[DEPARTAMENTO DE SERVICIOS ADMINISTRATIVOS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="772" height="1" forecolor="#666666" uuid="03e87c26-9454-498f-834c-11210445f0c4"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="62" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1cf44ade-bc4e-4b54-b52e-ad2b507ce7ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="63" y="0" width="106" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="85683388-7ec4-4703-9b8d-cdffddb72583"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATEGORÍA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="169" y="0" width="232" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1f581371-1701-4bce-b3b5-5b64620d03ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="401" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5b1d7b3f-bfdd-48d6-bc5d-091556bf1d34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXIST.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="456" y="0" width="83" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="24f4ee15-3b1b-469b-ad20-76271797aef0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="539" y="0" width="67" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="15a2cd1b-06a5-4771-8307-3af4b7893fa6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STOCK M.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="606" y="0" width="88" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ffbfc912-86e8-4d0d-8259-3c651070ca8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="752" height="1" uuid="745a66f2-8e16-40ad-b648-7d28ff1147ea"/>
+			</line>
+			<textField>
+				<reportElement x="1" y="0" width="62" height="20" uuid="0d0193f3-d10b-479a-a8a1-49a09c32b361"/>
+				<textFieldExpression><![CDATA[$F{consumibles_id_consum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="0" width="107" height="20" uuid="b9b43791-3e6d-4224-aa5f-c44fd59d90fd"/>
+				<textFieldExpression><![CDATA[$F{consumibles_categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="0" width="233" height="20" uuid="943fd51d-221e-46af-ac93-aa1cd1e7b08e"/>
+				<textFieldExpression><![CDATA[$F{consumibles_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="56" height="20" uuid="da526aa1-f675-46c9-9f66-f4565dca5859"/>
+				<textFieldExpression><![CDATA[$F{consumibles_existencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="84" height="20" uuid="678f638b-db27-4ce9-bdd0-3c79f6e762f1"/>
+				<textFieldExpression><![CDATA[$F{consumibles_unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="538" y="0" width="68" height="20" uuid="7e659535-0372-48e8-9166-d80d71953d96"/>
+				<textFieldExpression><![CDATA[$F{consumibles_stock_minimo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="605" y="0" width="89" height="20" uuid="e18bcb8c-73c7-4e77-82c6-ae7efdbbf81f"/>
+				<textFieldExpression><![CDATA[$F{consumibles_valorTot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="1" y="4" width="693" height="13" backcolor="#E6E6E6" uuid="6acb9049-7551-466e-9548-415cbf13fdb1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="694" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c74c7ca2-7c90-45e1-9bda-86484705d96a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="59c3672b-3c4a-42f5-9e14-b5cc39f92b65"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
