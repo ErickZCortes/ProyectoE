@@ -150,7 +150,7 @@
                       <Component id="txtIdbien" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCantAlta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>

@@ -108,6 +108,9 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setFrameIcon(null);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -197,7 +200,7 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
