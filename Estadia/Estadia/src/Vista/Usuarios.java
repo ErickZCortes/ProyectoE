@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import Datos.GeneradorContraseña;
 import Datos.DatosUsuario;
 import Modelo.Modelo;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Usuarios extends javax.swing.JInternalFrame {
+
     DatosUsuario datUsuarios = new DatosUsuario();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -47,7 +49,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         btnElim.setEnabled(true);
         btnsave.setEnabled(false);
         btncancel.setEnabled(false);
-
+        btnGenerador.setEnabled(false);
     }
 
     void desbloquear() {
@@ -63,6 +65,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         btnElim.setEnabled(false);
         btnsave.setEnabled(true);
         btncancel.setEnabled(true);
+        btnGenerador.setEnabled(true);
     }
 
     void limpiar() {
@@ -146,6 +149,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
+        btnGenerador = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -330,6 +334,24 @@ public class Usuarios extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbDatos);
 
+        btnGenerador.setBackground(new java.awt.Color(41, 55, 61));
+        btnGenerador.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnGenerador.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerador.setText("Generar Contraseña");
+        btnGenerador.setBorder(null);
+        btnGenerador.setBorderPainted(false);
+        btnGenerador.setContentAreaFilled(false);
+        btnGenerador.setDefaultCapable(false);
+        btnGenerador.setMaximumSize(new java.awt.Dimension(45, 21));
+        btnGenerador.setMinimumSize(new java.awt.Dimension(45, 21));
+        btnGenerador.setOpaque(true);
+        btnGenerador.setPreferredSize(new java.awt.Dimension(45, 21));
+        btnGenerador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneradorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -367,7 +389,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
                                     .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnGenerador, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,7 +407,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                                 .addContainerGap()
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -416,7 +441,8 @@ public class Usuarios extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGenerador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -434,7 +460,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 .addGap(43, 43, 43))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -472,6 +498,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -502,30 +529,30 @@ public class Usuarios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-        
+
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())){
+        if (firma.equals(c.obtenerFirma())) {
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
-        if (i == 0) {
-            if (!txtId.getText().equals("")) {
-                datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
-                c.eliminar_usuario(datUsuarios);
-                try {
-                    cargar_tabla_usuarios("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            if (i == 0) {
+                if (!txtId.getText().equals("")) {
+                    datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
+                    c.eliminar_usuario(datUsuarios);
+                    try {
+                        cargar_tabla_usuarios("");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    limpiar();
+                    bloquear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
                 }
-                limpiar();
-                bloquear();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
             }
-        }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        
+
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
@@ -555,38 +582,43 @@ public class Usuarios extends javax.swing.JInternalFrame {
             txtPassword.requestFocus();
             return;
         }
-        
+        if (txtPassword.getText().length() <= 6) {
+            JOptionPane.showMessageDialog(null, "Contraseña insegura.\n" + "Ingrese una contraseña mayor a 6 caracteres", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            txtPassword.requestFocus();
+            return;
+        }
+
         String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
         String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())){
+        if (firma.equals(c.obtenerFirma())) {
             String idUsuario = txtId.getText();
-        datUsuarios.setNombre(txtName.getText());
-        datUsuarios.setUser(txtUser.getText());
-        datUsuarios.setPassword(txtPassword.getText());
-        datUsuarios.setFirmaD("Invalido");
-        datUsuarios.setCURP(txtCURP.getText());
-        datUsuarios.setRFC(txtRFC.getText());
-        int acceso = cbAcceso.getSelectedIndex();
-        datUsuarios.setAcceso((String) cbAcceso.getItemAt(acceso));
+            datUsuarios.setNombre(txtName.getText());
+            datUsuarios.setUser(txtUser.getText());
+            datUsuarios.setPassword(txtPassword.getText());
+            datUsuarios.setFirmaD("Invalido");
+            datUsuarios.setCURP(txtCURP.getText());
+            datUsuarios.setRFC(txtRFC.getText());
+            int acceso = cbAcceso.getSelectedIndex();
+            datUsuarios.setAcceso((String) cbAcceso.getItemAt(acceso));
 
-        if (c.Guardar_usuario(accion, datUsuarios, idUsuario)) {
-            if (accion == "A") {
-                JOptionPane.showMessageDialog(null, "Usuario Agregado.");
-            } else if (accion == "M") {
-                JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
+            if (c.Guardar_usuario(accion, datUsuarios, idUsuario)) {
+                if (accion == "A") {
+                    JOptionPane.showMessageDialog(null, "Usuario Agregado.");
+                } else if (accion == "M") {
+                    JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
+                }
+                limpiar();
+                bloquear();
+                try {
+                    cargar_tabla_usuarios("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            limpiar();
-            bloquear();
-            try {
-                cargar_tabla_usuarios("");
-            } catch (SQLException ex) {
-                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        
+
     }//GEN-LAST:event_btnsaveMouseClicked
 
     private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
@@ -645,22 +677,28 @@ public class Usuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtRFCKeyTyped
 
     private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
-       if (txtUser.getText().length() == 20) {
+        if (txtUser.getText().length() == 20) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_txtUserKeyTyped
 
     private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
-       if (txtPassword.getText().length() == 15) {
+        if (txtPassword.getText().length() == 15) {
             evt.consume();
         }
     }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void btnGeneradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneradorActionPerformed
+        String pswrd = GeneradorContraseña.getPassword(GeneradorContraseña.NUMEROS + GeneradorContraseña.MAYUSCULAS + GeneradorContraseña.MINUSCULAS, 8);
+        txtPassword.setText(pswrd);
+    }//GEN-LAST:event_btnGeneradorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnElim;
+    private javax.swing.JButton btnGenerador;
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btncancel;
     private javax.swing.JButton btnsave;

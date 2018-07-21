@@ -338,7 +338,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Registro Inicial");
+        jLabel9.setText("REGISTRO INICIAL");
 
         btnClose.setBackground(new java.awt.Color(41, 55, 61));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Delete_24px.png"))); // NOI18N
@@ -442,6 +442,11 @@ public class Registro extends javax.swing.JFrame {
         if (txtSign.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar una firma electronica");
             txtSign.requestFocus();
+            return;
+        }
+        if (txtPassword.getText().length()<=6) {
+            JOptionPane.showMessageDialog(null, "Contraseña insegura.\n"+"Ingrese una contraseña mayor a 6 caracteres", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            txtPassword.requestFocus();
             return;
         }
 
