@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.Controlador;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
  * @author Erick
  */
 public class Principal extends javax.swing.JFrame {
+
+    Controlador c = new Controlador();
 
     /**
      * Creates new form Principal
@@ -54,39 +57,40 @@ public class Principal extends javax.swing.JFrame {
         sConsultasPersonal = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenu1 = new javax.swing.JMenu();
+        mEtiquetas = new javax.swing.JMenu();
         sEtiqueta = new javax.swing.JMenuItem();
         sEtiquetaArea = new javax.swing.JMenuItem();
         sEtiquetasAll = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mRAltaBienes = new javax.swing.JMenu();
         rAltaBienesFecha = new javax.swing.JMenuItem();
         rAltaBienesArea = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        mRBajaBienes = new javax.swing.JMenu();
         rBajaBienesFecha = new javax.swing.JMenuItem();
         rBajaBienesArea = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        mRConsumibles = new javax.swing.JMenu();
         rConsumiblesFecha = new javax.swing.JMenuItem();
         rConsumiblesCategoria = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        mRAsigBienes = new javax.swing.JMenu();
         rAsignBienesFecha = new javax.swing.JMenuItem();
         rAsignBienesPersona = new javax.swing.JMenuItem();
         rAsignBienesArea = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        mRSalidasCon = new javax.swing.JMenu();
         rSalConsumiblesFecha = new javax.swing.JMenuItem();
         rSalConsumiblesPersonal = new javax.swing.JMenuItem();
         rSalConsumiblesArea = new javax.swing.JMenuItem();
         mBienes = new javax.swing.JMenu();
-        sBienes = new javax.swing.JMenuItem();
+        sAltaBienes = new javax.swing.JMenuItem();
         sBajasBienes = new javax.swing.JMenuItem();
-        sValeRes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         sConsultasBienes = new javax.swing.JMenuItem();
         wConsultaAsig = new javax.swing.JMenuItem();
+        sValeResguardo = new javax.swing.JMenu();
+        sValeRes = new javax.swing.JMenuItem();
         sCambioAsig = new javax.swing.JMenuItem();
         menuC = new javax.swing.JMenu();
         mConsumibles = new javax.swing.JMenuItem();
         mConsultas = new javax.swing.JMenuItem();
-        sVale = new javax.swing.JMenuItem();
+        sValeAlmacen = new javax.swing.JMenuItem();
         mSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -165,7 +169,7 @@ public class Principal extends javax.swing.JFrame {
         mUsuarios.setText("Usuarios");
         mUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        sUsuarios.setText("Agregar");
+        sUsuarios.setText("Alta, Modificación y Baja");
         sUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sUsuariosActionPerformed(evt);
@@ -181,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
         mAreas.setText("Areas");
         mAreas.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        sAreas.setText("Agregar");
+        sAreas.setText("Alta, Modificación y Baja");
         sAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sAreasActionPerformed(evt);
@@ -197,7 +201,7 @@ public class Principal extends javax.swing.JFrame {
         mPersonal.setText("Personal");
         mPersonal.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        sPersonal.setText("Agregar");
+        sPersonal.setText("Alta, Modificación y Baja");
         sPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sPersonalActionPerformed(evt);
@@ -222,7 +226,7 @@ public class Principal extends javax.swing.JFrame {
         mReportes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         mReportes.add(jSeparator1);
 
-        jMenu1.setText("Etiquetas");
+        mEtiquetas.setText("Etiquetas");
 
         sEtiqueta.setText("Generar etiqueta por No. Inventario");
         sEtiqueta.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
                 sEtiquetaActionPerformed(evt);
             }
         });
-        jMenu1.add(sEtiqueta);
+        mEtiquetas.add(sEtiqueta);
 
         sEtiquetaArea.setText("Generar etiqueta por area");
         sEtiquetaArea.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +242,7 @@ public class Principal extends javax.swing.JFrame {
                 sEtiquetaAreaActionPerformed(evt);
             }
         });
-        jMenu1.add(sEtiquetaArea);
+        mEtiquetas.add(sEtiquetaArea);
 
         sEtiquetasAll.setText("Generar etiqueta por personal");
         sEtiquetasAll.addActionListener(new java.awt.event.ActionListener() {
@@ -246,11 +250,11 @@ public class Principal extends javax.swing.JFrame {
                 sEtiquetasAllActionPerformed(evt);
             }
         });
-        jMenu1.add(sEtiquetasAll);
+        mEtiquetas.add(sEtiquetasAll);
 
-        mReportes.add(jMenu1);
+        mReportes.add(mEtiquetas);
 
-        jMenu3.setText("Alta de bienes");
+        mRAltaBienes.setText("Alta de bienes");
 
         rAltaBienesFecha.setText("Por Fecha");
         rAltaBienesFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -258,7 +262,7 @@ public class Principal extends javax.swing.JFrame {
                 rAltaBienesFechaActionPerformed(evt);
             }
         });
-        jMenu3.add(rAltaBienesFecha);
+        mRAltaBienes.add(rAltaBienesFecha);
 
         rAltaBienesArea.setText("Por Área");
         rAltaBienesArea.addActionListener(new java.awt.event.ActionListener() {
@@ -266,11 +270,11 @@ public class Principal extends javax.swing.JFrame {
                 rAltaBienesAreaActionPerformed(evt);
             }
         });
-        jMenu3.add(rAltaBienesArea);
+        mRAltaBienes.add(rAltaBienesArea);
 
-        mReportes.add(jMenu3);
+        mReportes.add(mRAltaBienes);
 
-        jMenu4.setText("Baja de bienes");
+        mRBajaBienes.setText("Baja de bienes");
 
         rBajaBienesFecha.setText("Por Fecha");
         rBajaBienesFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +282,7 @@ public class Principal extends javax.swing.JFrame {
                 rBajaBienesFechaActionPerformed(evt);
             }
         });
-        jMenu4.add(rBajaBienesFecha);
+        mRBajaBienes.add(rBajaBienesFecha);
 
         rBajaBienesArea.setText("Por Área");
         rBajaBienesArea.addActionListener(new java.awt.event.ActionListener() {
@@ -286,11 +290,11 @@ public class Principal extends javax.swing.JFrame {
                 rBajaBienesAreaActionPerformed(evt);
             }
         });
-        jMenu4.add(rBajaBienesArea);
+        mRBajaBienes.add(rBajaBienesArea);
 
-        mReportes.add(jMenu4);
+        mReportes.add(mRBajaBienes);
 
-        jMenu5.setText("Consumibles");
+        mRConsumibles.setText("Consumibles");
 
         rConsumiblesFecha.setText("Fecha");
         rConsumiblesFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +302,7 @@ public class Principal extends javax.swing.JFrame {
                 rConsumiblesFechaActionPerformed(evt);
             }
         });
-        jMenu5.add(rConsumiblesFecha);
+        mRConsumibles.add(rConsumiblesFecha);
 
         rConsumiblesCategoria.setText("Categoría");
         rConsumiblesCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -306,11 +310,11 @@ public class Principal extends javax.swing.JFrame {
                 rConsumiblesCategoriaActionPerformed(evt);
             }
         });
-        jMenu5.add(rConsumiblesCategoria);
+        mRConsumibles.add(rConsumiblesCategoria);
 
-        mReportes.add(jMenu5);
+        mReportes.add(mRConsumibles);
 
-        jMenu6.setText("Asingnación de bienes");
+        mRAsigBienes.setText("Asingnación de bienes");
 
         rAsignBienesFecha.setText("Por Fecha");
         rAsignBienesFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -318,7 +322,7 @@ public class Principal extends javax.swing.JFrame {
                 rAsignBienesFechaActionPerformed(evt);
             }
         });
-        jMenu6.add(rAsignBienesFecha);
+        mRAsigBienes.add(rAsignBienesFecha);
 
         rAsignBienesPersona.setText("Por Persona");
         rAsignBienesPersona.addActionListener(new java.awt.event.ActionListener() {
@@ -326,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
                 rAsignBienesPersonaActionPerformed(evt);
             }
         });
-        jMenu6.add(rAsignBienesPersona);
+        mRAsigBienes.add(rAsignBienesPersona);
 
         rAsignBienesArea.setText("Por Área");
         rAsignBienesArea.addActionListener(new java.awt.event.ActionListener() {
@@ -334,11 +338,11 @@ public class Principal extends javax.swing.JFrame {
                 rAsignBienesAreaActionPerformed(evt);
             }
         });
-        jMenu6.add(rAsignBienesArea);
+        mRAsigBienes.add(rAsignBienesArea);
 
-        mReportes.add(jMenu6);
+        mReportes.add(mRAsigBienes);
 
-        jMenu7.setText("Salida de Consumibles");
+        mRSalidasCon.setText("Salida de Consumibles");
 
         rSalConsumiblesFecha.setText("Por Fecha");
         rSalConsumiblesFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -346,7 +350,7 @@ public class Principal extends javax.swing.JFrame {
                 rSalConsumiblesFechaActionPerformed(evt);
             }
         });
-        jMenu7.add(rSalConsumiblesFecha);
+        mRSalidasCon.add(rSalConsumiblesFecha);
 
         rSalConsumiblesPersonal.setText("Por Persona");
         rSalConsumiblesPersonal.addActionListener(new java.awt.event.ActionListener() {
@@ -354,7 +358,7 @@ public class Principal extends javax.swing.JFrame {
                 rSalConsumiblesPersonalActionPerformed(evt);
             }
         });
-        jMenu7.add(rSalConsumiblesPersonal);
+        mRSalidasCon.add(rSalConsumiblesPersonal);
 
         rSalConsumiblesArea.setText("Por Área");
         rSalConsumiblesArea.addActionListener(new java.awt.event.ActionListener() {
@@ -362,9 +366,9 @@ public class Principal extends javax.swing.JFrame {
                 rSalConsumiblesAreaActionPerformed(evt);
             }
         });
-        jMenu7.add(rSalConsumiblesArea);
+        mRSalidasCon.add(rSalConsumiblesArea);
 
-        mReportes.add(jMenu7);
+        mReportes.add(mRSalidasCon);
 
         jMenuBar1.add(mReportes);
 
@@ -374,29 +378,21 @@ public class Principal extends javax.swing.JFrame {
         mBienes.setText("Activo Fijo");
         mBienes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        sBienes.setText("Altas y Modificaciones");
-        sBienes.addActionListener(new java.awt.event.ActionListener() {
+        sAltaBienes.setText("Alta y Modificación");
+        sAltaBienes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sBienesActionPerformed(evt);
+                sAltaBienesActionPerformed(evt);
             }
         });
-        mBienes.add(sBienes);
+        mBienes.add(sAltaBienes);
 
-        sBajasBienes.setText("Bajas");
+        sBajasBienes.setText("Baja");
         sBajasBienes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sBajasBienesActionPerformed(evt);
             }
         });
         mBienes.add(sBajasBienes);
-
-        sValeRes.setText("Vale de Resguardo");
-        sValeRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sValeResActionPerformed(evt);
-            }
-        });
-        mBienes.add(sValeRes);
 
         jMenu2.setText("Consultas");
 
@@ -418,13 +414,25 @@ public class Principal extends javax.swing.JFrame {
 
         mBienes.add(jMenu2);
 
+        sValeResguardo.setText("Vale de Resguardo");
+
+        sValeRes.setText("Crear Vale");
+        sValeRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sValeResActionPerformed(evt);
+            }
+        });
+        sValeResguardo.add(sValeRes);
+
         sCambioAsig.setText("Cambio de Asignación");
         sCambioAsig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sCambioAsigActionPerformed(evt);
             }
         });
-        mBienes.add(sCambioAsig);
+        sValeResguardo.add(sCambioAsig);
+
+        mBienes.add(sValeResguardo);
 
         jMenuBar1.add(mBienes);
 
@@ -434,7 +442,7 @@ public class Principal extends javax.swing.JFrame {
         menuC.setText("Consumibles");
         menuC.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
-        mConsumibles.setText("Altas");
+        mConsumibles.setText("Alta, Modificación y Baja");
         mConsumibles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mConsumiblesActionPerformed(evt);
@@ -442,7 +450,7 @@ public class Principal extends javax.swing.JFrame {
         });
         menuC.add(mConsumibles);
 
-        mConsultas.setText("Consultas");
+        mConsultas.setText("Consulta");
         mConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mConsultasActionPerformed(evt);
@@ -450,13 +458,13 @@ public class Principal extends javax.swing.JFrame {
         });
         menuC.add(mConsultas);
 
-        sVale.setText("Generar Vale");
-        sVale.addActionListener(new java.awt.event.ActionListener() {
+        sValeAlmacen.setText("Generar Vale");
+        sValeAlmacen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sValeActionPerformed(evt);
+                sValeAlmacenActionPerformed(evt);
             }
         });
-        menuC.add(sVale);
+        menuC.add(sValeAlmacen);
 
         jMenuBar1.add(menuC);
 
@@ -489,39 +497,46 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sUsuariosActionPerformed
-        Usuarios form = null;
-        try {
-            form = new Usuarios();
-            Escritorio.add(form);
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(verificar)) {
+            Usuarios form = null;
+            try {
+                form = new Usuarios();
+                Escritorio.add(form);
 
-            form.setClosable(true);
-            form.setIconifiable(true);
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                form.setClosable(true);
+                form.setIconifiable(true);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            form.toFront();
+            form.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        form.toFront();
-        form.setVisible(true);
+
     }//GEN-LAST:event_sUsuariosActionPerformed
 
     private void mConsumiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsumiblesActionPerformed
         Consumibles form = null;
         try {
             form = new Consumibles();
-             Escritorio.add(form);
+            Escritorio.add(form);
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         form.toFront();
         form.setVisible(true);
-        
+
     }//GEN-LAST:event_mConsumiblesActionPerformed
 
     private void mConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsultasActionPerformed
         ConsultaConsumibles form = null;
         try {
             form = new ConsultaConsumibles();
-             Escritorio.add(form);
+            Escritorio.add(form);
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -530,77 +545,79 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mConsultasActionPerformed
 
     private void sAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sAreasActionPerformed
-        Areas form = null;
-        try {
-            form = new Areas();
-            Escritorio.add(form);
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(verificar)) {
+            Areas form = null;
+            try {
+                form = new Areas();
+                Escritorio.add(form);
 
-            form.setClosable(true);
-            form.setIconifiable(true);
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                form.setClosable(true);
+                form.setIconifiable(true);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            form.toFront();
+            form.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        form.toFront();
-        form.setVisible(true);
     }//GEN-LAST:event_sAreasActionPerformed
 
     private void mSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mSalirMouseClicked
-       int i = JOptionPane.showConfirmDialog(this,  "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        int i = JOptionPane.showConfirmDialog(this, "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (i == 0) {
             //System.exit(0);
             this.dispose();
             Login login = new Login();
             login.setVisible(true);
-        } 
+        }
     }//GEN-LAST:event_mSalirMouseClicked
 
     private void sPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPersonalActionPerformed
-        Personal form = null;
-        try {
-            form = new Personal();
-            Escritorio.add(form);
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(verificar)) {
+            Personal form = null;
+            try {
+                form = new Personal();
+                Escritorio.add(form);
 
-            form.setClosable(true);
-            form.setIconifiable(true);
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                form.setClosable(true);
+                form.setIconifiable(true);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            form.toFront();
+            form.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        form.toFront();
-        form.setVisible(true);
+
     }//GEN-LAST:event_sPersonalActionPerformed
 
-    private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-      ConsultaPersonal form = null;
+    private void sConsultasPersonalActionPerformed(java.awt.event.ActionEvent evt) {
+        ConsultaPersonal form = null;
         try {
             form = new ConsultaPersonal("");
             Escritorio.add(form);
 
             form.setClosable(true);
             form.setIconifiable(true);
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        form.toFront();
-        form.setVisible(true);  
-                                                     
-    }
-    private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        AltaBienes form = null;
-        try {
-            form = new AltaBienes();
-            Escritorio.add(form);
 
-            form.setClosable(true);
-            form.setIconifiable(true);
-           
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         form.toFront();
         form.setVisible(true);
+
+    }
+
+    private void sBienesActionPerformed(java.awt.event.ActionEvent evt) {
+
     }
 
     private void sConsultasBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sConsultasBienesActionPerformed
@@ -610,7 +627,7 @@ public class Principal extends javax.swing.JFrame {
             Escritorio.add(form);
 
             form.setClosable(true);
-            form.setIconifiable(true);           
+            form.setIconifiable(true);
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -618,7 +635,7 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_sConsultasBienesActionPerformed
 
-    private void sValeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sValeActionPerformed
+    private void sValeAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sValeAlmacenActionPerformed
         ValesAlmacen form = null;
         try {
             form = new ValesAlmacen();
@@ -630,28 +647,35 @@ public class Principal extends javax.swing.JFrame {
         form.setIconifiable(true);
         form.toFront();
         form.setVisible(true);
-    }//GEN-LAST:event_sValeActionPerformed
+    }//GEN-LAST:event_sValeAlmacenActionPerformed
 
     private void sBajasBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBajasBienesActionPerformed
-        BajaBienes form = null;
-        try {
-            form = new BajaBienes();
-            Escritorio.add(form);
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(verificar)) {
+            BajaBienes form = null;
+            try {
+                form = new BajaBienes();
+                Escritorio.add(form);
 
-            form.setClosable(true);
-            form.setIconifiable(true);
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                form.setClosable(true);
+                form.setIconifiable(true);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            form.toFront();
+            form.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-        form.toFront();
-        form.setVisible(true);
+
     }//GEN-LAST:event_sBajasBienesActionPerformed
 
     private void sValeResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sValeResActionPerformed
         ValeActivo form = null;
         try {
-            form = new ValeActivo("AgregarAsig","");
+            form = new ValeActivo("AgregarAsig", "");
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -683,7 +707,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sEtiquetaAreaActionPerformed
 
     private void sEtiquetasAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEtiquetasAllActionPerformed
-      EtiquetasPersonal form = null;
+        EtiquetasPersonal form = null;
         form = new EtiquetasPersonal();
         Escritorio.add(form);
         form.setClosable(true);
@@ -808,6 +832,29 @@ public class Principal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_rSalConsumiblesPersonalActionPerformed
 
+    private void sAltaBienesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sAltaBienesActionPerformed
+        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
+        String verificar = c.obtenerFirma();
+        if (firma.equals(verificar)) {
+            AltaBienes form = null;
+            try {
+                form = new AltaBienes();
+                Escritorio.add(form);
+
+                form.setClosable(true);
+                form.setIconifiable(true);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            form.toFront();
+            form.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+        }
+
+    }//GEN-LAST:event_sAltaBienesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -849,13 +896,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -863,10 +904,16 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblIdUsuario;
     public static javax.swing.JLabel lblNombre;
     public static javax.swing.JMenu mAreas;
-    private javax.swing.JMenu mBienes;
+    public static javax.swing.JMenu mBienes;
     public static javax.swing.JMenuItem mConsultas;
     public static javax.swing.JMenuItem mConsumibles;
+    public static javax.swing.JMenu mEtiquetas;
     public static javax.swing.JMenu mPersonal;
+    public static javax.swing.JMenu mRAltaBienes;
+    public static javax.swing.JMenu mRAsigBienes;
+    public static javax.swing.JMenu mRBajaBienes;
+    public static javax.swing.JMenu mRConsumibles;
+    public static javax.swing.JMenu mRSalidasCon;
     public static javax.swing.JMenu mReportes;
     private javax.swing.JMenu mSalir;
     public static javax.swing.JMenu mUsuarios;
@@ -883,9 +930,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem rSalConsumiblesArea;
     private javax.swing.JMenuItem rSalConsumiblesFecha;
     private javax.swing.JMenuItem rSalConsumiblesPersonal;
+    public static javax.swing.JMenuItem sAltaBienes;
     public static javax.swing.JMenuItem sAreas;
-    private javax.swing.JMenuItem sBajasBienes;
-    public static javax.swing.JMenuItem sBienes;
+    public static javax.swing.JMenuItem sBajasBienes;
     private javax.swing.JMenuItem sCambioAsig;
     public static javax.swing.JMenuItem sConsultasBienes;
     public static javax.swing.JMenuItem sConsultasPersonal;
@@ -894,8 +941,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem sEtiquetasAll;
     public static javax.swing.JMenuItem sPersonal;
     private javax.swing.JMenuItem sUsuarios;
-    private javax.swing.JMenuItem sVale;
+    public static javax.swing.JMenuItem sValeAlmacen;
     private javax.swing.JMenuItem sValeRes;
+    public static javax.swing.JMenu sValeResguardo;
     private javax.swing.JMenuItem wConsultaAsig;
     // End of variables declaration//GEN-END:variables
 }

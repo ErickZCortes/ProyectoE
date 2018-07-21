@@ -435,30 +435,22 @@ public class Personal extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())) {
-            int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
-            if (i == 0) {
-                if (!txtIdPersonal.getText().equals("")) {
-                    datPersonal.setIdPersonal(Integer.parseInt(txtIdPersonal.getText()));
-                    c.eliminar_personal(datPersonal);
-                    try {
-                        cargar_tabla_Personal("");
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    limpiar();
-                    bloquear();
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se elimino el personal.");
+        int i = JOptionPane.showConfirmDialog(this, "Si elimina el personal lo borrara de las acciones asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+        if (i == 0) {
+            if (!txtIdPersonal.getText().equals("")) {
+                datPersonal.setIdPersonal(Integer.parseInt(txtIdPersonal.getText()));
+                c.eliminar_personal(datPersonal);
+                try {
+                    cargar_tabla_Personal("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                limpiar();
+                bloquear();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se elimino el personal.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
         }
-
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
@@ -473,32 +465,25 @@ public class Personal extends javax.swing.JInternalFrame {
             txtCURP.requestFocus();
             return;
         }
+        String idPersonal = txtIdPersonal.getText();
+        datPersonal.setNombre(txtNombre.getText());
+        datPersonal.setCURP(txtCURP.getText());
 
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())) {
-            String idPersonal = txtIdPersonal.getText();
-            datPersonal.setNombre(txtNombre.getText());
-            datPersonal.setCURP(txtCURP.getText());
+        datPersonal.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
 
-            datPersonal.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
-
-            if (c.Guardar_personal(accion, datPersonal, idPersonal)) {
-                if (accion == "A") {
-                    JOptionPane.showMessageDialog(null, "Personal Agregado.");
-                } else if (accion == "M") {
-                    JOptionPane.showMessageDialog(null, "Personal Actualizado.");
-                }
-                limpiar();
-                bloquear();
-                try {
-                    cargar_tabla_Personal("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        if (c.Guardar_personal(accion, datPersonal, idPersonal)) {
+            if (accion == "A") {
+                JOptionPane.showMessageDialog(null, "Personal Agregado.");
+            } else if (accion == "M") {
+                JOptionPane.showMessageDialog(null, "Personal Actualizado.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+            limpiar();
+            bloquear();
+            try {
+                cargar_tabla_Personal("");
+            } catch (SQLException ex) {
+                Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSaveMouseClicked
 

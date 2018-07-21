@@ -217,7 +217,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         });
 
         cbAcceso.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cbAcceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario" }));
+        cbAcceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Auxiliar", "Almacén", "Usuario" }));
         cbAcceso.setToolTipText("");
 
         btnAdd.setBackground(new java.awt.Color(41, 55, 61));
@@ -530,9 +530,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
             return;
         }
 
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())) {
+        
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
             if (i == 0) {
                 if (!txtId.getText().equals("")) {
@@ -549,9 +547,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
-        }
+        
 
     }//GEN-LAST:event_btnElimMouseClicked
 
@@ -588,9 +584,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
             return;
         }
 
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())) {
             String idUsuario = txtId.getText();
             datUsuarios.setNombre(txtName.getText());
             datUsuarios.setUser(txtUser.getText());
@@ -615,9 +608,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
-        }
+        
 
     }//GEN-LAST:event_btnsaveMouseClicked
 

@@ -5,8 +5,6 @@ package Vista;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import Controlador.Controlador;
 import Datos.DatosAltaBien;
 import Datos.DatosArea;
@@ -28,13 +26,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class BajaBienes extends javax.swing.JInternalFrame {
-    
+
     DatosBajaBien datBBienes = new DatosBajaBien();
     DatosAltaBien datAlta = new DatosAltaBien();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
     String accion = "";
     DatosArea datArea = new DatosArea();
+
     /**
      * Creates new form Bienes
      */
@@ -45,8 +44,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         cargar_tabla_Bajabienes("");
         datArea.mostrarComboAreas(comboAreas);
     }
-    
-    
+
     void bloquear() {
         txtDescripcion.setEnabled(false);
         txtInventario.setEnabled(false);
@@ -58,7 +56,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         comboCausa.setEnabled(false);
 
         btnBuscarBien.setEnabled(false);
-        btnElim.setEnabled(true);
+        btnCrear.setEnabled(true);
         btnsave.setEnabled(false);
         btncancel.setEnabled(false);
 
@@ -75,7 +73,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         comboCausa.setEnabled(true);
 
         btnBuscarBien.setEnabled(true);
-        btnElim.setEnabled(false);
+        btnCrear.setEnabled(false);
         btnsave.setEnabled(true);
         btncancel.setEnabled(true);
     }
@@ -86,7 +84,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         txtValor.setText("");
         txtCantAlta.setText("");
     }
-    
+
     void cargar_tabla_Bajabienes(String valor) throws SQLException {
         DefaultTableModel tb = c.cargar_tabla_Bajabienes_area(valor);
         tbDatos.setModel(tb);
@@ -115,7 +113,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                 String valor = (String) tbDatos.getValueAt(filasel, 5);
                 String desc = (String) tbDatos.getValueAt(filasel, 6);
 
-                
                 txtIdbien.setText(idbien);
                 txtInventario.setText(inventario);
                 txtDescripcion.setText(desc);
@@ -127,6 +124,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,7 +137,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtIdbien = new javax.swing.JTextField();
-        btnElim = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
         btnsave = new javax.swing.JButton();
         btncancel = new javax.swing.JButton();
         txtDescripcion = new javax.swing.JTextField();
@@ -183,23 +181,18 @@ public class BajaBienes extends javax.swing.JInternalFrame {
             }
         });
 
-        btnElim.setBackground(new java.awt.Color(41, 55, 61));
-        btnElim.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnElim.setForeground(new java.awt.Color(255, 255, 255));
-        btnElim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Downloading_Updates_24px.png"))); // NOI18N
-        btnElim.setText("Realizar baja");
-        btnElim.setBorder(null);
-        btnElim.setBorderPainted(false);
-        btnElim.setContentAreaFilled(false);
-        btnElim.setOpaque(true);
-        btnElim.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCrear.setBackground(new java.awt.Color(41, 55, 61));
+        btnCrear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCrear.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Downloading_Updates_24px.png"))); // NOI18N
+        btnCrear.setText("Realizar baja");
+        btnCrear.setBorder(null);
+        btnCrear.setBorderPainted(false);
+        btnCrear.setContentAreaFilled(false);
+        btnCrear.setOpaque(true);
+        btnCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnElimMouseClicked(evt);
-            }
-        });
-        btnElim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnElimActionPerformed(evt);
+                btnCrearMouseClicked(evt);
             }
         });
 
@@ -215,11 +208,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         btnsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnsaveMouseClicked(evt);
-            }
-        });
-        btnsave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsaveActionPerformed(evt);
             }
         });
 
@@ -238,11 +226,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         btncancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btncancelMouseClicked(evt);
-            }
-        });
-        btncancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncancelActionPerformed(evt);
             }
         });
 
@@ -375,7 +358,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                         .addComponent(txtCantAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104)
                         .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -473,7 +456,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscarBien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnElim, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -538,7 +521,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btncancelMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
-        
+
         if (txtInventario.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un Número de Inventario");
             txtInventario.requestFocus();
@@ -549,92 +532,67 @@ public class BajaBienes extends javax.swing.JInternalFrame {
             txtDescripcion.requestFocus();
             return;
         }
-        
+
         if (txtValor.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Debes ingresar un Valor");
             txtValor.requestFocus();
             return;
         }
-        
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())){
-            
-        
         String tipo = comboCausa.getItemAt(comboCausa.getSelectedIndex());
-        
-            if (!"SELECCIONE UNA CAUSA...".equals(tipo)) {
-                Calendar calA,calB;
-        int dA, mA, aA, dB, mB, aB;
-        calA = dcFechaAlta.getCalendar();
-        calB = dcFechaBaja.getCalendar();
-        dA = calA.get(Calendar.DAY_OF_MONTH);
-        mA = calA.get(Calendar.MONTH);
-        aA = calA.get(Calendar.YEAR) - 1900;
-        dB = calB.get(Calendar.DAY_OF_MONTH);
-        mB = calB.get(Calendar.MONTH);
-        aB = calB.get(Calendar.YEAR) - 1900;
-        
-        datBBienes.setFechaAd(new Date(aA, mA, dA));
-        Date fechaAlta = datBBienes.getFechaAd();
-        datBBienes.setFechaBaja(new Date(aB, mB, dB));
-        
-        datBBienes.setnInventario(txtInventario.getText());
-        datBBienes.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
-        datBBienes.setDescripcion(txtDescripcion.getText());
-        datBBienes.setValor(Integer.parseInt(txtValor.getText()));
-        datBBienes.setCantidad(Integer.parseInt(txtCantBaja.getText()));
-        datBBienes.setIdBien(Integer.parseInt(txtIdbien.getText()));
-        datBBienes.setCausa(tipo);
-        
-        int CantAl = Integer.parseInt(txtCantAlta.getText());
-        int cantB = Integer.parseInt(txtCantBaja.getText());
-        int resta = CantAl - cantB;
-        
-        
-                if (c.Guardar_Bajabienes(datBBienes)) {
-                    c.editar_AltaBienes_xBaja(txtIdbien.getText(),resta);
-                    c.eliminar_AltaBienes_xBaja(txtIdbien.getText());
+
+        if (!"SELECCIONE UNA CAUSA...".equals(tipo)) {
+            Calendar calA, calB;
+            int dA, mA, aA, dB, mB, aB;
+            calA = dcFechaAlta.getCalendar();
+            calB = dcFechaBaja.getCalendar();
+            dA = calA.get(Calendar.DAY_OF_MONTH);
+            mA = calA.get(Calendar.MONTH);
+            aA = calA.get(Calendar.YEAR) - 1900;
+            dB = calB.get(Calendar.DAY_OF_MONTH);
+            mB = calB.get(Calendar.MONTH);
+            aB = calB.get(Calendar.YEAR) - 1900;
+
+            datBBienes.setFechaAd(new Date(aA, mA, dA));
+            Date fechaAlta = datBBienes.getFechaAd();
+            datBBienes.setFechaBaja(new Date(aB, mB, dB));
+
+            datBBienes.setnInventario(txtInventario.getText());
+            datBBienes.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
+            datBBienes.setDescripcion(txtDescripcion.getText());
+            datBBienes.setValor(Integer.parseInt(txtValor.getText()));
+            datBBienes.setCantidad(Integer.parseInt(txtCantBaja.getText()));
+            datBBienes.setIdBien(Integer.parseInt(txtIdbien.getText()));
+            datBBienes.setCausa(tipo);
+
+            int CantAl = Integer.parseInt(txtCantAlta.getText());
+            int cantB = Integer.parseInt(txtCantBaja.getText());
+            int resta = CantAl - cantB;
+
+            if (c.Guardar_Bajabienes(datBBienes)) {
+                c.editar_AltaBienes_xBaja(txtIdbien.getText(), resta);
+                c.eliminar_AltaBienes_xBaja(txtIdbien.getText());
                 JOptionPane.showMessageDialog(null, "Bien Agregado.");
-            
-            limpiar();
-            bloquear();
-            try {
-                cargar_tabla_Bajabienes("");
-            } catch (SQLException ex) {
-                Logger.getLogger(BajaBienes.class.getName()).log(Level.SEVERE, null, ex);
+
+                limpiar();
+                bloquear();
+                try {
+                    cargar_tabla_Bajabienes("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(BajaBienes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un tipo válido");
         }
-            } else {
-                JOptionPane.showMessageDialog(null, "Seleccione un tipo válido");
-            }
-        
-        
-        }else{
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
-        }
-        
     }//GEN-LAST:event_btnsaveMouseClicked
 
-    private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btncancelActionPerformed
-
-    private void btnElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnElimActionPerformed
-
-    private void btnElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimMouseClicked
+    private void btnCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseClicked
         desbloquear();
         Calendar c2 = new GregorianCalendar();
         dcFechaAlta.setCalendar(c2);
         dcFechaBaja.setCalendar(c2);
         txtInventario.requestFocus();
-    }//GEN-LAST:event_btnElimMouseClicked
-
-    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-        
-    }//GEN-LAST:event_btnsaveActionPerformed
+    }//GEN-LAST:event_btnCrearMouseClicked
 
     private void txtIdbienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdbienActionPerformed
         // TODO add your handling code here:
@@ -661,10 +619,10 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarBienActionPerformed
 
     private void txtInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyTyped
-       if (txtInventario.getText().length() == 27) {
+        if (txtInventario.getText().length() == 27) {
             evt.consume();
         }
-       char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
@@ -733,7 +691,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBien;
-    private javax.swing.JButton btnElim;
+    private javax.swing.JButton btnCrear;
     private javax.swing.JButton btncancel;
     private javax.swing.JButton btnsave;
     public static javax.swing.JComboBox<DatosArea> comboAreas;

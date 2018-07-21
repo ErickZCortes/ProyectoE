@@ -640,54 +640,46 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             txtValor.requestFocus();
             return;
         }
+        Calendar cal;
+        int d, m, a;
+        cal = dcFecha.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        datAltaB.setFechaAd(new Date(a, m, d));
+        Date fecha = datAltaB.getFechaAd();
 
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())) {
-            Calendar cal;
-            int d, m, a;
-            cal = dcFecha.getCalendar();
-            d = cal.get(Calendar.DAY_OF_MONTH);
-            m = cal.get(Calendar.MONTH);
-            a = cal.get(Calendar.YEAR) - 1900;
-            datAltaB.setFechaAd(new Date(a, m, d));
-            Date fecha = datAltaB.getFechaAd();
+        String idBien = txtId.getText();
+        datAltaB.setnInventario(txtInventario.getText());
+        datAltaB.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
+        datAltaB.setDescripcion(txtDescripcion.getText());
+        datAltaB.setCantidad(Integer.parseInt(txtCantidad.getText()));
+        datAltaB.setMarca(txtMarca.getText());
+        datAltaB.setModelo(txtModelo.getText());
+        datAltaB.setSerie(txtSerie.getText());
+        datAltaB.setValor(Integer.parseInt(txtValor.getText()));
 
-            String idBien = txtId.getText();
-            datAltaB.setnInventario(txtInventario.getText());
-            datAltaB.setArea(comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
-            datAltaB.setDescripcion(txtDescripcion.getText());
-            datAltaB.setCantidad(Integer.parseInt(txtCantidad.getText()));
-            datAltaB.setMarca(txtMarca.getText());
-            datAltaB.setModelo(txtModelo.getText());
-            datAltaB.setSerie(txtSerie.getText());
-            datAltaB.setValor(Integer.parseInt(txtValor.getText()));
+        String forma = comboForma.getItemAt(comboForma.getSelectedIndex());
 
-            String forma = comboForma.getItemAt(comboForma.getSelectedIndex());
-
-            if (!"Seleccione un tipo...".equals(forma)) {
-                datAltaB.setFormaAd(forma);
-            } else {
-                JOptionPane.showMessageDialog(null, "Seleccione un tipo válido");
-            }
-            if (c.Guardar_Altabienes(accion, datAltaB, idBien)) {
-                if (accion == "A") {
-                    JOptionPane.showMessageDialog(null, "Bien Agregado.");
-                } else if (accion == "M") {
-                    JOptionPane.showMessageDialog(null, "Bien Actualizado.");
-                }
-                limpiar();
-                bloquear();
-                try {
-                    cargar_tabla_AltaBienes("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(AltaBienes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        if (!"Seleccione un tipo...".equals(forma)) {
+            datAltaB.setFormaAd(forma);
         } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+            JOptionPane.showMessageDialog(null, "Seleccione un tipo válido");
         }
-
+        if (c.Guardar_Altabienes(accion, datAltaB, idBien)) {
+            if (accion == "A") {
+                JOptionPane.showMessageDialog(null, "Bien Agregado.");
+            } else if (accion == "M") {
+                JOptionPane.showMessageDialog(null, "Bien Actualizado.");
+            }
+            limpiar();
+            bloquear();
+            try {
+                cargar_tabla_AltaBienes("");
+            } catch (SQLException ex) {
+                Logger.getLogger(AltaBienes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnsaveMouseClicked
 
     private void btnModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModMouseClicked
