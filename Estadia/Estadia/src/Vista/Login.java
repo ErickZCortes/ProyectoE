@@ -334,7 +334,7 @@ public class Login extends javax.swing.JFrame {
                 Principal.lblNombre .setText(tablalistado.getValueAt(0, 1).toString());
                 Principal.lblIdUsuario.setText(tablalistado.getValueAt(0, 2).toString());
                 Principal.lblAcceso.setText(tablalistado.getValueAt(0, 7).toString());
-            }else{
+            }else if (tablalistado.getValueAt(0, 7).toString().equals("Auxiliar")) {
                 this.dispose();
                 Principal principal = new Principal();
                 principal.toFront();
@@ -345,17 +345,66 @@ public class Login extends javax.swing.JFrame {
                 Principal.lblAcceso.setText(tablalistado.getValueAt(0, 7).toString());
                 Principal.mUsuarios.setEnabled(false);
                 Principal.mUsuarios.setVisible(false);
-                Principal.mReportes.setEnabled(false);
-                Principal.mReportes.setVisible(false);
-                Principal.mConsumibles.setEnabled(false);
-                Principal.mConsumibles.setVisible(false);
-                Principal.sAreas.setEnabled(false);
-                Principal.sAreas.setVisible(false);
+                Principal.mAreas.setEnabled(false);
+                Principal.mAreas.setVisible(false);
                 Principal.sPersonal.setEnabled(false);
                 Principal.sPersonal.setVisible(false);
-                Principal.sBienes.setEnabled(false);
-                Principal.sBienes.setVisible(false);
-              
+                Principal.sAltaBienes.setEnabled(false);
+                Principal.sAltaBienes.setVisible(false);
+                Principal.sBajasBienes.setEnabled(false);
+                Principal.sBajasBienes.setVisible(false);
+                Principal.mConsumibles.setEnabled(false);
+                Principal.mConsumibles.setVisible(false);
+                Principal.sValeAlmacen.setEnabled(false);
+                Principal.sValeAlmacen.setVisible(false);
+            }else if (tablalistado.getValueAt(0, 7).toString().equals("Almacén")) {
+                this.dispose();
+                Principal principal = new Principal();
+                principal.toFront();
+                principal.setVisible(true);
+                Principal.lblIdUsuario.setText(tablalistado.getValueAt(0, 0).toString());
+                Principal.lblNombre .setText(tablalistado.getValueAt(0, 1).toString());
+                Principal.lblIdUsuario.setText(tablalistado.getValueAt(0, 2).toString());
+                Principal.lblAcceso.setText(tablalistado.getValueAt(0, 7).toString());
+                Principal.mUsuarios.setEnabled(false);
+                Principal.mUsuarios.setVisible(false);
+                Principal.mAreas.setEnabled(false);
+                Principal.mAreas.setVisible(false);
+                Principal.sPersonal.setEnabled(false);
+                Principal.sPersonal.setVisible(false);
+                Principal.mBienes.setEnabled(false);
+                Principal.mBienes.setVisible(false);
+                Principal.mRAltaBienes.setEnabled(false);
+                Principal.mRAltaBienes.setVisible(false);
+                Principal.mRBajaBienes.setEnabled(false);
+                Principal.mRBajaBienes.setVisible(false);
+                Principal.mRAsigBienes.setEnabled(false);
+                Principal.mRAsigBienes.setVisible(false);
+                Principal.mEtiquetas.setEnabled(false);
+                Principal.mEtiquetas.setVisible(false);
+            }else if (tablalistado.getValueAt(0, 7).toString().equals("Usuario")) {
+                this.dispose();
+                Principal principal = new Principal();
+                principal.toFront();
+                principal.setVisible(true);
+                Principal.lblIdUsuario.setText(tablalistado.getValueAt(0, 0).toString());
+                Principal.lblNombre .setText(tablalistado.getValueAt(0, 1).toString());
+                Principal.lblIdUsuario.setText(tablalistado.getValueAt(0, 2).toString());
+                Principal.lblAcceso.setText(tablalistado.getValueAt(0, 7).toString());
+                Principal.mUsuarios.setEnabled(false);
+                Principal.mUsuarios.setVisible(false);
+                Principal.mAreas.setEnabled(false);
+                Principal.mAreas.setVisible(false);
+                Principal.sPersonal.setEnabled(false);
+                Principal.sPersonal.setVisible(false);
+                Principal.mReportes.setEnabled(false);
+                Principal.mReportes.setVisible(false);
+                Principal.sAltaBienes.setEnabled(false);
+                Principal.sAltaBienes.setVisible(false);
+                Principal.sBajasBienes.setEnabled(false);
+                Principal.sBajasBienes.setVisible(false);
+                Principal.sValeResguardo.setEnabled(false);
+                Principal.sValeResguardo.setVisible(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO SE HA PODIDO INGRESAR");

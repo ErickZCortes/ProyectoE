@@ -262,7 +262,7 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
             form.setIconifiable(true);
 
         } catch (SQLException ex) {
-            Logger.getLogger(ReportePersona.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportesPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
         form.toFront();
         form.setVisible(true);

@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mayra
  */
 public class Areas extends javax.swing.JInternalFrame {
+
     DatosArea datAreas = new DatosArea();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -440,38 +441,24 @@ public class Areas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnModMouseClicked
 
     private void btnElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimMouseClicked
-
         int filasel = tbDatos.getSelectedRow();
         if (filasel == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
         }
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-
-        if (firma.equals(c.obtenerFirma())) {
-
-            if (!txtId.getText().equals("")) {
-                datAreas.setIdArea(Integer.parseInt(txtId.getText()));
-                c.eliminar_area(datAreas);
-                try {
-                    cargar_tabla_areas("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Areas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                limpiar();
-                bloquear();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se elimino el área.");
+        if (!txtId.getText().equals("")) {
+            datAreas.setIdArea(Integer.parseInt(txtId.getText()));
+            c.eliminar_area(datAreas);
+            try {
+                cargar_tabla_areas("");
+            } catch (SQLException ex) {
+                Logger.getLogger(Areas.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            limpiar();
+            bloquear();
         } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+            JOptionPane.showMessageDialog(null, "No se elimino el área.");
         }
-        //        if (txtId.getText().length() == 0) {
-        //            JOptionPane.showConfirmDialog(null, "Seleccione un registro de la tabla");
-        //            return;
-        //        }
-
     }//GEN-LAST:event_btnElimMouseClicked
 
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
@@ -490,33 +477,25 @@ public class Areas extends javax.swing.JInternalFrame {
             txtClaveCTT.requestFocus();
             return;
         }
+        String idArea = txtId.getText();
+        datAreas.setNombre(txtNombreA.getText());
+        datAreas.setClave_ctt(txtClaveCTT.getText());
+        datAreas.setClave_inst(txtClaveI.getText());
 
-        String firma = JOptionPane.showInputDialog("Ingrese su Firma Digital");
-        String verificar = c.obtenerFirma();
-        if (firma.equals(c.obtenerFirma())) {
-            String idArea = txtId.getText();
-            datAreas.setNombre(txtNombreA.getText());
-            datAreas.setClave_ctt(txtClaveCTT.getText());
-            datAreas.setClave_inst(txtClaveI.getText());
-
-            if (c.Guardar_area(accion, datAreas, idArea)) {
-                if (accion == "A") {
-                    JOptionPane.showMessageDialog(null, "Área Agregada.");
-                } else if (accion == "M") {
-                    JOptionPane.showMessageDialog(null, "Área Actualizada.");
-                }
-                limpiar();
-                bloquear();
-                try {
-                    cargar_tabla_areas("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        if (c.Guardar_area(accion, datAreas, idArea)) {
+            if (accion == "A") {
+                JOptionPane.showMessageDialog(null, "Área Agregada.");
+            } else if (accion == "M") {
+                JOptionPane.showMessageDialog(null, "Área Actualizada.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Firma incorrecta");
+            limpiar();
+            bloquear();
+            try {
+                cargar_tabla_areas("");
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }//GEN-LAST:event_btnsaveMouseClicked
 
     private void btncancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelMouseClicked
@@ -560,7 +539,7 @@ public class Areas extends javax.swing.JInternalFrame {
             c = cad.charAt(0);
             evt.setKeyChar(c);
         }
-        
+
     }//GEN-LAST:event_txtClaveCTTKeyTyped
 
     private void txtClaveIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveIKeyTyped

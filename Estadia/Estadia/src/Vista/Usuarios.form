@@ -311,8 +311,10 @@
               <Font name="Tahoma" size="13" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Usuario"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Auxiliar"/>
+                <StringItem index="1" value="Almac&#xe9;n"/>
+                <StringItem index="2" value="Usuario"/>
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
