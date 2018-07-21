@@ -39,7 +39,8 @@ public class BajaBienes extends javax.swing.JInternalFrame {
      */
     public BajaBienes() throws SQLException {
         initComponents();
-        //txtIdbien.setVisible(false);
+        txtIdbien.setVisible(false);
+        txtCantAlta.setVisible(false);
         bloquear();
         cargar_tabla_Bajabienes("");
         datArea.mostrarComboAreas(comboAreas);
@@ -416,7 +417,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdbien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCantAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
