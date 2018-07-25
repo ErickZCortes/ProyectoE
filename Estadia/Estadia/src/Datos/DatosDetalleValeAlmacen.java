@@ -14,7 +14,6 @@ public class DatosDetalleValeAlmacen {
     private int id_detalle;
     private int id_vale;
     private int id_consumible;
-    private int num_referencia;
     private String nombre_consumible;
     private int cantidad_solici;
     private String unidad_consumible;
@@ -23,11 +22,10 @@ public class DatosDetalleValeAlmacen {
     public DatosDetalleValeAlmacen() {
     }
 
-    public DatosDetalleValeAlmacen(int id_detalle, int id_vale, int id_consumible, int num_referencia, String nombre_consumible, int cantidad_solici, String unidad_consumible, int cantidad_entregada) {
+    public DatosDetalleValeAlmacen(int id_detalle, int id_vale, int id_consumible, String nombre_consumible, int cantidad_solici, String unidad_consumible, int cantidad_entregada) {
         this.id_detalle = id_detalle;
         this.id_vale = id_vale;
         this.id_consumible = id_consumible;
-        this.num_referencia = num_referencia;
         this.nombre_consumible = nombre_consumible;
         this.cantidad_solici = cantidad_solici;
         this.unidad_consumible = unidad_consumible;
@@ -44,10 +42,6 @@ public class DatosDetalleValeAlmacen {
 
     public int getId_consumible() {
         return id_consumible;
-    }
-
-    public int getNum_referencia() {
-        return num_referencia;
     }
 
     public String getNombre_consumible() {
@@ -76,10 +70,6 @@ public class DatosDetalleValeAlmacen {
 
     public void setId_consumible(int id_consumible) {
         this.id_consumible = id_consumible;
-    }
-
-    public void setNum_referencia(int num_referencia) {
-        this.num_referencia = num_referencia;
     }
 
     public void setNombre_consumible(String nombre_consumible) {

@@ -1256,11 +1256,10 @@ public class Modelo {
                 registros[0] = rs.getString("id_detalle");
                 registros[1] = rs.getString("id_valeA");
                 registros[2] = rs.getString("id_consumibles");
-                registros[3] = rs.getString("num_referencia");
-                registros[4] = rs.getString("nombre_consumible");
-                registros[5] = rs.getString("cantidad_solic");
-                registros[6] = rs.getString("unidad_consumible");
-                registros[7] = rs.getString("cantidad_entregada");
+                registros[3] = rs.getString("nombre_consumible");
+                registros[4] = rs.getString("cantidad_solic");
+                registros[5] = rs.getString("unidad_consumible");
+                registros[6] = rs.getString("cantidad_entregada");
                 
 
                 totalRegistros = totalRegistros + 1;
@@ -1355,13 +1354,12 @@ public class Modelo {
         }
     }
     public boolean agregar_detalle_almacen (DatosDetalleValeAlmacen datos) {
-        cons = "INSERT into detalle_vale(id_valeA , id_consumibles , num_referencia, nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?,?)";
+        cons = "INSERT into detalle_vale(id_valeA , id_consumibles , nombre_consumible, cantidad_solic, unidad_consumible, cantidad_entregada) VALUES (?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setInt(1, datos.getId_vale());
             pst.setInt(2, datos.getId_consumible());
-            pst.setInt(3, datos.getNum_referencia());
             pst.setString(4, datos.getNombre_consumible());
             pst.setInt(5, datos.getCantidad_solici());
             pst.setString(6, datos.getUnidad_consumible());
@@ -1438,9 +1436,9 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"id detalle","id resguardo","No.","id bien","Nombre","No. Inventario","Marca","Modelo" ,"Serie", "Valor"};
+        String[] titulos = {"id detalle","id resguardo","id bien","Nombre","No. Inventario","Marca","Modelo" ,"Serie", "Valor"};
 
-        String[] registros = new String[10];
+        String[] registros = new String[9];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
@@ -1455,7 +1453,6 @@ public class Modelo {
                 
                 registros[0] = rs.getString("id_detaller");
                 registros[1] = rs.getString("id_valer");
-                registros[2] = rs.getString("num_ref");
                 registros[3] = rs.getString("id_bien");
                 registros[4] = rs.getString("nombre_b");
                 registros[5] = rs.getString("n_inventario");
@@ -1562,12 +1559,11 @@ public class Modelo {
         }
     }
     public boolean agregar_detalle_resguardo(DatosDetalleResguardo datos) {
-        cons = "INSERT into detalle_resguardo(id_valer , num_ref , id_bien , nombre_b, n_inventario, marca_b, modelo_b, serie_b, valor_b) VALUES (?,?,?,?,?,?,?,?,?)";
+        cons = "INSERT into detalle_resguardo(id_valer, id_bien , nombre_b, n_inventario, marca_b, modelo_b, serie_b, valor_b) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setInt(1, datos.getId_valer());
-            pst.setInt(2, datos.getNum_ref());
             pst.setInt(3, datos.getId_bien());
             pst.setString(4, datos.getNombre_b());
             pst.setString(5, datos.getN_inventario());
