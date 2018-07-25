@@ -696,7 +696,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void btnBuscarPeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeActionPerformed
         String prueba = "almacen";
         ConsultaPersonal form = null;
@@ -809,7 +809,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         dDetalle.setNombre_consumible(txtMaterial.getText());
         dDetalle.setId_consumible(Integer.parseInt(txtidConsumible.getText()));
         contador = contador + 1;
-        dDetalle.setNum_referencia(contador);
         dDetalle.setCantidad_solici(Integer.parseInt(txtCantidadS.getText()));
         dDetalle.setCantidad_entregada(Integer.parseInt(txtCantidadE.getText()));
         dDetalle.setUnidad_consumible(txtUnidad.getText());

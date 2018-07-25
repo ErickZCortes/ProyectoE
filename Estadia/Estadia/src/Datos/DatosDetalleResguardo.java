@@ -14,7 +14,6 @@ public class DatosDetalleResguardo {
     private int id_detaller;
     private int id_valer;
     private int id_bien;
-    private int num_ref;
     private String nombre_b;
     private String n_inventario;
     private String marca_b;
@@ -25,11 +24,10 @@ public class DatosDetalleResguardo {
     public DatosDetalleResguardo() {
     }
 
-    public DatosDetalleResguardo(int id_detaller, int id_valer, int id_bien, int num_ref, String nombre_b, String n_inventario, String marca_b, String modelo_b, String serie_b, int valor_b) {
+    public DatosDetalleResguardo(int id_detaller, int id_valer, int id_bien, String nombre_b, String n_inventario, String marca_b, String modelo_b, String serie_b, int valor_b) {
         this.id_detaller = id_detaller;
         this.id_valer = id_valer;
         this.id_bien = id_bien;
-        this.num_ref = num_ref;
         this.nombre_b = nombre_b;
         this.n_inventario = n_inventario;
         this.marca_b = marca_b;
@@ -49,11 +47,7 @@ public class DatosDetalleResguardo {
     public int getId_bien() {
         return id_bien;
     }
-
-    public int getNum_ref() {
-        return num_ref;
-    }
-
+    
     public String getNombre_b() {
         return nombre_b;
     }
@@ -88,10 +82,6 @@ public class DatosDetalleResguardo {
 
     public void setId_bien(int id_bien) {
         this.id_bien = id_bien;
-    }
-
-    public void setNum_ref(int num_ref) {
-        this.num_ref = num_ref;
     }
 
     public void setNombre_b(String nombre_b) {
