@@ -1112,7 +1112,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
         if (c.modificar_vale_res(datRes)) {
             JOptionPane.showMessageDialog(null, "Vale generado.");
-
             try {
 
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ValeResguardo.class.getResource("/Documentos/ValeResguardoActivo.jasper"));

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * @author Erick
  * @author Mayra
  */
 public class Areas extends javax.swing.JInternalFrame {
@@ -212,11 +212,6 @@ public class Areas extends javax.swing.JInternalFrame {
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
-            }
-        });
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
             }
         });
 
@@ -514,7 +509,7 @@ public class Areas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbDatosMouseClicked
 
     private void txtNombreAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAKeyTyped
-        if (txtNombreA.getText().length() == 60) {
+        if (txtNombreA.getText().length() == 70) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -543,7 +538,7 @@ public class Areas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtClaveCTTKeyTyped
 
     private void txtClaveIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveIKeyTyped
-        if (txtClaveI.getText().length() == 5) {
+        if (txtClaveI.getText().length() == 15) {
             evt.consume();
         }
         char a = evt.getKeyChar();
@@ -563,10 +558,6 @@ public class Areas extends javax.swing.JInternalFrame {
             txtClaveI.requestFocus();
         }
     }//GEN-LAST:event_txtClaveCTTKeyPressed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

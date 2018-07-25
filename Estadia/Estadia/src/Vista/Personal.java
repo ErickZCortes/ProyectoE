@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * @author Erick
  * @author Mayra
  */
 public class Personal extends javax.swing.JInternalFrame {

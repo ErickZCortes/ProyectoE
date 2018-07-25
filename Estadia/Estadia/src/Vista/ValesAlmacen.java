@@ -32,7 +32,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Mayra
+ * @author Erick
  */
 public class ValesAlmacen extends javax.swing.JInternalFrame {
 

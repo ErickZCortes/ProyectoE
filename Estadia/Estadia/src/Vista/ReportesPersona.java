@@ -115,6 +115,11 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
         jLabel10.setText("Nombre del personal:");
 
         txtNomPersonal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNomPersonal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomPersonalKeyTyped(evt);
+            }
+        });
 
         btnBuscarPersonal1.setBackground(new java.awt.Color(41, 55, 61));
         btnBuscarPersonal1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -225,6 +230,7 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         if (seleccion.equals("AsigBienes")) {
             try {
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AsignacionBienesR.class.getResource("../Reportes/AsignBienesPersonal.jasper")
                 );
                 Map parametro = new HashMap<String, String>();
@@ -238,6 +244,7 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("SalConsumibles")) {
             try {
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(SalidaConsumiblesR.class.getResource("../Reportes/SalidaConsumiblesPersonal.jasper")
                 );
                 Map parametro = new HashMap<String, String>();
@@ -267,6 +274,12 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_btnBuscarPersonal1ActionPerformed
+
+    private void txtNomPersonalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomPersonalKeyTyped
+        if (txtNomPersonal.getText().length() == 60) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNomPersonalKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

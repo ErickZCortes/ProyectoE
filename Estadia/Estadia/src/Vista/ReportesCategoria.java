@@ -192,6 +192,7 @@ public class ReportesCategoria extends javax.swing.JInternalFrame {
 
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
         try {
+            JOptionPane.showMessageDialog(null, "Reporte generado.");
             JasperReport jr = (JasperReport) JRLoader.loadObject(ConsumiblesR.class.getResource("../Reportes/ConsumiblesCategoria.jasper"));
             Map parametro = new HashMap<String, String>();
             parametro.put("con_categoria", cboCategoria.getItemAt(cboCategoria.getSelectedIndex()));

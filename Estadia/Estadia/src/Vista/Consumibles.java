@@ -20,9 +20,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mayra
+ * @author Erick
  */
 public class Consumibles extends javax.swing.JInternalFrame {
+
     DatosConsumible datCons = new DatosConsumible();
     Controlador c = new Controlador();
     Modelo m = new Modelo();
@@ -116,7 +117,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
                 txtUnidad.setText(unidad);
                 txtStockM.setText(stockM);
                 txtValor.setText(valor);
-                
+
                 cboCategoria.getModel().setSelectedItem(String.valueOf(tbDatos.getModel().getValueAt(filasel, 1)));
             }
         } catch (Exception e) {
@@ -291,12 +292,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         });
 
         dcFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtidConsum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidConsumActionPerformed(evt);
-            }
-        });
 
         tbDatos = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex,int columnIndex){
@@ -608,8 +603,8 @@ public class Consumibles extends javax.swing.JInternalFrame {
                 }
             }
         } else {
-                JOptionPane.showMessageDialog(null, "Seleccione una Categoría Válida");
-            }
+            JOptionPane.showMessageDialog(null, "Seleccione una Categoría Válida");
+        }
 
     }//GEN-LAST:event_btnGuardarMouseClicked
 
@@ -628,10 +623,6 @@ public class Consumibles extends javax.swing.JInternalFrame {
         bloquear();
     }//GEN-LAST:event_tbDatosMouseClicked
 
-    private void txtidConsumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidConsumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidConsumActionPerformed
-
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtValor.requestFocus();
@@ -639,6 +630,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreKeyPressed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if (txtNombre.getText().length() == 60) {
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
@@ -658,6 +652,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtValorKeyPressed
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        if (txtValor.getText().length() == 10) {
+            evt.consume();
+        }
         char a = evt.getKeyChar();
         if (!Character.isDigit(a)) {
             evt.consume();
@@ -671,6 +668,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtUnidadKeyPressed
 
     private void txtUnidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadKeyTyped
+        if (txtUnidad.getText().length() == 15) {
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
@@ -690,6 +690,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtExistenciaKeyPressed
 
     private void txtExistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciaKeyTyped
+       if (txtExistencia.getText().length() == 15) {
+            evt.consume();
+        }
         char a = evt.getKeyChar();
         if (!Character.isDigit(a)) {
             evt.consume();
@@ -697,6 +700,9 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtExistenciaKeyTyped
 
     private void txtStockMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockMKeyTyped
+        if (txtStockM.getText().length() == 15) {
+            evt.consume();
+        }
         char a = evt.getKeyChar();
         if (!Character.isDigit(a)) {
             evt.consume();

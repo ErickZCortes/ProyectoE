@@ -406,9 +406,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtidConsum">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtidConsumActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 

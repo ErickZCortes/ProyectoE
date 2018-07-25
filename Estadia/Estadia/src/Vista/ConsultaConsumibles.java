@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mayra
+ * @author Erick
  */
 public class ConsultaConsumibles extends javax.swing.JInternalFrame {
     
@@ -152,15 +152,10 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
         jLabel3.setText("Dato: ");
 
         cbCondicion.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar por...", "Categoría", "Nombre" }));
+        cbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona uno...", "Categoría", "Nombre" }));
         cbCondicion.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbCondicionItemStateChanged(evt);
-            }
-        });
-        cbCondicion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCondicionActionPerformed(evt);
             }
         });
 
@@ -182,7 +177,7 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -263,10 +258,6 @@ public class ConsultaConsumibles extends javax.swing.JInternalFrame {
         mostrar("");
         txtBuscar.setText("");
     }//GEN-LAST:event_cbCondicionItemStateChanged
-
-    private void cbCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCondicionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbCondicionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

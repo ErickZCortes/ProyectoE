@@ -127,6 +127,11 @@ public class EtiquetaInventario extends javax.swing.JInternalFrame {
         });
 
         txtInventario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtInventario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtInventarioKeyTyped(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel10.setText("No. Inventario:");
@@ -223,6 +228,12 @@ public class EtiquetaInventario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "error" + e);
         }  
     }//GEN-LAST:event_btnGenerar2ActionPerformed
+
+    private void txtInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyTyped
+       if (txtInventario.getText().length() == 30) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtInventarioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
