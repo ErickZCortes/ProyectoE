@@ -233,7 +233,7 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
         if (seleccion.equals("AltaBienes")) {
             try {
-
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AltaBienesR.class.getResource("/Reportes/AltaBienesFecha.jasper"));
                 Map parametro = new HashMap<String, Date>();
 
@@ -251,7 +251,7 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("BajaBienes")) {
             try {
-
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(BajaBienes.class.getResource("/Reportes/BajaBienesFecha.jasper"));
                 Map parametro = new HashMap<String, Date>();
 
@@ -269,7 +269,7 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("AsigBienes")) {
             try {
-
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AsignacionBienesR.class.getResource("/Reportes/AsignBienesFecha.jasper"));
                 Map parametro = new HashMap<String, Date>();
 
@@ -287,7 +287,7 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("SalConsumibles")) {
             try {
-
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(SalidaConsumiblesR.class.getResource("/Reportes/SalidaConsumiblesFecha.jasper"));
                 Map parametro = new HashMap<String, Date>();
 
@@ -305,7 +305,7 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("Consumibles")) {
             try {
-
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ConsumiblesR.class.getResource("/Reportes/ConsumiblesFecha.jasper"));
                 Map parametro = new HashMap<String, Date>();
 

@@ -202,6 +202,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
         if (seleccion.equals("AltaBienes")) {
             try {
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AltaBienesR.class.getResource("../Reportes/AltaBienesArea.jasper"));
                 Map parametro = new HashMap<String, String>();
                 parametro.put("area_bien_alta", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
@@ -214,6 +215,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("BajaBienes")) {
             try {
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(BajaBienesR.class.getResource("../Reportes/BajaBienesArea.jasper"));
                 Map parametro = new HashMap<String, String>();
                 parametro.put("area_bien_baja", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
@@ -226,6 +228,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("AsigBienes")) {
             try {
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AsignacionBienesR.class.getResource("../Reportes/AsignBienesArea.jasper"));
                 Map parametro = new HashMap<String, String>();
                 parametro.put("area_resguardo", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
@@ -238,6 +241,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
             }
         } else if (seleccion.equals("SalConsumibles")) {
             try {
+                JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(SalidaConsumiblesR.class.getResource("../Reportes/SalidaConsumiblesArea.jasper"));
                 Map parametro = new HashMap<String, String>();
                 parametro.put("area_vale_alm", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());

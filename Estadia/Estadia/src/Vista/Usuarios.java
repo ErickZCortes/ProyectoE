@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * @author Erick
  * @author Mayra
  */
 public class Usuarios extends javax.swing.JInternalFrame {
@@ -628,7 +628,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btncancelMouseClicked
 
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
-        if (txtName.getText().length() == 50) {
+        if (txtName.getText().length() == 60) {
             evt.consume();
         }
         char c = evt.getKeyChar();

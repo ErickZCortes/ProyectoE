@@ -567,7 +567,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sAreasActionPerformed
 
     private void mSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mSalirMouseClicked
-        int i = JOptionPane.showConfirmDialog(this, "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        int i = JOptionPane.showConfirmDialog(this, "¿Desea Salir?", "Confirmar", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         if (i == 0) {
             //System.exit(0);
             this.dispose();

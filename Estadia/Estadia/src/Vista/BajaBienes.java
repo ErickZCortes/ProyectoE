@@ -176,12 +176,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel5.setText("Causa de la Baja:");
 
-        txtIdbien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdbienActionPerformed(evt);
-            }
-        });
-
         btnCrear.setBackground(new java.awt.Color(41, 55, 61));
         btnCrear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,11 +272,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         jLabel6.setText("Area: ");
 
         comboAreas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        comboAreas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAreasActionPerformed(evt);
-            }
-        });
 
         lbFecha1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lbFecha1.setText("Fecha de Adqusición:");
@@ -313,12 +302,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         txtCantBaja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantBajaKeyTyped(evt);
-            }
-        });
-
-        txtCantAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantAltaActionPerformed(evt);
             }
         });
 
@@ -417,7 +400,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdbien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCantAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
@@ -595,14 +577,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
         txtInventario.requestFocus();
     }//GEN-LAST:event_btnCrearMouseClicked
 
-    private void txtIdbienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdbienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdbienActionPerformed
-
-    private void txtCantAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantAltaActionPerformed
-
     private void btnBuscarBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBienActionPerformed
         ConsultaBienesSeleccionar form = null;
         try {
@@ -620,7 +594,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarBienActionPerformed
 
     private void txtInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyTyped
-        if (txtInventario.getText().length() == 27) {
+        if (txtInventario.getText().length() == 30) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -632,7 +606,7 @@ public class BajaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtInventarioKeyTyped
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
-        if (txtDescripcion.getText().length() == 70) {
+        if (txtDescripcion.getText().length() == 100) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -684,10 +658,6 @@ public class BajaBienes extends javax.swing.JInternalFrame {
             txtValor.requestFocus();
         }
     }//GEN-LAST:event_txtDescripcionKeyPressed
-
-    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboAreasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

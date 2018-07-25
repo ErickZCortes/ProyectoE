@@ -158,9 +158,6 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDatosMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbDatosMousePressed(evt);
-            }
         });
         jScrollPane1.setViewportView(tbDatos);
 
@@ -171,11 +168,6 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
         comboAreas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboAreasItemStateChanged(evt);
-            }
-        });
-        comboAreas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAreasActionPerformed(evt);
             }
         });
 
@@ -193,7 +185,7 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
@@ -321,18 +313,10 @@ public class ConsultaAsignacion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbDatosMouseClicked
 
-    private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-
-    }//GEN-LAST:event_tbDatosMousePressed
-
     private void comboAreasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreasItemStateChanged
         mostrar("");
         txtBuscar.setText("");
     }//GEN-LAST:event_comboAreasItemStateChanged
-
-    private void comboAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboAreasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

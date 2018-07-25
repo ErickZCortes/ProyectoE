@@ -214,6 +214,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtInventarioKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtInventarioKeyTyped(evt);
+            }
         });
 
         txtMarca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -250,11 +253,6 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                 btnAddMouseClicked(evt);
             }
         });
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         btnMod.setBackground(new java.awt.Color(41, 55, 61));
         btnMod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -268,11 +266,6 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         btnMod.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModMouseClicked(evt);
-            }
-        });
-        btnMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModActionPerformed(evt);
             }
         });
 
@@ -709,7 +702,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
-        if (txtDescripcion.getText().length() == 70) {
+        if (txtDescripcion.getText().length() == 100) {
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -817,13 +810,17 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSerieKeyPressed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModActionPerformed
+    private void txtInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyTyped
+      if (txtInventario.getText().length() == 30) {
+            evt.consume();
+        }
+      char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad = ("" + c).toUpperCase();
+            c = cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_txtInventarioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
