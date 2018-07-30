@@ -52,7 +52,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         initComponents();
         txtStockM.setVisible(false);
         txtAlmacen.setVisible(false);
-        txtidDetalle.setVisible(false);
+        txtidDetalle.setVisible(true);
         txtidVale.setVisible(false);
         txtidPersona.setVisible(false);
         txtidConsumible.setVisible(false);
@@ -92,10 +92,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtCantidadE.setEnabled(false);
         txtUnidad.setEnabled(false);
         btnAgregar.setEnabled(false);
-//        btnModificar.setEnabled(true);
-//        btnElim.setEnabled(true);
-//        btnGenerarR.setEnabled(true);
-//        
+        btnElim.setEnabled(true);
     }
 
     void desbloquear() {
@@ -126,7 +123,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtCantidadS.setText("");
         txtCantidadE.setText("");
         txtUnidad.setText("");
-        txtidDetalle.setText("");
         txtidVale.setText("");
         txtidPersona.setText("");
         txtidConsumible.setText("");
@@ -134,6 +130,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
     void vaciardos() {
         txtMaterial.setText("");
+        txtidDetalle.setText("");
         txtCantidadS.setText("");
         txtCantidadE.setText("");
         txtUnidad.setText("");
@@ -163,7 +160,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tbDatos.getColumnModel().getColumn(7).setPreferredWidth(150);
     }
 
     void actualizarDatos() {
@@ -171,12 +167,13 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccionar Registro");
+
             } else {
                 String iddetalle = (String) tbDatos.getValueAt(filasel, 0);
-                String nombre = (String) tbDatos.getValueAt(filasel, 4);
-                String cantA = (String) tbDatos.getValueAt(filasel, 5);
-                String cantE = (String) tbDatos.getValueAt(filasel, 7);
-                String unidad = (String) tbDatos.getValueAt(filasel, 6);
+                String nombre = (String) tbDatos.getValueAt(filasel, 3);
+                String cantA = (String) tbDatos.getValueAt(filasel, 4);
+                String cantE = (String) tbDatos.getValueAt(filasel, 6);
+                String unidad = (String) tbDatos.getValueAt(filasel, 5);
                 String idCon = (String) tbDatos.getValueAt(filasel, 2);
 
                 txtidDetalle.setText(iddetalle);
@@ -212,13 +209,13 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         dcFecha = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        txtidDetalle = new javax.swing.JTextField();
         txtidVale = new javax.swing.JTextField();
         txtidPersona = new javax.swing.JTextField();
         txtidConsumible = new javax.swing.JTextField();
         txtidCantidadC = new javax.swing.JTextField();
         txtAlmacen = new javax.swing.JTextField();
         txtStockM = new javax.swing.JTextField();
+        txtidDetalle = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLMaterial = new javax.swing.JLabel();
         txtMaterial = new javax.swing.JTextField();
@@ -319,6 +316,12 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel9.setText("Fecha:");
 
+        txtidDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidDetalleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -349,10 +352,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtStockM)
                                 .addComponent(txtAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtidDetalle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtidPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,8 +399,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -629,19 +632,8 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             }
         ));
         tbDatos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbDatosMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbDatosMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tbDatosMouseReleased(evt);
-            }
-        });
-        tbDatos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbDatosKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(tbDatos);
@@ -881,6 +873,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debes ingresar el nombre del responsable de área");
             txtResA.requestFocus();
             return;
+
         }
 
         dVale.setAreaSoli(txtArea.getText());
@@ -918,7 +911,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
-            } else {
+            } 
                 int idDetalle = (Integer.parseInt(txtidDetalle.getText()));
 
                 int CantC = c.seleccionar_ex_Cons(txtidConsumible.getText());
@@ -929,15 +922,11 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                 cargar_tabla(txtidVale.getText());
                 vaciardos();
                 desbloquear();
-            }
+            
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnElimActionPerformed
-
-    private void tbDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseClicked
-
-    }//GEN-LAST:event_tbDatosMouseClicked
 
     private void txtCantidadSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1024,19 +1013,14 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCantidadEKeyTyped
 
+    private void txtidDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidDetalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidDetalleActionPerformed
+
     private void tbDatosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMousePressed
-
-    }//GEN-LAST:event_tbDatosMousePressed
-
-    private void tbDatosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDatosKeyPressed
-
-    }//GEN-LAST:event_tbDatosKeyPressed
-
-    private void tbDatosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDatosMouseReleased
         actualizarDatos();
         bloquearTbdatos();
-
-    }//GEN-LAST:event_tbDatosMouseReleased
+    }//GEN-LAST:event_tbDatosMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

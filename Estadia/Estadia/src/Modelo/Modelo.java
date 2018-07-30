@@ -1238,9 +1238,9 @@ public class Modelo {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"id detalle","id vale","id consumible","No." ,"Descripción del artículo", "Cantidad solicitada", "Unidad", "Cantidad Entregada"};
+        String[] titulos = {"id detalle","id vale","id consumible","Descripción del artículo", "Cantidad solicitada", "Unidad", "Cantidad Entregada"};
 
-        String[] registros = new String[8];
+        String[] registros = new String[7];
         totalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
@@ -1360,10 +1360,10 @@ public class Modelo {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setInt(1, datos.getId_vale());
             pst.setInt(2, datos.getId_consumible());
-            pst.setString(4, datos.getNombre_consumible());
-            pst.setInt(5, datos.getCantidad_solici());
-            pst.setString(6, datos.getUnidad_consumible());
-            pst.setInt(7, datos.getCantidad_entregada());
+            pst.setString(3, datos.getNombre_consumible());
+            pst.setInt(4, datos.getCantidad_solici());
+            pst.setString(5, datos.getUnidad_consumible());
+            pst.setInt(6, datos.getCantidad_entregada());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
@@ -1453,13 +1453,13 @@ public class Modelo {
                 
                 registros[0] = rs.getString("id_detaller");
                 registros[1] = rs.getString("id_valer");
-                registros[3] = rs.getString("id_bien");
-                registros[4] = rs.getString("nombre_b");
-                registros[5] = rs.getString("n_inventario");
-                registros[6] = rs.getString("marca_b");
-                registros[7] = rs.getString("modelo_b");
-                registros[8] = rs.getString("serie_b");
-                registros[9] = rs.getString("valor_b");
+                registros[2] = rs.getString("id_bien");
+                registros[3] = rs.getString("nombre_b");
+                registros[4] = rs.getString("n_inventario");
+                registros[5] = rs.getString("marca_b");
+                registros[6] = rs.getString("modelo_b");
+                registros[7] = rs.getString("serie_b");
+                registros[8] = rs.getString("valor_b");
 
                 totalRegistros = totalRegistros + 1;
                 modelo.addRow(registros);
@@ -1564,13 +1564,13 @@ public class Modelo {
         try {
             PreparedStatement pst = cn.prepareStatement(cons);
             pst.setInt(1, datos.getId_valer());
-            pst.setInt(3, datos.getId_bien());
-            pst.setString(4, datos.getNombre_b());
-            pst.setString(5, datos.getN_inventario());
-            pst.setString(6, datos.getMarca_b());
-            pst.setString(7, datos.getModelo_b());
-            pst.setString(8, datos.getSerie_b());
-            pst.setInt(9, datos.getValor_b());
+            pst.setInt(2, datos.getId_bien());
+            pst.setString(3, datos.getNombre_b());
+            pst.setString(4, datos.getN_inventario());
+            pst.setString(5, datos.getMarca_b());
+            pst.setString(6, datos.getModelo_b());
+            pst.setString(7, datos.getSerie_b());
+            pst.setInt(8, datos.getValor_b());
             int n = pst.executeUpdate();
             if (n != 0) {
                 return true;
