@@ -14,7 +14,6 @@
      detalle_vale.`id_detalle` AS detalle_vale_id_detalle,
      detalle_vale.`id_valeA` AS detalle_vale_id_valeA,
      detalle_vale.`id_consumibles` AS detalle_vale_id_consumibles,
-     detalle_vale.`num_referencia` AS detalle_vale_num_referencia,
      detalle_vale.`nombre_consumible` AS detalle_vale_nombre_consumible,
      detalle_vale.`cantidad_solic` AS detalle_vale_cantidad_solic,
      detalle_vale.`unidad_consumible` AS detalle_vale_unidad_consumible,
@@ -28,6 +27,19 @@
 FROM
      `vale_almacen` vale_almacen INNER JOIN `detalle_vale` detalle_vale ON vale_almacen.`id_vale` = detalle_vale.`id_valeA`]]>
 	</queryString>
+	<field name="detalle_vale_id_detalle" class="java.lang.Integer"/>
+	<field name="detalle_vale_id_valeA" class="java.lang.Integer"/>
+	<field name="detalle_vale_id_consumibles" class="java.lang.Integer"/>
+	<field name="detalle_vale_nombre_consumible" class="java.lang.String"/>
+	<field name="detalle_vale_cantidad_solic" class="java.lang.Integer"/>
+	<field name="detalle_vale_unidad_consumible" class="java.lang.String"/>
+	<field name="detalle_vale_cantidad_entregada" class="java.lang.Integer"/>
+	<field name="vale_almacen_id_vale" class="java.lang.Integer"/>
+	<field name="vale_almacen_fecha" class="java.sql.Date"/>
+	<field name="vale_almacen_id_person" class="java.lang.Integer"/>
+	<field name="vale_almacen_nombre_person" class="java.lang.String"/>
+	<field name="vale_almacen_area_sol" class="java.lang.String"/>
+	<field name="vale_almacen_responsable_area" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

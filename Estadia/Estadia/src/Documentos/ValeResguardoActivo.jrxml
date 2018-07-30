@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62744e66-7147-48bd-8b57-98d35a6f5cc5">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="37"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id_vale_resguardo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     detalle_resguardo.`num_ref` AS detalle_resguardo_num_ref,
      detalle_resguardo.`nombre_b` AS detalle_resguardo_nombre_b,
      detalle_resguardo.`n_inventario` AS detalle_resguardo_n_inventario,
      detalle_resguardo.`marca_b` AS detalle_resguardo_marca_b,
@@ -29,7 +28,6 @@ FROM
 WHERE
      vale_resguardo.`id_valeres` = $P{id_vale_resguardo}]]>
 	</queryString>
-	<field name="detalle_resguardo_num_ref" class="java.lang.Integer"/>
 	<field name="detalle_resguardo_nombre_b" class="java.lang.String"/>
 	<field name="detalle_resguardo_n_inventario" class="java.lang.String"/>
 	<field name="detalle_resguardo_marca_b" class="java.lang.String"/>

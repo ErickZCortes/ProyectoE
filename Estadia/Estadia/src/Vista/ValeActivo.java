@@ -202,19 +202,17 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         tbDatos.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
         tbDatos.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
 
-        tbDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbDatos.getColumnModel().getColumn(2).setMaxWidth(0);
+        tbDatos.getColumnModel().getColumn(2).setMinWidth(0);
+        tbDatos.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
+        tbDatos.getTableHeader().getColumnModel().getColumn(2).setMinWidth(0);
 
-        tbDatos.getColumnModel().getColumn(3).setMaxWidth(0);
-        tbDatos.getColumnModel().getColumn(3).setMinWidth(0);
-        tbDatos.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(0);
-        tbDatos.getTableHeader().getColumnModel().getColumn(3).setMinWidth(0);
-
+        tbDatos.getColumnModel().getColumn(3).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(4).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(5).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(6).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(7).setPreferredWidth(160);
         tbDatos.getColumnModel().getColumn(8).setPreferredWidth(160);
-        tbDatos.getColumnModel().getColumn(9).setPreferredWidth(160);
     }
 
     void actualizarDatos() {
@@ -224,15 +222,13 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Seleccionar Registro");
             } else {
                 String iddetalleA = (String) tbDatos.getValueAt(filasel, 0);
-                String Nombre = (String) tbDatos.getValueAt(filasel, 4);
-                String inventario = (String) tbDatos.getValueAt(filasel, 5);
-                String valor = (String) tbDatos.getValueAt(filasel, 9);
-                String modelo = (String) tbDatos.getValueAt(filasel, 7);
-                String marca = (String) tbDatos.getValueAt(filasel, 6);
-                String serie = (String) tbDatos.getValueAt(filasel, 8);
-                String idBien = (String) tbDatos.getValueAt(filasel, 3);
-
-                String fecho = (String) tbDatos.getValueAt(filasel, 1);
+                String Nombre = (String) tbDatos.getValueAt(filasel, 3);
+                String inventario = (String) tbDatos.getValueAt(filasel, 4);
+                String valor = (String) tbDatos.getValueAt(filasel, 8);
+                String modelo = (String) tbDatos.getValueAt(filasel, 6);
+                String marca = (String) tbDatos.getValueAt(filasel, 5);
+                String serie = (String) tbDatos.getValueAt(filasel, 7);
+                String idBien = (String) tbDatos.getValueAt(filasel, 2);
 
                 txtIdDetalle.setText(iddetalleA);
                 txtNomBien.setText(Nombre);
@@ -1136,6 +1132,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
     private void btnEliminarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDActionPerformed
         int filasel = tbDatos.getSelectedRow();
+        contador = contador - 1;
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
