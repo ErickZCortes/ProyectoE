@@ -20,7 +20,7 @@ public static Connection GetConnection(){
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String servidor = "jdbc:mysql://localhost/activo_fijo";
+            String servidor = "jdbc:mysql://localhost/activo";
             String usuarioDB= "root";
             String passwordDB= "";
             conexion = DriverManager.getConnection(servidor,usuarioDB,passwordDB);

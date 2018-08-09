@@ -338,7 +338,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("REGISTRO INICIAL");
+        jLabel9.setText("REGISTRO");
 
         btnClose.setBackground(new java.awt.Color(41, 55, 61));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_Delete_24px.png"))); // NOI18N
@@ -367,9 +367,9 @@ public class Registro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(166, 166, 166)
                 .addComponent(btnminimize, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
