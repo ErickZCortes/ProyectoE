@@ -103,6 +103,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 String password = (String) tbDatos.getValueAt(filasel, 3);
                 String rfc = (String) tbDatos.getValueAt(filasel, 4);
                 String curp = (String) tbDatos.getValueAt(filasel, 5);
+                String acceso = (String) tbDatos.getValueAt(filasel, 6);
 
                 txtId.setText(iduser);
                 txtName.setText(nombre);
@@ -110,7 +111,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 txtPassword.setText(password);
                 txtRFC.setText(rfc);
                 txtCURP.setText(curp);
-
+                txtacceso.setText(acceso);
             }
         } catch (Exception e) {
 
@@ -150,6 +151,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDatos = new javax.swing.JTable();
         btnGenerador = new javax.swing.JButton();
+        txtacceso = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -352,6 +354,12 @@ public class Usuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        txtacceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtaccesoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -364,7 +372,9 @@ public class Usuarios extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(170, 170, 170)
-                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtacceso, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +427,9 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtacceso, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
@@ -528,26 +540,31 @@ public class Usuarios extends javax.swing.JInternalFrame {
         if (filasel == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un Registro de la Tabla");
             return;
-        }
-
-        
+        } else {
             int i = JOptionPane.showConfirmDialog(this, "Si elimina el usuario lo borrara de las ventas asociadas a el ¿Desea Eliminar?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
             if (i == 0) {
                 if (!txtId.getText().equals("")) {
-                    datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
-                    c.eliminar_usuario(datUsuarios);
-                    try {
-                        cargar_tabla_usuarios("");
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    if (txtacceso.getText().equals("Administrador")) {
+                        datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
+                        c.eliminar_usuario(datUsuarios);
+                        this.dispose();
+                    } else {
+                        datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
+                        c.eliminar_usuario(datUsuarios);
+                        try {
+                            cargar_tabla_usuarios("");
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        limpiar();
+                        bloquear();
                     }
-                    limpiar();
-                    bloquear();
+
                 } else {
                     JOptionPane.showMessageDialog(null, "No se elimino el usuario.");
                 }
             }
-        
+        }
 
     }//GEN-LAST:event_btnElimMouseClicked
 
@@ -584,31 +601,31 @@ public class Usuarios extends javax.swing.JInternalFrame {
             return;
         }
 
-            String idUsuario = txtId.getText();
-            datUsuarios.setNombre(txtName.getText());
-            datUsuarios.setUser(txtUser.getText());
-            datUsuarios.setPassword(txtPassword.getText());
-            datUsuarios.setFirmaD("Invalido");
-            datUsuarios.setCURP(txtCURP.getText());
-            datUsuarios.setRFC(txtRFC.getText());
-            int acceso = cbAcceso.getSelectedIndex();
-            datUsuarios.setAcceso((String) cbAcceso.getItemAt(acceso));
+        String idUsuario = txtId.getText();
+        datUsuarios.setNombre(txtName.getText());
+        datUsuarios.setUser(txtUser.getText());
+        datUsuarios.setPassword(txtPassword.getText());
+        datUsuarios.setFirmaD("Invalido");
+        datUsuarios.setCURP(txtCURP.getText());
+        datUsuarios.setRFC(txtRFC.getText());
+        int acceso = cbAcceso.getSelectedIndex();
+        datUsuarios.setAcceso((String) cbAcceso.getItemAt(acceso));
 
-            if (c.Guardar_usuario(accion, datUsuarios, idUsuario)) {
-                if (accion == "A") {
-                    JOptionPane.showMessageDialog(null, "Usuario Agregado.");
-                } else if (accion == "M") {
-                    JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
-                }
-                limpiar();
-                bloquear();
-                try {
-                    cargar_tabla_usuarios("");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        if (c.Guardar_usuario(accion, datUsuarios, idUsuario)) {
+            if (accion == "A") {
+                JOptionPane.showMessageDialog(null, "Usuario Agregado.");
+            } else if (accion == "M") {
+                JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
             }
-        
+            limpiar();
+            bloquear();
+            try {
+                cargar_tabla_usuarios("");
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
 
     }//GEN-LAST:event_btnsaveMouseClicked
 
@@ -685,6 +702,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
         txtPassword.setText(pswrd);
     }//GEN-LAST:event_btnGeneradorActionPerformed
 
+    private void txtaccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaccesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtaccesoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -713,5 +734,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtRFC;
     private javax.swing.JTextField txtUser;
+    private javax.swing.JTextField txtacceso;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,7 +39,8 @@ public class Login extends javax.swing.JFrame {
     
     public void ContarUsuarios(){
        int cantidadUsuarios = c.ContarUsuarios();
-        if (cantidadUsuarios == 0) {
+       int totalAdmin = c.ContarAdmin();
+        if (cantidadUsuarios == 0 || totalAdmin == 0) {
             JOptionPane.showMessageDialog(rootPane, "DEBE CREAR EL ADMINISTRADOR DEL SISTEMA");
             Registro form = new Registro();
             form.setResizable(false);

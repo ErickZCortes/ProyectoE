@@ -65,6 +65,26 @@ public class Modelo {
         }
 
     }
+    public int ContarAdmin() {
+
+        cons = "SELECT count(*) as total from usuarios WHERE acceso = 'Administrador'";
+
+        try {
+            int total = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                total = rs.getInt("total");
+            }
+
+            return total;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+
+    }
     public DefaultTableModel login(String user, String password) {
 
         String[] titulos = {"COD", "NOMBRE", "USER", "PASS", "FIRMA", "RFC", "CURP", "ACCESO"};

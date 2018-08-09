@@ -36,6 +36,10 @@ public class Controlador {
         return m.ContarUsuarios();
     }
 
+    public int ContarAdmin() {
+        return m.ContarAdmin();
+    }
+
     public DefaultTableModel login(String user, String password) {
         return m.login(user, password);
     }
@@ -52,7 +56,6 @@ public class Controlador {
         DefaultTableModel tb = m.cargar_tabla_usuarios(valor);
         return tb;
     }
-    
 
     public boolean Guardar_usuario(String accion, DatosUsuario datos, String idUsuario) {
         if (accion == "A") {
@@ -73,6 +76,7 @@ public class Controlador {
         DefaultTableModel tb = m.cargar_tabla_consumibles_xcategoria(valor);
         return tb;
     }
+
     public DefaultTableModel cargar_tabla_consumibles_xnombre(String valor) {
         DefaultTableModel tb = m.cargar_tabla_consumibles_xnombre(valor);
         return tb;
@@ -87,15 +91,19 @@ public class Controlador {
         }
         return false;
     }
+
     public int seleccionarStock_Con() {
         return m.seleccionarStock_Con();
     }
+
     public int seleccionar_ex_Cons(String idCons) {
         return m.seleccionar_ex_Cons(idCons);
     }
-    public void editar_Consumible_x_existencia(String idConsumible,int cantidad) {
+
+    public void editar_Consumible_x_existencia(String idConsumible, int cantidad) {
         m.editar_Consumible_x_existencia(idConsumible, cantidad);
     }
+
     public boolean eliminar_consumible(DatosConsumible datos) {
         return m.eliminar_consumible(datos);
     }
@@ -116,7 +124,7 @@ public class Controlador {
     }
 
     public boolean eliminar_area(DatosArea datos) {
-         return m.eliminar_area(datos);
+        return m.eliminar_area(datos);
     }
 
     public String obtenerctt(String area) {
@@ -131,6 +139,7 @@ public class Controlador {
     public DefaultTableModel cargar_tabla_Personal_xarea(String valor) {
         return m.cargar_tabla_Personal_xarea(valor);
     }
+
     public DefaultTableModel cargar_tabla_Personal_xnombre(String valor) {
         return m.cargar_tabla_Personal_xnombre(valor);
     }
@@ -153,24 +162,31 @@ public class Controlador {
     public DefaultTableModel cargar_tabla_Altabienes_area(String valor) {
         return m.cargar_tabla_AltaBienes_area(valor);
     }
-    public DefaultTableModel cargar_tabla_Altabienes_nombre(String area,String valor) {
+
+    public DefaultTableModel cargar_tabla_Altabienes_nombre(String area, String valor) {
         return m.cargar_tabla_AltaBienes_nombre(area, valor);
     }
-    public DefaultTableModel cargar_tabla_Altabienes_NInventario(String area,String valor) {
+
+    public DefaultTableModel cargar_tabla_Altabienes_NInventario(String area, String valor) {
         return m.cargar_tabla_AltaBienes_NInventario(area, valor);
     }
-    public DefaultTableModel cargar_tabla_Altabienes_tipo(String area,String valor) {
-        return m.cargar_tabla_AltaBienes_tipo(area,valor);
+
+    public DefaultTableModel cargar_tabla_Altabienes_tipo(String area, String valor) {
+        return m.cargar_tabla_AltaBienes_tipo(area, valor);
     }
+
     public DefaultTableModel cargar_tabla_Bajabienes_area(String valor) {
         return m.cargar_tabla_BajaBienes_area(valor);
     }
+
     public DefaultTableModel cargar_tabla_Bajabienes_nombre(String area, String valor) {
         return m.cargar_tabla_BajaBienes_nombre(area, valor);
     }
+
     public DefaultTableModel cargar_tabla_Bajabienes_tipo(String area, String valor) {
         return m.cargar_tabla_BajaBienes_tipo(area, valor);
     }
+
     public boolean Guardar_Altabienes(String accion, DatosAltaBien datos, String idAlta) {
         if (accion == "A") {
             return m.insertar_AltaBienes(datos);
@@ -180,45 +196,58 @@ public class Controlador {
         }
         return false;
     }
+
     public int seleccionar_ex_Bien(String idAlta) {
         return m.seleccionar_ex_Bien(idAlta);
     }
+
     public void editar_AltaBienes_xBaja(String idAlta, int cantidad) {
         m.editar_AltaBienes_xBaja(idAlta, cantidad);
     }
+
     public void eliminar_AltaBienes_xBaja(String idalta) {
         m.eliminar_AltaBienes_xBaja(idalta);
     }
+
     public boolean Guardar_Bajabienes(DatosBajaBien datos) {
 
         return m.insertar_BajaBienes(datos);
 
     }
+
     public boolean eliminar_bienes(DatosBajaBien datos) {
         return m.eliminar_BajaBienes(datos);
     }
+
     public DefaultTableModel cargar_tabla_AsignacionBienes_nombre(String area, String valor) {
         return m.cargar_tabla_AsignacionBienes_nombre(area, valor);
     }
+
     //-----------------------------------------VALE ALMACEN-------------------//
     public String DevolverCtt() {
         return m.DevolverCtt();
     }
+
     public DefaultTableModel cargar_tabla_detalleV(String valor) {
         return m.cargar_tabla_detalleV(valor);
     }
+
     public int selectIdVale() {
         return m.selectIdVale();
     }
+
     public boolean agregar_vale(DatosValeAlmacen datos) {
         return m.agregar_vale(datos);
     }
+
     public boolean eliminarVale(DatosValeAlmacen datos) {
         return m.eliminarVale(datos);
     }
+
     public boolean modificar_vale(DatosValeAlmacen datos) {
         return m.modificar_vale(datos);
     }
+
     public boolean Guardar_detalle_almacen(String accion, DatosDetalleValeAlmacen datos) {
         if (accion == "A") {
             return m.agregar_detalle_almacen(datos);
@@ -228,13 +257,14 @@ public class Controlador {
         }
         return false;
     }
+
     public boolean eliminar_detalle_almacen(DatosDetalleValeAlmacen datos) {
         return m.eliminar_detalle_almacen(datos);
     }
+
     public void eliminar_xregistro_detalle_almacen(Integer idDetalle) throws SQLException {
-         m.eliminar_xregistro_detalle_almacen(idDetalle);
+        m.eliminar_xregistro_detalle_almacen(idDetalle);
     }
-    
 
     //-----------------------------------------VALE RESGUARDO-------------------//
     public DefaultTableModel cargar_tabla_detalle_Res(String valor) {
@@ -271,7 +301,7 @@ public class Controlador {
         return m.eliminar_detalle_res(datos);
     }
 
-    public void eliminar_xregistro_detalle_res(Integer idResguardo) throws SQLException{
-         m.eliminar_xregistro_detalle_res(idResguardo);
+    public void eliminar_xregistro_detalle_res(Integer idResguardo) throws SQLException {
+        m.eliminar_xregistro_detalle_res(idResguardo);
     }
 }
