@@ -547,7 +547,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     if (txtacceso.getText().equals("Administrador")) {
                         datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
                         c.eliminar_usuario(datUsuarios);
-                        this.dispose();
+                        System.exit(0);
                     } else {
                         datUsuarios.setIdUsuario(Integer.parseInt(txtId.getText()));
                         c.eliminar_usuario(datUsuarios);

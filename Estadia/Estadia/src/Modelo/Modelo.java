@@ -1657,5 +1657,23 @@ public class Modelo {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Eliminado con Éxito");
         }
-    }  
+    } 
+    public int ContarDetalles(String idvale){
+                cons = "select count(*)AS canto from detalle_resguardo WHERE id_valer = "+idvale+"";
+                try {
+            int cantTotal = 0;
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(cons);
+            while (rs.next()) {
+                cantTotal = rs.getInt("canto");
+            }
+
+            return cantTotal;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            return 0;
+        }
+    }
+   
 }

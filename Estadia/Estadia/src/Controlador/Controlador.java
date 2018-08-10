@@ -304,4 +304,7 @@ public class Controlador {
     public void eliminar_xregistro_detalle_res(Integer idResguardo) throws SQLException {
         m.eliminar_xregistro_detalle_res(idResguardo);
     }
+     public int ContarDetalles(String idvale){
+         return m.ContarDetalles(idvale);
+     }
 }
