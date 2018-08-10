@@ -600,29 +600,44 @@ public class Usuarios extends javax.swing.JInternalFrame {
             txtPassword.requestFocus();
             return;
         }
+        String a = "á";
+        String e = "é";
+        String i = "í";
+        String o = "ó";
+        String u = "ú";
+        String texto = txtUser.getText();
+        boolean resultadoa = texto.contains(a);
+        boolean resultadoe = texto.contains(e);
+        boolean resultadoi = texto.contains(i);
+        boolean resultadoo = texto.contains(o);
+        boolean resultadou = texto.contains(u);
 
-        String idUsuario = txtId.getText();
-        datUsuarios.setNombre(txtName.getText());
-        datUsuarios.setUser(txtUser.getText());
-        datUsuarios.setPassword(txtPassword.getText());
-        datUsuarios.setFirmaD("Invalido");
-        datUsuarios.setCURP(txtCURP.getText());
-        datUsuarios.setRFC(txtRFC.getText());
-        int acceso = cbAcceso.getSelectedIndex();
-        datUsuarios.setAcceso((String) cbAcceso.getItemAt(acceso));
+        if (resultadoa || resultadoe || resultadoi || resultadoo || resultadou) {
+            JOptionPane.showMessageDialog(null, "El usuario no debe contener tilde");
+        } else {
+            String idUsuario = txtId.getText();
+            datUsuarios.setNombre(txtName.getText());
+            datUsuarios.setUser(txtUser.getText());
+            datUsuarios.setPassword(txtPassword.getText());
+            datUsuarios.setFirmaD("Invalido");
+            datUsuarios.setCURP(txtCURP.getText());
+            datUsuarios.setRFC(txtRFC.getText());
+            int acceso = cbAcceso.getSelectedIndex();
+            datUsuarios.setAcceso((String) cbAcceso.getItemAt(acceso));
 
-        if (c.Guardar_usuario(accion, datUsuarios, idUsuario)) {
-            if (accion == "A") {
-                JOptionPane.showMessageDialog(null, "Usuario Agregado.");
-            } else if (accion == "M") {
-                JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
-            }
-            limpiar();
-            bloquear();
-            try {
-                cargar_tabla_usuarios("");
-            } catch (SQLException ex) {
-                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            if (c.Guardar_usuario(accion, datUsuarios, idUsuario)) {
+                if (accion == "A") {
+                    JOptionPane.showMessageDialog(null, "Usuario Agregado.");
+                } else if (accion == "M") {
+                    JOptionPane.showMessageDialog(null, "Usuario Actualizado.");
+                }
+                limpiar();
+                bloquear();
+                try {
+                    cargar_tabla_usuarios("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
