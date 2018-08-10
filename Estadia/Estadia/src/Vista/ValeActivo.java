@@ -1016,7 +1016,16 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                     txtSerie.requestFocus();
                     return;
                 }
-
+                
+                if (seleccion.equals("cambioAsig")) {
+                int ct = Integer.parseInt(txtCanTotal.getText());
+                ct = ct + 1;
+                txtCanTotal.setText(String.valueOf(ct));
+                }else if (seleccion.equals("AgregarAsig")){
+                contador = contador + 1;      
+                txtCanTotal.setText(String.valueOf(contador));
+                }
+                
                 datDet.setId_valer(Integer.parseInt(txtIdValeR.getText()));
                 datDet.setId_bien(Integer.parseInt(txtIdBien.getText()));
                 datDet.setNombre_b(txtNomBien.getText());
@@ -1025,10 +1034,10 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 datDet.setModelo_b(txtModelo.getText());
                 datDet.setSerie_b(txtSerie.getText());
                 datDet.setValor_b(Integer.parseInt(txtValor.getText()));
-                contador = contador + 1;
                 int cantidadB = Integer.parseInt(txtCantB.getText());
                 cantidadB = cantidadB - 1;
-                txtCanTotal.setText(String.valueOf(contador));
+                
+                
                 int valorB = Integer.parseInt(txtValor.getText());
                 ValorT = ValorT + valorB;
                 txtValTotal.setText(String.valueOf(ValorT));
@@ -1132,13 +1141,19 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
     private void btnEliminarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDActionPerformed
         int filasel = tbDatos.getSelectedRow();
-        contador = contador - 1;
+        
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
             } else {
-                int cantT = Integer.parseInt(txtCanTotal.getText());
-                int cantR = cantT - 1;
+                if (seleccion.equals("cambioAsig")) {
+                int ct = Integer.parseInt(txtCanTotal.getText());
+                ct = ct - 1;
+                txtCanTotal.setText(String.valueOf(ct));
+                }else if (seleccion.equals("AgregarAsig")){
+                contador = contador - 1;    
+                txtCanTotal.setText(String.valueOf(contador));
+                }
                 int valorT = Integer.parseInt(txtValTotal.getText());
                 int ValP = Integer.parseInt(txtValor.getText());
                 int Res = valorT - ValP;
@@ -1146,7 +1161,6 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                 exisB = exisB + 1;
                 c.editar_AltaBienes_xBaja(txtIdBien.getText(), exisB);
                 c.eliminar_xregistro_detalle_res(Integer.parseInt(txtIdDetalle.getText()));
-                txtCanTotal.setText(String.valueOf(cantR));
                 txtValTotal.setText(String.valueOf(Res));
                 cargar_tabla(txtIdValeR.getText());
                 desbloquear();
