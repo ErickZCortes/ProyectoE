@@ -11,35 +11,11 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     detalle_vale.`id_detalle` AS detalle_vale_id_detalle,
-     detalle_vale.`id_valeA` AS detalle_vale_id_valeA,
-     detalle_vale.`id_consumibles` AS detalle_vale_id_consumibles,
-     detalle_vale.`nombre_consumible` AS detalle_vale_nombre_consumible,
-     detalle_vale.`cantidad_solic` AS detalle_vale_cantidad_solic,
-     detalle_vale.`unidad_consumible` AS detalle_vale_unidad_consumible,
-     detalle_vale.`cantidad_entregada` AS detalle_vale_cantidad_entregada,
-     vale_almacen.`id_vale` AS vale_almacen_id_vale,
-     vale_almacen.`fecha` AS vale_almacen_fecha,
-     vale_almacen.`id_person` AS vale_almacen_id_person,
-     vale_almacen.`nombre_person` AS vale_almacen_nombre_person,
-     vale_almacen.`area_sol` AS vale_almacen_area_sol,
-     vale_almacen.`responsable_area` AS vale_almacen_responsable_area
+     vale_almacen.`id_vale` AS vale_almacen_id_vale
 FROM
-     `vale_almacen` vale_almacen INNER JOIN `detalle_vale` detalle_vale ON vale_almacen.`id_vale` = detalle_vale.`id_valeA`]]>
+     `vale_almacen` vale_almacen]]>
 	</queryString>
-	<field name="detalle_vale_id_detalle" class="java.lang.Integer"/>
-	<field name="detalle_vale_id_valeA" class="java.lang.Integer"/>
-	<field name="detalle_vale_id_consumibles" class="java.lang.Integer"/>
-	<field name="detalle_vale_nombre_consumible" class="java.lang.String"/>
-	<field name="detalle_vale_cantidad_solic" class="java.lang.Integer"/>
-	<field name="detalle_vale_unidad_consumible" class="java.lang.String"/>
-	<field name="detalle_vale_cantidad_entregada" class="java.lang.Integer"/>
 	<field name="vale_almacen_id_vale" class="java.lang.Integer"/>
-	<field name="vale_almacen_fecha" class="java.sql.Date"/>
-	<field name="vale_almacen_id_person" class="java.lang.Integer"/>
-	<field name="vale_almacen_nombre_person" class="java.lang.String"/>
-	<field name="vale_almacen_area_sol" class="java.lang.String"/>
-	<field name="vale_almacen_responsable_area" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

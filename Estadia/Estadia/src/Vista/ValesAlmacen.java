@@ -216,6 +216,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         txtAlmacen = new javax.swing.JTextField();
         txtStockM = new javax.swing.JTextField();
         txtidDetalle = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLMaterial = new javax.swing.JLabel();
         txtMaterial = new javax.swing.JTextField();
@@ -361,7 +362,10 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                             .addComponent(txtidPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtidConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(99, 99, 99))
         );
         jPanel3Layout.setVerticalGroup(
@@ -402,7 +406,9 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
                     .addComponent(txtidCantidadC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtidVale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -688,7 +694,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
+
     private void btnBuscarPeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeActionPerformed
         String prueba = "almacen";
         ConsultaPersonal form = null;
@@ -733,9 +739,30 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         int d, m, a;
         cal = dcFecha.getCalendar();
         d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        dVale.setFecha(new Date(a, m, d));
+        m = cal.get(Calendar.MONTH) + 1;
+        a = cal.get(Calendar.YEAR);
+
+        if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+            String dia = "0" + d;
+            String mes = "0" + m;
+            String fecha = dia + "/" + mes + "/" + a;
+            txtFecha.setText(fecha);
+            dVale.setFecha(txtFecha.getText());
+        } else if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+            String dia = "0" + d;
+            String fecha = dia + "/" + m + "/" + a;
+            txtFecha.setText(fecha);
+            dVale.setFecha(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+            String mes = "0" + m;
+            String fecha = d + "/" + mes + "/" + a;
+            txtFecha.setText(fecha);
+            dVale.setFecha(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+            String fecha = d + "/" + m + "/" + a;
+            txtFecha.setText(fecha);
+            dVale.setFecha(txtFecha.getText());
+        }
 
         int num = 0;
         String up = "up";
@@ -813,46 +840,45 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         if (contador >= 13) {
             JOptionPane.showMessageDialog(null, "No puedes agregar más Material, debes crear otro Vale");
             vaciardos();
-        }else {
-            if (CantC == 0) {
-            JOptionPane.showMessageDialog(null, "No hay Material");
-            vaciardos();
-        } else if (CantC <= StocM) {
-            JOptionPane.showMessageDialog(null, "Stock mínimo superado");
-            c.Guardar_detalle_almacen(accion, dDetalle);
-            if (accion == "A") {
-                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
-                vaciardos();
-            } else if (accion == "M") {
-                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
-                JOptionPane.showMessageDialog(null, "Información Modificada");
-            }
-
-            try {
-                cargar_tabla(txtidVale.getText());
-            } catch (SQLException ex) {
-                Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } else {
-
-            c.Guardar_detalle_almacen(accion, dDetalle);
-            if (accion == "A") {
-                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+            if (CantC == 0) {
+                JOptionPane.showMessageDialog(null, "No hay Material");
                 vaciardos();
-                //   JOptionPane.showMessageDialog(null, "Información Agregada");
-            } else if (accion == "M") {
-                c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
-                JOptionPane.showMessageDialog(null, "Información Modificada");
-            }
+            } else if (CantC <= StocM) {
+                JOptionPane.showMessageDialog(null, "Stock mínimo superado");
+                c.Guardar_detalle_almacen(accion, dDetalle);
+                if (accion == "A") {
+                    c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+                    vaciardos();
+                } else if (accion == "M") {
+                    c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+                    JOptionPane.showMessageDialog(null, "Información Modificada");
+                }
 
-            try {
-                cargar_tabla(txtidVale.getText());
-            } catch (SQLException ex) {
-                Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    cargar_tabla(txtidVale.getText());
+                } catch (SQLException ex) {
+                    Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+
+                c.Guardar_detalle_almacen(accion, dDetalle);
+                if (accion == "A") {
+                    c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+                    vaciardos();
+                    //   JOptionPane.showMessageDialog(null, "Información Agregada");
+                } else if (accion == "M") {
+                    c.editar_Consumible_x_existencia(txtidConsumible.getText(), resC);
+                    JOptionPane.showMessageDialog(null, "Información Modificada");
+                }
+
+                try {
+                    cargar_tabla(txtidVale.getText());
+                } catch (SQLException ex) {
+                    Logger.getLogger(ValeActivo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
-        }
-        
 
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -892,7 +918,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 vaciar();
                 bloquear();
                 this.dispose();
@@ -911,18 +937,18 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
         try {
             if (filasel == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione Registro");
-            } 
-                int idDetalle = (Integer.parseInt(txtidDetalle.getText()));
+            }
+            int idDetalle = (Integer.parseInt(txtidDetalle.getText()));
 
-                int CantC = c.seleccionar_ex_Cons(txtidConsumible.getText());
-                int CantE = Integer.parseInt(txtCantidadE.getText());
-                int Modificado = CantC + CantE;
-                c.editar_Consumible_x_existencia(txtidConsumible.getText(), Modificado);
-                c.eliminar_xregistro_detalle_almacen(idDetalle);
-                cargar_tabla(txtidVale.getText());
-                vaciardos();
-                desbloquear();
-            
+            int CantC = c.seleccionar_ex_Cons(txtidConsumible.getText());
+            int CantE = Integer.parseInt(txtCantidadE.getText());
+            int Modificado = CantC + CantE;
+            c.editar_Consumible_x_existencia(txtidConsumible.getText(), Modificado);
+            c.eliminar_xregistro_detalle_almacen(idDetalle);
+            cargar_tabla(txtidVale.getText());
+            vaciardos();
+            desbloquear();
+
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(ValesAlmacen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1052,6 +1078,7 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtArea;
     public static javax.swing.JTextField txtCantidadE;
     public static javax.swing.JTextField txtCantidadS;
+    public static javax.swing.JTextField txtFecha;
     public static javax.swing.JTextField txtMaterial;
     public static javax.swing.JTextField txtPerSol;
     public static javax.swing.JTextField txtResA;

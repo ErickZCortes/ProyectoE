@@ -15,7 +15,7 @@ public class DatosConsumible {
    private int IdConsumible;
    private String Categoria;
    private String Nombre;
-   private Date FechaC;
+   private String FechaC;
    private int Existencia;
    private int stockM;
    private int Valor;
@@ -24,7 +24,7 @@ public class DatosConsumible {
     public DatosConsumible() {
     }
 
-    public DatosConsumible(int IdConsumible, String Categoria, String Nombre, Date FechaC, int Existencia, int stockM, int Valor, String unidad) {
+    public DatosConsumible(int IdConsumible, String Categoria, String Nombre, String FechaC, int Existencia, int stockM, int Valor, String unidad) {
         this.IdConsumible = IdConsumible;
         this.Categoria = Categoria;
         this.Nombre = Nombre;
@@ -47,7 +47,7 @@ public class DatosConsumible {
         return Nombre;
     }
 
-    public Date getFechaC() {
+    public String getFechaC() {
         return FechaC;
     }
 
@@ -79,7 +79,7 @@ public class DatosConsumible {
         this.Nombre = Nombre;
     }
 
-    public void setFechaC(Date FechaC) {
+    public void setFechaC(String FechaC) {
         this.FechaC = FechaC;
     }
 
@@ -97,6 +97,5 @@ public class DatosConsumible {
 
     public void setUnidad(String unidad) {
         this.unidad = unidad;
-    }
-    
+    }   
 }

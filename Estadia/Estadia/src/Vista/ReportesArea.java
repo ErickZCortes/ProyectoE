@@ -208,7 +208,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
                 parametro.put("area_bien_alta", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
@@ -221,7 +221,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
                 parametro.put("area_bien_baja", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
@@ -234,7 +234,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
                 parametro.put("area_resguardo", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
@@ -247,7 +247,7 @@ public class ReportesArea extends javax.swing.JInternalFrame {
                 parametro.put("area_vale_alm", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);

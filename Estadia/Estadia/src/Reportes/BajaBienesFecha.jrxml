@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="fecha_inicio" class="java.util.Date">
+	<parameter name="fecha_inicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="fecha_termino" class="java.util.Date">
+	<parameter name="fecha_termino" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -31,12 +31,12 @@ ORDER BY
 	<field name="bajabienes_id_baja" class="java.lang.Integer"/>
 	<field name="bajabienes_nInventabaja" class="java.lang.String"/>
 	<field name="bajabienes_area" class="java.lang.String"/>
-	<field name="bajabienes_FechaAdquisicion" class="java.sql.Date"/>
+	<field name="bajabienes_FechaAdquisicion" class="java.lang.String"/>
 	<field name="bajabienes_id_bien" class="java.lang.Integer"/>
 	<field name="bajabienes_valor_bien" class="java.lang.Integer"/>
 	<field name="bajabienes_descripcion" class="java.lang.String"/>
 	<field name="bajabienes_cantidad" class="java.lang.Integer"/>
-	<field name="bajabienes_fechaBaja" class="java.sql.Date"/>
+	<field name="bajabienes_fechaBaja" class="java.lang.String"/>
 	<field name="bajabienes_causa_baja" class="java.lang.String"/>
 	<background>
 		<band/>

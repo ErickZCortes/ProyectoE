@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Modelo.Conexion;
 import Reportes.AltaBienesR;
 import Reportes.AsignacionBienesR;
@@ -21,6 +22,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Mayra
@@ -29,7 +31,8 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
 
     Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();
-    String seleccion = "";
+    String seleccion = "", fechai = "", fechaF = "";
+
     /**
      * Creates new form ReportesFecha
      */
@@ -81,6 +84,7 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
         jLFecha = new javax.swing.JLabel();
         dcFechaFin = new com.toedter.calendar.JDateChooser();
         jLFecha1 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
 
@@ -138,34 +142,47 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
         jLFecha1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLFecha1.setText("Fecha de término:");
 
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLFecha)
-                            .addComponent(jLFecha1))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
-                                .addComponent(jLabel3))
-                            .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(60, 60, 60))
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(btnGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLFecha)
+                                    .addComponent(jLFecha1))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(230, 230, 230)
+                                        .addComponent(jLabel3))
+                                    .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addContainerGap()
+                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dcFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
@@ -231,18 +248,66 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
+
+        Calendar calI, calF;
+        int dI, mI, aI, dF, mF, aF;
+        calI = dcFechaInicio.getCalendar();
+        calF = dcFechaFin.getCalendar();
+        dI = calI.get(Calendar.DAY_OF_MONTH);
+        mI = calI.get(Calendar.MONTH) + 1;
+        aI = calI.get(Calendar.YEAR);
+        dF = calF.get(Calendar.DAY_OF_MONTH);
+        mF = calF.get(Calendar.MONTH) + 1;
+        aF = calF.get(Calendar.YEAR);
+        
+        if ((dI == 1 || dI == 2 || dI == 3 || dI == 4 || dI == 5 || dI == 6 || dI == 7 || dI == 8 || dI == 9) && (mI == 1 || mI == 2 || mI == 3 || mI == 4 || mI == 5 || mI == 6 || mI == 7 || mI == 8 || mI == 9)) {
+            String dia = "0" + dI;
+            String mes = "0" + mI;
+            String fecha = dia + "/" + mes + "/" + aI;
+            fechai = fecha;
+        } else if ((dI == 1 || dI == 2 || dI == 3 || dI == 4 || dI == 5 || dI == 6 || dI == 7 || dI == 8 || dI == 9) && (mI != 1 || mI != 2 || mI != 3 || mI != 4 || mI != 5 || mI != 6 || mI != 7 || mI != 8 || mI != 9)) {
+            String dia = "0" + dI;
+            String fecha = dia + "/" + mI + "/" + aI;
+            fechai = fecha;
+        } else if ((dI != 1 || dI != 2 || dI != 3 || dI != 4 || dI != 5 || dI != 6 || dI != 7 || dI != 8 || dI != 9) && (mI == 1 || mI == 2 || mI == 3 || mI == 4 || mI == 5 || mI == 6 || mI == 7 || mI == 8 || mI == 9)) {
+            String mes = "0" + mI;
+            String fecha = dI + "/" + mes + "/" + aI;
+            fechai = fecha;
+        } else if ((dI != 1 || dI != 2 || dI != 3 || dI != 4 || dI != 5 || dI != 6 || dI != 7 || dI != 8 || dI != 9) && (mI != 1 || mI != 2 || mI != 3 || mI != 4 || mI != 5 || mI != 6 || mI != 7 || mI != 8 || mI != 9)) {
+            String fecha = dI + "/" + mI + "/" + aI;
+            fechai = fecha;
+        }
+        
+        if ((dF == 1 || dF == 2 || dF == 3 || dF == 4 || dF == 5 || dF == 6 || dF == 7 || dF == 8 || dF == 9) && (mF == 1 || mF == 2 || mF == 3 || mF == 4 || mF == 5 || mF == 6 || mF == 7 || mF == 8 || mF == 9)) {
+            String dia = "0" + dF;
+            String mes = "0" + mF;
+            String fecha = dia + "/" + mes + "/" + aF;
+            fechaF = fecha;
+        } else if ((dF == 1 || dF == 2 || dF == 3 || dF == 4 || dF == 5 || dF == 6 || dF == 7 || dF == 8 || dF == 9) && (mF != 1 || mF != 2 || mF != 3 || mF != 4 || mF != 5 || mF != 6 || mF != 7 || mF != 8 || mF != 9)) {
+            String dia = "0" + dF;
+            String fecha = dia + "/" + mF + "/" + aF;
+            fechaF = fecha;
+        } else if ((dF != 1 || dF != 2 || dF != 3 || dF != 4 || dF != 5 || dF != 6 || dF != 7 || dF != 8 || dF != 9) && (mF == 1 || mF == 2 || mF == 3 || mF == 4 || mF == 5 || mF == 6 || mF == 7 || mF == 8 || mF == 9)) {
+            String mes = "0" + mF;
+            String fecha = dF + "/" + mes + "/" + aF;
+            fechaF = fecha;
+        } else if ((dF != 1 || dF != 2 || dF != 3 || dF != 4 || dF != 5 || dF != 6 || dF != 7 || dF != 8 || dF != 9) && (mF != 1 || mF != 2 || mF != 3 || mF != 4 || mF != 5 || mF != 6 || mF != 7 || mF != 8 || mF != 9)) {
+            String fecha = dF + "/" + mF + "/" + aF;
+            fechaF = fecha;
+        }
+
         if (seleccion.equals("AltaBienes")) {
             try {
                 JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AltaBienesR.class.getResource("/Reportes/AltaBienesFecha.jasper"));
-                Map parametro = new HashMap<String, Date>();
+                Map parametro = new HashMap<String, String>();
 
-                parametro.put("fecha_inicio", dcFechaInicio.getDate());
-                parametro.put("fecha_termino", dcFechaFin.getDate());
+                parametro.put("fecha_inicio", fechai);
+                parametro.put("fecha_termino", fechaF);
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
 
                 //JasperPrintManager.printReport(jp, true);
             } catch (Exception e) {
@@ -253,14 +318,14 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             try {
                 JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(BajaBienes.class.getResource("/Reportes/BajaBienesFecha.jasper"));
-                Map parametro = new HashMap<String, Date>();
+                Map parametro = new HashMap<String, String>();
 
-                parametro.put("fecha_inicio", dcFechaInicio.getDate());
-                parametro.put("fecha_termino", dcFechaFin.getDate());
+                parametro.put("fecha_inicio", fechai);
+                parametro.put("fecha_termino", fechaF);
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
 
                 //JasperPrintManager.printReport(jp, true);
             } catch (Exception e) {
@@ -271,14 +336,14 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             try {
                 JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(AsignacionBienesR.class.getResource("/Reportes/AsignBienesFecha.jasper"));
-                Map parametro = new HashMap<String, Date>();
+                Map parametro = new HashMap<String, String>();
 
-                parametro.put("fecha_inicio", dcFechaInicio.getDate());
-                parametro.put("fecha_termino", dcFechaFin.getDate());
+                parametro.put("fecha_inicio", fechai);
+                parametro.put("fecha_termino", fechaF);
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
 
                 //JasperPrintManager.printReport(jp, true);
             } catch (Exception e) {
@@ -289,14 +354,14 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             try {
                 JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(SalidaConsumiblesR.class.getResource("/Reportes/SalidaConsumiblesFecha.jasper"));
-                Map parametro = new HashMap<String, Date>();
+                Map parametro = new HashMap<String, String>();
 
-                parametro.put("fecha_inicio", dcFechaInicio.getDate());
-                parametro.put("fecha_termino", dcFechaFin.getDate());
+                parametro.put("fecha_inicio", fechai);
+                parametro.put("fecha_termino", fechaF);
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
 
                 //JasperPrintManager.printReport(jp, true);
             } catch (Exception e) {
@@ -307,14 +372,14 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             try {
                 JOptionPane.showMessageDialog(null, "Reporte generado.");
                 JasperReport jr = (JasperReport) JRLoader.loadObject(ConsumiblesR.class.getResource("/Reportes/ConsumiblesFecha.jasper"));
-                Map parametro = new HashMap<String, Date>();
+                Map parametro = new HashMap<String, String>();
 
-                parametro.put("fecha_inicio", dcFechaInicio.getDate());
-                parametro.put("fecha_termino", dcFechaFin.getDate());
+                parametro.put("fecha_inicio", fechai);
+                parametro.put("fecha_termino", fechaF);
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
 
                 //JasperPrintManager.printReport(jp, true);
             } catch (Exception e) {
@@ -323,6 +388,10 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnGenerarMouseClicked
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,5 +405,6 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }

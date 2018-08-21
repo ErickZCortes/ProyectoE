@@ -291,6 +291,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         btnEliminarD = new javax.swing.JButton();
         txtCantB = new javax.swing.JTextField();
         txtActivo = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         txtCanTotal = new javax.swing.JTextField();
         txtValTotal = new javax.swing.JTextField();
@@ -646,7 +647,8 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                             .addComponent(txtIdValeR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdBien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdDetalle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCantB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -691,21 +693,20 @@ public class ValeActivo extends javax.swing.JInternalFrame {
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
                             .addComponent(txtIdBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel13)
+                                .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdValeR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarD, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Datos del bien", jPanel1);
@@ -930,9 +931,30 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         int d, m, a;
         cal = dcfechaRes.getCalendar();
         d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        datRes.setFecha(new Date(a, m, d));
+        m = cal.get(Calendar.MONTH) + 1;
+        a = cal.get(Calendar.YEAR);
+        
+        if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+            String dia = "0" + d;
+            String mes = "0" + m;
+            String fecha = dia + "/" + mes + "/" + a;
+            txtFecha.setText(fecha);
+            datRes.setFecha(txtFecha.getText());
+        } else if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+                String dia = "0" + d;
+                String fecha = dia + "/" + m + "/" + a;
+                txtFecha.setText(fecha);
+                datRes.setFecha(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+                String mes = "0" + m;
+                String fecha = d + "/" + mes + "/" + a;
+                txtFecha.setText(fecha);
+                datRes.setFecha(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+                String fecha = d + "/" + m + "/" + a;
+                txtFecha.setText(fecha);
+                datRes.setFecha(txtFecha.getText());
+        }
 
         String update = "update";
         int up = 0;
@@ -1103,10 +1125,31 @@ public class ValeActivo extends javax.swing.JInternalFrame {
         int d, m, a;
         cal = dcfechaRes.getCalendar();
         d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        datRes.setFecha(new Date(a, m, d));
-
+        m = cal.get(Calendar.MONTH) + 1;
+        a = cal.get(Calendar.YEAR);
+        
+        if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+            String dia = "0" + d;
+            String mes = "0" + m;
+            String fecha = dia + "/" + mes + "/" + a;
+            txtFecha.setText(fecha);
+            datRes.setFecha(txtFecha.getText());
+        } else if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+                String dia = "0" + d;
+                String fecha = dia + "/" + m + "/" + a;
+                txtFecha.setText(fecha);
+                datRes.setFecha(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+                String mes = "0" + m;
+                String fecha = d + "/" + mes + "/" + a;
+                txtFecha.setText(fecha);
+                datRes.setFecha(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+                String fecha = d + "/" + m + "/" + a;
+                txtFecha.setText(fecha);
+                datRes.setFecha(txtFecha.getText());
+        }
+        
         datRes.setNombre_per(txtName.getText());
         datRes.setCtt(txtCTT.getText());
         datRes.setPlantel(txtArea.getText());
@@ -1126,7 +1169,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
 
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
 
                 //JasperPrintManager.printReport( jp, true);
                 vaciar();
@@ -1341,6 +1384,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtCTT;
     public static javax.swing.JTextField txtCanTotal;
     public static javax.swing.JTextField txtCantB;
+    public static javax.swing.JTextField txtFecha;
     public static javax.swing.JTextField txtIdBien;
     public static javax.swing.JTextField txtIdDetalle;
     public static javax.swing.JTextField txtIdValeR;

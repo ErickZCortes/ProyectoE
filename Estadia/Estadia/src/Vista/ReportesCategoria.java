@@ -198,7 +198,7 @@ public class ReportesCategoria extends javax.swing.JInternalFrame {
             parametro.put("con_categoria", cboCategoria.getItemAt(cboCategoria.getSelectedIndex()));
             JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
             JasperViewer jv = new JasperViewer(jp, false);
-            jv.show();
+            jv.setVisible(true);
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "error" + e);

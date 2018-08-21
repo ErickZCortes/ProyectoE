@@ -17,7 +17,7 @@ public class DatosAltaBien {
     private int idAltaBien;
     private String nInventario;
     private String area;
-    private Date FechaAd;
+    private String FechaAd;
     private String FormaAd;
     private String descripcion;
     private int cantidad;
@@ -29,7 +29,7 @@ public class DatosAltaBien {
     public DatosAltaBien() {
     }
 
-    public DatosAltaBien(int idAltaBien, String nInventario, String area, Date FechaAd, String FormaAd, String descripcion, int cantidad, String marca, String modelo, String serie, int valor) {
+    public DatosAltaBien(int idAltaBien, String nInventario, String area, String FechaAd, String FormaAd, String descripcion, int cantidad, String marca, String modelo, String serie, int valor) {
         this.idAltaBien = idAltaBien;
         this.nInventario = nInventario;
         this.area = area;
@@ -55,7 +55,7 @@ public class DatosAltaBien {
         return area;
     }
 
-    public Date getFechaAd() {
+    public String getFechaAd() {
         return FechaAd;
     }
 
@@ -99,7 +99,7 @@ public class DatosAltaBien {
         this.area = area;
     }
 
-    public void setFechaAd(Date FechaAd) {
+    public void setFechaAd(String FechaAd) {
         this.FechaAd = FechaAd;
     }
 

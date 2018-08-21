@@ -35,9 +35,9 @@
      detalle_vale.`cantidad_entregada` AS detalle_vale_cantidad_entregada,
      vale_almacen.`id_vale` AS vale_almacen_id_vale,
      vale_almacen.`area_sol` AS vale_almacen_area_sol,
-     vale_almacen.`fecha` AS vale_almacen_fecha,
      vale_almacen.`nombre_person` AS vale_almacen_nombre_person,
-     vale_almacen.`responsable_area` AS vale_almacen_responsable_area
+     vale_almacen.`responsable_area` AS vale_almacen_responsable_area,
+     vale_almacen.`fecha` AS vale_almacen_fecha
 FROM
      `vale_almacen` vale_almacen INNER JOIN `detalle_vale` detalle_vale ON vale_almacen.`id_vale` = detalle_vale.`id_valeA`
 WHERE
@@ -49,9 +49,9 @@ WHERE
 	<field name="detalle_vale_cantidad_entregada" class="java.lang.Integer"/>
 	<field name="vale_almacen_id_vale" class="java.lang.Integer"/>
 	<field name="vale_almacen_area_sol" class="java.lang.String"/>
-	<field name="vale_almacen_fecha" class="java.sql.Date"/>
 	<field name="vale_almacen_nombre_person" class="java.lang.String"/>
 	<field name="vale_almacen_responsable_area" class="java.lang.String"/>
+	<field name="vale_almacen_fecha" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
