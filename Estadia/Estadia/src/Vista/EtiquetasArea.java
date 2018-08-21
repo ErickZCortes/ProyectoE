@@ -190,7 +190,7 @@ public class EtiquetasArea extends javax.swing.JInternalFrame {
             parametro.put("CodeBar", comboAreas.getItemAt(comboAreas.getSelectedIndex()).getNombre());
             JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
             JasperViewer jv = new JasperViewer(jp, false);
-            jv.show();
+            jv.setVisible(true);
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "error" + e);

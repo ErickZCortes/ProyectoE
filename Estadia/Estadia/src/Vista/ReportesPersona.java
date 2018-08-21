@@ -100,11 +100,6 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
         btnGenerar.setContentAreaFilled(false);
         btnGenerar.setDefaultCapable(false);
         btnGenerar.setOpaque(true);
-        btnGenerar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGenerarMouseClicked(evt);
-            }
-        });
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarActionPerformed(evt);
@@ -223,10 +218,6 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnGenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseClicked
-
-    }//GEN-LAST:event_btnGenerarMouseClicked
-
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         if (seleccion.equals("AsigBienes")) {
             try {
@@ -237,7 +228,7 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
                 parametro.put("nom_persona_res", txtNomPersonal.getText());
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);
@@ -251,7 +242,7 @@ public class ReportesPersona extends javax.swing.JInternalFrame {
                 parametro.put("nom_persona_alm", txtNomPersonal.getText());
                 JasperPrint jp = JasperFillManager.fillReport(jr, parametro, cn);
                 JasperViewer jv = new JasperViewer(jp, false);
-                jv.show();
+                jv.setVisible(true);
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "error" + e);

@@ -15,18 +15,18 @@ public class DatosBajaBien {
     private int idBajaBien;
     private String nInventario;
     private String area;
-    private Date FechaAd;
+    private String FechaAd;
     private int idBien;
     private int valor;
     private String descripcion;
     private int cantidad;
-    private Date fechaBaja;
+    private String fechaBaja;
     private String causa;
 
     public DatosBajaBien() {
     }
 
-    public DatosBajaBien(int idBajaBien, String nInventario, String area, Date FechaAd, int idBien, int valor, String descripcion, int cantidad, Date fechaBaja, String causa) {
+    public DatosBajaBien(int idBajaBien, String nInventario, String area, String FechaAd, int idBien, int valor, String descripcion, int cantidad, String fechaBaja, String causa) {
         this.idBajaBien = idBajaBien;
         this.nInventario = nInventario;
         this.area = area;
@@ -51,7 +51,7 @@ public class DatosBajaBien {
         return area;
     }
 
-    public Date getFechaAd() {
+    public String getFechaAd() {
         return FechaAd;
     }
 
@@ -71,7 +71,7 @@ public class DatosBajaBien {
         return cantidad;
     }
 
-    public Date getFechaBaja() {
+    public String getFechaBaja() {
         return fechaBaja;
     }
 
@@ -91,7 +91,7 @@ public class DatosBajaBien {
         this.area = area;
     }
 
-    public void setFechaAd(Date FechaAd) {
+    public void setFechaAd(String FechaAd) {
         this.FechaAd = FechaAd;
     }
 
@@ -111,7 +111,7 @@ public class DatosBajaBien {
         this.cantidad = cantidad;
     }
 
-    public void setFechaBaja(Date fechaBaja) {
+    public void setFechaBaja(String fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
 

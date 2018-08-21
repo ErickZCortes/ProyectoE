@@ -188,6 +188,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -347,6 +348,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel11.setText("Forma de Adquisición:");
 
+        dcFecha.setDateFormatString("yyyy/MM/dd");
         dcFecha.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
 
         comboAreas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -402,6 +404,12 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
+            }
+        });
+
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
             }
         });
 
@@ -481,6 +489,8 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1)
                                 .addGap(179, 179, 179)
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jSeparator2)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)))
@@ -498,7 +508,9 @@ public class AltaBienes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -665,10 +677,30 @@ public class AltaBienes extends javax.swing.JInternalFrame {
         int d, m, a;
         cal = dcFecha.getCalendar();
         d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR) - 1900;
-        datAltaB.setFechaAd(new Date(a, m, d));
-        Date fecha = datAltaB.getFechaAd();
+        m = cal.get(Calendar.MONTH) + 1;
+        a = cal.get(Calendar.YEAR);
+
+        if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+            String dia = "0" + d;
+            String mes = "0" + m;
+            String fecha = dia + "/" + mes + "/" + a;
+            txtFecha.setText(fecha);
+            datAltaB.setFechaAd(txtFecha.getText());
+        } else if ((d == 1 || d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+                String dia = "0" + d;
+                String fecha = dia + "/" + m + "/" + a;
+                txtFecha.setText(fecha);
+                datAltaB.setFechaAd(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m == 1 || m == 2 || m == 3 || m == 4 || m == 5 || m == 6 || m == 7 || m == 8 || m == 9)) {
+                String mes = "0" + m;
+                String fecha = d + "/" + mes + "/" + a;
+                txtFecha.setText(fecha);
+                datAltaB.setFechaAd(txtFecha.getText());
+        } else if ((d != 1 || d != 2 || d != 3 || d != 4 || d != 5 || d != 6 || d != 7 || d != 8 || d != 9) && (m != 1 || m != 2 || m != 3 || m != 4 || m != 5 || m != 6 || m != 7 || m != 8 || m != 9)) {
+                String fecha = d + "/" + m + "/" + a;
+                txtFecha.setText(fecha);
+                datAltaB.setFechaAd(txtFecha.getText());
+        }
 
         String idBien = txtId.getText();
         datAltaB.setnInventario(txtInventario.getText());
@@ -839,10 +871,10 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtSerieKeyPressed
 
     private void txtInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInventarioKeyTyped
-      if (txtInventario.getText().length() == 30) {
+        if (txtInventario.getText().length() == 30) {
             evt.consume();
         }
-      char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
             String cad = ("" + c).toUpperCase();
             c = cad.charAt(0);
@@ -859,6 +891,10 @@ public class AltaBienes extends javax.swing.JInternalFrame {
             Logger.getLogger(AltaBienes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -891,6 +927,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtInventario;
     private javax.swing.JTextField txtMarca;

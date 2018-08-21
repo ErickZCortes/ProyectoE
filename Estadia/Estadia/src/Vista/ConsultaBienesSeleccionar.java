@@ -346,13 +346,15 @@ public class ConsultaBienesSeleccionar extends javax.swing.JInternalFrame {
         } else if (seleccion.equals("BajaBienes")) {
             if (evt.getClickCount() == 2) {
                 int fila = tbDatos.getSelectedRow();
-                String nombre, valor, idbien, cantidad;
+                String nombre, valor, idbien, cantidad, fecha;
                 nombre = tbDatos.getValueAt(fila, 5).toString();
+                fecha = tbDatos.getValueAt(fila, 3).toString();
                 valor = tbDatos.getValueAt(fila, 10).toString();
                 idbien = tbDatos.getValueAt(fila, 0).toString();
                 cantidad = tbDatos.getValueAt(fila, 6).toString();
 
                 BajaBienes.txtDescripcion.setText(nombre);
+                BajaBienes.dcFechaAlta.setText(fecha);
                 BajaBienes.txtValor.setText(valor);
                 BajaBienes.txtIdbien.setText(idbien);
                 BajaBienes.txtCantAlta.setText(cantidad);

@@ -308,8 +308,8 @@ public class Login extends javax.swing.JFrame {
             txtUser.requestFocus();
             return;
         }
-
-        if (txtPassword.getText().length() == 0) {
+         String contrasena = String.valueOf(txtPassword.getPassword());
+        if (contrasena.length() == 0) {
             JOptionPane.showMessageDialog(null, "Ingresa una contraseña");
             txtPassword.requestFocus();
             return;
@@ -318,7 +318,8 @@ public class Login extends javax.swing.JFrame {
         try {
             
             datosU.setUser(txtUser.getText());
-            datosU.setPassword(txtPassword.getText());
+            datosU.setPassword(contrasena);
+            System.out.println(contrasena);
             
             
             DefaultTableModel model;

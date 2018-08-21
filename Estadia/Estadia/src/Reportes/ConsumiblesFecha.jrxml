@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="fecha_inicio" class="java.util.Date">
+	<parameter name="fecha_inicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="fecha_termino" class="java.util.Date">
+	<parameter name="fecha_termino" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -29,7 +29,7 @@ ORDER BY
 	<field name="consumibles_id_consum" class="java.lang.Integer"/>
 	<field name="consumibles_categoria" class="java.lang.String"/>
 	<field name="consumibles_nombre" class="java.lang.String"/>
-	<field name="consumibles_fechaAd" class="java.sql.Date"/>
+	<field name="consumibles_fechaAd" class="java.lang.String"/>
 	<field name="consumibles_existencia" class="java.lang.Integer"/>
 	<field name="consumibles_unidad" class="java.lang.String"/>
 	<field name="consumibles_stock_minimo" class="java.lang.Integer"/>

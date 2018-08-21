@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class DatosValeAlmacen {
     private int idVale;
-   private Date Fecha;
+   private String Fecha;
    private int idPersona;
    private String nombrePersona;
    private String AreaSoli;
@@ -22,7 +22,7 @@ public class DatosValeAlmacen {
     public DatosValeAlmacen() {
     }
 
-    public DatosValeAlmacen(int idVale, Date Fecha, int idPersona, String nombrePersona, String AreaSoli, String ResponsableArea) {
+    public DatosValeAlmacen(int idVale, String Fecha, int idPersona, String nombrePersona, String AreaSoli, String ResponsableArea) {
         this.idVale = idVale;
         this.Fecha = Fecha;
         this.idPersona = idPersona;
@@ -35,7 +35,7 @@ public class DatosValeAlmacen {
         return idVale;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return Fecha;
     }
 
@@ -59,7 +59,7 @@ public class DatosValeAlmacen {
         this.idVale = idVale;
     }
 
-    public void setFecha(Date Fecha) {
+    public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
 

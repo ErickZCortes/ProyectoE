@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a411bbfe-cd4d-4550-85f6-073bf4cc9cfd">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="204"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="fecha_inicio" class="java.util.Date">
+	<parameter name="fecha_inicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="fecha_termino" class="java.util.Date">
+	<parameter name="fecha_termino" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -25,17 +25,21 @@
 FROM
      `altabienes` altabienes
 WHERE
-     altabienes.`FechaAdquisicion` BETWEEN $P{fecha_inicio}AND$P{fecha_termino}
+     altabienes.`FechaAdquisicion` BETWEEN $P{fecha_inicio} AND $P{fecha_termino}
 ORDER BY
      altabienes.`id_alta` ASC]]>
 	</queryString>
 	<field name="altabienes_id_alta" class="java.lang.Integer"/>
-	<field name="altabienes_area" class="java.lang.String"/>
-	<field name="altabienes_FechaAdquisicion" class="java.sql.Date"/>
 	<field name="altabienes_nInventario" class="java.lang.String"/>
+	<field name="altabienes_area" class="java.lang.String"/>
+	<field name="altabienes_FechaAdquisicion" class="java.lang.String"/>
 	<field name="altabienes_formaAdquisicion" class="java.lang.String"/>
 	<field name="altabienes_descripcion" class="java.lang.String"/>
 	<field name="altabienes_cantidad_bien" class="java.lang.Integer"/>
+	<field name="altabienes_marca_bien" class="java.lang.String"/>
+	<field name="altabienes_modelo_bien" class="java.lang.String"/>
+	<field name="altabienes_serie_bien" class="java.lang.String"/>
+	<field name="altabienes_valor_bien" class="java.lang.Integer"/>
 	<background>
 		<band/>
 	</background>

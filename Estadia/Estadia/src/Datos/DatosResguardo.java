@@ -14,7 +14,7 @@ import java.sql.Date;
 public class DatosResguardo {
 
     private int id_valeres;
-    private Date fecha;
+    private String fecha;
     private String plantel;
     private String ctt;
     private int clave;
@@ -26,7 +26,7 @@ public class DatosResguardo {
     public DatosResguardo() {
     }
 
-    public DatosResguardo(int id_valeres, Date fecha, String plantel, String ctt, int clave, String nombre_per, String curp_pers, int cant_total, int valor_total) {
+    public DatosResguardo(int id_valeres, String fecha, String plantel, String ctt, int clave, String nombre_per, String curp_pers, int cant_total, int valor_total) {
         this.id_valeres = id_valeres;
         this.fecha = fecha;
         this.plantel = plantel;
@@ -42,7 +42,7 @@ public class DatosResguardo {
         return id_valeres;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -78,7 +78,7 @@ public class DatosResguardo {
         this.id_valeres = id_valeres;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -108,8 +108,5 @@ public class DatosResguardo {
 
     public void setValor_total(int valor_total) {
         this.valor_total = valor_total;
-    }
-    
-    
+    } 
 }
-

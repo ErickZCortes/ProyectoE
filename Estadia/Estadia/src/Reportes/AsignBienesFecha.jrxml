@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="fecha_inicio" class="java.util.Date">
+	<parameter name="fecha_inicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="fecha_termino" class="java.util.Date">
+	<parameter name="fecha_termino" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -29,7 +29,7 @@ ORDER BY
      vale_resguardo.`id_valeres` ASC]]>
 	</queryString>
 	<field name="vale_resguardo_id_valeres" class="java.lang.Integer"/>
-	<field name="vale_resguardo_fecha" class="java.sql.Date"/>
+	<field name="vale_resguardo_fecha" class="java.lang.String"/>
 	<field name="vale_resguardo_plantel" class="java.lang.String"/>
 	<field name="vale_resguardo_nombre_per" class="java.lang.String"/>
 	<field name="vale_resguardo_cant_total" class="java.lang.Integer"/>
