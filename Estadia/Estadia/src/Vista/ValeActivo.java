@@ -55,6 +55,7 @@ public class ValeActivo extends javax.swing.JInternalFrame {
      */
     public ValeActivo(String select, String valor) throws SQLException {
         initComponents();
+        txtFecha.setVisible(false);
         txtActivo.setVisible(false);
         txtCantB.setVisible(false);
         txtIdDetalle.setVisible(false);

@@ -33,10 +33,12 @@ public class Usuarios extends javax.swing.JInternalFrame {
         initComponents();
         bloquear();
         cargar_tabla_usuarios("");
+        
     }
 
     void bloquear() {
         txtId.setVisible(false);
+        txtacceso.setVisible(false);
         txtName.setEnabled(false);
         txtCURP.setEnabled(false);
         txtRFC.setEnabled(false);
@@ -374,7 +376,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                                 .addGap(170, 170, 170)
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtacceso, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtacceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
