@@ -39,11 +39,14 @@ public class BajaBienes extends javax.swing.JInternalFrame {
      */
     public BajaBienes() throws SQLException {
         initComponents();
-        txtIdbien.setVisible(true);
+        txtIdbien.setVisible(false);
+        txtFA.setVisible(false);
+        txtFB.setVisible(false);
         txtCantAlta.setVisible(false);
         bloquear();
         cargar_tabla_Bajabienes("");
         datArea.mostrarComboAreas(comboAreas);
+        
     }
 
     void bloquear() {

@@ -46,6 +46,7 @@ public class AltaBienes extends javax.swing.JInternalFrame {
     }
 
     void bloquear() {
+        txtFecha.setVisible(false);
         txtId.setVisible(false);
         txtInventario.setEnabled(false);
         txtDescripcion.setEnabled(false);

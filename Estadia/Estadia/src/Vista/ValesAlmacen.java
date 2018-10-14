@@ -50,13 +50,6 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
      */
     public ValesAlmacen() throws SQLException {
         initComponents();
-        txtStockM.setVisible(false);
-        txtAlmacen.setVisible(false);
-        txtidDetalle.setVisible(true);
-        txtidVale.setVisible(false);
-        txtidPersona.setVisible(false);
-        txtidConsumible.setVisible(false);
-        txtidCantidadC.setVisible(false);
         bloquear();
         Calendar c2 = new GregorianCalendar();
         dcFecha.setCalendar(c2);
@@ -64,6 +57,14 @@ public class ValesAlmacen extends javax.swing.JInternalFrame {
     }
 
     void bloquear() {
+        txtStockM.setVisible(false);
+        txtFecha.setVisible(false);
+        txtAlmacen.setVisible(false);
+        txtidDetalle.setVisible(false);
+        txtidVale.setVisible(false);
+        txtidPersona.setVisible(false);
+        txtidConsumible.setVisible(false);
+        txtidCantidadC.setVisible(false);
         txtResA.setEnabled(false);
         dcFecha.setEnabled(false);
         txtPerSol.setEnabled(false);

@@ -32,12 +32,14 @@ public class ReportesFecha extends javax.swing.JInternalFrame {
     Conexion cc = new Conexion();
     Connection cn = cc.GetConnection();
     String seleccion = "", fechai = "", fechaF = "";
-
+    
     /**
      * Creates new form ReportesFecha
      */
     public ReportesFecha(String select) {
+        
         initComponents();
+        txtFecha.setVisible(false);
         Calendar c2 = new GregorianCalendar();
         dcFechaInicio.setCalendar(c2);
         dcFechaFin.setCalendar(c2);

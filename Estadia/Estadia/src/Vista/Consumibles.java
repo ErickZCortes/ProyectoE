@@ -42,6 +42,7 @@ public class Consumibles extends javax.swing.JInternalFrame {
     }
 
     void bloquear() {
+        txtFecha.setVisible(false);
         cboCategoria.setEnabled(false);
         txtNombre.setEnabled(false);
         dcFecha.setEnabled(false);
